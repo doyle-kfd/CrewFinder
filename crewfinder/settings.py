@@ -45,6 +45,9 @@ CSRF_TRUSTED_ORIGINS = [
 
 INSTALLED_APPS = [
     'django.contrib.admin',
+    'django.contrib.sites',  # Required by Allauth
+    'allauth',               # Required by Allauth
+    'allauth.account',       # Required by Allauth
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -53,6 +56,14 @@ INSTALLED_APPS = [
     'accounts',
     'trips',
 ]
+
+SITE_ID = 1
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',            # Django default backend
+    'allauth.account.auth_backends.AuthenticationBackend',  # Allauth backend
+)
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

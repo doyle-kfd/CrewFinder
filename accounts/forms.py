@@ -15,3 +15,9 @@ class CustomSignupForm(SignupForm):
         user.is_approved = False  # User is initially unapproved
         user.save()
         return user
+
+
+class ProfileCompletionForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['bio', 'experience_level']

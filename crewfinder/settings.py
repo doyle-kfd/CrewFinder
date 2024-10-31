@@ -32,6 +32,12 @@ DEBUG = True
 ALLOWED_HOSTS = ['8000-doylekfd-crewfinder-18t8urmmyig.ws.codeinstitute-ide.net',
                  '.herokuapp.com']
 
+SECRET_KEY = os.environ.get("SECRET_KEY")
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://8000-doylekfd-crewfinder-18t8urmmyig.ws.codeinstitute-ide.net'
+]
+
 
 # Application definition
 

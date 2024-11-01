@@ -1,9 +1,10 @@
 from allauth.account.forms import SignupForm
+from django.contrib.auth.forms import PasswordChangeForm
 from django import forms
 from .models import User
 
 class CustomSignupForm(SignupForm):
-    ROLE_CHOICES = [
+    ROLE_CHOICES = [    
         (User.CAPTAIN, 'Captain'),
         (User.CREW, 'Crew'),
     ]
@@ -18,6 +19,25 @@ class CustomSignupForm(SignupForm):
 
 
 class ProfileCompletionForm(forms.ModelForm):
+    password = forms.CharField(
+        widget=forms.PasswordInput,
+        label="New Password",
+        required=False,
+        help_text="Leave blank if you don't want to change the password."
+    )
+    
     class Meta:
         model = User
-        fields = ['bio', 'experience_level']
+        fields = ['username', 'email', 'bio', 'experience_level', 'password']
+        help_texts = {
+            'username': None,  # Hides default help text
+        }
+
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        # Only update the password if a new password is provided
+        if self.cleaned_data['password']:
+            user.set_password(self.cleaned_data['password'])
+        if commit:
+            user.save()
+        return user

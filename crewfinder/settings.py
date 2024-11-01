@@ -68,6 +68,7 @@ AUTHENTICATION_BACKENDS = (
 
 LOGIN_REDIRECT_URL = '/dashboard/'  # Where to go after login
 LOGOUT_REDIRECT_URL = '/accounts/login/'  # Where to go after logout
+ACCOUNT_SIGNUP_REDIRECT_URL = '/accounts/registration_complete/'
 
 AUTH_USER_MODEL = 'accounts.User'
 

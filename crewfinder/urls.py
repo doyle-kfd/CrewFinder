@@ -22,8 +22,9 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),  # Include accounts app URLs
     path('accounts/', include('allauth.urls')),  # Allauth URLs
     path('trips/', include('trips.urls')),
-    path('', views.home, name='home'),        # Home Page
-    path('about/', views.about, name='about'),# About Page
-    path('contact/', views.contact, name='contact'), # Contact Page
-    path('sailing_opportunities/', views.sailing_opportunities, name='sailing_opportunities'), # Sailing Opportunities Page
+    # path('', views.home, name='home'),        # Home Page
+    # path('about/', views.about, name='about'),# About Page
+    # path('contact/', views.contact, name='contact'), # Contact Page
+    # path('sailing_opportunities/', views.sailing_opportunities, name='sailing_opportunities'), # Sailing Opportunities Page
+    path('', include('pages.urls')),
 ]

@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     'django.contrib.sites',  # Required by Allauth
     'allauth',               # Required by Allauth
     'allauth.account',       # Required by Allauth
+    'crispy_forms',          # Required for Crispy Forms
+    'crispy_bootstrap5',     # Required for Crispy Forms
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -64,10 +66,13 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',  # Allauth backend
 )
 
-LOGIN_REDIRECT_URL = '/dashboard/'
-LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/dashboard/'  # Where to go after login
+LOGOUT_REDIRECT_URL = '/accounts/login/'  # Where to go after logout
 
 AUTH_USER_MODEL = 'accounts.User'
+
+
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -86,7 +91,7 @@ ROOT_URLCONF = 'crewfinder.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

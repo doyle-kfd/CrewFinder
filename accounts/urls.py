@@ -1,8 +1,9 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 
-urlpatterns = [
-    # Default URL patterns for accounts
-    path('signup/', views.signup, name='signup'),
-    path('login/', views.login, name='login'),
+urlpatterns = [ 
+    # Include all of Allauth’s default URLs for login, signup, logout, etc.
+    path('', include('allauth.urls')),
+    # Custom URL for profile completion, pointing to your custom view
+    path('complete_profile/', views.complete_profile, name='complete_profile'),
 ]

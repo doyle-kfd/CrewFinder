@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Us | CrewFinder{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center">Contact Us</h1>
+    <p class="lead text-center">Have a question or need assistance? We’re here to help!</p>
+
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <h2>Get in Touch</h2>
+            <p>If you have any questions, need help with your account, or want more information about joining CrewFinder, please don’t hesitate to reach out. Our team is here to support you on your journey.</p>
+
+            <h3>Contact Details</h3>
+            <ul class="list-unstyled">
+                <li><strong>Email:</strong> support@crewfinder.com</li>
+                <li><strong>Phone:</strong> +353 545 4455</li>
+                <li><strong>Address:</strong> Harbor Road, Dun Laoghaire, Co. Dublin</li>
+            </ul>
+        </div>
+
+        <div class="col-md-6">
+            <h2>Send Us a Message</h2>
+            <form method="post" action="{% url 'contact' %}">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="message" class="form-label">Message</label>
+                    <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-12 text-center">
+            <p class="text-muted">We aim to respond to all inquiries within 24-48 hours. Thank you for reaching out to CrewFinder!</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,19 @@
+.navbar {
+    background-color: #007bff !important; /* Navbar background colour */
+}
+
+.nav-link {
+    color: white !important;
+}
+
+.navbar-brand {
+    color: white !important;
+}
+
+.footer {
+    background-color: #007bff !important; /* Navbar background colour */
+}
+
+.footer span {
+    color: white !important;
+}

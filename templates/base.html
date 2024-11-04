@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <!-- Fixed Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="container">
             <a class="navbar-brand" href="{% url 'home' %}">CrewFinder</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,10 +33,18 @@
             </div>
         </div>
     </nav>
-    
-    <div class="container mt-4">
+
+    <!-- Main Content with Padding -->
+    <div class="container mt-5 pt-4 pb-5" style="padding-top: 70px; padding-bottom: 70px;">
         {% block content %}{% endblock %}
     </div>
+
+    <!-- Fixed Footer -->
+    <footer class="footer bg-light fixed-bottom text-center py-2">
+        <div class="container">
+            <span class="text-muted">&copy; {{ current_year }} CrewFinder. All rights reserved.</span>
+        </div>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

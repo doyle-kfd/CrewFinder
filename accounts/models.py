@@ -15,3 +15,4 @@ class User(AbstractUser):
     bio = models.TextField(blank=True, null=True)
     experience_level = models.CharField(max_length=50, blank=True, null=True)
     is_approved = models.BooleanField(default=False)  # Approval status
+    profile_completed = models.BooleanField(default=False)  # New field to track completion

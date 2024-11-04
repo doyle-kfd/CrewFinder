@@ -1,8 +1,15 @@
+{% extends "base.html" %}
 {% load crispy_forms_tags %}
 
-<h2>Complete Your Profile</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form|crispy }}
-    <button type="submit" class="btn btn-primary">Save Profile</button>
-</form>
+{% block title %}Complete Profile | CrewFinder{% endblock %}
+
+{% block content %}
+<div class="container mt-5 pt-4">
+    <h2 class="text-center mb-4">Complete Your Profile</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="btn btn-primary w-100">Save Profile</button>
+    </form>
+</div>
+{% endblock %}

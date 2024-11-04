@@ -26,3 +26,10 @@ def dashboard(request):
 
 def registration_pending(request):
     return render(request, 'accounts/registration_pending.html')
+
+
+def custom_login_view(request, *args, **kwargs):
+    response = login(request, *args, **kwargs)
+    if request.user.is_authenticated and not request.user.profile_completed:
+        return redirect('complete_profile')
+    return response

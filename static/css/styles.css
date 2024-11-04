@@ -1,3 +1,4 @@
+/* Navigation Styling */
 .navbar {
     background-color: #007bff !important; /* Navbar background colour */
 }
@@ -10,6 +11,7 @@
     color: white !important;
 }
 
+/* Footer Styling */
 .footer {
     background-color: #007bff !important; /* Navbar background colour */
 }

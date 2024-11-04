@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}About Us | CrewFinder{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center">About CrewFinder</h1>
+    <p class="lead text-center">Connecting Captains and Crew for Sailing Adventures Worldwide</p>
+
+    <div class="row mt-4">
+        <div class="col-md-8 offset-md-2">
+            <p>Welcome to CrewFinder, your trusted platform for finding sailing opportunities and connecting with like-minded sailors. Whether you're an experienced captain in need of a dedicated crew or a crew member looking to gain more sailing experience, CrewFinder is here to make those connections easy and reliable.</p>
+
+            <h2 class="mt-5">Our Mission</h2>
+            <p>Our mission is simple: to bring together captains and crew from all around the world, fostering a vibrant community of sailing enthusiasts who share a passion for life on the water. We believe that everyone should have the opportunity to explore, learn, and grow through sailing, and our platform is designed to support that vision.</p>
+
+            <h2 class="mt-5">Why Join CrewFinder?</h2>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Access to a Global Network: Connect with captains and crew from diverse backgrounds and skill levels, making it easy to find the right fit for any voyage.</li>
+                <li class="list-group-item">Verified Profiles: We take safety seriously. All new registrations are reviewed and approved by our team to ensure a trustworthy community.</li>
+                <li class="list-group-item">Opportunity for Growth: Whether you're a novice or a seasoned sailor, CrewFinder provides opportunities to enhance your skills and experience through hands-on learning and collaboration.</li>
+                <li class="list-group-item">Supportive Community: Our platform is built on a foundation of respect and mutual support, making it a welcoming space for all sailing enthusiasts.</li>
+            </ul>
+
+            <h2 class="mt-5">Our Commitment to Safety</h2>
+            <p>At CrewFinder, safety is a top priority. We work diligently to ensure that all profiles are genuine, and our community guidelines promote respectful and safe interactions. We encourage all users to communicate openly and clearly about their expectations, experience levels, and safety procedures before embarking on any journey.</p>
+
+            <h2 class="mt-5">Join the CrewFinder Community Today</h2>
+            <p>Ready to set sail? Join our community today and discover the world of opportunities that await you. Whether you’re looking to explore new waters, gain sailing experience, or find reliable crew members, CrewFinder is here to support you every step of the way.</p>
+
+            <p class="text-center mt-4">
+                <a href="{% url 'account_signup' %}" class="btn btn-primary btn-lg">Sign Up Now</a>
+                <a href="{% url 'sailing_opportunities' %}" class="btn btn-secondary btn-lg">View Sailing Opportunities</a>
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

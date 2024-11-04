@@ -7,7 +7,7 @@ urlpatterns = [
     # Custom URL for profile completion, pointing to your custom view
     path('complete_profile/', views.complete_profile, name='complete_profile'),
     # Custom URL for notification of registration complete
-    path('registration_complete/', views.registration_complete, name='registration_complete'),
+   path('registration_pending/', views.registration_pending, name='registration_pending'),
     # Custom URL for redirection to dashboart
-      path('dashboard/', views.dashboard, name='dashboard'),
+    path('dashboard/', views.dashboard, name='dashboard'),
 ]

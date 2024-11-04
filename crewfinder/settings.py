@@ -70,7 +70,9 @@ AUTHENTICATION_BACKENDS = (
 LOGIN_REDIRECT_URL = '/dashboard/'  # Where to go after login
 LOGOUT_REDIRECT_URL = '/accounts/login/'  # Where to go after logout
 ACCOUNT_SIGNUP_REDIRECT_URL = '/accounts/registration_complete/'
-
+ACCOUNT_ADAPTER = 'accounts.adapter.CustomAccountAdapter'
+ACCOUNT_SIGNUP_REDIRECT_URL = '/accounts/registration_pending/'  # For registration successful
+ACCOUNT_LOGIN_ON_SIGNUP = False # Dont need to be signed in immediately on reg
 AUTH_USER_MODEL = 'accounts.User'
 
 

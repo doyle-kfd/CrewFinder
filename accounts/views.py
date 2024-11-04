@@ -24,5 +24,5 @@ def dashboard(request):
     return render(request, 'accounts/dashboard.html')
 
 
-def registration_complete(request):
-    return render(request, 'accounts/registration_complete.html')
+def registration_pending(request):
+    return render(request, 'accounts/registration_pending.html')

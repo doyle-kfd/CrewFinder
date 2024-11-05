@@ -64,8 +64,8 @@ class CustomSignupView(SignupView):
 def admin_dashboard(request):
     # Check if the logged-in user is an Administrator
     if request.user.role == User.ADMINISTRATOR:
-        # Filter for users with roles Crew and Captain
-        users = User.objects.filter(role__in=[User.CAPTAIN, User.CREW])
+        # Filter for users with roles Crew and Captain, excluding superuser and Administrator accounts
+        users = User.objects.filter(role__in=[User.CAPTAIN, User.CREW], is_superuser=False)
         return render(request, 'accounts/admin_dashboard.html', {'users': users})
     else:
         # Redirect non-administrators to their own dashboard or another page

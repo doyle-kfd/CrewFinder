@@ -3,6 +3,7 @@ from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from .forms import ProfileCompletionForm
+from .models import User  # Ensure you import the User model here
 from allauth.account.views import SignupView
 from django.urls import reverse
 
@@ -27,6 +28,9 @@ def complete_profile(request):
 # Dashboard view
 @login_required
 def dashboard(request):
+    # Redirect administrators to their custom dashboard
+    if request.user.role == User.ADMINISTRATOR:
+        return redirect('admin_dashboard')
     return render(request, 'accounts/dashboard.html')
 
 # Registration pending view
@@ -35,19 +39,34 @@ def registration_pending(request):
 
 # Custom login view
 class CustomLoginView(LoginView):
-    template_name = 'account/login.html'  # Replace with your actual login template
+    template_name = 'account/login.html'
 
     def form_valid(self, form):
-        # Call the original form_valid method
-        response = super().form_valid(form)
-        # Check if the authenticated user has completed their profile
-        if self.request.user.is_authenticated and not self.request.user.profile_completed:
-            return redirect('complete_profile')
-        return response
+        user = self.request.user
+        if user.is_authenticated:
+            if user.role == User.ADMINISTRATOR:
+                return redirect('admin_dashboard')
+            elif not user.profile_completed:
+                return redirect('complete_profile')
+        # Fallback to the default LOGIN_REDIRECT_URL
+        return super().form_valid(form)
 
+# Custom signup view
 class CustomSignupView(SignupView):
     def form_valid(self, form):
         # Save the user to the database
         user = form.save(self.request)  # Allauth expects only `request` as an argument
         # Redirect to registration_pending
         return redirect(reverse('registration_pending'))
+
+# Administrator dashboard view
+@login_required
+def admin_dashboard(request):
+    # Check if the logged-in user is an Administrator
+    if request.user.role == User.ADMINISTRATOR:
+        # Filter for users with roles Crew and Captain
+        users = User.objects.filter(role__in=[User.CAPTAIN, User.CREW])
+        return render(request, 'accounts/admin_dashboard.html', {'users': users})
+    else:
+        # Redirect non-administrators to their own dashboard or another page
+        return redirect('dashboard')

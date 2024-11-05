@@ -75,7 +75,7 @@ AUTHENTICATION_BACKENDS = (
 
 
 
-LOGIN_REDIRECT_URL = '/dashboard/'  # Where to go after login
+LOGIN_REDIRECT_URL = '/accounts/dashboard/'  # Where to go after login
 LOGOUT_REDIRECT_URL = '/accounts/login/'  # Where to go after logout
 ACCOUNT_ADAPTER = 'accounts.adapter.CustomAccountAdapter'
 ACCOUNT_LOGIN_ON_SIGNUP = False  # Ensure that users are not logged in automatically after signup
@@ -187,5 +187,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 ACCOUNT_FORMS = {
     'signup': 'accounts.forms.CustomSignupForm',
 }
+
+def custom_login_view(request):
+    if request.user.role == User.ADMINISTRATOR:
+        return redirect('admin_dashboard')
+    return redirect('dashboard')
 
 ACCOUNT_EMAIL_VERIFICATION = 'none'

@@ -1,5 +1,5 @@
 # Extend class to create custom user model
-from django.contrib.auth.models import AbstractUser 
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 # Create your models here.
@@ -14,5 +14,5 @@ class User(AbstractUser):
     role = models.CharField(max_length=10, choices=ROLE_CHOICES, default=CREW)
     bio = models.TextField(blank=True, null=True)
     experience_level = models.CharField(max_length=50, blank=True, null=True)
-    is_approved = models.BooleanField(default=False)  # Approval status
+    is_active = models.BooleanField(default=False)  # Default to False for new users
     profile_completed = models.BooleanField(default=False)  # New field to track completion

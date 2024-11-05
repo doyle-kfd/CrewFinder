@@ -10,12 +10,17 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+
+
 from pathlib import Path
 import os
 import dj_database_url
 if os.path.isfile('env.py'):
     import env
 import sys
+
+
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -67,12 +72,15 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',  # Allauth backend
 )
 
+
+
+
 LOGIN_REDIRECT_URL = '/dashboard/'  # Where to go after login
 LOGOUT_REDIRECT_URL = '/accounts/login/'  # Where to go after logout
-ACCOUNT_SIGNUP_REDIRECT_URL = '/accounts/registration_complete/'
 ACCOUNT_ADAPTER = 'accounts.adapter.CustomAccountAdapter'
-ACCOUNT_SIGNUP_REDIRECT_URL = '/accounts/registration_pending/'  # For registration successful
-ACCOUNT_LOGIN_ON_SIGNUP = False # Dont need to be signed in immediately on reg
+ACCOUNT_LOGIN_ON_SIGNUP = False  # Ensure that users are not logged in automatically after signup
+ACCOUNT_SIGNUP_REDIRECT_URL = '/accounts/registration_pending/'
+ACCOUNT_INACTIVE_REDIRECT_URL = '/accounts/registration_pending/'
 AUTH_USER_MODEL = 'accounts.User'
 
 

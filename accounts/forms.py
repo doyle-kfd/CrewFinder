@@ -4,17 +4,18 @@ from django import forms
 from .models import User
 
 class CustomSignupForm(SignupForm):
-    ROLE_CHOICES = [    
+    ROLE_CHOICES = [
         (User.CAPTAIN, 'Captain'),
         (User.CREW, 'Crew'),
     ]
     role = forms.ChoiceField(choices=ROLE_CHOICES, required=True)
 
-    def save(self, request):
-        user = super(CustomSignupForm, self).save(request)
+    def custom_signup(self, request, user):
+        # Set custom fields on the user instance after the initial save
         user.role = self.cleaned_data['role']
-        user.is_approved = False  # User is initially unapproved
-        user.save()
+        user.is_active = False  # Set the user as inactive initially
+        user.profile_completed = False  # Mark profile as incomplete
+        user.save()  # Save the updated user instance
         return user
 
 

@@ -1,13 +1,10 @@
 from django.urls import path, include
 from . import views
 
-urlpatterns = [ 
-    # Include all of Allauth’s default URLs for login, signup, logout, etc.
-    path('', include('allauth.urls')),
-    # Custom URL for profile completion, pointing to your custom view
+urlpatterns = [
+    path('signup/', views.CustomSignupView.as_view(), name='account_signup'),  # Custom signup view
+    path('', include('allauth.urls')),  # Include the remaining Allauth URLs
     path('complete_profile/', views.complete_profile, name='complete_profile'),
-    # Custom URL for notification of registration complete
-   path('registration_pending/', views.registration_pending, name='registration_pending'),
-    # Custom URL for redirection to dashboart
+    path('registration_pending/', views.registration_pending, name='registration_pending'),
     path('dashboard/', views.dashboard, name='dashboard'),
 ]

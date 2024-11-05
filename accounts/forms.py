@@ -3,11 +3,8 @@ from django import forms
 from .models import User
 
 class CustomSignupForm(SignupForm):
-    ROLE_CHOICES = [
-        (User.CAPTAIN, 'Captain'),
-        (User.CREW, 'Crew'),
-    ]
-    role = forms.ChoiceField(choices=ROLE_CHOICES, required=True)
+    # Include all roles in ROLE_CHOICES, including Administrator
+    role = forms.ChoiceField(choices=User.ROLE_CHOICES, required=True)
 
     def custom_signup(self, request, user):
         # Set custom fields on the user instance after the initial save

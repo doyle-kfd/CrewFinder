@@ -19,3 +19,37 @@
 .footer span {
     color: white !important;
 }
+
+/* Style the table for better readability */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+/* Style table headers */
+th {
+    padding: 12px 15px;
+    background-color: #f2f2f2;
+    text-align: left;
+    font-weight: bold;
+    border-bottom: 2px solid #ddd;
+}
+
+/* Style table cells */
+td {
+    padding: 10px 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Hover effect for table rows */
+tr:hover {
+    background-color: #f9f9f9;
+}
+
+/* Center-align actions column */
+td:last-child {
+    text-align: center;
+}

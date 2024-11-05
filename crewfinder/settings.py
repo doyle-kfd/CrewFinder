@@ -194,3 +194,13 @@ def custom_login_view(request):
     return redirect('dashboard')
 
 ACCOUNT_EMAIL_VERIFICATION = 'none'
+
+# Email Configuration
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+
+SITE_URL = os.environ.get('SITE_URL', 'https://8000-doylekfd-crewfinder-18t8urmmyig.ws.codeinstitute-ide.net/')

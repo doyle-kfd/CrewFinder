@@ -1,5 +1,4 @@
 from allauth.account.forms import SignupForm
-from django.contrib.auth.forms import PasswordChangeForm
 from django import forms
 from .models import User
 
@@ -33,6 +32,12 @@ class ProfileCompletionForm(forms.ModelForm):
         help_texts = {
             'username': None,  # Hides default help text
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Make the username and email fields read-only
+        self.fields['username'].widget.attrs['readonly'] = True
+        self.fields['email'].widget.attrs['readonly'] = True
 
     def save(self, commit=True):
         user = super().save(commit=False)

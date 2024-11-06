@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.views import LoginView
-from django.contrib.auth import logout
+from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from .forms import ProfileCompletionForm
@@ -72,3 +72,12 @@ def admin_dashboard(request):
     else:
         # Redirect non-administrators to their own dashboard or another page
         return redirect('dashboard')
+
+# Custom logout view
+class CustomLogoutView(LogoutView):
+    next_page = '/'  # Redirect to home page after logout
+
+    def dispatch(self, request, *args, **kwargs):
+        # Add a logout success message
+        messages.success(request, "You have been logged out successfully.")
+        return super().dispatch(request, *args, **kwargs)

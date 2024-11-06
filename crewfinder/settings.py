@@ -83,7 +83,7 @@ ACCOUNT_SIGNUP_REDIRECT_URL = '/accounts/registration_pending/'
 ACCOUNT_INACTIVE_REDIRECT_URL = '/accounts/registration_pending/'
 ACCOUNT_LOGOUT_REDIRECT_URL = '/'
 AUTH_USER_MODEL = 'accounts.User'
-LOGIN_URL = '/login/'
+LOGIN_URL = '/accounts/login/'
 
 
 CRISPY_TEMPLATE_PACK = 'bootstrap5'

@@ -24,8 +24,7 @@
                     <li class="nav-item"><a class="nav-link" href="{% url 'sailing_opportunities' %}">Sailing Opportunities</a></li>
                     {% if user.is_authenticated %}
                         <li class="nav-item"><a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a></li>
-                        <!-- Updated Logout link to specify next parameter for redirecting to home -->
-                        <li class="nav-item"><a class="nav-link" href="{% url 'account_logout' %}?next=/">Logout</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'account_logout' %}?next={% url 'home' %}">Logout</a></li>
                     {% else %}
                         <li class="nav-item"><a class="nav-link" href="{% url 'account_login' %}">Login</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'account_signup' %}">Sign Up</a></li>
@@ -34,6 +33,18 @@
             </div>
         </div>
     </nav>
+
+    <!-- Message Display Area -->
+    <div class="container mt-3">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
 
     <!-- Main Content with Padding -->
     <div class="container mt-5 pt-4 pb-5" style="padding-top: 70px; padding-bottom: 70px;">

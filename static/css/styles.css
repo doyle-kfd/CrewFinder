@@ -53,3 +53,9 @@ tr:hover {
 td:last-child {
     text-align: center;
 }
+
+
+/*  Alert positioning */
+.container .alert {
+    margin-top:60px !important;
+}

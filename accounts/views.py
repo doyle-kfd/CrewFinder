@@ -81,3 +81,16 @@ class CustomLogoutView(LogoutView):
         # Add a logout success message
         messages.success(request, "You have been logged out successfully.")
         return super().dispatch(request, *args, **kwargs)
+
+@login_required
+def update_profile(request):
+    if request.method == 'POST':
+        form = ProfileCompletionForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Your profile has been updated successfully.")
+            return redirect('dashboard')  # Redirect to dashboard after updating
+    else:
+        form = ProfileCompletionForm(instance=request.user)
+
+    return render(request, 'accounts/update_profile.html', {'form': form})

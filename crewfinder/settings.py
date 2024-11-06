@@ -76,26 +76,28 @@ AUTHENTICATION_BACKENDS = (
 
 
 LOGIN_REDIRECT_URL = '/accounts/dashboard/'  # Where to go after login
-LOGOUT_REDIRECT_URL = '/accounts/login/'  # Where to go after logout
+LOGOUT_REDIRECT_URL = '/'  # Where to go after logout
 ACCOUNT_ADAPTER = 'accounts.adapter.CustomAccountAdapter'
 ACCOUNT_LOGIN_ON_SIGNUP = False  # Ensure that users are not logged in automatically after signup
 ACCOUNT_SIGNUP_REDIRECT_URL = '/accounts/registration_pending/'
 ACCOUNT_INACTIVE_REDIRECT_URL = '/accounts/registration_pending/'
+ACCOUNT_LOGOUT_REDIRECT_URL = '/'
 AUTH_USER_MODEL = 'accounts.User'
+LOGIN_URL = '/login/'
 
 
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'allauth.account.middleware.AccountMiddleware', # Allauth
-    'whitenoise.middleware.WhiteNoiseMiddleware', # Whitenoise added
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # Whitenoise added
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',  # Moved up
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'allauth.account.middleware.AccountMiddleware',  # Allauth
     'django.contrib.messages.middleware.MessageMiddleware',
-    'accounts.middleware.ProfileCompletionMiddleware', # Custom profile completion 
+    'accounts.middleware.ProfileCompletionMiddleware',  # Custom profile completion
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 

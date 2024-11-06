@@ -3,44 +3,33 @@ from django import forms
 from .models import User
 
 class CustomSignupForm(SignupForm):
-    # Include all roles in ROLE_CHOICES, including Administrator
     role = forms.ChoiceField(choices=User.ROLE_CHOICES, required=True)
 
     def custom_signup(self, request, user):
-        # Set custom fields on the user instance after the initial save
         user.role = self.cleaned_data['role']
-        user.is_active = False  # Set the user as inactive initially
-        user.profile_completed = False  # Mark profile as incomplete
-        user.save()  # Save the updated user instance
+        user.is_active = False
+        user.profile_completed = False
+        user.save()
         return user
 
 
 class ProfileCompletionForm(forms.ModelForm):
-    password = forms.CharField(
-        widget=forms.PasswordInput,
-        label="New Password",
-        required=False,
-        help_text="Leave blank if you don't want to change the password."
-    )
-    
     class Meta:
         model = User
-        fields = ['username', 'email', 'bio', 'experience_level', 'password']
+        fields = ['username', 'email', 'bio', 'experience_level']
         help_texts = {
-            'username': None,  # Hides default help text
+            'username': None,  # Remove default help text for the username field
         }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        # Make the username and email fields read-only
+        # Make username and email fields read-only
         self.fields['username'].widget.attrs['readonly'] = True
         self.fields['email'].widget.attrs['readonly'] = True
 
     def save(self, commit=True):
         user = super().save(commit=False)
-        # Only update the password if a new password is provided
-        if self.cleaned_data['password']:
-            user.set_password(self.cleaned_data['password'])
+        # Save without modifying the password
         if commit:
             user.save()
         return user

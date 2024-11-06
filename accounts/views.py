@@ -1,11 +1,10 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
-from django.urls import reverse_lazy
-from .forms import ProfileCompletionForm
-from .models import User  # Ensure you import the User model here
-from allauth.account.views import SignupView
 from django.urls import reverse
+from .forms import ProfileCompletionForm
+from .models import User
+from allauth.account.views import SignupView
 
 # Profile completion view
 @login_required
@@ -16,9 +15,12 @@ def complete_profile(request):
     if request.method == 'POST':
         form = ProfileCompletionForm(request.POST, instance=request.user)
         if form.is_valid():
-            form.save()
+            form.save()  # Save form fields
             request.user.profile_completed = True
-            request.user.save()
+            request.user.save(update_fields=['profile_completed'])  # Save only `profile_completed`
+
+            # Ensure the user session remains active after completing profile
+            request.session.modified = True
             return redirect('dashboard')  # Redirect to dashboard after profile completion
     else:
         form = ProfileCompletionForm(instance=request.user)
@@ -48,14 +50,13 @@ class CustomLoginView(LoginView):
                 return redirect('admin_dashboard')
             elif not user.profile_completed:
                 return redirect('complete_profile')
-        # Fallback to the default LOGIN_REDIRECT_URL
-        return super().form_valid(form)
+        return super().form_valid(form)  # Default fallback if not redirected
 
 # Custom signup view
 class CustomSignupView(SignupView):
     def form_valid(self, form):
         # Save the user to the database
-        user = form.save(self.request)  # Allauth expects only `request` as an argument
+        user = form.save(self.request)
         # Redirect to registration_pending
         return redirect(reverse('registration_pending'))
 

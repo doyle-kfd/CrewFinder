@@ -20,6 +20,45 @@ if os.path.isfile('env.py'):
 import sys
 
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {message}',
+            'style': '{',
+        },
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',  # Set to 'DEBUG' to capture all levels of logs
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose',
+        },
+    },
+    'loggers': {
+        '': {  # Root logger
+            'handlers': ['console'],
+            'level': 'DEBUG',  # Set to 'DEBUG' to capture all levels of logs
+            'propagate': True,
+        },
+        'django': {  # Django's own logs
+            'handlers': ['console'],
+            'level': 'INFO',  # Capture INFO and above for Django internals
+            'propagate': False,
+        },
+        'accounts': {  # Specific app logger if needed
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': False,
+        },
+    },
+}
+
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.

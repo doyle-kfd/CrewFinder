@@ -4,5 +4,12 @@
 
 {% block content %}
     <h1>Welcome to your dashboard, {{ user.username }}!</h1>
+    <p>Your role: {{ user.role }}</p>
     <a href="{% url 'update_profile' %}" class="btn btn-secondary">Update Profile</a>
+    
+    {% if user.role == 'captain' %}
+        <!-- Buttons specifically for Captains to manage trips -->
+        <a href="{% url 'create_trip' %}" class="btn btn-primary mt-3">Create a New Trip</a>
+        <a href="{% url 'my_trips' %}" class="btn btn-info mt-3">My Trips</a>
+    {% endif %}
 {% endblock %}

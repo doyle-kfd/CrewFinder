@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>My Trips</h2>
+  <ul>
+    {% for trip in trips %}
+      <li>{{ trip.title }} - {{ trip.location }} on {{ trip.date }} for {{ trip.duration }} hours</li>
+    {% empty %}
+      <li>You have not created any trips yet.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

@@ -4,24 +4,35 @@
 
 {% block content %}
 <div class="container">
-    <h1>Welcome to your dashboard, {{ user.username }}!</h1>
+    <h1 class="my-4">Welcome to your dashboard, {{ user.username }}!</h1>
     <p>Your role: {{ user.role }}</p>
-    <a href="{% url 'update_profile' %}" class="btn btn-secondary">Update Profile</a>
+    <a href="{% url 'update_profile' %}" class="btn btn-secondary mb-3">Update Profile</a>
 
     {% if user.role == 'captain' %}
-        <!-- Buttons specifically for Captains to manage trips -->
-        <a href="{% url 'create_trip' %}" class="btn btn-primary mt-3">Create a New Trip</a>
-        
-        <!-- List the captain's trips -->
+        <a href="{% url 'create_trip' %}" class="btn btn-primary mb-4">Create a New Trip</a>
         <h2 class="mt-5">My Trips</h2>
+        
         {% if my_trips %}
-            <ul>
+            <div class="row">
                 {% for trip in my_trips %}
-                    <li>{{ trip.title }} - {{ trip.location }} on {{ trip.date }}</li>
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ trip.title }}</h5>
+                                <p class="card-text">
+                                    <strong>Location:</strong> {{ trip.location }}<br>
+                                    <strong>Date:</strong> {{ trip.date }}<br>
+                                    <strong>Duration:</strong> {{ trip.formatted_duration }}<br>
+                                    <strong>Crew Needed:</strong> {{ trip.crew_needed }}<br>
+                                </p>
+                                <a href="{% url 'edit_trip' trip.id %}" class="btn btn-sm btn-warning mt-3">Edit</a>
+                            </div>
+                        </div>
+                    </div>
                 {% endfor %}
-            </ul>
+            </div>
         {% else %}
-            <p>You have not created any trips yet.</p>
+            <p class="mt-3">You have not created any trips yet.</p>
         {% endif %}
     {% endif %}
 </div>

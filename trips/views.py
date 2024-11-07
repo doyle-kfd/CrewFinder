@@ -1,7 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.core.exceptions import PermissionDenied  # Import PermissionDenied
-from .models import Trip  # Import the Trip model
+from django.core.exceptions import PermissionDenied
+from .models import Trip
 from .forms import TripCreationForm
 
 @login_required
@@ -24,7 +24,19 @@ def create_trip(request):
 def captain_dashboard(request):
     if request.user.role == "captain":
         my_trips = Trip.objects.filter(captain=request.user)
-        # Pass captain-specific data to the shared dashboard template
         return render(request, 'accounts/dashboard.html', {'my_trips': my_trips})
     else:
         raise PermissionDenied("Only captains can access this dashboard.")
+
+@login_required
+def edit_trip(request, trip_id):
+    trip = get_object_or_404(Trip, id=trip_id, captain=request.user)
+    if request.method == 'POST':
+        form = TripCreationForm(request.POST, instance=trip)
+        if form.is_valid():
+            form.save()
+            return redirect('captain_dashboard')
+    else:
+        form = TripCreationForm(instance=trip)
+    
+    return render(request, 'trips/edit_trip.html', {'form': form, 'trip': trip})

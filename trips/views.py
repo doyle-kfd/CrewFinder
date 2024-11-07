@@ -21,6 +21,16 @@ def create_trip(request):
     return render(request, 'trips/create_trip.html', {'form': form})
 
 @login_required
+def delete_trip(request, trip_id):
+    trip = get_object_or_404(Trip, id=trip_id, captain=request.user)  # Ensure only the captain can delete
+
+    if request.method == 'POST':
+        trip.delete()  # Delete the trip
+        return redirect('captain_dashboard')  # Redirect back to the dashboard after deletion
+    
+    return render(request, 'trips/delete_trip_confirm.html', {'trip': trip})
+
+@login_required
 def captain_dashboard(request):
     if request.user.role == "captain":
         my_trips = Trip.objects.filter(captain=request.user)

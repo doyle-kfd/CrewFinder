@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Delete Trip Confirmation{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Are you sure you want to delete the trip "{{ trip.title }}"?</h2>
+    <p>This action cannot be undone.</p>
+    
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Delete Trip</button>
+        <a href="{% url 'captain_dashboard' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

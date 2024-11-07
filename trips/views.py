@@ -33,7 +33,8 @@ def delete_trip(request, trip_id):
 @login_required
 def captain_dashboard(request):
     if request.user.role == "captain":
-        my_trips = Trip.objects.filter(captain=request.user)
+        # Retrieve trips created by the logged-in captain, sorted by date
+        my_trips = Trip.objects.filter(captain=request.user).order_by('date')
         return render(request, 'accounts/dashboard.html', {'my_trips': my_trips})
     else:
         raise PermissionDenied("Only captains can access this dashboard.")

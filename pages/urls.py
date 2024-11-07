@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from .views import sailing_opportunities
 
 urlpatterns = [
     path('', views.home, name='home'),

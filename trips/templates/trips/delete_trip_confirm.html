@@ -7,6 +7,15 @@
     <h2>Are you sure you want to delete the trip "{{ trip.title }}"?</h2>
     <p>This action cannot be undone.</p>
     
+    <h4>Trip Details:</h4>
+    <ul>
+        <li><strong>Title:</strong> {{ trip.title }}</li>
+        <li><strong>Location:</strong> {{ trip.location }}</li>
+        <li><strong>Date:</strong> {{ trip.date }}</li>
+        <li><strong>Duration:</strong> {{ trip.formatted_duration }}</li>  <!-- Assuming you have the formatted_duration method -->
+        <li><strong>Crew Needed:</strong> {{ trip.crew_needed }}</li>
+    </ul>
+    
     <form method="post">
         {% csrf_token %}
         <button type="submit" class="btn btn-danger">Delete Trip</button>

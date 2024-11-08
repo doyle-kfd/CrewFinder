@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}  <!-- Load crispy forms tags -->
+
+{% block title %}Apply for Trip{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Apply for {{ trip.title }}</h2>
+    <p>Location: {{ trip.location }}</p>
+    <p>Date: {{ trip.date }}</p>
+    <p>Duration: {{ trip.formatted_duration }}</p>
+    
+    <form method="post" class="mt-4">
+        {% csrf_token %}
+        {{ form|crispy }}  <!-- Render the form using Crispy Forms -->
+        <button type="submit" class="btn btn-primary mt-3">Apply for Trip</button>
+    </form>
+
+    <a href="{% url 'dashboard' %}" class="btn btn-secondary mt-3">Cancel</a>
+</div>
+{% endblock %}

@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts',
     'trips',
+    'crewbooking',
 ]
 
 SITE_ID = 1

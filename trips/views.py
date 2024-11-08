@@ -10,7 +10,7 @@ def create_trip(request):
         raise PermissionDenied("Only captains can create trips.")
     
     if request.method == 'POST':
-        form = TripCreationForm(request.POST)
+        form = TripCreationForm(request.POST, request.FILES)  # Include request.FILES to handle image uploads
         if form.is_valid():
             trip = form.save(commit=False)
             trip.captain = request.user
@@ -18,6 +18,7 @@ def create_trip(request):
             return redirect('captain_dashboard')
     else:
         form = TripCreationForm()
+    
     return render(request, 'trips/create_trip.html', {'form': form})
 
 @login_required
@@ -43,7 +44,7 @@ def captain_dashboard(request):
 def edit_trip(request, trip_id):
     trip = get_object_or_404(Trip, id=trip_id, captain=request.user)
     if request.method == 'POST':
-        form = TripCreationForm(request.POST, instance=trip)
+        form = TripCreationForm(request.POST, request.FILES, instance=trip)  # Include request.FILES for image updates
         if form.is_valid():
             form.save()
             return redirect('captain_dashboard')

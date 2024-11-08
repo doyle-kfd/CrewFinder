@@ -9,15 +9,15 @@ class Trip(models.Model):
     captain = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
-        limit_choices_to={'role': 'captain'}  # Ensure lowercase "captain" matches your role setup
+        limit_choices_to={'role': 'captain'}
     )
     crew_needed = models.PositiveIntegerField()
+    boat_image = models.ImageField(upload_to='boat_images/', blank=True, null=True)  # Field for the boat image
 
     def __str__(self):
         return f"{self.title} on {self.date}"
 
     def formatted_duration(self):
-        """Returns a human-readable version of the duration."""
         total_seconds = self.duration.total_seconds()
         days = int(total_seconds // (24 * 3600))
         hours = int((total_seconds % (24 * 3600)) // 3600)

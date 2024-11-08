@@ -9,16 +9,16 @@ class TripCreationForm(forms.ModelForm):
 
     class Meta:
         model = Trip
-        fields = ['title', 'location', 'date', 'duration', 'crew_needed']
+        fields = ['title', 'location', 'date', 'duration', 'crew_needed', 'boat_image']  # Include boat_image field
         widgets = {
             'title': forms.TextInput(attrs={'placeholder': 'Title'}),
             'location': forms.TextInput(attrs={'placeholder': 'Location'}),
             'date': forms.DateInput(attrs={'type': 'date', 'placeholder': 'Date'}),
             'crew_needed': forms.NumberInput(attrs={'placeholder': 'Crew Needed'}),
+            'boat_image': forms.ClearableFileInput(attrs={'placeholder': 'Upload Boat Image'}),
         }
 
     def clean_duration(self):
-        """Converts a human-readable duration (e.g., '5 hours') into a timedelta."""
         duration_input = self.cleaned_data['duration'].strip().lower()
         try:
             if "hour" in duration_input:
@@ -27,7 +27,6 @@ class TripCreationForm(forms.ModelForm):
             elif "day" in duration_input:
                 days = int(duration_input.split()[0])
                 return timedelta(days=days)
-            # Add more parsing as needed for minutes, weeks, etc.
             else:
                 raise ValueError("Invalid format")
         except ValueError:

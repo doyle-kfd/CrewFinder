@@ -7,6 +7,7 @@ from .forms import ProfileCompletionForm
 from .models import User
 from allauth.account.views import SignupView
 from trips.models import Trip  # Import the Trip model to access trips
+from crewbooking.models import CrewBooking  # Import the CrewBooking model
 
 # Profile completion view
 @login_required
@@ -39,15 +40,23 @@ def dashboard(request):
     
 @login_required
 def dashboard(request):
-    # Redirect administrators to their custom dashboard
     if request.user.role == User.ADMINISTRATOR:
         return redirect('admin_dashboard')
 
-    # Retrieve trips created by the logged-in captain, sorted by date
-    my_trips = Trip.objects.filter(captain=request.user).order_by('date')
+    # Fetch trips created by the logged-in captain
+    my_trips = Trip.objects.filter(captain=request.user)
 
-    # Pass my_trips to the dashboard template
-    return render(request, 'accounts/dashboard.html', {'my_trips': my_trips})
+    # Fetch crew bookings for the logged-in user
+    crew_bookings = CrewBooking.objects.filter(user=request.user)
+    
+    # Create a dictionary to easily access trip statuses
+    booking_statuses = {booking.trip.id: booking.status for booking in crew_bookings}
+
+    return render(request, 'accounts/dashboard.html', {
+        'my_trips': my_trips,
+        'applied_trips': [booking.trip for booking in crew_bookings],
+        'booking_statuses': booking_statuses,  # Pass the status dictionary to the template
+    })
     
 # Registration pending view
 def registration_pending(request):

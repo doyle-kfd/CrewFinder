@@ -17,6 +17,9 @@
             <div class="col-md-6 mb-4">
                 <div class="card h-100 shadow-sm">
                     <div class="card-body">
+                        {% if trip.boat_image %}
+                        <img src="{{ trip.boat_image.url }}" alt="Boat Image" class="img-fluid mb-3">
+                        {% endif %}
                         <h5 class="card-title">{{ trip.title }}</h5>
                         <p class="card-text">
                             <strong>Location:</strong> {{ trip.location }}<br>
@@ -24,9 +27,6 @@
                             <strong>Duration:</strong> {{ trip.formatted_duration }}<br>
                             <strong>Crew Needed:</strong> {{ trip.crew_needed }}<br>
                         </p>
-                        {% if trip.boat_image %}
-                            <img src="{{ trip.boat_image.url }}" alt="Boat Image" class="img-fluid mb-3">
-                        {% endif %}
                         <a href="{% url 'edit_trip' trip.id %}" class="btn btn-sm btn-warning mt-3">Edit</a>
                         <a href="{% url 'delete_trip' trip.id %}" class="btn btn-sm btn-danger mt-3">Delete</a>
                     </div>

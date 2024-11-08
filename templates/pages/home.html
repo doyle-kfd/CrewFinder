@@ -24,6 +24,9 @@
                             <strong>Date:</strong> {{ trip.date }}<br>
                             <strong>Duration:</strong> {{ trip.formatted_duration }}<br>
                             <strong>Crew Needed:</strong> {{ trip.crew_needed }}<br>
+                            {% if user.is_authenticated and user.role == 'crew' %}
+                            <a href="{% url 'apply_for_trip' trip.id %}" class="btn btn-primary">Apply for Trip</a>
+                            {% endif %}
                         </p>
                     </div>
                 </div>

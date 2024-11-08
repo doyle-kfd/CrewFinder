@@ -28,6 +28,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),  # Allauth URLs for authentication and account management
     path('trips/', include('trips.urls')),  # Trips URLs
     path('', include('pages.urls')),  # Main pages (home, about, etc.)
+    path('crewbooking/', include('crewbooking.urls')),  # Include crewbooking URLs
 ]
 
 if settings.DEBUG:

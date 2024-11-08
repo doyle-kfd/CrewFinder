@@ -6,6 +6,7 @@ from django.urls import reverse
 from .forms import ProfileCompletionForm
 from .models import User
 from allauth.account.views import SignupView
+from trips.models import Trip  # Import the Trip model to access trips
 
 # Profile completion view
 @login_required
@@ -35,7 +36,19 @@ def dashboard(request):
     if request.user.role == User.ADMINISTRATOR:
         return redirect('admin_dashboard')
     return render(request, 'accounts/dashboard.html')
+    
+@login_required
+def dashboard(request):
+    # Redirect administrators to their custom dashboard
+    if request.user.role == User.ADMINISTRATOR:
+        return redirect('admin_dashboard')
 
+    # Retrieve trips created by the logged-in captain, sorted by date
+    my_trips = Trip.objects.filter(captain=request.user).order_by('date')
+
+    # Pass my_trips to the dashboard template
+    return render(request, 'accounts/dashboard.html', {'my_trips': my_trips})
+    
 # Registration pending view
 def registration_pending(request):
     return render(request, 'accounts/registration_pending.html')

@@ -13,6 +13,7 @@
         <h2 class="mt-5">My Trips</h2>
         
         {% if my_trips %}
+        <h2 class="mt-5">My Trips ({{ my_trips.count }})</h2>  <!-- Show the count of trips -->
             <div class="row">
                 {% for trip in my_trips %}
                     <div class="col-md-6 mb-4">

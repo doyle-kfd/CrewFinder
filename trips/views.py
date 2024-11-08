@@ -15,7 +15,7 @@ def create_trip(request):
             trip = form.save(commit=False)
             trip.captain = request.user
             trip.save()
-            return redirect('captain_dashboard')
+            return redirect('dashboard')
     else:
         form = TripCreationForm()
     
@@ -27,7 +27,7 @@ def delete_trip(request, trip_id):
 
     if request.method == 'POST':
         trip.delete()  # Delete the trip
-        return redirect('captain_dashboard')  # Redirect back to the dashboard after deletion
+        return redirect('dashboard')  # Redirect back to the dashboard after deletion
     
     return render(request, 'trips/delete_trip_confirm.html', {'trip': trip})
 
@@ -47,7 +47,7 @@ def edit_trip(request, trip_id):
         form = TripCreationForm(request.POST, request.FILES, instance=trip)  # Include request.FILES for image updates
         if form.is_valid():
             form.save()
-            return redirect('captain_dashboard')
+            return redirect('dashboard')
     else:
         form = TripCreationForm(instance=trip)
     

@@ -1,8 +1,0 @@
-<h2>My Trips</h2>
-<ul>
-    {% for trip in my_trips %}
-        <li>{{ trip.title }} - {{ trip.location }} on {{ trip.date }}</li>
-    {% empty %}
-        <p>No trips created yet.</p>
-    {% endfor %}
-</ul>

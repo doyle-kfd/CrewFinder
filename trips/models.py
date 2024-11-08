@@ -9,7 +9,7 @@ class Trip(models.Model):
     captain = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
-        limit_choices_to={'role': 'captain'}
+        limit_choices_to={'role': 'Captain'}
     )
     crew_needed = models.PositiveIntegerField()
     boat_image = models.ImageField(upload_to='boat_images/', blank=True, null=True)  # Field for the boat image

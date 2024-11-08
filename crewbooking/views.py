@@ -1,20 +1,22 @@
-from django import forms
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import CrewBooking
-from trips.models import Trip
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages  # Import messages for feedback
+from .models import CrewBooking
+from trips.models import Trip  # Import your Trip model
 
 @login_required
 def apply_for_trip(request, trip_id):
     trip = get_object_or_404(Trip, id=trip_id)
 
-    if request.user.role != "crew":
-        return render(request, 'crewbooking/access_denied.html')  # Handle access denied
+    # Check if the user has already applied for this trip
+    if CrewBooking.objects.filter(user=request.user, trip=trip).exists():
+        messages.warning(request, "You have already applied for this trip.")
+        return redirect('dashboard')  # Redirect back to the dashboard
 
     if request.method == 'POST':
-        # Create a new booking for the trip
-        CrewBooking.objects.create(trip=trip, user=request.user, status='pending')
-        return redirect('dashboard')  # Redirect to dashboard or another appropriate page
+        # Create a new CrewBooking entry for the specific trip
+        CrewBooking.objects.create(user=request.user, trip=trip, status='pending')
+        messages.success(request, "You have successfully applied for the trip.")
+        return redirect('dashboard')  # Redirect to dashboard after applying
 
-    # For GET requests, just render the trip details
     return render(request, 'crewbooking/apply_for_trip.html', {'trip': trip})

@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib import messages
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from .forms import ProfileCompletionForm
 from .models import User
@@ -118,3 +118,7 @@ def update_profile(request):
 
     return render(request, 'accounts/update_profile.html', {'form': form})
 
+@login_required
+def crew_profile(request, user_id):
+    crew_member = get_object_or_404(User, id=user_id)
+    return render(request, 'accounts/crew_profile.html', {'crew_member': crew_member})

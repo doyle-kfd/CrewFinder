@@ -35,13 +35,13 @@
                                 <ul>
                                     {% for crew in applied_crews %}
                                         {% if crew.trip == trip %}
-                                            <li>{{ crew.user.username }} - Status: {{ crew.status }}</li>
+                                            <li>{{ crew.user.username }} - Status: {{ crew.status }}
+                                                <a href="{% url 'crew_profile' crew.user.id %}" class="btn btn-sm btn-info mt-2">View Profile</a>
+                                            </li>
                                         {% endif %}
-                                    {% endfor %}
-                                    </ul>
-                                    {% if applied_crews|length == 0 %}
+                                    {% empty %}
                                         <p>No applicants yet.</p>
-                                    {% endif %}
+                                    {% endfor %}
                                 </ul>
 
                                 <a href="{% url 'edit_trip' trip.id %}" class="btn btn-sm btn-warning mt-3">Edit</a>
@@ -54,7 +54,7 @@
         {% else %}
             <p class="mt-3">You have not created any trips yet.</p>
         {% endif %}
-        
+
     {% elif user.role == 'crew' %}
         <h2 class="mt-5">My Applied Trips</h2>
 
@@ -73,7 +73,6 @@
                                     <strong>Date:</strong> {{ trip.date }}<br>
                                     <strong>Duration:</strong> {{ trip.formatted_duration }}<br>
                                     <strong>Crew Needed:</strong> {{ trip.crew_needed }}<br>
-
                                     {% with status=booking_statuses|default_if_none:"Not Applied" %}
                                         <strong>Status:</strong> {{ status|get_item:trip.id }}<br>
                                     {% endwith %}

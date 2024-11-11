@@ -1,4 +1,5 @@
 from django.urls import path, include
+from . import views  # Import views from the current directory
 from .views import (
     CustomSignupView,
     CustomLoginView,
@@ -20,4 +21,5 @@ urlpatterns = [
     path('admin_dashboard/', admin_dashboard, name='admin_dashboard'),
     path('', include('allauth.urls')),  # Include the remaining Allauth URLs
     path('update_profile/', update_profile, name='update_profile'),  # New profile update URL
+    path('profile/<int:user_id>/', views.crew_profile, name='crew_profile'), # Crewmembers profile
 ]

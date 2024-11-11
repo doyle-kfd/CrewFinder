@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Crew Profile{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>{{ crew_member.username }}'s Profile</h2>
+    <p><strong>Email:</strong> {{ crew_member.email }}</p>
+    <p><strong>Role:</strong> {{ crew_member.role }}</p>
+    <p><strong>Bio:</strong> {{ crew_member.bio }}</p>
+    <p><strong>Experience:</strong> {{ crew_member.experience }}</p>
+    
+    <a href="{% url 'dashboard' %}" class="btn btn-secondary mt-3">Back to Dashboard</a>
+</div>
+{% endblock %}

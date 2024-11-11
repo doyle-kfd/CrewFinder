@@ -40,23 +40,24 @@ def dashboard(request):
     
 @login_required
 def dashboard(request):
-    if request.user.role == User.ADMINISTRATOR:
-        return redirect('admin_dashboard')
+    if request.user.role == 'captain':
+        # Retrieve trips created by the logged-in captain, sorted by date
+        my_trips = Trip.objects.filter(captain=request.user).order_by('date')
+        # Retrieve the applicants for each trip
+        applied_crews = CrewBooking.objects.filter(trip__captain=request.user)
 
-    # Fetch trips created by the logged-in captain
-    my_trips = Trip.objects.filter(captain=request.user)
-
-    # Fetch crew bookings for the logged-in user
-    crew_bookings = CrewBooking.objects.filter(user=request.user)
-    
-    # Create a dictionary to easily access trip statuses
-    booking_statuses = {booking.trip.id: booking.status for booking in crew_bookings}
-
-    return render(request, 'accounts/dashboard.html', {
-        'my_trips': my_trips,
-        'applied_trips': [booking.trip for booking in crew_bookings],
-        'booking_statuses': booking_statuses,  # Pass the status dictionary to the template
-    })
+        return render(request, 'accounts/dashboard.html', {
+            'my_trips': my_trips,
+            'applied_crews': applied_crews
+        })
+    elif request.user.role == 'crew':
+        # Retrieve trips the crew member has applied for
+        applied_trips = Trip.objects.filter(crewbooking__user=request.user)
+        return render(request, 'accounts/dashboard.html', {
+            'applied_trips': applied_trips
+        })
+    else:
+        raise PermissionDenied("You are not authorized to view this page.")
     
 # Registration pending view
 def registration_pending(request):

@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load custom_filters %}
+
 {% block title %}Dashboard{% endblock %}
 
 {% block content %}
@@ -10,9 +11,9 @@
 
     {% if user.role == 'captain' %}
         <a href="{% url 'create_trip' %}" class="btn btn-primary mb-4">Create a New Trip</a>    
-        
+
         {% if my_trips %}
-            <h2 class="mt-5">My Trips ({{ my_trips.count }})</h2>  
+            <h2 class="mt-5">My Trips ({{ my_trips.count }})</h2>
             <div class="row">
                 {% for trip in my_trips %}
                     <div class="col-md-6 mb-4">
@@ -28,6 +29,21 @@
                                     <strong>Duration:</strong> {{ trip.formatted_duration }}<br>
                                     <strong>Crew Needed:</strong> {{ trip.crew_needed }}<br>
                                 </p>
+
+                                <!-- Show applicants for this trip -->
+                                <h6>Applicants:</h6>
+                                <ul>
+                                    {% for crew in applied_crews %}
+                                        {% if crew.trip == trip %}
+                                            <li>{{ crew.user.username }} - Status: {{ crew.status }}</li>
+                                        {% endif %}
+                                    {% endfor %}
+                                    </ul>
+                                    {% if applied_crews|length == 0 %}
+                                        <p>No applicants yet.</p>
+                                    {% endif %}
+                                </ul>
+
                                 <a href="{% url 'edit_trip' trip.id %}" class="btn btn-sm btn-warning mt-3">Edit</a>
                                 <a href="{% url 'delete_trip' trip.id %}" class="btn btn-sm btn-danger mt-3">Delete</a>
                             </div>
@@ -41,7 +57,7 @@
         
     {% elif user.role == 'crew' %}
         <h2 class="mt-5">My Applied Trips</h2>
-        
+
         {% if applied_trips %}
             <div class="row">
                 {% for trip in applied_trips %}
@@ -57,7 +73,7 @@
                                     <strong>Date:</strong> {{ trip.date }}<br>
                                     <strong>Duration:</strong> {{ trip.formatted_duration }}<br>
                                     <strong>Crew Needed:</strong> {{ trip.crew_needed }}<br>
-                                    
+
                                     {% with status=booking_statuses|default_if_none:"Not Applied" %}
                                         <strong>Status:</strong> {{ status|get_item:trip.id }}<br>
                                     {% endwith %}

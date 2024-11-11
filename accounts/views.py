@@ -116,3 +116,4 @@ def update_profile(request):
         form = ProfileCompletionForm(instance=request.user)
 
     return render(request, 'accounts/update_profile.html', {'form': form})
+

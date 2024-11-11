@@ -16,7 +16,7 @@
                 <div class="card h-100 shadow-sm">
                     <div class="card-body">
                         {% if trip.boat_image %}
-                        <img src="{{ trip.boat_image.url }}" alt="Boat Image" class="img-fluid mb-3">
+                            <img src="{{ trip.boat_image.url }}" alt="Boat Image" class="img-fluid mb-3">
                         {% endif %}
                         <h5 class="card-title">{{ trip.title }}</h5>
                         <p class="card-text">
@@ -24,8 +24,13 @@
                             <strong>Date:</strong> {{ trip.date }}<br>
                             <strong>Duration:</strong> {{ trip.formatted_duration }}<br>
                             <strong>Crew Needed:</strong> {{ trip.crew_needed }}<br>
+
                             {% if user.is_authenticated and user.role == 'crew' %}
-                            <a href="{% url 'apply_for_trip' trip.id %}" class="btn btn-primary">Apply for Trip</a>
+                                {% if trip.id in applied_trip_ids %}
+                                    <p class="text-success">Already applied for this trip.</p>
+                                {% else %}
+                                    <a href="{% url 'apply_for_trip' trip.id %}" class="btn btn-primary">Apply for Trip</a>
+                                {% endif %}
                             {% endif %}
                         </p>
                     </div>

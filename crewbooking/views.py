@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages  # Import messages for feedback
 from .models import CrewBooking
 from trips.models import Trip  # Import your Trip model
+from crewbooking.models import CrewBooking  # Make sure to import the CrewBooking model
 
 @login_required
 def apply_for_trip(request, trip_id):
@@ -20,3 +21,33 @@ def apply_for_trip(request, trip_id):
         return redirect('dashboard')  # Redirect to dashboard after applying
 
     return render(request, 'crewbooking/apply_for_trip.html', {'trip': trip})
+
+def home(request):
+    # Fetch the latest three trips to display on the home page
+    trips = Trip.objects.order_by('-date')[:3]
+
+    # If the user is authenticated, fetch applied trip IDs
+    if request.user.is_authenticated:
+        applied_trip_ids = CrewBooking.objects.filter(user=request.user).values_list('trip_id', flat=True)
+    else:
+        applied_trip_ids = []
+
+    return render(request, 'pages/home.html', {
+        'trips': trips,
+        'applied_trip_ids': applied_trip_ids,
+    })
+
+def sailing_opportunities(request):
+    # Fetch all trips
+    trips = Trip.objects.all()  # This line should retrieve all trips
+
+    # If the user is authenticated, fetch applied trip IDs
+    if request.user.is_authenticated:
+        applied_trip_ids = CrewBooking.objects.filter(user=request.user).values_list('trip_id', flat=True)
+    else:
+        applied_trip_ids = []
+
+    return render(request, 'pages/sailing_opportunities.html', {
+        'trips': trips,
+        'applied_trip_ids': applied_trip_ids,
+    })

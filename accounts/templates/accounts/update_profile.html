@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
+{% load static %}  <!-- Load the static files tag library -->
 
 {% block title %}Update Profile{% endblock %}
 
@@ -35,7 +36,7 @@
                                     {% if user.photo %}
                                         <img src="{{ user.photo.url }}" alt="Current Profile Picture" class="img-thumbnail mb-3" style="max-width: 100%;">
                                     {% else %}
-                                        <img src="path/to/default-image.jpg" alt="Default Profile Picture" class="img-thumbnail mb-3" style="max-width: 100%;">
+                                        <img src="{% static 'images/default_avatar.png' %}" alt="Default Profile Picture" class="img-thumbnail mb-3" style="max-width: 100%;">
                                     {% endif %}
                                 </div>
                             </div>

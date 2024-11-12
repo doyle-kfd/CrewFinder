@@ -37,3 +37,6 @@ def sailing_opportunities(request):
         'trips': trips,
         'applied_trip_ids': applied_trip_ids,
     })
+
+def custom_404_view(request, exception=None):
+    return render(request, 'pages/404.html', status=404)

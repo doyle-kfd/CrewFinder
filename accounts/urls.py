@@ -1,7 +1,9 @@
 from django.urls import path, include
 from . import views  # Import views from the current directory
 from django.conf.urls.static import static
-from django.conf import settings 
+from django.conf import settings
+
+
 from .views import (
     CustomSignupView,
     CustomLoginView,
@@ -22,8 +24,6 @@ urlpatterns = [
     path('dashboard/', dashboard, name='dashboard'),
     path('admin_dashboard/', admin_dashboard, name='admin_dashboard'),
     path('', include('allauth.urls')),  # Include the remaining Allauth URLs
-    path('update_profile/', update_profile, name='update_profile'),  # New profile update URL
-    path('profile/<int:user_id>/', views.crew_profile, name='crew_profile'), # Crewmembers profile
-    path('signup/', CustomSignupView.as_view(), name='account_signup'),
+    path('update_profile/', update_profile, name='update_profile'),  # Profile update URL
     path('profile/<int:user_id>/<int:trip_id>/', views.crew_profile, name='crew_profile'),
-]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

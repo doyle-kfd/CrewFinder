@@ -25,4 +25,5 @@ urlpatterns = [
     path('update_profile/', update_profile, name='update_profile'),  # New profile update URL
     path('profile/<int:user_id>/', views.crew_profile, name='crew_profile'), # Crewmembers profile
     path('signup/', CustomSignupView.as_view(), name='account_signup'),
+    path('profile/<int:user_id>/<int:trip_id>/', views.crew_profile, name='crew_profile'),
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

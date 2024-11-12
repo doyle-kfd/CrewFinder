@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
 {% load static %}
 
 {% block title %}Crew Profile{% endblock %}
@@ -6,23 +7,23 @@
 {% block content %}
 <div class="container mt-5">
     <div class="row justify-content-center">
-        <div class="col-md-10 col-lg-8">  <!-- Narrow the column for a more compact look -->
+        <div class="col-md-10 col-lg-8">
             <div class="card shadow-sm">
                 <div class="card-header bg-primary text-white text-center">
                     <h3 class="mb-0">{{ crew_member.username }}'s Profile</h3>
                 </div>
                 <div class="card-body p-4">
                     <div class="row">
-                        <!-- Profile Picture Section -->
+                        <!-- Profile Picture -->
                         <div class="col-md-4 text-center mb-3">
                             {% if crew_member.photo %}
                                 <img src="{{ crew_member.photo.url }}" alt="{{ crew_member.username }}'s Profile Picture" class="rounded-circle img-fluid" style="width: 150px; height: 150px;">
                             {% else %}
-                                <img src="{% static 'images/default_avatar.png' %}" alt="Default Profile Picture" class="rounded-circle img-fluid" style="width: 150px; height: 150px;">
+                                <img src="{% static 'images/default_avatar.jpg' %}" alt="Default Profile Picture" class="rounded-circle img-fluid" style="width: 150px; height: 150px;">
                             {% endif %}
                         </div>
 
-                        <!-- Profile Details Section -->
+                        <!-- Profile Details -->
                         <div class="col-md-8">
                             <p><strong>Email:</strong> {{ crew_member.email }}</p>
                             <p><strong>Role:</strong> {{ crew_member.role|title }}</p>
@@ -30,6 +31,16 @@
                             <p><strong>Experience:</strong> {{ crew_member.get_experience_display }}</p>
                         </div>
                     </div>
+
+                    <!-- Status Update Section for Captain -->
+                    <form method="post" class="mt-4">
+                        {% csrf_token %}
+                        <h5>Application Status</h5>
+                        <hr>
+                        {{ form|crispy }}  <!-- Render the form using Crispy Forms -->
+                        <button type="submit" class="btn btn-primary w-100 mt-3">Update Status</button>
+                    </form>
+
                     <div class="text-center mt-4">
                         <a href="{% url 'dashboard' %}" class="btn btn-secondary">Back to Dashboard</a>
                     </div>

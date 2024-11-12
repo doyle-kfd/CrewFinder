@@ -36,7 +36,7 @@
                                     {% for crew in applied_crews %}
                                         {% if crew.trip == trip %}
                                             <li>{{ crew.user.username }} - Status: {{ crew.status }}
-                                                <a href="{% url 'crew_profile' crew.user.id %}" class="btn btn-sm btn-info mt-2">View Profile</a>
+                                                <a href="{% url 'crew_profile' crew.user.id crew.trip.id %}" class="btn btn-sm btn-info mt-2">View Profile</a>
                                             </li>
                                         {% endif %}
                                     {% empty %}
@@ -55,25 +55,25 @@
             <p class="mt-3">You have not created any trips yet.</p>
         {% endif %}
 
-        {% elif user.role == 'crew' %}
+    {% elif user.role == 'crew' %}
         <h2 class="mt-5">My Applied Trips</h2>
     
         {% if applied_trips %}
             <div class="row">
-                {% for trip in applied_trips %}
+                {% for booking in applied_trips %}
                     <div class="col-md-6 mb-4">
                         <div class="card h-100 shadow-sm">
                             <div class="card-body">
-                                {% if trip.boat_image %}
-                                    <img src="{{ trip.boat_image.url }}" alt="Boat Image" class="img-fluid mb-3">
+                                {% if booking.trip.boat_image %}
+                                    <img src="{{ booking.trip.boat_image.url }}" alt="Boat Image" class="img-fluid mb-3">
                                 {% endif %}
-                                <h5 class="card-title">{{ trip.title }}</h5>
+                                <h5 class="card-title">{{ booking.trip.title }}</h5>
                                 <p class="card-text">
-                                    <strong>Location:</strong> {{ trip.location }}<br>
-                                    <strong>Date:</strong> {{ trip.date }}<br>
-                                    <strong>Duration:</strong> {{ trip.formatted_duration }}<br>
-                                    <strong>Crew Needed:</strong> {{ trip.crew_needed }}<br>
-                                    <strong>Status:</strong> {{ applied_trips_dict|get_item:trip.id|default:"Not Applied" }}<br>
+                                    <strong>Location:</strong> {{ booking.trip.location }}<br>
+                                    <strong>Date:</strong> {{ booking.trip.date }}<br>
+                                    <strong>Duration:</strong> {{ booking.trip.formatted_duration }}<br>
+                                    <strong>Crew Needed:</strong> {{ booking.trip.crew_needed }}<br>
+                                    <strong>Status:</strong> {{ booking.status|title }}  <!-- Display the status from CrewBooking -->
                                 </p>
                             </div>
                         </div>
@@ -84,5 +84,5 @@
             <p class="mt-3">You have not applied for any trips yet.</p>
         {% endif %}
     {% endif %}
-    </div>
+</div>
 {% endblock %}

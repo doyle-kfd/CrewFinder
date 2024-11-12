@@ -9,6 +9,7 @@ from .models import User
 from allauth.account.views import SignupView
 from trips.models import Trip  # Import the Trip model to access trips
 from crewbooking.models import CrewBooking  # Import the CrewBooking model
+from django import forms  # Import forms module
 
 @login_required
 def complete_profile(request):
@@ -39,21 +40,18 @@ def dashboard(request):
         applied_crews = CrewBooking.objects.filter(trip__captain=request.user)  # Get applicants for those trips
         return render(request, 'accounts/dashboard.html', {'my_trips': my_trips, 'applied_crews': applied_crews})
 
-    # For crew members, show the trips they have applied for
+    # For crew members, show the trips they have applied for with status
     elif request.user.role == 'crew':
-        user_applied_trips = CrewBooking.objects.filter(user=request.user).values_list('trip_id', flat=True)
-        applied_trips_dict = {trip_id: "Applied For Trip" for trip_id in user_applied_trips}
-        
-        applied_trips = Trip.objects.filter(id__in=user_applied_trips)  # Retrieve applied trips for display
+        applied_trips = CrewBooking.objects.filter(user=request.user).select_related('trip')  # Get trips and status for each application
 
         return render(request, 'accounts/dashboard.html', {
-            'applied_trips': applied_trips, 
-            'applied_trips_dict': applied_trips_dict  # Include dictionary for application status
+            'applied_trips': applied_trips,  # Pass CrewBooking objects with trip and status details
         })
 
     else:
         # If user role is unknown or invalid, raise permission denied
         raise PermissionDenied("You are not authorized to view this page.")
+
 
 
 # Registration pending view
@@ -125,7 +123,25 @@ def update_profile(request):
 
     return render(request, 'accounts/update_profile.html', {'form': form})
 
+class CrewBookingStatusForm(forms.ModelForm):
+    class Meta:
+        model = CrewBooking
+        fields = ['status']
+
 @login_required
-def crew_profile(request, user_id):
+def crew_profile(request, user_id, trip_id):
     crew_member = get_object_or_404(User, id=user_id)
-    return render(request, 'accounts/crew_profile.html', {'crew_member': crew_member})
+    crew_booking = get_object_or_404(CrewBooking, user=crew_member, trip_id=trip_id)
+
+    if request.method == 'POST':
+        form = CrewBookingStatusForm(request.POST, instance=crew_booking)
+        if form.is_valid():
+            form.save()
+            return redirect('dashboard')  # Redirect to dashboard or another page as appropriate
+    else:
+        form = CrewBookingStatusForm(instance=crew_booking)
+
+    return render(request, 'accounts/crew_profile.html', {
+        'crew_member': crew_member,
+        'form': form
+    })

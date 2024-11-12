@@ -12,11 +12,10 @@ class CustomSignupForm(SignupForm):
         user.save()
         return user
 
-
 class ProfileCompletionForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ['username', 'email', 'bio', 'experience_level']
+        fields = ['username', 'email', 'bio', 'experience', 'photo']  # Use 'experience' and 'photo'
         help_texts = {
             'username': None,  # Remove default help text for the username field
         }

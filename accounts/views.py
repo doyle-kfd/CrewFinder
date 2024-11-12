@@ -1,3 +1,4 @@
+from django.core.exceptions import PermissionDenied
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib import messages
@@ -9,72 +10,81 @@ from allauth.account.views import SignupView
 from trips.models import Trip  # Import the Trip model to access trips
 from crewbooking.models import CrewBooking  # Import the CrewBooking model
 
-# Profile completion view
 @login_required
 def complete_profile(request):
     if request.user.profile_completed:
         return redirect('dashboard')  # Redirect if profile is already complete
 
     if request.method == 'POST':
-        form = ProfileCompletionForm(request.POST, instance=request.user)
+        form = ProfileCompletionForm(request.POST, request.FILES, instance=request.user)  # Handle file uploads
         if form.is_valid():
-            form.save()  # Save form fields
+            form.save()  # Save form data
             request.user.profile_completed = True
-            request.user.save(update_fields=['profile_completed'])  # Save only `profile_completed`
-
-            # Ensure the user session remains active after completing profile
-            request.session.modified = True
-            return redirect('dashboard')  # Redirect to dashboard after profile completion
+            request.user.save(update_fields=['profile_completed'])  # Mark profile as complete
+            return redirect('dashboard')
     else:
         form = ProfileCompletionForm(instance=request.user)
 
     return render(request, 'accounts/complete_profile.html', {'form': form})
 
-# Dashboard view
 @login_required
 def dashboard(request):
-    # Redirect administrators to their custom dashboard
+    # Check if the user is an admin and redirect them accordingly
     if request.user.role == User.ADMINISTRATOR:
-        return redirect('admin_dashboard')
-    return render(request, 'accounts/dashboard.html')
-    
-@login_required
-def dashboard(request):
+        return redirect('admin_dashboard')  # Redirect admin to the admin dashboard
+
+    # For captains, show their created trips and applicants
     if request.user.role == 'captain':
-        # Retrieve trips created by the logged-in captain, sorted by date
-        my_trips = Trip.objects.filter(captain=request.user).order_by('date')
-        # Retrieve the applicants for each trip
-        applied_crews = CrewBooking.objects.filter(trip__captain=request.user)
+        my_trips = Trip.objects.filter(captain=request.user).order_by('date')  # Get the trips created by the captain
+        applied_crews = CrewBooking.objects.filter(trip__captain=request.user)  # Get applicants for those trips
+        return render(request, 'accounts/dashboard.html', {'my_trips': my_trips, 'applied_crews': applied_crews})
+
+    # For crew members, show the trips they have applied for
+    elif request.user.role == 'crew':
+        user_applied_trips = CrewBooking.objects.filter(user=request.user).values_list('trip_id', flat=True)
+        applied_trips_dict = {trip_id: "Applied For Trip" for trip_id in user_applied_trips}
+        
+        applied_trips = Trip.objects.filter(id__in=user_applied_trips)  # Retrieve applied trips for display
 
         return render(request, 'accounts/dashboard.html', {
-            'my_trips': my_trips,
-            'applied_crews': applied_crews
+            'applied_trips': applied_trips, 
+            'applied_trips_dict': applied_trips_dict  # Include dictionary for application status
         })
-    elif request.user.role == 'crew':
-        # Retrieve trips the crew member has applied for
-        applied_trips = Trip.objects.filter(crewbooking__user=request.user)
-        return render(request, 'accounts/dashboard.html', {
-            'applied_trips': applied_trips
-        })
+
     else:
+        # If user role is unknown or invalid, raise permission denied
         raise PermissionDenied("You are not authorized to view this page.")
-    
+
+
 # Registration pending view
 def registration_pending(request):
     return render(request, 'accounts/registration_pending.html')
 
-# Custom login view
 class CustomLoginView(LoginView):
     template_name = 'account/login.html'
 
     def form_valid(self, form):
-        user = self.request.user
+        user = form.get_user()
+        
+        # Get the 'next' parameter from the request (if available)
+        next_url = self.request.GET.get('next', None)
+
         if user.is_authenticated:
-            if user.role == User.ADMINISTRATOR:
+            # If user is admin, redirect to admin_dashboard
+            if user.role == 'administrator':
                 return redirect('admin_dashboard')
+            
+            # If user has not completed their profile, redirect to complete_profile
             elif not user.profile_completed:
                 return redirect('complete_profile')
-        return super().form_valid(form)  # Default fallback if not redirected
+            
+            # If no 'next' parameter exists, fallback to dashboard
+            if next_url:
+                return redirect(next_url)  # Redirect to the intended page
+            
+            return redirect('dashboard')  # Default redirect to dashboard for captains or crew
+
+        return super().form_valid(form)
 
 # Custom signup view
 class CustomSignupView(SignupView):
@@ -87,21 +97,18 @@ class CustomSignupView(SignupView):
 # Administrator dashboard view
 @login_required
 def admin_dashboard(request):
-    # Check if the logged-in user is an Administrator
     if request.user.role == User.ADMINISTRATOR:
         # Filter for users with roles Crew and Captain, excluding superuser and Administrator accounts
         users = User.objects.filter(role__in=[User.CAPTAIN, User.CREW], is_superuser=False).order_by('is_active')
         return render(request, 'accounts/admin_dashboard.html', {'users': users})
     else:
-        # Redirect non-administrators to their own dashboard or another page
-        return redirect('dashboard')
+        return redirect('dashboard')  # Redirect non-administrators to their own dashboard
 
 # Custom logout view
 class CustomLogoutView(LogoutView):
     next_page = '/'  # Redirect to home page after logout
 
     def dispatch(self, request, *args, **kwargs):
-        # Add a logout success message
         messages.success(request, "You have been logged out successfully.")
         return super().dispatch(request, *args, **kwargs)
 

@@ -1,5 +1,7 @@
 from django.urls import path, include
 from . import views  # Import views from the current directory
+from django.conf.urls.static import static
+from django.conf import settings 
 from .views import (
     CustomSignupView,
     CustomLoginView,
@@ -22,4 +24,5 @@ urlpatterns = [
     path('', include('allauth.urls')),  # Include the remaining Allauth URLs
     path('update_profile/', update_profile, name='update_profile'),  # New profile update URL
     path('profile/<int:user_id>/', views.crew_profile, name='crew_profile'), # Crewmembers profile
-]
+    path('signup/', CustomSignupView.as_view(), name='account_signup'),
+]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

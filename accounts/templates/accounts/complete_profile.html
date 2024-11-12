@@ -1,15 +1,16 @@
+<!-- In complete_profile.html -->
 {% extends "base.html" %}
-{% load crispy_forms_tags %}
 
-{% block title %}Complete Profile | CrewFinder{% endblock %}
+{% block title %}Complete Profile{% endblock %}
 
 {% block content %}
-<div class="container mt-5 pt-4">
-    <h2 class="text-center mb-4">Complete Your Profile</h2>
-    <form method="post">
+<div class="container mt-5">
+    <h2>Complete Your Profile</h2>
+    
+    <form method="post" enctype="multipart/form-data">  <!-- Don't forget enctype to allow file upload -->
         {% csrf_token %}
-        {{ form|crispy }}
-        <button type="submit" class="btn btn-primary w-100">Save Profile</button>
+        {{ form.as_p }}  <!-- Render all form fields -->
+        <button type="submit" class="btn btn-primary mt-3">Save Changes</button>
     </form>
 </div>
 {% endblock %}

@@ -5,6 +5,6 @@ register = template.Library()
 @register.filter(name='get_item')
 def get_item(dictionary, key):
     """Custom filter to get a dictionary value by key."""
-    if dictionary is not None:  # Ensure dictionary is not None
+    if isinstance(dictionary, dict):  # Check if dictionary is actually a dictionary
         return dictionary.get(key, 'Not Applied')  # Default to 'Not Applied' if key not found
-    return 'Not Applied'  # If dictionary is None, return 'Not Applied'
+    return 'Not Applied'  # If dictionary is None or not a dictionary, return 'Not Applied'

@@ -27,4 +27,20 @@ class User(AbstractUser):
     experience_level = models.CharField(max_length=50, blank=True, null=True)
     approval_status = models.CharField(max_length=15, choices=APPROVAL_STATUS_CHOICES, default=PENDING)
     profile_completed = models.BooleanField(default=False)
-    is_active = models.BooleanField(default=False, help_text="Designates whether a user should be treated as active. Unselect this instead of deleting accounts.")   
+    is_active = models.BooleanField(default=False, help_text="Designates whether a user should be treated as active. Unselect this instead of deleting accounts.")
+
+    # New fields added
+    EXPERIENCE_CHOICES = [
+        ('None', 'None'),
+        ('RYA Competent Crew', 'RYA Competent Crew'),
+        ('RYA Dayskipper', 'RYA Dayskipper'),
+        ('RYA Yachtmaster Coastal', 'RYA Yachtmaster Coastal'),
+        ('RYA Yachtmaster Offshore', 'RYA Yachtmaster Offshore'),
+        ('RYA Yachtmaster Ocean', 'RYA Yachtmaster Ocean'),
+    ]
+    experience = models.CharField(max_length=100, choices=EXPERIENCE_CHOICES, default='None')
+
+    photo = models.ImageField(upload_to='profile_photos/', blank=True, null=True)  # Allow optional profile photo
+
+    def __str__(self):
+        return self.username

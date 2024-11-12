@@ -12,6 +12,10 @@
             <form method="post" action="{% url 'account_login' %}">
                 {% csrf_token %}
                 {{ form|crispy }}
+                
+                <!-- Add hidden field for next to handle redirects after login -->
+                <input type="hidden" name="next" value="{{ request.GET.next }}" />
+                
                 <button type="submit" class="btn btn-primary w-100">Login</button>
             </form>
 

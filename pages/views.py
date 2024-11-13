@@ -5,7 +5,7 @@ from crewbooking.models import CrewBooking  # Import the CrewBooking model
 
 # Create your views here.
 def home(request):
-    trips = Trip.objects.order_by('-date')[:3]  # Fetch the latest three trips
+    trips = Trip.objects.order_by('-departure_date')[:3]  # Fetch the latest three trips
 
     # Fetch applied trip IDs if the user is logged in
     if request.user.is_authenticated:

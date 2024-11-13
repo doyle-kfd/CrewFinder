@@ -36,7 +36,7 @@ def dashboard(request):
 
     # For captains, show their created trips and applicants
     if request.user.role == 'captain':
-        my_trips = Trip.objects.filter(captain=request.user).order_by('date')  # Get the trips created by the captain
+        my_trips = Trip.objects.filter(captain=request.user).order_by('-departure_date')  # Get the trips created by the captain
         applied_crews = CrewBooking.objects.filter(trip__captain=request.user)  # Get applicants for those trips
         return render(request, 'accounts/dashboard.html', {'my_trips': my_trips, 'applied_crews': applied_crews})
 

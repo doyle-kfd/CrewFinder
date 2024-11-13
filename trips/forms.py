@@ -9,12 +9,27 @@ class TripCreationForm(forms.ModelForm):
 
     class Meta:
         model = Trip
-        fields = ['title', 'location', 'date', 'duration', 'crew_needed', 'boat_image']  # Include boat_image field
+        fields = [
+            'title',
+            'departing_from',
+            'arriving_at',
+            'departure_date',
+            'duration',
+            'crew_needed',
+            'boat_name',
+            'boat_description',
+            'trip_description',
+            'boat_image',
+        ]
         widgets = {
             'title': forms.TextInput(attrs={'placeholder': 'Title'}),
-            'location': forms.TextInput(attrs={'placeholder': 'Location'}),
-            'date': forms.DateInput(attrs={'type': 'date', 'placeholder': 'Date'}),
+            'departing_from': forms.TextInput(attrs={'placeholder': 'Departing From'}),
+            'arriving_at': forms.TextInput(attrs={'placeholder': 'Arriving At'}),
+            'departure_date': forms.DateInput(attrs={'type': 'date', 'placeholder': 'Departure Date'}),
             'crew_needed': forms.NumberInput(attrs={'placeholder': 'Crew Needed'}),
+            'boat_name': forms.TextInput(attrs={'placeholder': 'Boat Name'}),
+            'boat_description': forms.Textarea(attrs={'placeholder': 'Description of the boat'}),
+            'trip_description': forms.Textarea(attrs={'placeholder': 'Description of the trip'}),
             'boat_image': forms.ClearableFileInput(attrs={'placeholder': 'Upload Boat Image'}),
         }
 

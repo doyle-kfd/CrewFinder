@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load custom_filters %}
 
-{% block title %}Dashboard{% endblock %}
+{% block title %}Dashboard{%endblock %}
 
 {% block content %}
 <div class="container">
@@ -15,6 +15,7 @@
         {% endif %}
     </div>
 
+    <!-- Captain's View -->
     {% if user.role == 'captain' %}
         {% if my_trips %}
             <h2 class="mt-5">My Trips ({{ my_trips.count }})</h2>
@@ -27,17 +28,45 @@
                             {% endif %}
                             <div class="card-body">
                                 <h5 class="card-title text-primary">{{ trip.title }}</h5>
-                                <p class="card-text">
-                                    <strong>Location:</strong> {{ trip.location }}<br>
-                                    <strong>Date:</strong> {{ trip.date }}<br>
-                                    <strong>Duration:</strong> {{ trip.formatted_duration }}<br>
-                                    <strong>Crew Needed:</strong> {{ trip.crew_needed }}<br>
-                                </p>
                                 
-                                <!-- Styled applicants section with Name and Status in columns -->
+                                <!-- Two-column layout for trip details -->
+                                <div class="row">
+                                    <!-- Left Column -->
+                                    <div class="col-6 mb-2">
+                                        <p class="mb-1">
+                                            <i class="fas fa-map-marker-alt text-muted"></i> <strong>Departing:</strong> {{ trip.departing_from }}
+                                        </p>
+                                        <p class="mb-1">
+                                            <i class="fas fa-calendar-alt text-muted"></i> <strong>Departure Date:</strong> {{ trip.departure_date }}
+                                        </p>
+                                        <p class="mb-1">
+                                            <i class="fas fa-ship text-muted"></i> <strong>Boat Name:</strong> {{ trip.boat_name }}
+                                        </p>
+                                    </div>
+
+                                    <!-- Right Column -->
+                                    <div class="col-6 mb-2">
+                                        <p class="mb-1">
+                                            <i class="fas fa-map-marker-alt text-muted"></i> <strong>Arriving:</strong> {{ trip.arriving_at }}
+                                        </p>
+                                        <p class="mb-1">
+                                            <i class="fas fa-clock text-muted"></i> <strong>Duration:</strong> {{ trip.formatted_duration }}
+                                        </p>
+                                        <p class="text-muted small mb-1">
+                                            <strong>Boat Description:</strong> {{ trip.boat_description|truncatewords:10 }}
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Trip Description beneath the columns -->
+                                <p class="text-muted small mt-3">
+                                    <strong>Trip Description:</strong> {{ trip.trip_description|truncatewords:20 }}
+                                </p>
+
+                                <!-- Toggleable Applicants section -->
                                 <div class="applicants-section mt-4 p-3 bg-light rounded">
                                     <h6 class="text-secondary">Applicants:</h6>
-                                    <ul class="list-unstyled mb-0">
+                                    <ul class="list-unstyled mb-0 collapse" id="applicants-list-{{ trip.id }}">
                                         {% for crew in applied_crews %}
                                             {% if crew.trip == trip %}
                                                 <li class="applicant-item d-flex align-items-center justify-content-between py-2">
@@ -46,10 +75,8 @@
                                                             <strong>Name:</strong> {{ crew.user.username }}
                                                         </div>
                                                         <div class="col-6">
-                                                            <!-- Conditional color based on status -->
                                                             <strong>Status:</strong> 
-                                                            <span 
-                                                                class="{% if crew.status == 'confirmed' %}text-success{% elif crew.status == 'pending' %}text-warning{% elif crew.status == 'cancelled' %}text-danger{% endif %}">
+                                                            <span class="{% if crew.status == 'confirmed' %}text-success{% elif crew.status == 'pending' %}text-warning{% elif crew.status == 'cancelled' %}text-danger{% endif %}">
                                                                 {{ crew.status }}
                                                             </span>
                                                         </div>
@@ -61,9 +88,14 @@
                                             <li class="text-muted">No applicants yet.</li>
                                         {% endfor %}
                                     </ul>
+                                    <button class="btn btn-link" data-bs-toggle="collapse" data-bs-target="#applicants-list-{{ trip.id }}"
+                                            aria-expanded="false" aria-controls="applicants-list-{{ trip.id }}"
+                                            onclick="toggleButtonText(this)">
+                                        Show More
+                                    </button>
                                 </div>
 
-                                <div class="d-flex justify-content-between mt-4">
+                                <div class="d-flex justify-content-between mt-3">
                                     <a href="{% url 'edit_trip' trip.id %}" class="btn btn-sm btn-warning">Edit</a>
                                     <a href="{% url 'delete_trip' trip.id %}" class="btn btn-sm btn-danger">Delete</a>
                                 </div>
@@ -75,24 +107,51 @@
         {% else %}
             <p class="mt-3">You have not created any trips yet.</p>
         {% endif %}
-    {% elif user.role == 'crew' %}
+    {% endif %}
+
+    <!-- Crew's View -->
+    {% if user.role == 'crew' %}
         <h2 class="mt-5">My Applied Trips</h2>
     
         {% if applied_trips %}
             <div class="row">
                 {% for booking in applied_trips %}
                     <div class="col-md-6 mb-4">
-                        <div class="card h-100 shadow-sm">
+                        <div class="card h-100 shadow-sm rounded border-0">
+                            {% if booking.trip.boat_image %}
+                                <img src="{{ booking.trip.boat_image.url }}" alt="Boat Image" class="img-fluid mb-3 rounded">
+                            {% endif %}
                             <div class="card-body">
-                                {% if booking.trip.boat_image %}
-                                    <img src="{{ booking.trip.boat_image.url }}" alt="Boat Image" class="img-fluid mb-3 rounded">
-                                {% endif %}
-                                <h5 class="card-title">{{ booking.trip.title }}</h5>
-                                <p class="card-text">
-                                    <strong>Location:</strong> {{ booking.trip.location }}<br>
-                                    <strong>Date:</strong> {{ booking.trip.date }}<br>
-                                    <strong>Duration:</strong> {{ booking.trip.formatted_duration }}<br>
-                                    <strong>Crew Needed:</strong> {{ booking.trip.crew_needed }}<br>
+                                <h5 class="card-title text-primary">{{ booking.trip.title }}</h5>
+                                <div class="d-flex flex-wrap">
+                                    <p class="mb-2 me-4">
+                                        <i class="fas fa-map-marker-alt text-muted"></i> <strong>Departing:</strong> {{ booking.trip.departing_from }}
+                                    </p>
+                                    <p class="mb-2">
+                                        <i class="fas fa-map-marker-alt text-muted"></i> <strong>Arriving:</strong> {{ booking.trip.arriving_at }}
+                                    </p>
+                                </div>
+                                <div class="d-flex flex-wrap">
+                                    <p class="mb-2 me-4">
+                                        <i class="fas fa-calendar-alt text-muted"></i> <strong>Departure Date:</strong> {{ booking.trip.departure_date }}
+                                    </p>
+                                    <p class="mb-2">
+                                        <i class="fas fa-clock text-muted"></i> <strong>Duration:</strong> {{ booking.trip.formatted_duration }}
+                                    </p>
+                                </div>
+                                <p class="mb-2">
+                                    <i class="fas fa-ship text-muted"></i> <strong>Boat Name:</strong> {{ booking.trip.boat_name }}
+                                </p>
+                                <p class="text-muted small mb-2">
+                                    <strong>Boat Description:</strong> {{ booking.trip.boat_description|truncatewords:10 }}
+                                </p>
+                                <p class="text-muted small mb-2">
+                                    <strong>Trip Description:</strong> {{ booking.trip.trip_description|truncatewords:10 }}
+                                </p>
+                                <p class="mb-2">
+                                    <i class="fas fa-users text-muted"></i> <strong>Crew Needed:</strong> {{ booking.trip.crew_needed }}
+                                </p>
+                                <p class="mb-2">
                                     <strong>Status:</strong> 
                                     <span class="{% if booking.status == 'confirmed' %}text-success{% elif booking.status == 'pending' %}text-warning{% elif booking.status == 'cancelled' %}text-danger{% endif %}">
                                         {{ booking.status|title }}

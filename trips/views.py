@@ -4,6 +4,7 @@ from django.core.exceptions import PermissionDenied
 from .models import Trip
 from .forms import TripCreationForm
 from crewbooking.models import CrewBooking
+from datetime import timedelta
 
 @login_required
 def create_trip(request):

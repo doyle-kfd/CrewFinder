@@ -8,18 +8,21 @@
     <div class="row justify-content-center">
         <div class="col-md-6">
             <h2 class="text-center">Create a New Trip</h2>
-            <form method="post" enctype="multipart/form-data" class="mt-4">  <!-- Added enctype for file uploads -->
+            <form method="post" enctype="multipart/form-data" class="mt-4">
                 {% csrf_token %}
                 
-                <!-- Render form fields with Crispy Forms but without labels -->
+                <!-- Render form fields with Crispy Forms -->
                 <div class="form-group">
                     {{ form.title|as_crispy_field }}
                 </div>
                 <div class="form-group">
-                    {{ form.location|as_crispy_field }}
+                    {{ form.departing_from|as_crispy_field }}
                 </div>
                 <div class="form-group">
-                    {{ form.date|as_crispy_field }}
+                    {{ form.arriving_at|as_crispy_field }}
+                </div>
+                <div class="form-group">
+                    {{ form.departure_date|as_crispy_field }}
                 </div>
                 <div class="form-group">
                     {{ form.duration|as_crispy_field }}
@@ -28,7 +31,16 @@
                     {{ form.crew_needed|as_crispy_field }}
                 </div>
                 <div class="form-group">
-                    {{ form.boat_image|as_crispy_field }}  <!-- Add the boat image field -->
+                    {{ form.boat_name|as_crispy_field }}
+                </div>
+                <div class="form-group">
+                    {{ form.boat_description|as_crispy_field }}
+                </div>
+                <div class="form-group">
+                    {{ form.trip_description|as_crispy_field }}
+                </div>
+                <div class="form-group">
+                    {{ form.boat_image|as_crispy_field }}
                 </div>
                 
                 <!-- Submit button -->

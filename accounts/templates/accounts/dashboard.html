@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load custom_filters %}
 
-{% block title %}Dashboard{%endblock %}
+{% block title %}Dashboard{% endblock %}
 
 {% block content %}
 <div class="container">
@@ -63,9 +63,11 @@
                                     <strong>Trip Description:</strong> {{ trip.trip_description|truncatewords:20 }}
                                 </p>
 
-                                <!-- Toggleable Applicants section -->
+                                <!-- Toggleable Applicants section with count -->
                                 <div class="applicants-section mt-4 p-3 bg-light rounded">
-                                    <h6 class="text-secondary">Applicants:</h6>
+                                    <h6 class="text-secondary">
+                                        Applicants ({{ trip.applicant_count }}):
+                                    </h6>
                                     <ul class="list-unstyled mb-0 collapse" id="applicants-list-{{ trip.id }}">
                                         {% for crew in applied_crews %}
                                             {% if crew.trip == trip %}
@@ -89,8 +91,8 @@
                                         {% endfor %}
                                     </ul>
                                     <button class="btn btn-link" data-bs-toggle="collapse" data-bs-target="#applicants-list-{{ trip.id }}"
-                                    aria-expanded="false" aria-controls="applicants-list-{{ trip.id }}">
-                                    Show More
+                                            aria-expanded="false" aria-controls="applicants-list-{{ trip.id }}">
+                                        Show More
                                     </button>
                                 </div>
 

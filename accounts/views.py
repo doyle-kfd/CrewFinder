@@ -10,6 +10,7 @@ from allauth.account.views import SignupView
 from trips.models import Trip  # Import the Trip model to access trips
 from crewbooking.models import CrewBooking  # Import the CrewBooking model
 from django import forms  # Import forms module
+from django.db.models import Count
 
 @login_required
 def complete_profile(request):
@@ -36,14 +37,19 @@ def dashboard(request):
 
     # For captains, show their created trips and applicants
     if request.user.role == 'captain':
-        my_trips = Trip.objects.filter(captain=request.user).order_by('-departure_date')  # Get the trips created by the captain
+        # Annotate each trip with the count of applicants using 'applicant_count'
+        my_trips = Trip.objects.filter(captain=request.user).annotate(applicant_count=Count('crewbooking')).order_by('-departure_date')
         applied_crews = CrewBooking.objects.filter(trip__captain=request.user)  # Get applicants for those trips
-        return render(request, 'accounts/dashboard.html', {'my_trips': my_trips, 'applied_crews': applied_crews})
+        
+        return render(request, 'accounts/dashboard.html', {
+            'my_trips': my_trips,
+            'applied_crews': applied_crews
+        })
 
     # For crew members, show the trips they have applied for with status
     elif request.user.role == 'crew':
         applied_trips = CrewBooking.objects.filter(user=request.user).select_related('trip')  # Get trips and status for each application
-
+        
         return render(request, 'accounts/dashboard.html', {
             'applied_trips': applied_trips,  # Pass CrewBooking objects with trip and status details
         })

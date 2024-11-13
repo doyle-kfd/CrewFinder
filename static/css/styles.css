@@ -59,3 +59,46 @@ td:last-child {
 .container .alert {
     margin-top:60px !important;
 }
+
+/* Style buttons on captains dashboard */
+.custom-button {
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-weight: 600;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.custom-button:hover {
+    background-color: #0056b3; /* Darker color for primary button */
+    color: #fff;
+    transform: scale(1.05);
+}
+
+/* Style the card in the dashboard better */
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.applicants-section {
+    border-left: 4px solid #17a2b8;
+}
+
+.applicant-item {
+    font-size: 0.9rem;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.applicant-item:last-child {
+    border-bottom: none;
+}
+
+.applicant-item span {
+    font-size: 0.95rem;
+    color: #333;
+}

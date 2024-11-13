@@ -7,45 +7,66 @@
 <div class="container">
     <h1 class="my-4">Welcome to your dashboard, {{ user.username }}!</h1>
     <p>Your role: {{ user.role }}</p>
-    <a href="{% url 'update_profile' %}" class="btn btn-secondary mb-3">Update Profile</a>
+
+    <div class="d-flex gap-3 mb-4">
+        <a href="{% url 'update_profile' %}" class="btn btn-secondary btn-lg px-4 custom-button">Update Profile</a>
+        {% if user.role == 'captain' %}
+            <a href="{% url 'create_trip' %}" class="btn btn-primary btn-lg px-4 custom-button">Create a New Trip</a>    
+        {% endif %}
+    </div>
 
     {% if user.role == 'captain' %}
-        <a href="{% url 'create_trip' %}" class="btn btn-primary mb-4">Create a New Trip</a>    
-
         {% if my_trips %}
             <h2 class="mt-5">My Trips ({{ my_trips.count }})</h2>
             <div class="row">
                 {% for trip in my_trips %}
                     <div class="col-md-6 mb-4">
-                        <div class="card h-100 shadow-sm">
+                        <div class="card h-100 shadow-lg rounded border-0">
+                            {% if trip.boat_image %}
+                                <img src="{{ trip.boat_image.url }}" alt="Boat Image" class="card-img-top img-fluid rounded-top">
+                            {% endif %}
                             <div class="card-body">
-                                {% if trip.boat_image %}
-                                    <img src="{{ trip.boat_image.url }}" alt="Boat Image" class="img-fluid mb-3">
-                                {% endif %}
-                                <h5 class="card-title">{{ trip.title }}</h5>
+                                <h5 class="card-title text-primary">{{ trip.title }}</h5>
                                 <p class="card-text">
                                     <strong>Location:</strong> {{ trip.location }}<br>
                                     <strong>Date:</strong> {{ trip.date }}<br>
                                     <strong>Duration:</strong> {{ trip.formatted_duration }}<br>
                                     <strong>Crew Needed:</strong> {{ trip.crew_needed }}<br>
                                 </p>
+                                
+                                <!-- Styled applicants section with Name and Status in columns -->
+                                <div class="applicants-section mt-4 p-3 bg-light rounded">
+                                    <h6 class="text-secondary">Applicants:</h6>
+                                    <ul class="list-unstyled mb-0">
+                                        {% for crew in applied_crews %}
+                                            {% if crew.trip == trip %}
+                                                <li class="applicant-item d-flex align-items-center justify-content-between py-2">
+                                                    <div class="row w-100">
+                                                        <div class="col-6">
+                                                            <strong>Name:</strong> {{ crew.user.username }}
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <!-- Conditional color based on status -->
+                                                            <strong>Status:</strong> 
+                                                            <span 
+                                                                class="{% if crew.status == 'confirmed' %}text-success{% elif crew.status == 'pending' %}text-warning{% elif crew.status == 'cancelled' %}text-danger{% endif %}">
+                                                                {{ crew.status }}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <a href="{% url 'crew_profile' crew.user.id crew.trip.id %}" class="btn btn-sm btn-outline-info mt-2">View Profile</a>
+                                                </li>
+                                            {% endif %}
+                                        {% empty %}
+                                            <li class="text-muted">No applicants yet.</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
 
-                                <!-- Show applicants for this trip -->
-                                <h6>Applicants:</h6>
-                                <ul>
-                                    {% for crew in applied_crews %}
-                                        {% if crew.trip == trip %}
-                                            <li>{{ crew.user.username }} - Status: {{ crew.status }}
-                                                <a href="{% url 'crew_profile' crew.user.id crew.trip.id %}" class="btn btn-sm btn-info mt-2">View Profile</a>
-                                            </li>
-                                        {% endif %}
-                                    {% empty %}
-                                        <p>No applicants yet.</p>
-                                    {% endfor %}
-                                </ul>
-
-                                <a href="{% url 'edit_trip' trip.id %}" class="btn btn-sm btn-warning mt-3">Edit</a>
-                                <a href="{% url 'delete_trip' trip.id %}" class="btn btn-sm btn-danger mt-3">Delete</a>
+                                <div class="d-flex justify-content-between mt-4">
+                                    <a href="{% url 'edit_trip' trip.id %}" class="btn btn-sm btn-warning">Edit</a>
+                                    <a href="{% url 'delete_trip' trip.id %}" class="btn btn-sm btn-danger">Delete</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -54,7 +75,6 @@
         {% else %}
             <p class="mt-3">You have not created any trips yet.</p>
         {% endif %}
-
     {% elif user.role == 'crew' %}
         <h2 class="mt-5">My Applied Trips</h2>
     
@@ -65,7 +85,7 @@
                         <div class="card h-100 shadow-sm">
                             <div class="card-body">
                                 {% if booking.trip.boat_image %}
-                                    <img src="{{ booking.trip.boat_image.url }}" alt="Boat Image" class="img-fluid mb-3">
+                                    <img src="{{ booking.trip.boat_image.url }}" alt="Boat Image" class="img-fluid mb-3 rounded">
                                 {% endif %}
                                 <h5 class="card-title">{{ booking.trip.title }}</h5>
                                 <p class="card-text">
@@ -73,7 +93,10 @@
                                     <strong>Date:</strong> {{ booking.trip.date }}<br>
                                     <strong>Duration:</strong> {{ booking.trip.formatted_duration }}<br>
                                     <strong>Crew Needed:</strong> {{ booking.trip.crew_needed }}<br>
-                                    <strong>Status:</strong> {{ booking.status|title }}  <!-- Display the status from CrewBooking -->
+                                    <strong>Status:</strong> 
+                                    <span class="{% if booking.status == 'confirmed' %}text-success{% elif booking.status == 'pending' %}text-warning{% elif booking.status == 'cancelled' %}text-danger{% endif %}">
+                                        {{ booking.status|title }}
+                                    </span>
                                 </p>
                             </div>
                         </div>

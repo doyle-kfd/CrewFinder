@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Select all "Show More" buttons
+    // Select all "Show Applicants" buttons
     const toggleButtons = document.querySelectorAll('[data-bs-toggle="collapse"]');
 
     toggleButtons.forEach(button => {
@@ -8,12 +8,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Listen for the collapse being shown
         targetElement.addEventListener("shown.bs.collapse", function () {
-            button.textContent = "Show Less";
+            button.textContent = "Hide Applicants";
         });
 
         // Listen for the collapse being hidden
         targetElement.addEventListener("hidden.bs.collapse", function () {
-            button.textContent = "Show More";
+            button.textContent = "Show Applicants";
         });
     });
 });

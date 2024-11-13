@@ -8,7 +8,7 @@ class CrewBooking(models.Model):
     status = models.CharField(max_length=10, choices=[
         ('confirmed', 'Confirmed'),
         ('pending', 'Pending'),
-        ('cancelled', 'Cancelled')
+        ('declined', 'Declined')  # Changed from 'cancelled' to 'declined'
     ])
 
     def __str__(self):

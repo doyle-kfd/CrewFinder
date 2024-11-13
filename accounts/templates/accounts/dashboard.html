@@ -73,12 +73,12 @@
                             <h6 class="text-secondary mb-0">
                                 Applicants ({{ trip.applicant_count }}):
                             </h6>
-                            <!-- Show "Show More" button only if there are applicants -->
+                            <!-- Show "Show Applicants" button only if there are applicants -->
                             {% if trip.applicant_count > 0 %}
                             <button class="btn btn-link p-0" data-bs-toggle="collapse"
                                 data-bs-target="#applicants-list-{{ trip.id }}" aria-expanded="false"
-                                aria-controls="applicants-list-{{ trip.id }}">
-                                Show More
+                                aria-controls="applicants-list-{{ trip.id }}" onclick="toggleButtonText(this)">
+                                Show Applicants
                             </button>
                             {% endif %}
                         </div>
@@ -94,7 +94,7 @@
                                     <div class="col-6">
                                         <strong>Status:</strong>
                                         <span
-                                            class="{% if crew.status == 'confirmed' %}text-success{% elif crew.status == 'pending' %}text-warning{% elif crew.status == 'cancelled' %}text-danger{% endif %}">
+                                            class="{% if crew.status == 'confirmed' %}text-success{% elif crew.status == 'pending' %}text-warning{% elif crew.status == 'declined' %}text-danger{% endif %}">
                                             {{ crew.status }}
                                         </span>
                                     </div>
@@ -173,7 +173,7 @@
                     <p class="mb-2">
                         <strong>Status:</strong>
                         <span
-                            class="{% if booking.status == 'confirmed' %}text-success{% elif booking.status == 'pending' %}text-warning{% elif booking.status == 'cancelled' %}text-danger{% endif %}">
+                            class="{% if booking.status == 'confirmed' %}text-success{% elif booking.status == 'pending' %}text-warning{% elif booking.status == 'declined' %}text-danger{% endif %}">
                             {{ booking.status|title }}
                         </span>
                     </p>

@@ -4,6 +4,9 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.urls import reverse
 from .models import User
+from crewbooking.models import CrewBooking
+from trips.models import Trip
+from django.apps import apps
 
 # Notify administrators of new user registration
 @receiver(post_save, sender=User)
@@ -65,3 +68,20 @@ def send_registration_email_to_admin(sender, instance, created, **kwargs):
                 [instance.email],
                 fail_silently=False,
             )
+
+CrewBooking = apps.get_model('crewbooking', 'CrewBooking')
+Trip = apps.get_model('trips', 'Trip')
+
+@receiver(post_save, sender=CrewBooking)
+def adjust_crew_needed(sender, instance, **kwargs):
+    trip = instance.trip  # Get the associated Trip object
+
+    # Check if the booking is newly confirmed
+    if instance.status == 'confirmed' and instance._state.adding is False:
+        # Ensure we only decrement if status was changed to "confirmed"
+        if instance.status == 'confirmed' and instance._state.adding is False:
+            trip.crew_needed = max(trip.crew_needed - 1, 0)
+            trip.save()
+    # Handle status reverting from "confirmed" to "pending" or "cancelled"
+    elif instance.status != 'confirmed' and instance._state.adding is False:
+        trip.crew_needed += 1

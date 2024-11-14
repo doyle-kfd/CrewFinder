@@ -32,3 +32,8 @@ class ProfileCompletionForm(forms.ModelForm):
         if commit:
             user.save()
         return user
+
+class EditUserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'role', 'approval_status', 'experience', 'photo']

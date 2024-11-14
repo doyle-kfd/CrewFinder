@@ -9,7 +9,10 @@
     <p>Your role: {{ user.role }}</p>
 
     <div class="d-flex gap-3 mb-4">
+        <!-- Update Profile button for all roles -->
         <a href="{% url 'update_profile' %}" class="btn btn-secondary btn-lg px-4 custom-button">Update Profile</a>
+        
+        <!-- Create Trip button for captains only -->
         {% if user.role == 'captain' %}
             <a href="{% url 'create_trip' %}" class="btn btn-primary btn-lg px-4 custom-button">Create a New Trip</a>
         {% endif %}

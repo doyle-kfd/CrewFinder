@@ -1,4 +1,4 @@
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from django.core.mail import send_mail
 from django.conf import settings
@@ -83,5 +83,13 @@ def adjust_crew_needed(sender, instance, **kwargs):
 
     # Increment crew_needed if the status changes from 'confirmed' to something else
     elif instance._original_status == 'confirmed' and instance.status != 'confirmed':
+        trip.crew_needed += 1
+        trip.save()
+
+@receiver(post_delete, sender=CrewBooking)
+def increment_crew_needed_on_delete(sender, instance, **kwargs):
+    if instance.status == 'confirmed':
+        # Increment the crew_needed count by 1
+        trip = instance.trip
         trip.crew_needed += 1
         trip.save()

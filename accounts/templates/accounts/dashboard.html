@@ -34,50 +34,25 @@
 
                                 <!-- Two-column layout for trip details with consistent styling -->
                                 <div class="row">
-                                    <!-- Left Column -->
                                     <div class="col-6 mb-2">
-                                        <p class="trip-detail">
-                                            <i class="fas fa-map-marker-alt text-muted"></i>
-                                            <span class="detail-label">Departing:</span> {{ trip.departing_from }}
-                                        </p>
-                                        <p class="trip-detail">
-                                            <i class="fas fa-calendar-alt text-muted"></i>
-                                            <span class="detail-label">Departure Date:</span> {{ trip.departure_date }}
-                                        </p>
-                                        <p class="trip-detail">
-                                            <i class="fas fa-ship text-muted"></i>
-                                            <span class="detail-label">Boat Name:</span> {{ trip.boat_name }}
-                                        </p>
+                                        <p class="trip-detail"><strong>Departing:</strong> {{ trip.departing_from }}</p>
+                                        <p class="trip-detail"><strong>Departure Date:</strong> {{ trip.departure_date }}</p>
+                                        <p class="trip-detail"><strong>Boat Name:</strong> {{ trip.boat_name }}</p>
                                     </div>
-
-                                    <!-- Right Column -->
                                     <div class="col-6 mb-2">
-                                        <p class="trip-detail">
-                                            <i class="fas fa-map-marker-alt text-muted"></i>
-                                            <span class="detail-label">Arriving:</span> {{ trip.arriving_at }}
-                                        </p>
-                                        <p class="trip-detail">
-                                            <i class="fas fa-clock text-muted"></i>
-                                            <span class="detail-label">Duration:</span> {{ trip.formatted_duration }}
-                                        </p>
-                                        <p class="trip-detail">
-                                            <i class="fas fa-users text-muted"></i>
-                                            <span class="detail-label">Crew Needed:</span> {{ trip.crew_needed }}
-                                        </p>
+                                        <p class="trip-detail"><strong>Arriving:</strong> {{ trip.arriving_at }}</p>
+                                        <p class="trip-detail"><strong>Duration:</strong> {{ trip.formatted_duration }}</p>
+                                        <p class="trip-detail"><strong>Crew Needed:</strong> {{ trip.crew_needed }}</p>
                                     </div>
                                 </div>
 
                                 <!-- Trip Description with consistent styling -->
-                                <p class="trip-description">
-                                    <strong>Trip Description:</strong> {{ trip.trip_description|truncatewords:20 }}
-                                </p>
+                                <p class="trip-description"><strong>Trip Description:</strong> {{ trip.trip_description|truncatewords:20 }}</p>
 
                                 <!-- Toggleable Applicants section with count -->
                                 <div class="applicants-section mt-4 p-3 bg-light rounded">
                                     <div class="d-flex justify-content-center align-items-center gap-2">
-                                        <h6 class="text-secondary mb-0">
-                                            Applicants ({{ trip.applicant_count }}):
-                                        </h6>
+                                        <h6 class="text-secondary mb-0">Applicants ({{ trip.applicant_count }}):</h6>
                                         {% if trip.applicant_count > 0 %}
                                             <button class="btn btn-link p-0" data-bs-toggle="collapse"
                                                     data-bs-target="#applicants-list-{{ trip.id }}" aria-expanded="false"
@@ -121,7 +96,7 @@
                 {% endfor %}
             </div>
         {% else %}
-            <p class="mt-3">You have not created any trips yet.</p>
+            <p class="alert alert-info mt-3">You have not created any trips yet.</p>
         {% endif %}
     {% endif %}
 
@@ -140,41 +115,20 @@
                             <div class="card-body">
                                 <h5 class="card-title text-primary">{{ booking.trip.title }}</h5>
 
-                                <!-- Two-column layout for trip details with consistent styling -->
                                 <div class="row">
                                     <div class="col-6 mb-2">
-                                        <p class="trip-detail">
-                                            <i class="fas fa-map-marker-alt text-muted"></i>
-                                            <span class="detail-label">Departing:</span> {{ booking.trip.departing_from }}
-                                        </p>
-                                        <p class="trip-detail">
-                                            <i class="fas fa-calendar-alt text-muted"></i>
-                                            <span class="detail-label">Departure Date:</span> {{ booking.trip.departure_date }}
-                                        </p>
-                                        <p class="trip-detail">
-                                            <i class="fas fa-ship text-muted"></i>
-                                            <span class="detail-label">Boat Name:</span> {{ booking.trip.boat_name }}
-                                        </p>
+                                        <p class="trip-detail"><strong>Departing:</strong> {{ booking.trip.departing_from }}</p>
+                                        <p class="trip-detail"><strong>Departure Date:</strong> {{ booking.trip.departure_date }}</p>
+                                        <p class="trip-detail"><strong>Boat Name:</strong> {{ booking.trip.boat_name }}</p>
                                     </div>
                                     <div class="col-6 mb-2">
-                                        <p class="trip-detail">
-                                            <i class="fas fa-map-marker-alt text-muted"></i>
-                                            <span class="detail-label">Arriving:</span> {{ booking.trip.arriving_at }}
-                                        </p>
-                                        <p class="trip-detail">
-                                            <i class="fas fa-clock text-muted"></i>
-                                            <span class="detail-label">Duration:</span> {{ booking.trip.formatted_duration }}
-                                        </p>
-                                        <p class="trip-detail">
-                                            <i class="fas fa-users text-muted"></i>
-                                            <span class="detail-label">Crew Needed:</span> {{ booking.trip.crew_needed }}
-                                        </p>
+                                        <p class="trip-detail"><strong>Arriving:</strong> {{ booking.trip.arriving_at }}</p>
+                                        <p class="trip-detail"><strong>Duration:</strong> {{ booking.trip.formatted_duration }}</p>
+                                        <p class="trip-detail"><strong>Crew Needed:</strong> {{ booking.trip.crew_needed }}</p>
                                     </div>
                                 </div>
 
-                                <p class="trip-description">
-                                    <strong>Trip Description:</strong> {{ booking.trip.trip_description|truncatewords:20 }}
-                                </p>
+                                <p class="trip-description"><strong>Trip Description:</strong> {{ booking.trip.trip_description|truncatewords:20 }}</p>
 
                                 <p class="mb-2">
                                     <strong>Status:</strong>
@@ -182,6 +136,9 @@
                                         {{ booking.status|title }}
                                     </span>
                                 </p>
+
+                                <!-- Delete Application Button -->
+                                <a href="{% url 'delete_application' booking.id %}" class="btn btn-danger w-100 mt-2">Delete Application</a>
                             </div>
                         </div>
                     </div>

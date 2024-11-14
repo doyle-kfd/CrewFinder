@@ -20,6 +20,12 @@ def apply_for_trip(request, trip_id):
     # Redirect back to the dashboard or the trip's page
     return redirect('dashboard')  # Or to the trip's detail page
 
+@login_required
+def delete_application(request, booking_id):
+    booking = get_object_or_404(CrewBooking, id=booking_id, user=request.user)
+    booking.delete()
+    return redirect('dashboard')  # Redirect to dashboard after deleting
+
 def home(request):
     # Fetch the latest three trips to display on the home page
     trips = Trip.objects.order_by('-date')[:3]

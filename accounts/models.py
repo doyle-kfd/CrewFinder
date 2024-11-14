@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from cloudinary.models import CloudinaryField  # Import CloudinaryField
 
 class User(AbstractUser):
     CAPTAIN = 'captain'
@@ -40,7 +41,8 @@ class User(AbstractUser):
     ]
     experience = models.CharField(max_length=100, choices=EXPERIENCE_CHOICES, default='None')
 
-    photo = models.ImageField(upload_to='profile_photos/', blank=True, null=True)  # Allow optional profile photo
+    # Replace ImageField with CloudinaryField
+    photo = CloudinaryField('photo', blank=True, null=True)  # Store profile photo on Cloudinary
 
     def __str__(self):
         return self.username

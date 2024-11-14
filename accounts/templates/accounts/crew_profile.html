@@ -17,8 +17,10 @@
                         <!-- Profile Picture -->
                         <div class="col-md-4 text-center mb-3">
                             {% if crew_member.photo %}
+                                <!-- Display Cloudinary Image if available -->
                                 <img src="{{ crew_member.photo.url }}" alt="{{ crew_member.username }}'s Profile Picture" class="rounded-circle img-fluid" style="width: 150px; height: 150px;">
                             {% else %}
+                                <!-- Fallback to default image if photo is not available -->
                                 <img src="{% static 'images/default_avatar.jpg' %}" alt="Default Profile Picture" class="rounded-circle img-fluid" style="width: 150px; height: 150px;">
                             {% endif %}
                         </div>

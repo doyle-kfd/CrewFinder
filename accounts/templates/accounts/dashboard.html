@@ -61,8 +61,8 @@
                                             <span class="detail-label">Duration:</span> {{ trip.formatted_duration }}
                                         </p>
                                         <p class="trip-detail">
-                                            <i class="fas fa-ship text-muted"></i>
-                                            <span class="detail-label">Boat Description:</span> {{ trip.boat_description|truncatewords:10 }}
+                                            <i class="fas fa-users text-muted"></i>
+                                            <span class="detail-label">Crew Needed:</span> {{ trip.crew_needed }}
                                         </p>
                                     </div>
                                 </div>
@@ -166,8 +166,8 @@
                                             <span class="detail-label">Duration:</span> {{ booking.trip.formatted_duration }}
                                         </p>
                                         <p class="trip-detail">
-                                            <i class="fas fa-ship text-muted"></i>
-                                            <span class="detail-label">Boat Description:</span> {{ booking.trip.boat_description|truncatewords:10 }}
+                                            <i class="fas fa-users text-muted"></i>
+                                            <span class="detail-label">Crew Needed:</span> {{ booking.trip.crew_needed }}
                                         </p>
                                     </div>
                                 </div>
@@ -188,7 +188,7 @@
                 {% endfor %}
             </div>
         {% else %}
-            <p class="mt-3">You have not applied for any trips yet.</p>
+            <p class="alert alert-info mt-3">You have not applied for any trips yet.</p>
         {% endif %}
     {% endif %}
 </div>

@@ -1,12 +1,12 @@
 from django.db import models
 from django.conf import settings
-from cloudinary.models import CloudinaryField  # Import CloudinaryField
+from cloudinary.models import CloudinaryField
 
 class Trip(models.Model):
     title = models.CharField(max_length=100)
     departing_from = models.CharField(max_length=100)
     arriving_at = models.CharField(max_length=100)
-    departure_date = models.DateField()  # Renamed field for departure date
+    departure_date = models.DateField()
     duration = models.DurationField()
     boat_name = models.CharField(max_length=100)
     boat_description = models.TextField(blank=True, null=True)
@@ -17,9 +17,13 @@ class Trip(models.Model):
         limit_choices_to={'role': 'Captain'}
     )
     crew_needed = models.PositiveIntegerField()
-    
-    # Change boat_image to use CloudinaryField
     boat_image = CloudinaryField('image', blank=True, null=True)
+
+    def save(self, *args, **kwargs):
+        # Assign default image if none is provided
+        if not self.boat_image:
+            self.boat_image = 'path/to/default_boat.jpg'  # Update with Cloudinary URL or image ID
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.title} on {self.departure_date}"

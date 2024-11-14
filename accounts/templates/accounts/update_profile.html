@@ -15,7 +15,7 @@
                 <div class="card-body">
                     <form method="post" enctype="multipart/form-data">
                         {% csrf_token %}
-                        
+
                         <!-- Account Details Section -->
                         <div class="form-section">
                             <h5 class="mt-3">Account Details</h5>
@@ -33,10 +33,12 @@
 
                                 <!-- Right Column for Profile Picture -->
                                 <div class="col-md-4 text-center">
-                                    {% if user.photo %}
-                                        <img src="{{ user.photo.url }}" alt="Current Profile Picture" class="img-thumbnail mb-3" style="max-width: 100%;">
+                                    {% if form.instance.photo and form.instance.photo.url %}
+                                        <!-- Display the user-uploaded image from Cloudinary -->
+                                        <img src="{{ form.instance.photo.url }}" alt="{{ form.instance.username }}'s Profile Picture" class="rounded-circle img-fluid" style="width: 150px; height: 150px;">
                                     {% else %}
-                                        <img src="{% static 'images/default_avatar.png' %}" alt="Default Profile Picture" class="img-thumbnail mb-3" style="max-width: 100%;">
+                                        <!-- Fallback to the default image if no user-uploaded image is found -->
+                                        <img src="{% static 'images/default_avatar.png' %}" alt="Default Profile Picture" class="rounded-circle img-fluid" style="width: 150px; height: 150px;">
                                     {% endif %}
                                 </div>
                             </div>
@@ -53,7 +55,7 @@
                                 {{ form.experience|as_crispy_field }}
                             </div>
                         </div>
-                        
+
                         <!-- Profile Picture Upload -->
                         <div class="form-section">
                             <h5 class="mt-4">Change Profile Picture</h5>
@@ -62,7 +64,7 @@
                                 {{ form.photo|as_crispy_field }}
                             </div>
                         </div>
-                        
+
                         <button type="submit" class="btn btn-primary w-100 mt-4">Save Changes</button>
                     </form>
                 </div>

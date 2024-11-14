@@ -12,6 +12,7 @@ from crewbooking.models import CrewBooking  # Import the CrewBooking model
 from django import forms  # Import forms module
 from django.db.models import Count
 from .forms import EditUserForm  # Assume you have a form for editing user details
+from cloudinary.models import CloudinaryField
 
 @login_required
 def complete_profile(request):
@@ -120,7 +121,8 @@ class CustomLogoutView(LogoutView):
 @login_required
 def update_profile(request):
     if request.method == 'POST':
-        form = ProfileCompletionForm(request.POST, instance=request.user)
+        # Add request.FILES to handle file uploads
+        form = ProfileCompletionForm(request.POST, request.FILES, instance=request.user)
         if form.is_valid():
             form.save()
             messages.success(request, "Your profile has been updated successfully.")

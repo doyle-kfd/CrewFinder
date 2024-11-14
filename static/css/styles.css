@@ -102,3 +102,34 @@ td:last-child {
     font-size: 0.95rem;
     color: #333;
 }
+
+
+/* Trip detail card */
+.trip-detail {
+    font-weight: bold;
+    color: #333;
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.trip-detail i {
+    margin-right: 5px;
+}
+
+.trip-detail .detail-label {
+    margin-right: 5px;
+    font-weight: normal;
+}
+
+.trip-description {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.5;
+    margin-top: 10px;
+}
+
+.trip-description strong {
+    font-weight: bold;
+    color: #333;
+}

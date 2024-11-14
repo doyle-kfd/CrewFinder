@@ -29,41 +29,43 @@
                             <div class="card-body">
                                 <h5 class="card-title text-primary">{{ trip.title }}</h5>
 
-                                <!-- Two-column layout for trip details -->
+                                <!-- Two-column layout for trip details with consistent styling -->
                                 <div class="row">
                                     <!-- Left Column -->
                                     <div class="col-6 mb-2">
-                                        <p class="mb-1">
-                                            <i class="fas fa-map-marker-alt text-muted"></i> <strong>Departing:</strong>
-                                            {{ trip.departing_from }}
+                                        <p class="trip-detail">
+                                            <i class="fas fa-map-marker-alt text-muted"></i>
+                                            <span class="detail-label">Departing:</span> {{ trip.departing_from }}
                                         </p>
-                                        <p class="mb-1">
-                                            <i class="fas fa-calendar-alt text-muted"></i> <strong>Departure Date:</strong>
-                                            {{ trip.departure_date }}
+                                        <p class="trip-detail">
+                                            <i class="fas fa-calendar-alt text-muted"></i>
+                                            <span class="detail-label">Departure Date:</span> {{ trip.departure_date }}
                                         </p>
-                                        <p class="mb-1">
-                                            <i class="fas fa-ship text-muted"></i> <strong>Boat Name:</strong> {{ trip.boat_name }}
+                                        <p class="trip-detail">
+                                            <i class="fas fa-ship text-muted"></i>
+                                            <span class="detail-label">Boat Name:</span> {{ trip.boat_name }}
                                         </p>
                                     </div>
 
                                     <!-- Right Column -->
                                     <div class="col-6 mb-2">
-                                        <p class="mb-1">
-                                            <i class="fas fa-map-marker-alt text-muted"></i> <strong>Arriving:</strong>
-                                            {{ trip.arriving_at }}
+                                        <p class="trip-detail">
+                                            <i class="fas fa-map-marker-alt text-muted"></i>
+                                            <span class="detail-label">Arriving:</span> {{ trip.arriving_at }}
                                         </p>
-                                        <p class="mb-1">
-                                            <i class="fas fa-clock text-muted"></i> <strong>Duration:</strong>
-                                            {{ trip.formatted_duration }}
+                                        <p class="trip-detail">
+                                            <i class="fas fa-clock text-muted"></i>
+                                            <span class="detail-label">Duration:</span> {{ trip.formatted_duration }}
                                         </p>
-                                        <p class="text-muted small mb-1">
-                                            <strong>Boat Description:</strong> {{ trip.boat_description|truncatewords:10 }}
+                                        <p class="trip-detail">
+                                            <i class="fas fa-ship text-muted"></i>
+                                            <span class="detail-label">Boat Description:</span> {{ trip.boat_description|truncatewords:10 }}
                                         </p>
                                     </div>
                                 </div>
 
-                                <!-- Trip Description beneath the columns -->
-                                <p class="text-muted small mt-3">
+                                <!-- Trip Description with consistent styling -->
+                                <p class="trip-description">
                                     <strong>Trip Description:</strong> {{ trip.trip_description|truncatewords:20 }}
                                 </p>
 
@@ -73,7 +75,6 @@
                                         <h6 class="text-secondary mb-0">
                                             Applicants ({{ trip.applicant_count }}):
                                         </h6>
-                                        <!-- Show "Show Applicants" button only if there are applicants -->
                                         {% if trip.applicant_count > 0 %}
                                             <button class="btn btn-link p-0" data-bs-toggle="collapse"
                                                     data-bs-target="#applicants-list-{{ trip.id }}" aria-expanded="false"
@@ -137,54 +138,48 @@
                             <div class="card-body">
                                 <h5 class="card-title text-primary">{{ booking.trip.title }}</h5>
 
-                                <!-- Two-column layout for trip details -->
+                                <!-- Two-column layout for trip details with consistent styling -->
                                 <div class="row">
-                                    <!-- Left Column -->
                                     <div class="col-6 mb-2">
-                                        <p class="mb-1">
-                                            <i class="fas fa-map-marker-alt text-muted"></i> <strong>Departing:</strong>
-                                            {{ booking.trip.departing_from }}
+                                        <p class="trip-detail">
+                                            <i class="fas fa-map-marker-alt text-muted"></i>
+                                            <span class="detail-label">Departing:</span> {{ booking.trip.departing_from }}
                                         </p>
-                                        <p class="mb-1">
-                                            <i class="fas fa-calendar-alt text-muted"></i> <strong>Departure Date:</strong>
-                                            {{ booking.trip.departure_date }}
+                                        <p class="trip-detail">
+                                            <i class="fas fa-calendar-alt text-muted"></i>
+                                            <span class="detail-label">Departure Date:</span> {{ booking.trip.departure_date }}
                                         </p>
-                                        <p class="mb-1">
-                                            <i class="fas fa-ship text-muted"></i> <strong>Boat Name:</strong> {{ booking.trip.boat_name }}
+                                        <p class="trip-detail">
+                                            <i class="fas fa-ship text-muted"></i>
+                                            <span class="detail-label">Boat Name:</span> {{ booking.trip.boat_name }}
                                         </p>
                                     </div>
-
-                                    <!-- Right Column -->
                                     <div class="col-6 mb-2">
-                                        <p class="mb-1">
-                                            <i class="fas fa-map-marker-alt text-muted"></i> <strong>Arriving:</strong>
-                                            {{ booking.trip.arriving_at }}
+                                        <p class="trip-detail">
+                                            <i class="fas fa-map-marker-alt text-muted"></i>
+                                            <span class="detail-label">Arriving:</span> {{ booking.trip.arriving_at }}
                                         </p>
-                                        <p class="mb-1">
-                                            <i class="fas fa-clock text-muted"></i> <strong>Duration:</strong>
-                                            {{ booking.trip.formatted_duration }}
+                                        <p class="trip-detail">
+                                            <i class="fas fa-clock text-muted"></i>
+                                            <span class="detail-label">Duration:</span> {{ booking.trip.formatted_duration }}
                                         </p>
-                                        <p class="text-muted small mb-1">
-                                            <strong>Boat Description:</strong> {{ booking.trip.boat_description|truncatewords:10 }}
+                                        <p class="trip-detail">
+                                            <i class="fas fa-ship text-muted"></i>
+                                            <span class="detail-label">Boat Description:</span> {{ booking.trip.boat_description|truncatewords:10 }}
                                         </p>
                                     </div>
                                 </div>
 
-                                <!-- Trip Description beneath the columns -->
-                                <p class="text-muted small mt-3">
+                                <p class="trip-description">
                                     <strong>Trip Description:</strong> {{ booking.trip.trip_description|truncatewords:20 }}
                                 </p>
 
-                                <!-- Status section -->
                                 <p class="mb-2">
                                     <strong>Status:</strong>
-                                    <span
-                                        class="{% if booking.status == 'confirmed' %}text-success{% elif booking.status == 'pending' %}text-warning{% elif booking.status == 'declined' %}text-danger{% endif %}">
+                                    <span class="{% if booking.status == 'confirmed' %}text-success{% elif booking.status == 'pending' %}text-warning{% elif booking.status == 'declined' %}text-danger{% endif %}">
                                         {{ booking.status|title }}
                                     </span>
                                 </p>
-
-                                <!-- No applicants section for Crew, as crew cannot see applicants -->
                             </div>
                         </div>
                     </div>

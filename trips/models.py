@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from cloudinary.models import CloudinaryField  # Import CloudinaryField
 
 class Trip(models.Model):
     title = models.CharField(max_length=100)
@@ -16,7 +17,9 @@ class Trip(models.Model):
         limit_choices_to={'role': 'Captain'}
     )
     crew_needed = models.PositiveIntegerField()
-    boat_image = models.ImageField(upload_to='boat_images/', blank=True, null=True)
+    
+    # Change boat_image to use CloudinaryField
+    boat_image = CloudinaryField('image', blank=True, null=True)
 
     def __str__(self):
         return f"{self.title} on {self.departure_date}"
@@ -33,4 +36,3 @@ class Trip(models.Model):
             return f"{hours} hour(s), {minutes} minute(s)"
         else:
             return f"{minutes} minute(s)"
-

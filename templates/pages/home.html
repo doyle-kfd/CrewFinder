@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Sailing Opportunities{% endblock %}
+{% block title %}Welcome to CrewFinder{% endblock %}
 
 {% block content %}
 <div class="container mt-5">
@@ -10,7 +10,7 @@
         <p class="lead">Find the perfect sailing adventure and crew members!</p>
     </div>
     
-    <h2 class="text-center mb-4">Explore Sailing Opportunities</h2>
+    <h2 class="text-center mb-4">Latest Sailing Opportunities</h2>
     
     <div class="row">
         {% for trip in trips %}
@@ -54,9 +54,15 @@
                         <strong>Trip Description:</strong> {{ trip.trip_description|truncatewords:20 }}
                     </p>
 
-                    <!-- Apply Button, only visible if user is not a captain -->
-                    {% if user.role != 'captain' %}
-                        <a href="{% url 'apply_for_trip' trip.id %}" class="btn btn-success w-100 mt-3">Apply for This Trip</a>
+                    <!-- Apply Button or Applied Message -->
+                    {% if user.is_authenticated and user.role != 'captain' %}
+                        {% if trip.id not in applied_trip_ids %}
+                            <a href="{% url 'apply_for_trip' trip.id %}" class="btn btn-success w-100 mt-3">Apply for This Trip</a>
+                        {% else %}
+                            <div class="alert alert-info text-center mt-3" role="alert">
+                                <i class="fas fa-info-circle"></i> You have already applied for this trip.
+                            </div>
+                        {% endif %}
                     {% endif %}
                 </div>
             </div>

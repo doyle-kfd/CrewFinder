@@ -1,41 +1,63 @@
 {% extends "base.html" %}
 
-{% block title %}Sailing Opportunities | CrewFinder{% endblock %}
+{% block title %}Sailing Opportunities{% endblock %}
 
 {% block content %}
-<div class="container">
-    <h2 class="mt-4">Available Sailing Trips</h2>
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Explore Sailing Opportunities</h2>
+    
     <div class="row">
         {% for trip in trips %}
-            <div class="col-md-4 mb-4">
-                <div class="card h-100 shadow-sm">
-                    <div class="card-body">
-                        {% if trip.boat_image %}
-                            <img src="{{ trip.boat_image.url }}" alt="Boat Image" class="img-fluid mb-3">
-                        {% endif %}
-                        <h5 class="card-title">{{ trip.title }}</h5>
-                        <p class="card-text">
-                            <strong>Location:</strong> {{ trip.location }}<br>
-                            <strong>Date:</strong> {{ trip.date }}<br>
-                            <strong>Duration:</strong> {{ trip.formatted_duration }}<br>
-                            <strong>Crew Needed:</strong> {{ trip.crew_needed }}<br>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                {% if trip.boat_image %}
+                    <img src="{{ trip.boat_image.url }}" class="card-img-top" alt="Boat Image">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title text-center">{{ trip.title }}</h5>
+                    <div class="row">
+                        <!-- Left Column -->
+                        <div class="col-6 mb-2">
+                            <p class="mb-1">
+                                <strong>Departing From:</strong> <br> {{ trip.departing_from }}
+                            </p>
+                            <p class="mb-1">
+                                <strong>Departure Date:</strong> <br> {{ trip.departure_date }}
+                            </p>
+                            <p class="mb-1">
+                                <strong>Boat Name:</strong> <br> {{ trip.boat_name }}
+                            </p>
+                        </div>
 
-                            {% if user.is_authenticated and user.role == 'crew' %}
-                                {% if trip.id in applied_trip_ids %}
-                                    <p class="text-success">Already applied for this trip.</p>
-                                {% else %}
-                                    <a href="{% url 'apply_for_trip' trip.id %}" class="btn btn-primary">Apply for Trip</a>
-                                {% endif %}
-                            {% endif %}
-                        </p>
+                        <!-- Right Column -->
+                        <div class="col-6 mb-2">
+                            <p class="mb-1">
+                                <strong>Arriving At:</strong> <br> {{ trip.arriving_at }}
+                            </p>
+                            <p class="mb-1">
+                                <strong>Duration:</strong> <br> {{ trip.formatted_duration }}
+                            </p>
+                            <p class="mb-1">
+                                <strong>Crew Needed:</strong> <br> {{ trip.crew_needed }}
+                            </p>
+                        </div>
                     </div>
+
+                    <!-- Trip Description -->
+                    <p class="text-muted small mt-3">
+                        <strong>Trip Description:</strong> {{ trip.trip_description|truncatewords:20 }}
+                    </p>
+
+                    <!-- Apply Button, only visible if user is not a captain -->
+                    {% if user.role != 'captain' %}
+                        <a href="{% url 'apply_for_trip' trip.id %}" class="btn btn-success w-100 mt-3">Apply for This Trip</a>
+                    {% endif %}
                 </div>
             </div>
+        </div>
+        {% empty %}
+            <p class="text-muted">No sailing opportunities available at the moment.</p>
         {% endfor %}
     </div>
-
-    {% if not trips %}
-        <p class="mt-3">No trips available at this time.</p>
-    {% endif %}
 </div>
 {% endblock %}

@@ -27,6 +27,6 @@ urlpatterns = [
     path('update_profile/', update_profile, name='update_profile'),  # Profile update URL
     
     # Update crew_profile and edit_user paths to avoid the double "accounts/" prefix
-    path('profile/<int:user_id>/', views.crew_profile, name='crew_profile'),
+    path('profile/<int:user_id>/<int:trip_id>/', views.crew_profile, name='crew_profile'),
     path('edit_user/<int:user_id>/', views.edit_user, name='edit_user'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -144,7 +144,7 @@ def crew_profile(request, user_id, trip_id):
         form = CrewBookingStatusForm(request.POST, instance=crew_booking)
         if form.is_valid():
             form.save()
-            return redirect('dashboard')  # Redirect to dashboard or another page as appropriate
+            return redirect('dashboard')  # Redirect as needed
     else:
         form = CrewBookingStatusForm(instance=crew_booking)
 

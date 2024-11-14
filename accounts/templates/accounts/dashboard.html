@@ -102,8 +102,7 @@
                                                             </span>
                                                         </div>
                                                     </div>
-                                                    <a href="{% url 'crew_profile' crew.user.id crew.trip.id %}"
-                                                       class="btn btn-sm btn-outline-info mt-2">View Profile</a>
+                                                    <a href="{% url 'crew_profile' crew.user.id trip.id %}" class="btn btn-sm btn-outline-info mt-2">View Profile</a>
                                                 </li>
                                             {% endif %}
                                         {% empty %}

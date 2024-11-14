@@ -74,14 +74,14 @@ Trip = apps.get_model('trips', 'Trip')
 
 @receiver(post_save, sender=CrewBooking)
 def adjust_crew_needed(sender, instance, **kwargs):
-    trip = instance.trip  # Get the associated Trip object
+    trip = instance.trip  # Associated trip instance
 
-    # Check if the booking is newly confirmed
-    if instance.status == 'confirmed' and instance._state.adding is False:
-        # Ensure we only decrement if status was changed to "confirmed"
-        if instance.status == 'confirmed' and instance._state.adding is False:
-            trip.crew_needed = max(trip.crew_needed - 1, 0)
-            trip.save()
-    # Handle status reverting from "confirmed" to "pending" or "cancelled"
-    elif instance.status != 'confirmed' and instance._state.adding is False:
+    # Decrement crew_needed if status changes to 'confirmed'
+    if instance.status == 'confirmed' and instance._original_status != 'confirmed':
+        trip.crew_needed = max(0, trip.crew_needed - 1)  # Ensure crew_needed is non-negative
+        trip.save()
+
+    # Increment crew_needed if the status changes from 'confirmed' to something else
+    elif instance._original_status == 'confirmed' and instance.status != 'confirmed':
         trip.crew_needed += 1
+        trip.save()

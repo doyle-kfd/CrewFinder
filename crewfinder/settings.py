@@ -47,7 +47,6 @@ CSRF_TRUSTED_ORIGINS = [
     'https://8000-doylekfd-crewfinder-18t8urmmyig.ws.codeinstitute-ide.net',
     "https://*.codeinstitute-ide.net/",
     "https://*.herokuapp.com",
-    "https://ui.dev/"
 ]
 
 
@@ -222,6 +221,34 @@ cloudinary.config(
     cloud_name=os.getenv('CLOUDINARY_CLOUD_NAME'),
     api_key=os.getenv('CLOUDINARY_API_KEY'),
     api_secret=os.getenv('CLOUDINARY_API_SECRET'),
-)
+
+Storing sensitive keys like Cloudinary credentials in your env.py file is a good practice, but the error you’re seeing suggests there's a syntax issue or misconfiguration in how you’re loading or using them in your settings.py.
+
+Here’s the proper way to set up Cloudinary keys stored in environment variables:
+
+1. env.py Configuration
+Make sure your env.py correctly sets up the environment variables:
+
+python
+Copy code
+import os
+
+os.environ['CLOUDINARY_CLOUD_NAME'] = 'ditiqiuve'
+os.environ['CLOUDINARY_API_KEY'] = '832356896727922'
+os.environ['CLOUDINARY_API_SECRET'] = 'TwKuA9FbNtJVOIGQCp-9cn2iTqU'
+2. settings.py Configuration
+In your settings.py, retrieve the environment variables and configure Cloudinary. Here's how to do it:
+
+Cloudinary Configuration:
+python
+Copy code
+import os
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),
+    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),
+    'SECURE': True,  # Ensure HTTPS for resources
+}
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'

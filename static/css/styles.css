@@ -247,3 +247,11 @@ td:last-child {
     color: var(--white-color);
     padding: 10px;
 }
+
+/* Media Queries for device responsiveness */
+/* Small Devices (Phones, <576px) */
+@media (max-width: 575.98px) {
+    .hero-image {
+        height: 40vh; /* Adjust height for small screens */
+    }
+}

@@ -84,7 +84,7 @@
         <h2 id="trips-heading" class="text-center mb-4 p-3 bg-primary text-white rounded">Latest Sailing Opportunities</h2>
         <div class="row">
             {% for trip in trips %}
-            <div class="col-md-4 mb-4">
+            <div class="col-lg-4 col-md-6 mb-4"> <!-- Responsive grid classes -->
                 <div class="card h-100 shadow-sm">
                     {% if trip.boat_image %}
                         <img src="{{ trip.boat_image.url }}" class="card-img-top" alt="Boat Image">
@@ -122,6 +122,7 @@
         </div>
     </div>
 </section>
+
 
 <!-- Testimonials Section -->
 <section class="testimonials py-5 bg-light" aria-labelledby="testimonials-heading">

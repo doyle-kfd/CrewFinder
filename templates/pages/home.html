@@ -20,7 +20,6 @@
 <section class="about-cta py-5 text-white text-center" aria-labelledby="about-heading">
     <div class="about-cta-overlay">
         <div class="container">
-            <!-- About CrewFinder Header -->
             <h2 id="about-heading" class="mb-4">About CrewFinder</h2>
             <p class="lead mb-5">The ultimate platform for captains and crew members to connect and sail together.</p>
 
@@ -64,7 +63,6 @@
                 </div>
             </div>
 
-            <!-- Call-to-Action -->
             <div class="cta mt-4">
                 <h3 class="mb-3">Ready to Set Sail?</h3>
                 <a href="{% url 'account_signup' %}" class="btn btn-light btn-lg px-5">
@@ -75,24 +73,25 @@
     </div>
 </section>
 
-
-
-
 <!-- Featured Sailing Opportunities Section -->
 <section class="featured-trips py-5 bg-light" aria-labelledby="trips-heading">
     <div class="container">
-        <!-- Section Heading -->
-        <h2 id="trips-heading" class="text-center mb-4 p-3 bg-primary text-white rounded">Latest Sailing Opportunities</h2>
-        
-        <!-- Sailing Opportunities Grid -->
+        <h2 id="trips-heading" class="text-center mb-4 p-3 bg-primary text-white rounded">Latest Sailing Opportunities
+        </h2>
+
         <div class="row">
             {% for trip in trips %}
-            <div class="col-lg-4 col-md-6 mb-4"> <!-- Responsive grid classes -->
-                <div class="card h-100 shadow-sm">
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 shadow-sm d-flex flex-column">
+                    <!-- Boat Image -->
                     {% if trip.boat_image %}
-                        <img src="{{ trip.boat_image.url }}" class="card-img-top" alt="Boat Image">
+                    <img src="{{ trip.boat_image.url }}" class="card-img-top" alt="Image of {{ trip.boat_name }}">
+                    {% else %}
+                    <img src="/static/images/default_boat.jpg" class="card-img-top" alt="Default Boat Image">
                     {% endif %}
-                    <div class="card-body">
+            
+                    <!-- Card Body -->
+                    <div class="card-body flex-grow-1">
                         <h5 class="card-title text-center">{{ trip.title }}</h5>
                         <div class="row">
                             <div class="col-6 mb-2">
@@ -107,74 +106,78 @@
                             </div>
                         </div>
                         <p class="text-muted small mt-3"><strong>Trip Description:</strong> {{ trip.trip_description|truncatewords:20 }}</p>
-                        {% if user.is_authenticated and user.role != 'captain' %}
-                            {% if trip.id not in applied_trip_ids %}
-                                <a href="{% url 'apply_for_trip' trip.id %}" class="btn btn-success w-100 mt-3">Apply for This Trip</a>
+                    </div>
+            
+                    <!-- Card Footer -->
+                    <div class="card-footer bg-white border-0 mt-auto">
+                        {% if user.is_authenticated %}
+                            {% if user.role != 'captain' %}
+                                <a href="{% url 'apply_for_trip' trip.id %}" class="btn btn-success w-100">Apply Now</a>
                             {% else %}
-                                <div class="alert alert-info text-center mt-3" role="alert">
-                                    <i class="fas fa-info-circle"></i> You have already applied for this trip.
-                                </div>
+                                <button class="btn btn-secondary w-100" disabled>Captains cannot apply</button>
                             {% endif %}
+                        {% else %}
+                            <div class="d-flex flex-column">
+                                <a href="{% url 'account_login' %}" class="btn btn-primary mb-2">Login to Apply</a>
+                                <a href="{% url 'account_signup' %}" class="btn btn-outline-primary">Sign Up to Apply</a>
+                            </div>
                         {% endif %}
                     </div>
                 </div>
             </div>
-            {% empty %}
+                            {% empty %}
                 <p class="text-muted">No sailing opportunities available at the moment.</p>
-            {% endfor %}
+                {% endfor %}
+            </div>
+
+            <div class="cta-section text-center mt-5">
+                <h3 class="mb-3">Ready to Set Sail?</h3>
+                <p class="lead mb-4">Join CrewFinder today to explore more opportunities or create your own adventure!
+                </p>
+                <a href="{% url 'sailing_opportunities' %}" class="btn btn-primary btn-lg me-3">View All Sailing
+                    Opportunities</a>
+                <a href="{% url 'account_signup' %}" class="btn btn-outline-primary btn-lg">Sign Up Now</a>
+            </div>
         </div>
-        
-        <!-- Call-to-Action Section -->
-        <div class="cta-section text-center mt-5">
-            <h3 class="mb-3">Ready to Set Sail?</h3>
-            <p class="lead mb-4">Join CrewFinder today to explore more opportunities or create your own adventure!</p>
-            <a href="{% url 'sailing_opportunities' %}" class="btn btn-primary btn-lg me-3">View All Sailing Opportunities</a>
-            <a href="{% url 'account_signup' %}" class="btn btn-outline-primary btn-lg">Sign Up Now</a>
-        </div>
-    </div>
 </section>
-
-
 
 <!-- Testimonials Section -->
 <section class="testimonials py-5 bg-light" aria-labelledby="testimonials-heading">
     <div class="container">
         <h2 id="testimonials-heading" class="text-center mb-4">What Our Users Say</h2>
-        
-        <!-- Carousel -->
+
         <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
-                <!-- Testimonial 1 -->
                 <div class="carousel-item active">
                     <div class="card border-0 shadow-sm text-center p-4">
-                        <img src="/static/images/man_testimonial.jpg" class="rounded-circle mx-auto mb-3" alt="User 1" style="width: 80px; height: 80px; object-fit: cover;">
+                        <img src="/static/images/man_testimonial.jpg" class="rounded-circle mx-auto mb-3" alt="User 1"
+                            style="width: 80px; height: 80px; object-fit: cover;">
                         <blockquote class="blockquote mb-4">
                             <p class="mb-0">"CrewFinder made finding my next crew so easy! Highly recommended!"</p>
                         </blockquote>
                         <footer class="blockquote-footer">Captain John</footer>
                     </div>
                 </div>
-                
-                <!-- Testimonial 2 -->
+
                 <div class="carousel-item">
                     <div class="card border-0 shadow-sm text-center p-4">
-                        <img src="/static/images/woman_testimonial.jpg" class="rounded-circle mx-auto mb-3" alt="User 2" style="width: 80px; height: 80px; object-fit: cover;">
+                        <img src="/static/images/woman_testimonial.jpg" class="rounded-circle mx-auto mb-3" alt="User 2"
+                            style="width: 80px; height: 80px; object-fit: cover;">
                         <blockquote class="blockquote mb-4">
                             <p class="mb-0">"Thanks to CrewFinder, I joined an amazing sailing trip last summer!"</p>
                         </blockquote>
                         <footer class="blockquote-footer">Crew Member Sarah</footer>
                     </div>
                 </div>
-                
-                <!-- Add more testimonials as needed -->
             </div>
 
-            <!-- Carousel Controls -->
-            <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+            <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel"
+                data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+            <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel"
+                data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>

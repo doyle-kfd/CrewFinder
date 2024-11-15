@@ -292,3 +292,15 @@ td:last-child {
         padding: 10px 15px; /* Adjust navbar padding for smaller desktops */
     }
 }
+
+/* Extra Large Devices (Larger Desktops, <1200px) */
+@media (max-width: 1199) {
+    .hero-image {
+        height: 50vh; /* Adjust height for large desktops */
+    }
+
+    .about-cta {
+        padding: 60px 20px; /* Reduce padding for larger screens */
+    }
+
+}

@@ -285,3 +285,10 @@ td:last-child {
         font-size: 1.5rem; /* Adjust CTA headline size */
     }
 }
+
+/* Large Devices (Desktops, <992px) */
+@media (max-width: 991.98px) {
+    .navbar {
+        padding: 10px 15px; /* Adjust navbar padding for smaller desktops */
+    }
+}

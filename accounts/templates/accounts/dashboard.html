@@ -16,6 +16,11 @@
         {% if user.role == 'captain' %}
         <a href="{% url 'create_trip' %}" class="btn btn-primary btn-lg px-4 custom-button">Create a New Trip</a>
         {% endif %}
+
+        <!-- View Sailing Opportunities button for crew only -->
+        {% if user.role == 'crew' %}
+        <a href="{% url 'sailing_opportunities' %}" class="btn btn-primary btn-lg px-4 custom-button">View Sailing Opportunities</a>
+        {% endif %}
     </div>
 
     <!-- Captain's View -->
@@ -26,15 +31,13 @@
         {% for trip in my_trips %}
         <div class="col-md-6 mb-4">
             <div class="card h-100 shadow-lg rounded border-0">
-                {% if booking.trip.boat_image %}
-                    <img src="{{ booking.trip.boat_image.url }}" alt="Boat Image" class="img-fluid mb-3 rounded">
+                {% if trip.boat_image %}
+                <img src="{{ trip.boat_image.url }}" alt="Boat Image" class="img-fluid mb-3 rounded">
                 {% else %}
-                    <img src="{% static 'images/default_trip_image.jpg' %}" alt="Boat Image" class="img-fluid mb-3 rounded">
+                <img src="{% static 'images/default_trip_image.jpg' %}" alt="Default Boat Image" class="img-fluid mb-3 rounded">
                 {% endif %}
                 <div class="card-body">
                     <h5 class="card-title text-primary">{{ trip.title }}</h5>
-
-                    <!-- Two-column layout for trip details with consistent styling -->
                     <div class="row">
                         <div class="col-6 mb-2">
                             <p class="trip-detail"><strong>Departing:</strong> {{ trip.departing_from }}</p>
@@ -47,50 +50,7 @@
                             <p class="trip-detail"><strong>Crew Needed:</strong> {{ trip.crew_needed }}</p>
                         </div>
                     </div>
-
-                    <!-- Trip Description with consistent styling -->
-                    <p class="trip-description"><strong>Trip Description:</strong>
-                        {{ trip.trip_description|truncatewords:20 }}</p>
-
-                    <!-- Toggleable Applicants section with count -->
-                    <div class="applicants-section mt-4 p-3 bg-light rounded">
-                        <div class="d-flex justify-content-center align-items-center gap-2">
-                            <h6 class="text-secondary mb-0">Applicants ({{ trip.applicant_count }}):</h6>
-                            {% if trip.applicant_count > 0 %}
-                            <button class="btn btn-link p-0" data-bs-toggle="collapse"
-                                data-bs-target="#applicants-list-{{ trip.id }}" aria-expanded="false"
-                                aria-controls="applicants-list-{{ trip.id }}" onclick="toggleButtonText(this)">
-                                Show Applicants
-                            </button>
-                            {% endif %}
-                        </div>
-
-                        <ul class="list-unstyled mb-0 collapse" id="applicants-list-{{ trip.id }}">
-                            {% for crew in applied_crews %}
-                            {% if crew.trip == trip %}
-                            <li class="applicant-item d-flex align-items-center justify-content-between py-2">
-                                <div class="row w-100">
-                                    <div class="col-6">
-                                        <strong>Name:</strong> {{ crew.user.username }}
-                                    </div>
-                                    <div class="col-6">
-                                        <strong>Status:</strong>
-                                        <span
-                                            class="{% if crew.status == 'confirmed' %}text-success{% elif crew.status == 'pending' %}text-warning{% elif crew.status == 'declined' %}text-danger{% endif %}">
-                                            {{ crew.status }}
-                                        </span>
-                                    </div>
-                                </div>
-                                <a href="{% url 'crew_profile' crew.user.id trip.id %}"
-                                    class="btn btn-sm btn-outline-info mt-2">View Profile</a>
-                            </li>
-                            {% endif %}
-                            {% empty %}
-                            <li class="text-muted">No applicants yet.</li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-
+                    <p class="trip-description"><strong>Trip Description:</strong> {{ trip.trip_description|truncatewords:20 }}</p>
                     <div class="d-flex justify-content-between mt-3">
                         <a href="{% url 'edit_trip' trip.id %}" class="btn btn-sm btn-warning">Edit</a>
                         <a href="{% url 'delete_trip' trip.id %}" class="btn btn-sm btn-danger">Delete</a>
@@ -119,12 +79,10 @@
                 {% endif %}
                 <div class="card-body">
                     <h5 class="card-title text-primary">{{ booking.trip.title }}</h5>
-
                     <div class="row">
                         <div class="col-6 mb-2">
                             <p class="trip-detail"><strong>Departing:</strong> {{ booking.trip.departing_from }}</p>
-                            <p class="trip-detail"><strong>Departure Date:</strong> {{ booking.trip.departure_date }}
-                            </p>
+                            <p class="trip-detail"><strong>Departure Date:</strong> {{ booking.trip.departure_date }}</p>
                             <p class="trip-detail"><strong>Boat Name:</strong> {{ booking.trip.boat_name }}</p>
                         </div>
                         <div class="col-6 mb-2">
@@ -133,21 +91,14 @@
                             <p class="trip-detail"><strong>Crew Needed:</strong> {{ booking.trip.crew_needed }}</p>
                         </div>
                     </div>
-
-                    <p class="trip-description"><strong>Trip Description:</strong>
-                        {{ booking.trip.trip_description|truncatewords:20 }}</p>
-
+                    <p class="trip-description"><strong>Trip Description:</strong> {{ booking.trip.trip_description|truncatewords:20 }}</p>
                     <p class="mb-2">
                         <strong>Status:</strong>
-                        <span
-                            class="{% if booking.status == 'confirmed' %}text-success{% elif booking.status == 'pending' %}text-warning{% elif booking.status == 'declined' %}text-danger{% endif %}">
+                        <span class="{% if booking.status == 'confirmed' %}text-success{% elif booking.status == 'pending' %}text-warning{% elif booking.status == 'declined' %}text-danger{% endif %}">
                             {{ booking.status|title }}
                         </span>
                     </p>
-
-                    <!-- Delete Application Button -->
-                    <a href="{% url 'delete_application' booking.id %}" class="btn btn-danger w-100 mt-2">Delete
-                        Application</a>
+                    <a href="{% url 'delete_application' booking.id %}" class="btn btn-danger w-100 mt-2">Delete Application</a>
                 </div>
             </div>
         </div>

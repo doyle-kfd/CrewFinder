@@ -264,6 +264,11 @@ td:last-child {
     .navbar {
         font-size: 0.9rem; /* Reduce font size for navbar links */
     }
+
+    .mob-space {
+        margin-bottom: 10px;
+    }
+
 }
 
 }

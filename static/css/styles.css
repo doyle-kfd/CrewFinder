@@ -268,7 +268,20 @@ td:last-child {
     .mob-space {
         margin-bottom: 10px;
     }
-
+}
 }
 
+/* Medium Devices (Tablets, <768px) */
+@media (max-width: 767.98px) {
+    .hero-overlay {
+        padding: 20px; /* Reduce padding for smaller screens */
+    }
+
+    .custom-button {
+        padding: 8px 16px; /* Adjust button padding */
+    }
+
+    .about-cta .cta h3 {
+        font-size: 1.5rem; /* Adjust CTA headline size */
+    }
 }

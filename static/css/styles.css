@@ -323,6 +323,93 @@ td:last-child {
     padding: 10px;
 }
 
+/* Signup page styling */
+/* Hero Section with Background Image */
+.signup-hero {
+    background: url('/static/images/signup_page_image.jpg') no-repeat center center;
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 20px;
+}
+
+/* Form Overlay Styling */
+.signup-overlay {
+    background: rgba(255, 255, 255, 0.85); /* Opaque white background */
+    padding: 40px 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    text-align: left;
+    width: 100%;
+}
+
+.signup-overlay h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #1e3c72;
+    margin-bottom: 15px;
+}
+
+.signup-overlay p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+/* Form Styling */
+.signup-form .form-group {
+    margin-bottom: 20px;
+}
+
+.signup-btn {
+    background: #1e3c72;
+    color: #ffffff;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.signup-btn:hover {
+    background: #16355b;
+    transform: scale(1.05);
+}
+
+/* Footer Text Styling */
+.signup-footer-text {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.signup-footer-text a {
+    color: #1e3c72;
+    text-decoration: underline;
+}
+
+.signup-footer-text a:hover {
+    text-decoration: none;
+    color: #16355b;
+}
+
+
+/* Button Styling */
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+
 /* Media Queries for device responsiveness */
 
 /* Small Devices (Phones, <576px) */
@@ -338,7 +425,6 @@ td:last-child {
     .mob-space {
         margin-bottom: 10px;
     }
-}
 }
 
 /* Medium Devices (Tablets, <768px) */
@@ -359,7 +445,21 @@ td:last-child {
         width: 100%; /* Full width on small screens */
         margin-bottom: 10px;
     }
+
+    .signup-overlay {
+        padding: 30px 20px;
+    }
+
+    .signup-overlay h2 {
+        font-size: 1.8rem;
+    }
+
+    .signup-overlay p {
+        font-size: 0.9rem;
+    }
 }
+
+
 
 /* Large Devices (Desktops, <992px) */
 @media (max-width: 992px) {

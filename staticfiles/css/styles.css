@@ -1,66 +1,89 @@
+/* Define CSS Variables for Repeated Colors */
+:root {
+    --primary-color: #102740;
+    --secondary-color: #007bff;
+    --light-color: #f8f9fa;
+    --dark-text-color: #333;
+    --white-color: #ffffff;
+}
+
+/* Default Styling */
+.container {
+    max-width: 1600px !important;
+}
+
+
 /* Navigation Styling */
 .navbar {
-    background-color: #102740 !important; /* Navbar background colour */
+    background-color: var(--primary-color) !important; /* Navbar background color */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Adds a subtle shadow */
 }
 
 .nav-link {
-    color: white !important;
+    color: var(--white-color) !important;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--secondary-color) !important;
+    text-decoration: underline;
 }
 
 .navbar-brand {
-    color: white !important;
+    color: var(--white-color) !important;
 }
 
 /* Footer Styling */
 .footer {
-    background-color: #102740 !important; /* Navbar background colour */
+    background-color: var(--primary-color) !important;
 }
 
-.footer span {
-    color: white !important;
+.footer span, .footer a {
+    color: var(--white-color) !important;
+    text-decoration: none;
 }
 
-/* Style the table for better readability */
+.footer a:hover {
+    text-decoration: underline;
+    color: var(--secondary-color);
+}
+
+/* Table Styling */
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
     font-family: Arial, sans-serif;
-    color: #333;
+    color: var(--dark-text-color);
 }
 
-/* Style table headers */
 th {
     padding: 12px 15px;
-    background-color: #f2f2f2;
+    background-color: var(--light-color);
     text-align: left;
     font-weight: bold;
     border-bottom: 2px solid #ddd;
 }
 
-/* Style table cells */
 td {
     padding: 10px 15px;
     border-bottom: 1px solid #ddd;
 }
 
-/* Hover effect for table rows */
 tr:hover {
     background-color: #f9f9f9;
 }
 
-/* Center-align actions column */
 td:last-child {
     text-align: center;
 }
 
-
-/*  Alert positioning */
+/* Alert Positioning */
 .container .alert {
-    margin-top:60px !important;
+    margin-top: 60px !important;
 }
 
-/* Style buttons on captains dashboard */
+/* Buttons */
 .custom-button {
     border-radius: 8px;
     padding: 10px 20px;
@@ -70,21 +93,22 @@ td:last-child {
 }
 
 .custom-button:hover {
-    background-color: #0056b3; /* Darker color for primary button */
-    color: #fff;
+    background-color: #0056b3;
+    color: var(--white-color);
     transform: scale(1.05);
 }
 
-/* Style the card in the dashboard better */
+/* Dashboard Cards */
 .card {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
-    transform: scale(1.02);
+    transform: translateY(-5px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
+/* Applicants Section */
 .applicants-section {
     border-left: 4px solid #17a2b8;
 }
@@ -100,14 +124,13 @@ td:last-child {
 
 .applicant-item span {
     font-size: 0.95rem;
-    color: #333;
+    color: var(--dark-text-color);
 }
 
-
-/* Trip detail card */
+/* Trip Detail Cards */
 .trip-detail {
     font-weight: bold;
-    color: #333;
+    color: var(--dark-text-color);
     display: flex;
     align-items: center;
     margin-bottom: 8px;
@@ -117,11 +140,6 @@ td:last-child {
     margin-right: 5px;
 }
 
-.trip-detail .detail-label {
-    margin-right: 5px;
-    font-weight: normal;
-}
-
 .trip-description {
     font-size: 0.95rem;
     color: #555;
@@ -129,12 +147,7 @@ td:last-child {
     margin-top: 10px;
 }
 
-.trip-description strong {
-    font-weight: bold;
-    color: #333;
-}
-
-/*  Hero Section Home Page */
+/* Hero Section */
 .hero-image {
     background-image: url('/static/images/crewfinder_hero.jpg');
     background-size: cover;
@@ -142,9 +155,16 @@ td:last-child {
     height: 60vh;
     position: relative;
 }
+
+@media (max-width: 768px) {
+    .hero-image {
+        height: 40vh;
+    }
+}
+
 .hero-overlay {
     background: rgba(0, 0, 0, 0.5);
-    color: white;
+    color: var(--white-color);
     height: 100%;
     width: 100%;
     display: flex;
@@ -153,97 +173,309 @@ td:last-child {
     text-align: center;
 }
 
-/* Home Page Latest Sailing Opportunities */
+/* Home Page: Latest Sailing Opportunities */
 #trips-heading {
-    background-color: #102740 !important;
+    background-color: var(--primary-color) !important;
 }
 
-
-/* About Crewfinder  */
+/* About CrewFinder */
 #about-crewfinder {
-    background-color: #102740;
-    color:#fff;
+    background-color: var(--primary-color);
+    color: var(--white-color);
     padding: 10px;
 }
 
-/* Testimonials home page styling */
+/* Testimonials Section */
 .testimonials {
-    background-color: #f8f9fa; /* Subtle light gray background */
-    color: #333; /* Dark text for readability */
+    background-color: var(--light-color);
+    color: var(--dark-text-color);
 }
 
 .testimonials .card {
     max-width: 600px;
-    margin: 0 auto; /* Center cards */
+    margin: 0 auto;
 }
 
 .testimonials img {
-    border: 3px solid #007bff; /* Add a border matching the primary color */
+    border: 3px solid var(--secondary-color);
 }
 
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
-    filter: invert(1); /* Change controls to light for contrast */
+    filter: invert(1);
 }
 
-/* Call to action section home page */
+
+
+/* About + Call-to-Action Section */
 .about-cta {
-    background-image: url('/static/images/about_crewfinder.jpg'); /* Replace with your image */
+    background-image: url('/static/images/about_crewfinder.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     position: relative;
-    color: white; /* White text for contrast */
+    color: var(--white-color);
     padding: 80px 0;
 }
 
-/* Overlay for the background image */
 .about-cta-overlay {
-    background: rgba(16, 39, 64, 0.8); /* Semi-transparent overlay in your theme color */
+    background: rgba(16, 39, 64, 0.8);
     padding: 40px 0;
 }
 
-/* Cards */
 .about-cta .card {
-    background-color: white;
-    color: #102740; /* Theme color for text */
+    background-color: var(--white-color);
+    color: var(--primary-color);
     border-radius: 8px;
 }
 
-.about-cta .card .icon {
-    color: #102740; /* Matches your theme color */
-}
-
-.about-cta .card .card-title {
-    font-weight: bold;
-}
-
-.about-cta .card .card-text {
-    font-size: 0.95rem;
-}
-
-/* Call-to-Action */
 .about-cta .cta h3 {
     font-size: 2rem;
     font-weight: bold;
 }
 
 .about-cta .cta .btn {
-    background-color: white;
-    color: #102740; /* Theme color for button text */
+    background-color: var(--white-color);
+    color: var(--primary-color);
     border: none;
     font-weight: bold;
     padding: 12px 30px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .about-cta .cta .btn:hover {
-    background-color: #f0f0f0; /* Slight hover effect */
-    color: #102740;
+    background-color: #f0f0f0;
+    color: var(--primary-color);
+    transform: scale(1.05);
 }
 
-/* Home page what our users say section */
-#testimonials-heading {
-    background-color: #102740;
-    color: white;
+
+
+/* Featured Trips Section */
+.featured-trips {
+    padding: 40px 0;
+    background-color: #f8f9fa;
+}
+
+/* Section Heading */
+#trips-heading {
+    background-color: #007bff;
+    color: #fff;
+    font-size: 2rem;
+    font-weight: bold;
     padding: 10px;
+    border-radius: 8px;
+}
+
+/* Call-to-Action Section */
+.cta-section {
+    padding: 40px 0;
+    background-color: #ffffff;
+    border-top: 2px solid #e9ecef;
+    border-radius: 8px;
+}
+
+.cta-section h3 {
+    color: #102740;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.cta-section p {
+    color: #555;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+/* Buttons */
+.cta-section .btn-primary {
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    padding: 10px 30px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.cta-section .btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.cta-section .btn-outline-primary {
+    color: #007bff;
+    border-color: #007bff;
+    padding: 10px 30px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.cta-section .btn-outline-primary:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+/* Testimonials Heading */
+#testimonials-heading {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    padding: 10px;
+}
+
+/* Signup page styling */
+/* Hero Section with Background Image */
+.signup-hero {
+    background: url('/static/images/signup_page_image.jpg') no-repeat center center;
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 20px;
+}
+
+/* Form Overlay Styling */
+.signup-overlay {
+    background: rgba(255, 255, 255, 0.85); /* Opaque white background */
+    padding: 40px 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    text-align: left;
+    width: 100%;
+}
+
+.signup-overlay h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #1e3c72;
+    margin-bottom: 15px;
+}
+
+.signup-overlay p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+/* Form Styling */
+.signup-form .form-group {
+    margin-bottom: 20px;
+}
+
+.signup-btn {
+    background: #1e3c72;
+    color: #ffffff;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.signup-btn:hover {
+    background: #16355b;
+    transform: scale(1.05);
+}
+
+/* Footer Text Styling */
+.signup-footer-text {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.signup-footer-text a {
+    color: #1e3c72;
+    text-decoration: underline;
+}
+
+.signup-footer-text a:hover {
+    text-decoration: none;
+    color: #16355b;
+}
+
+
+/* Button Styling */
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+
+/* Media Queries for device responsiveness */
+
+/* Small Devices (Phones, <576px) */
+@media (max-width: 576px) {
+    .hero-image {
+        height: 40vh; /* Adjust height for small screens */
+    }
+
+    .navbar {
+        font-size: 0.9rem; /* Reduce font size for navbar links */
+    }
+
+    .mob-space {
+        margin-bottom: 10px;
+    }
+}
+
+/* Medium Devices (Tablets, <768px) */
+@media (max-width: 767px) {
+    .hero-overlay {
+        padding: 20px; /* Reduce padding for smaller screens */
+    }
+
+    .custom-button {
+        padding: 8px 16px; /* Adjust button padding */
+    }
+
+    .about-cta .cta h3 {
+        font-size: 1.5rem; /* Adjust CTA headline size */
+    }
+
+    .cta-section .btn {
+        width: 100%; /* Full width on small screens */
+        margin-bottom: 10px;
+    }
+
+    .signup-overlay {
+        padding: 30px 20px;
+    }
+
+    .signup-overlay h2 {
+        font-size: 1.8rem;
+    }
+
+    .signup-overlay p {
+        font-size: 0.9rem;
+    }
+}
+
+
+
+/* Large Devices (Desktops, <992px) */
+@media (max-width: 992px) {
+    .navbar {
+        padding: 10px 15px; /* Adjust navbar padding for smaller desktops */
+    }
+}
+
+/* Extra Large Devices (Larger Desktops, <1200px) */
+@media (max-width: 1199) {
+    .hero-image {
+        height: 50vh; /* Adjust height for large desktops */
+    }
+
+    .about-cta {
+        padding: 60px 20px; /* Reduce padding for larger screens */
+    }
+
 }

@@ -205,6 +205,8 @@ td:last-child {
     filter: invert(1);
 }
 
+
+
 /* About + Call-to-Action Section */
 .about-cta {
     background-image: url('/static/images/about_crewfinder.jpg');
@@ -247,6 +249,73 @@ td:last-child {
     transform: scale(1.05);
 }
 
+
+
+/* Featured Trips Section */
+.featured-trips {
+    padding: 40px 0;
+    background-color: #f8f9fa;
+}
+
+/* Section Heading */
+#trips-heading {
+    background-color: #007bff;
+    color: #fff;
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+/* Call-to-Action Section */
+.cta-section {
+    padding: 40px 0;
+    background-color: #ffffff;
+    border-top: 2px solid #e9ecef;
+    border-radius: 8px;
+}
+
+.cta-section h3 {
+    color: #102740;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.cta-section p {
+    color: #555;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+/* Buttons */
+.cta-section .btn-primary {
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    padding: 10px 30px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.cta-section .btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.cta-section .btn-outline-primary {
+    color: #007bff;
+    border-color: #007bff;
+    padding: 10px 30px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.cta-section .btn-outline-primary:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
 /* Testimonials Heading */
 #testimonials-heading {
     background-color: var(--primary-color);
@@ -255,14 +324,9 @@ td:last-child {
 }
 
 /* Media Queries for device responsiveness */
+
 /* Small Devices (Phones, <576px) */
 @media (max-width: 576px) {
-    .hero-image {
-        height: 40vh; /* Adjust height for small screens */
-    }
-
-    /* Small Devices (Phones, <576px) */
-@media (max-width: 575.98px) {
     .hero-image {
         height: 40vh; /* Adjust height for small screens */
     }
@@ -278,7 +342,7 @@ td:last-child {
 }
 
 /* Medium Devices (Tablets, <768px) */
-@media (max-width: 767.98px) {
+@media (max-width: 767px) {
     .hero-overlay {
         padding: 20px; /* Reduce padding for smaller screens */
     }
@@ -290,10 +354,15 @@ td:last-child {
     .about-cta .cta h3 {
         font-size: 1.5rem; /* Adjust CTA headline size */
     }
+
+    .cta-section .btn {
+        width: 100%; /* Full width on small screens */
+        margin-bottom: 10px;
+    }
 }
 
 /* Large Devices (Desktops, <992px) */
-@media (max-width: 991.98px) {
+@media (max-width: 992px) {
     .navbar {
         padding: 10px 15px; /* Adjust navbar padding for smaller desktops */
     }

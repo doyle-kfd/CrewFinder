@@ -81,7 +81,10 @@
 <!-- Featured Sailing Opportunities Section -->
 <section class="featured-trips py-5 bg-light" aria-labelledby="trips-heading">
     <div class="container">
+        <!-- Section Heading -->
         <h2 id="trips-heading" class="text-center mb-4 p-3 bg-primary text-white rounded">Latest Sailing Opportunities</h2>
+        
+        <!-- Sailing Opportunities Grid -->
         <div class="row">
             {% for trip in trips %}
             <div class="col-lg-4 col-md-6 mb-4"> <!-- Responsive grid classes -->
@@ -120,8 +123,17 @@
                 <p class="text-muted">No sailing opportunities available at the moment.</p>
             {% endfor %}
         </div>
+        
+        <!-- Call-to-Action Section -->
+        <div class="cta-section text-center mt-5">
+            <h3 class="mb-3">Ready to Set Sail?</h3>
+            <p class="lead mb-4">Join CrewFinder today to explore more opportunities or create your own adventure!</p>
+            <a href="{% url 'sailing_opportunities' %}" class="btn btn-primary btn-lg me-3">View All Sailing Opportunities</a>
+            <a href="{% url 'account_signup' %}" class="btn btn-outline-primary btn-lg">Sign Up Now</a>
+        </div>
     </div>
 </section>
+
 
 
 <!-- Testimonials Section -->

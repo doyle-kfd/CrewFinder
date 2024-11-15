@@ -11,59 +11,71 @@
             <div>
                 <h1 id="hero-heading" class="display-4">Discover Your Next Adventure</h1>
                 <p class="lead">Join CrewFinder to find the perfect sailing journey and crew.</p>
-                <a href="{% url 'account_signup' %}" class="btn btn-primary btn-lg mt-3">Join Us</a>
+                <a href="{% url 'account_signup' %}" class="btn btn-primary btn-lg mt-3">Sign Up Now!</a>
             </div>
         </div>
     </div>
 </section>
 
-<!-- About CrewFinder Section -->
-<section class="about-crewfinder py-5" aria-labelledby="about-heading">
-    <div class="container text-center">
-        <div id="about-crewfinder" class="rounded">
-            <h2 class="mb-4">About CrewFinder</h2>
-            <p>The ultimate platform for captains and crew members to connect and sail together.</p>
-        </div>
-        <div class="row mt-5">
-            <!-- Card 1 -->
-            <div class="col-md-4">
-                <div class="card border-0 shadow-sm h-100">
-                    <div class="card-body text-center">
-                        <div class="icon mb-3 text-primary">
-                            <i class="fas fa-anchor fa-3x"></i>
+<section class="about-cta py-5 text-white text-center" aria-labelledby="about-heading">
+    <div class="about-cta-overlay">
+        <div class="container">
+            <!-- About CrewFinder Header -->
+            <h2 id="about-heading" class="mb-4">About CrewFinder</h2>
+            <p class="lead mb-5">The ultimate platform for captains and crew members to connect and sail together.</p>
+
+            <!-- Features Cards -->
+            <div class="row mb-5">
+                <!-- Card 1 -->
+                <div class="col-md-4">
+                    <div class="card border-0 shadow h-100">
+                        <div class="card-body text-center">
+                            <div class="icon mb-3 text-primary">
+                                <i class="fas fa-anchor fa-3x"></i>
+                            </div>
+                            <h5 class="card-title">For Captains</h5>
+                            <p class="card-text">Post trips, find reliable crew, and manage applications with ease.</p>
                         </div>
-                        <h5 class="card-title">For Captains</h5>
-                        <p class="card-text">Post trips, find reliable crew, and manage applications with ease.</p>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="col-md-4">
+                    <div class="card border-0 shadow h-100">
+                        <div class="card-body text-center">
+                            <div class="icon mb-3 text-primary">
+                                <i class="fas fa-user-friends fa-3x"></i>
+                            </div>
+                            <h5 class="card-title">For Crew</h5>
+                            <p class="card-text">Explore exciting opportunities and apply for voyages that suit you.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="col-md-4">
+                    <div class="card border-0 shadow h-100">
+                        <div class="card-body text-center">
+                            <div class="icon mb-3 text-primary">
+                                <i class="fas fa-shield-alt fa-3x"></i>
+                            </div>
+                            <h5 class="card-title">Secure & Simple</h5>
+                            <p class="card-text">Enjoy a smooth, trustworthy experience for your next adventure.</p>
+                        </div>
                     </div>
                 </div>
             </div>
-            <!-- Card 2 -->
-            <div class="col-md-4">
-                <div class="card border-0 shadow-sm h-100">
-                    <div class="card-body text-center">
-                        <div class="icon mb-3 text-primary">
-                            <i class="fas fa-user-friends fa-3x"></i>
-                        </div>
-                        <h5 class="card-title">For Crew</h5>
-                        <p class="card-text">Explore exciting opportunities and apply for voyages that suit you.</p>
-                    </div>
-                </div>
-            </div>
-            <!-- Card 3 -->
-            <div class="col-md-4">
-                <div class="card border-0 shadow-sm h-100">
-                    <div class="card-body text-center">
-                        <div class="icon mb-3 text-primary">
-                            <i class="fas fa-shield-alt fa-3x"></i>
-                        </div>
-                        <h5 class="card-title">Secure & Simple</h5>
-                        <p class="card-text">Enjoy a smooth, trustworthy experience for your next adventure.</p>
-                    </div>
-                </div>
+
+            <!-- Call-to-Action -->
+            <div class="cta mt-4">
+                <h3 class="mb-3">Ready to Set Sail?</h3>
+                <a href="{% url 'account_signup' %}" class="btn btn-light btn-lg px-5">
+                    Sign Up Now <i class="fas fa-arrow-right ms-2"></i>
+                </a>
             </div>
         </div>
     </div>
 </section>
+
+
 
 
 <!-- Featured Sailing Opportunities Section -->

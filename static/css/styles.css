@@ -1,66 +1,83 @@
+/* Define CSS Variables for Repeated Colors */
+:root {
+    --primary-color: #102740;
+    --secondary-color: #007bff;
+    --light-color: #f8f9fa;
+    --dark-text-color: #333;
+    --white-color: #ffffff;
+}
+
 /* Navigation Styling */
 .navbar {
-    background-color: #102740 !important; /* Navbar background colour */
+    background-color: var(--primary-color) !important; /* Navbar background color */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Adds a subtle shadow */
 }
 
 .nav-link {
-    color: white !important;
+    color: var(--white-color) !important;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--secondary-color) !important;
+    text-decoration: underline;
 }
 
 .navbar-brand {
-    color: white !important;
+    color: var(--white-color) !important;
 }
 
 /* Footer Styling */
 .footer {
-    background-color: #102740 !important; /* Navbar background colour */
+    background-color: var(--primary-color) !important;
 }
 
-.footer span {
-    color: white !important;
+.footer span, .footer a {
+    color: var(--white-color) !important;
+    text-decoration: none;
 }
 
-/* Style the table for better readability */
+.footer a:hover {
+    text-decoration: underline;
+    color: var(--secondary-color);
+}
+
+/* Table Styling */
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
     font-family: Arial, sans-serif;
-    color: #333;
+    color: var(--dark-text-color);
 }
 
-/* Style table headers */
 th {
     padding: 12px 15px;
-    background-color: #f2f2f2;
+    background-color: var(--light-color);
     text-align: left;
     font-weight: bold;
     border-bottom: 2px solid #ddd;
 }
 
-/* Style table cells */
 td {
     padding: 10px 15px;
     border-bottom: 1px solid #ddd;
 }
 
-/* Hover effect for table rows */
 tr:hover {
     background-color: #f9f9f9;
 }
 
-/* Center-align actions column */
 td:last-child {
     text-align: center;
 }
 
-
-/*  Alert positioning */
+/* Alert Positioning */
 .container .alert {
-    margin-top:60px !important;
+    margin-top: 60px !important;
 }
 
-/* Style buttons on captains dashboard */
+/* Buttons */
 .custom-button {
     border-radius: 8px;
     padding: 10px 20px;
@@ -70,21 +87,22 @@ td:last-child {
 }
 
 .custom-button:hover {
-    background-color: #0056b3; /* Darker color for primary button */
-    color: #fff;
+    background-color: #0056b3;
+    color: var(--white-color);
     transform: scale(1.05);
 }
 
-/* Style the card in the dashboard better */
+/* Dashboard Cards */
 .card {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
-    transform: scale(1.02);
+    transform: translateY(-5px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
+/* Applicants Section */
 .applicants-section {
     border-left: 4px solid #17a2b8;
 }
@@ -100,14 +118,13 @@ td:last-child {
 
 .applicant-item span {
     font-size: 0.95rem;
-    color: #333;
+    color: var(--dark-text-color);
 }
 
-
-/* Trip detail card */
+/* Trip Detail Cards */
 .trip-detail {
     font-weight: bold;
-    color: #333;
+    color: var(--dark-text-color);
     display: flex;
     align-items: center;
     margin-bottom: 8px;
@@ -117,11 +134,6 @@ td:last-child {
     margin-right: 5px;
 }
 
-.trip-detail .detail-label {
-    margin-right: 5px;
-    font-weight: normal;
-}
-
 .trip-description {
     font-size: 0.95rem;
     color: #555;
@@ -129,12 +141,7 @@ td:last-child {
     margin-top: 10px;
 }
 
-.trip-description strong {
-    font-weight: bold;
-    color: #333;
-}
-
-/*  Hero Section Home Page */
+/* Hero Section */
 .hero-image {
     background-image: url('/static/images/crewfinder_hero.jpg');
     background-size: cover;
@@ -142,9 +149,16 @@ td:last-child {
     height: 60vh;
     position: relative;
 }
+
+@media (max-width: 768px) {
+    .hero-image {
+        height: 40vh;
+    }
+}
+
 .hero-overlay {
     background: rgba(0, 0, 0, 0.5);
-    color: white;
+    color: var(--white-color);
     height: 100%;
     width: 100%;
     display: flex;
@@ -153,15 +167,83 @@ td:last-child {
     text-align: center;
 }
 
-/* Home Page Latest Sailing Opportunities */
+/* Home Page: Latest Sailing Opportunities */
 #trips-heading {
-    background-color: #102740 !important;
+    background-color: var(--primary-color) !important;
 }
 
-
-/* About Crewfinder  */
+/* About CrewFinder */
 #about-crewfinder {
-    background-color: #102740;
-    color:#fff;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    padding: 10px;
+}
+
+/* Testimonials Section */
+.testimonials {
+    background-color: var(--light-color);
+    color: var(--dark-text-color);
+}
+
+.testimonials .card {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.testimonials img {
+    border: 3px solid var(--secondary-color);
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    filter: invert(1);
+}
+
+/* About + Call-to-Action Section */
+.about-cta {
+    background-image: url('/static/images/about_crewfinder.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    color: var(--white-color);
+    padding: 80px 0;
+}
+
+.about-cta-overlay {
+    background: rgba(16, 39, 64, 0.8);
+    padding: 40px 0;
+}
+
+.about-cta .card {
+    background-color: var(--white-color);
+    color: var(--primary-color);
+    border-radius: 8px;
+}
+
+.about-cta .cta h3 {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.about-cta .cta .btn {
+    background-color: var(--white-color);
+    color: var(--primary-color);
+    border: none;
+    font-weight: bold;
+    padding: 12px 30px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.about-cta .cta .btn:hover {
+    background-color: #f0f0f0;
+    color: var(--primary-color);
+    transform: scale(1.05);
+}
+
+/* Testimonials Heading */
+#testimonials-heading {
+    background-color: var(--primary-color);
+    color: var(--white-color);
     padding: 10px;
 }

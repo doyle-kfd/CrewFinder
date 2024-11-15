@@ -1,6 +1,6 @@
 /* Navigation Styling */
 .navbar {
-    background-color: #007bff !important; /* Navbar background colour */
+    background-color: #102740 !important; /* Navbar background colour */
 }
 
 .nav-link {
@@ -13,7 +13,7 @@
 
 /* Footer Styling */
 .footer {
-    background-color: #007bff !important; /* Navbar background colour */
+    background-color: #102740 !important; /* Navbar background colour */
 }
 
 .footer span {
@@ -132,4 +132,118 @@ td:last-child {
 .trip-description strong {
     font-weight: bold;
     color: #333;
+}
+
+/*  Hero Section Home Page */
+.hero-image {
+    background-image: url('/static/images/crewfinder_hero.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 60vh;
+    position: relative;
+}
+.hero-overlay {
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Home Page Latest Sailing Opportunities */
+#trips-heading {
+    background-color: #102740 !important;
+}
+
+
+/* About Crewfinder  */
+#about-crewfinder {
+    background-color: #102740;
+    color:#fff;
+    padding: 10px;
+}
+
+/* Testimonials home page styling */
+.testimonials {
+    background-color: #f8f9fa; /* Subtle light gray background */
+    color: #333; /* Dark text for readability */
+}
+
+.testimonials .card {
+    max-width: 600px;
+    margin: 0 auto; /* Center cards */
+}
+
+.testimonials img {
+    border: 3px solid #007bff; /* Add a border matching the primary color */
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    filter: invert(1); /* Change controls to light for contrast */
+}
+
+/* Call to action section home page */
+.about-cta {
+    background-image: url('/static/images/about_crewfinder.jpg'); /* Replace with your image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    color: white; /* White text for contrast */
+    padding: 80px 0;
+}
+
+/* Overlay for the background image */
+.about-cta-overlay {
+    background: rgba(16, 39, 64, 0.8); /* Semi-transparent overlay in your theme color */
+    padding: 40px 0;
+}
+
+/* Cards */
+.about-cta .card {
+    background-color: white;
+    color: #102740; /* Theme color for text */
+    border-radius: 8px;
+}
+
+.about-cta .card .icon {
+    color: #102740; /* Matches your theme color */
+}
+
+.about-cta .card .card-title {
+    font-weight: bold;
+}
+
+.about-cta .card .card-text {
+    font-size: 0.95rem;
+}
+
+/* Call-to-Action */
+.about-cta .cta h3 {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.about-cta .cta .btn {
+    background-color: white;
+    color: #102740; /* Theme color for button text */
+    border: none;
+    font-weight: bold;
+    padding: 12px 30px;
+}
+
+.about-cta .cta .btn:hover {
+    background-color: #f0f0f0; /* Slight hover effect */
+    color: #102740;
+}
+
+/* Home page what our users say section */
+#testimonials-heading {
+    background-color: #102740;
+    color: white;
+    padding: 10px;
 }

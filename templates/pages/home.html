@@ -110,17 +110,48 @@
 </section>
 
 <!-- Testimonials Section -->
-<section class="testimonials py-5" aria-labelledby="testimonials-heading">
-    <div class="container text-center">
-        <h2 id="testimonials-heading">What Our Users Say</h2>
-        <blockquote class="blockquote mt-4">
-            <p>"CrewFinder made finding my next crew so easy! Highly recommended!"</p>
-            <footer class="blockquote-footer">Captain John</footer>
-        </blockquote>
-        <blockquote class="blockquote mt-4">
-            <p>"Thanks to CrewFinder, I joined an amazing sailing trip last summer!"</p>
-            <footer class="blockquote-footer">Crew Member Sarah</footer>
-        </blockquote>
+<section class="testimonials py-5 bg-light" aria-labelledby="testimonials-heading">
+    <div class="container">
+        <h2 id="testimonials-heading" class="text-center mb-4">What Our Users Say</h2>
+        
+        <!-- Carousel -->
+        <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <!-- Testimonial 1 -->
+                <div class="carousel-item active">
+                    <div class="card border-0 shadow-sm text-center p-4">
+                        <img src="/static/images/man_testimonial.jpg" class="rounded-circle mx-auto mb-3" alt="User 1" style="width: 80px; height: 80px; object-fit: cover;">
+                        <blockquote class="blockquote mb-4">
+                            <p class="mb-0">"CrewFinder made finding my next crew so easy! Highly recommended!"</p>
+                        </blockquote>
+                        <footer class="blockquote-footer">Captain John</footer>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="carousel-item">
+                    <div class="card border-0 shadow-sm text-center p-4">
+                        <img src="/static/images/woman_testimonial.jpg" class="rounded-circle mx-auto mb-3" alt="User 2" style="width: 80px; height: 80px; object-fit: cover;">
+                        <blockquote class="blockquote mb-4">
+                            <p class="mb-0">"Thanks to CrewFinder, I joined an amazing sailing trip last summer!"</p>
+                        </blockquote>
+                        <footer class="blockquote-footer">Crew Member Sarah</footer>
+                    </div>
+                </div>
+                
+                <!-- Add more testimonials as needed -->
+            </div>
+
+            <!-- Carousel Controls -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
     </div>
 </section>
 

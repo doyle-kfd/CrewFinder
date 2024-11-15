@@ -14,23 +14,58 @@
 
 
 /* Navigation Styling */
+/* Navbar Background and Font */
+/* Ensure Navbar Background is Correct */
 .navbar {
-    background-color: var(--primary-color) !important; /* Navbar background color */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Adds a subtle shadow */
+    background-color: var(--primary-color) !important; /* Force the correct background */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
-.nav-link {
-    color: var(--white-color) !important;
-    transition: color 0.3s ease;
+.navbar .navbar-brand {
+    color: #ffffff; /* White text for brand */
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-.nav-link:hover {
-    color: var(--secondary-color) !important;
-    text-decoration: underline;
+.navbar .navbar-brand:hover {
+    color: #0066A2; /* Lighter blue for hover effect */
 }
 
-.navbar-brand {
-    color: var(--white-color) !important;
+.navbar .nav-link {
+    color: var(--white-color) !important; /* Ensure links are white */
+    font-weight: 500;
+    text-transform: uppercase;
+    margin: 0 0.5rem;
+}
+
+.navbar .nav-link:hover {
+    color: #00B4D8 !important; /* Bright blue hover effect */
+    text-decoration: none;
+}
+.navbar .nav-link.active {
+    color: #00B4D8 !important; /* Active page link */
+    font-weight: bold !important;
+    border-bottom: 2px solid #00B4D8 !important; /* Optional underline */
+}
+
+/* Navbar Toggle (Mobile View) */
+.navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.5); /* Semi-transparent toggle border */
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=UTF8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 0.7)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+/* Navbar Spacing */
+.navbar-nav {
+    margin-left: auto; /* Align links to the right */
+}
+
+.nav-item {
+    margin: 0 0.5rem; /* Add spacing between nav items */
 }
 
 /* Footer Styling */
@@ -471,12 +506,34 @@ td:last-child {
 
 
 /* About Us Page Styling */
-/* Hero Section */
+/* Hero Section with Image Overlay */
 .hero-section {
+    position: relative;
     background: url('/static/images/about_us_hero.jpg') center center/cover no-repeat;
     color: white;
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
-    padding: 4rem 0;
+    padding: 4rem 0; /* Adjust padding for spacing */
+    overflow: hidden; /* Ensures no extra content spills out */
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Black overlay with 50% transparency */
+    z-index: 1; /* Places overlay below the text */
+}
+
+.hero-section .container {
+    position: relative;
+    z-index: 2; /* Ensures text and content appear above the overlay */
+}
+
+.text-primary {
+    color: #102740 !important;
 }
 
 /* Icon Boxes */

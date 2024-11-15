@@ -250,8 +250,20 @@ td:last-child {
 
 /* Media Queries for device responsiveness */
 /* Small Devices (Phones, <576px) */
+@media (max-width: 576px) {
+    .hero-image {
+        height: 40vh; /* Adjust height for small screens */
+    }
+
+    /* Small Devices (Phones, <576px) */
 @media (max-width: 575.98px) {
     .hero-image {
         height: 40vh; /* Adjust height for small screens */
     }
+
+    .navbar {
+        font-size: 0.9rem; /* Reduce font size for navbar links */
+    }
+}
+
 }

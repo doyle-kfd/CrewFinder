@@ -33,32 +33,33 @@ def complete_profile(request):
 
 @login_required
 def dashboard(request):
-    # Check if the user is an admin and redirect them accordingly
+    # Redirect administrator users
     if request.user.role == User.ADMINISTRATOR:
-        return redirect('admin_dashboard')  # Redirect admin to the admin dashboard
+        return redirect('admin_dashboard')
 
-    # For captains, show their created trips and applicants
+    # For captains, fetch their trips and associated applications
     if request.user.role == 'captain':
-        # Annotate each trip with the count of applicants using 'applicant_count'
+        # Get trips created by the captain
         my_trips = Trip.objects.filter(captain=request.user).annotate(applicant_count=Count('crewbooking')).order_by('-departure_date')
-        applied_crews = CrewBooking.objects.filter(trip__captain=request.user)  # Get applicants for those trips
         
+        # Get all applications for those trips
+        applied_crews = CrewBooking.objects.filter(trip__in=my_trips).select_related('user', 'trip')
+
         return render(request, 'accounts/dashboard.html', {
             'my_trips': my_trips,
-            'applied_crews': applied_crews
+            'applied_crews': applied_crews,
         })
 
-    # For crew members, show the trips they have applied for with status
+    # For crew members, show trips they applied for
     elif request.user.role == 'crew':
-        applied_trips = CrewBooking.objects.filter(user=request.user).select_related('trip')  # Get trips and status for each application
-        
+        applied_trips = CrewBooking.objects.filter(user=request.user).select_related('trip')
+
         return render(request, 'accounts/dashboard.html', {
-            'applied_trips': applied_trips,  # Pass CrewBooking objects with trip and status details
+            'applied_trips': applied_trips,
         })
 
-    else:
-        # If user role is unknown or invalid, raise permission denied
-        raise PermissionDenied("You are not authorized to view this page.")
+    # Raise permission error for invalid roles
+    raise PermissionDenied("You are not authorized to view this page.")
 
 
 

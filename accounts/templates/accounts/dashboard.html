@@ -33,7 +33,7 @@
         <div class="col-md-6 mb-4">
             <div class="card h-100 shadow-lg rounded border-0">
                 {% if trip.boat_image %}
-                <img src="{{ trip.boat_image.url }}" alt="Boat Image" class="img-fluid mb-3 rounded">
+                <img src="{{ trip.boat_image.url|secure }}" alt="Boat Image" class="img-fluid mb-3 rounded">
                 {% else %}
                 <img src="{% static 'images/default_trip_image.jpg' %}" alt="Default Boat Image"
                     class="img-fluid mb-3 rounded">
@@ -92,7 +92,7 @@
         <div class="col-md-6 mb-4">
             <div class="card h-100 shadow-sm rounded border-0">
                 {% if booking.trip.boat_image %}
-                <img src="{{ booking.trip.boat_image.url }}" alt="Boat Image" class="img-fluid mb-3 rounded">
+                <img src="{{ booking.trip.boat_image.url|secure }}" alt="Boat Image" class="img-fluid mb-3 rounded">
                 {% endif %}
                 <div class="card-body">
                     <h5 class="card-title text-primary">{{ booking.trip.title }}</h5>

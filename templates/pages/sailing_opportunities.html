@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load custom_filters %}
 
 {% block title %}Sailing Opportunities | CrewFinder{% endblock %}
 
@@ -10,7 +11,7 @@
         <div class="col-md-4 mb-4">
             <div class="card h-100 shadow-sm d-flex flex-column">
                 {% if trip.boat_image %}
-                <img src="{{ trip.boat_image.url }}" alt="Boat Image" class="card-img-top">
+                <img src="{{ trip.boat_image.url|secure }}" alt="Boat Image" class="card-img-top">
                 {% endif %}
                 <div class="card-body flex-grow-1">
                     <h5 class="card-title text-center">{{ trip.title }}</h5>

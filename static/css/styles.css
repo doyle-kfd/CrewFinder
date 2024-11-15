@@ -136,6 +136,7 @@ td:last-child {
 
 /*  Hero Section Home Page */
 .hero-image {
+    background-image: url('/static/images/crewfinder_hero.jpg');
     background-size: cover;
     background-position: center;
     height: 60vh;
@@ -152,5 +153,7 @@ td:last-child {
     text-align: center;
 }
 
-/* Home page about crewfinder styling */
-
+/* Home Page Latest Sailing Opportunities */
+#trips-heading {
+    background-color: #102740 !important;
+}

@@ -21,9 +21,13 @@ import sys
 
 import cloudinary
 from cloudinary import config
+from django.middleware.security import SecurityMiddleware
 
 
-
+class FrameOptionsMiddleware(SecurityMiddleware):
+    def process_response(self, request, response):
+        response.headers['X-Frame-Options'] = 'ALLOWALL'
+        return response
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent

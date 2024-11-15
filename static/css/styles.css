@@ -7,6 +7,12 @@
     --white-color: #ffffff;
 }
 
+/* Default Styling */
+.container {
+    max-width: 1600px !important;
+}
+
+
 /* Navigation Styling */
 .navbar {
     background-color: var(--primary-color) !important; /* Navbar background color */

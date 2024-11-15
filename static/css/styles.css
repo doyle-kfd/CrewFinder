@@ -1,6 +1,6 @@
 /* Navigation Styling */
 .navbar {
-    background-color: #007bff !important; /* Navbar background colour */
+    background-color: #102740 !important; /* Navbar background colour */
 }
 
 .nav-link {
@@ -13,7 +13,7 @@
 
 /* Footer Styling */
 .footer {
-    background-color: #007bff !important; /* Navbar background colour */
+    background-color: #102740 !important; /* Navbar background colour */
 }
 
 .footer span {
@@ -151,3 +151,6 @@ td:last-child {
     justify-content: center;
     text-align: center;
 }
+
+/* Home page about crewfinder styling */
+

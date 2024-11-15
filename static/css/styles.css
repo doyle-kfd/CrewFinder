@@ -157,3 +157,11 @@ td:last-child {
 #trips-heading {
     background-color: #102740 !important;
 }
+
+
+/* About Crewfinder  */
+#about-crewfinder {
+    background-color: #102740;
+    color:#fff;
+    padding: 10px;
+}

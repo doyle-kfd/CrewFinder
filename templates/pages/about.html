@@ -3,35 +3,83 @@
 {% block title %}About Us | CrewFinder{% endblock %}
 
 {% block content %}
-<div class="container mt-5">
-    <h1 class="text-center">About CrewFinder</h1>
-    <p class="lead text-center">Connecting Captains and Crew for Sailing Adventures Worldwide</p>
+<div class="hero-section text-center text-white py-5">
+    <div class="container">
+        <h1 class="display-4">About CrewFinder</h1>
+        <p class="lead">Connecting Captains and Crew for Sailing Adventures Worldwide</p>
+    </div>
+</div>
 
+<div class="container mt-5">
     <div class="row mt-4">
         <div class="col-md-8 offset-md-2">
-            <p>Welcome to CrewFinder, your trusted platform for finding sailing opportunities and connecting with like-minded sailors. Whether you're an experienced captain in need of a dedicated crew or a crew member looking to gain more sailing experience, CrewFinder is here to make those connections easy and reliable.</p>
+            <p class="lead">Welcome to CrewFinder, your trusted platform for finding sailing opportunities and connecting with like-minded sailors. Whether you're an experienced captain in need of a dedicated crew or a crew member looking to gain more sailing experience, CrewFinder is here to make those connections easy and reliable.</p>
+        </div>
+    </div>
 
-            <h2 class="mt-5">Our Mission</h2>
+    <hr class="my-5">
+
+    <div class="row">
+        <div class="col-md-6">
+            <h2 class="text-primary">Our Mission</h2>
             <p>Our mission is simple: to bring together captains and crew from all around the world, fostering a vibrant community of sailing enthusiasts who share a passion for life on the water. We believe that everyone should have the opportunity to explore, learn, and grow through sailing, and our platform is designed to support that vision.</p>
+        </div>
+        <div class="col-md-6 text-center">
+            <img src="/static/images/mission.jpg" class="img-fluid rounded shadow" alt="Mission">
+        </div>
+    </div>
 
-            <h2 class="mt-5">Why Join CrewFinder?</h2>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">Access to a Global Network: Connect with captains and crew from diverse backgrounds and skill levels, making it easy to find the right fit for any voyage.</li>
-                <li class="list-group-item">Verified Profiles: We take safety seriously. All new registrations are reviewed and approved by our team to ensure a trustworthy community.</li>
-                <li class="list-group-item">Opportunity for Growth: Whether you're a novice or a seasoned sailor, CrewFinder provides opportunities to enhance your skills and experience through hands-on learning and collaboration.</li>
-                <li class="list-group-item">Supportive Community: Our platform is built on a foundation of respect and mutual support, making it a welcoming space for all sailing enthusiasts.</li>
-            </ul>
+    <hr class="my-5">
 
-            <h2 class="mt-5">Our Commitment to Safety</h2>
+    <div class="row text-center">
+        <div class="col-md-3">
+            <div class="icon-box mb-4">
+                <i class="fas fa-globe fa-3x"></i>
+            </div>
+            <h4>Global Network</h4>
+            <p>Connect with captains and crew from diverse backgrounds and skill levels.</p>
+        </div>
+        <div class="col-md-3">
+            <div class="icon-box mb-4">
+                <i class="fas fa-shield-alt fa-3x"></i>
+            </div>
+            <h4>Verified Profiles</h4>
+            <p>We ensure all profiles are reviewed for safety and reliability.</p>
+        </div>
+        <div class="col-md-3">
+            <div class="icon-box mb-4">
+                <i class="fas fa-anchor fa-3x"></i>
+            </div>
+            <h4>Opportunities</h4>
+            <p>Enhance your skills and experience through collaboration.</p>
+        </div>
+        <div class="col-md-3">
+            <div class="icon-box mb-4">
+                <i class="fas fa-users fa-3x"></i>
+            </div>
+            <h4>Community</h4>
+            <p>A supportive platform for all sailing enthusiasts.</p>
+        </div>
+    </div>
+
+    <hr class="my-5">
+
+    <div class="row mt-5">
+        <div class="col-md-8 offset-md-2">
+            <h2 class="text-primary text-center">Our Commitment to Safety</h2>
             <p>At CrewFinder, safety is a top priority. We work diligently to ensure that all profiles are genuine, and our community guidelines promote respectful and safe interactions. We encourage all users to communicate openly and clearly about their expectations, experience levels, and safety procedures before embarking on any journey.</p>
+        </div>
+    </div>
 
-            <h2 class="mt-5">Join the CrewFinder Community Today</h2>
-            <p>Ready to set sail? Join our community today and discover the world of opportunities that await you. Whether you’re looking to explore new waters, gain sailing experience, or find reliable crew members, CrewFinder is here to support you every step of the way.</p>
+    <div class="row mt-5">
+        <div class="col-md-8 offset-md-2">
+            <h2 class="text-primary text-center">Join the CrewFinder Community Today</h2>
+            <p class="text-center">Ready to set sail? Join our community today and discover the world of opportunities that await you. Whether you’re looking to explore new waters, gain sailing experience, or find reliable crew members, CrewFinder is here to support you every step of the way.</p>
 
-            <p class="text-center mt-4">
-                <a href="{% url 'account_signup' %}" class="btn btn-primary btn-lg">Sign Up Now</a>
-                <a href="{% url 'sailing_opportunities' %}" class="btn btn-secondary btn-lg">View Sailing Opportunities</a>
-            </p>
+            <div class="text-center mt-4">
+                <a href="{% url 'account_signup' %}" class="btn btn-lg btn-primary mx-2">Sign Up Now</a>
+                <a href="{% url 'sailing_opportunities' %}" class="btn btn-lg btn-outline-primary mx-2">View Sailing Opportunities</a>
+            </div>
         </div>
     </div>
 </div>

@@ -380,6 +380,161 @@ td:last-child {
     transform: scale(1.05);
 }
 
+
+/* Contact Us Page Styling */
+/* Contact Us Hero Section with Custom Background */
+.contact-hero {
+    background: url('/static/images/contact_us_page.jpg') no-repeat center center;
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Contact Us Overlay Styling */
+.contact-overlay {
+    background: rgba(255, 255, 255, 0.9); /* Slightly opaque white background */
+    padding: 40px 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    text-align: left; /* Align content inside the overlay */
+}
+
+/* Headings and Text Styling */
+.contact-overlay h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #1e3c72;
+    text-align: center; /* Center the main heading */
+    margin-bottom: 15px;
+}
+
+.contact-overlay p {
+    font-size: 1rem;
+    color: #555;
+    text-align: center; /* Center the lead text */
+    margin-bottom: 20px;
+}
+
+.contact-overlay h2 {
+    font-size: 1.8rem;
+    color: #1e3c72;
+    margin-bottom: 10px;
+}
+
+.contact-overlay ul {
+    padding-left: 0;
+    list-style: none;
+}
+
+.contact-overlay ul li {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.contact-overlay ul li strong {
+    color: #1e3c72;
+}
+
+/* Contact Form Styling */
+.contact-form .form-group label {
+    display: block;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.contact-form .form-group {
+    margin-bottom: 20px;
+}
+
+.contact-btn {
+    background: #1e3c72;
+    color: #ffffff;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+    width: 100%;
+    text-align: center;
+}
+
+.contact-btn:hover {
+    background: #16355b;
+    transform: scale(1.05);
+}
+
+
+/* About Us Page Styling */
+/* Hero Section */
+.hero-section {
+    background: url('/static/images/about_us_hero.jpg') center center/cover no-repeat;
+    color: white;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    padding: 4rem 0;
+}
+
+/* Icon Boxes */
+.icon-box {
+    background: #f8f9fa;
+    border-radius: 50%;
+    display: inline-block;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.icon-box i {
+    color: #00457C; /* Primary brand color */
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: #00457C;
+    border-color: #00457C;
+}
+
+.btn-outline-primary {
+    color: #00457C;
+    border-color: #00457C;
+}
+
+.btn:hover {
+    background-color: #0066A2;
+    border-color: #0066A2;
+}
+
+/* General Styling */
+h1, h2, h4 {
+    font-weight: bold;
+}
+
+hr {
+    border-top: 1px solid #ddd;
+    margin: 2rem 0;
+}
+
+.container img {
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Footer Section Styling */
+/* Footer Text Styling */
+.contact-overlay .text-muted {
+    font-size: 0.9rem;
+    color: #666;
+    text-align: center;
+}
+
+
+
 /* Footer Text Styling */
 .signup-footer-text {
     font-size: 0.9rem;

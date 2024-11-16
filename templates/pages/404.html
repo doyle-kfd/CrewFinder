@@ -3,12 +3,14 @@
 {% block title %}Page Not Found{% endblock %}
 
 {% block content %}
-<div class="container text-center mt-5">
-    <h1 class="display-1 text-danger">404</h1>
-    <h2>Oops! Page Not Found</h2>
-    <p class="lead mt-3">
-        The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.
-    </p>
-    <a href="{% url 'home' %}" class="btn btn-primary mt-4">Go Back to Home</a>
+<div class="error-page">
+    <div class="error-content">
+        <h1 class="display-1 fw-bold text-danger">404</h1>
+        <h2 class="fw-bold">Oops! Page Not Found</h2>
+        <p class="lead mt-3">
+            The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.
+        </p>
+        <a href="{% url 'home' %}" class="btn btn-primary btn-lg mt-4 px-5">Go Back to Home</a>
+    </div>
 </div>
 {% endblock %}

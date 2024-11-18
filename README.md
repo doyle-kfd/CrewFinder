@@ -34,8 +34,86 @@ The live link can be found here - [CrewFinder](https://crew-finder-410f29f97c51.
   - [Languages](#languages)
   - [Frameworks - Libraries - Programs Used](#frameworks---libraries---programs-used)
   - [Credits](#credits)
-  - [Acknowlidgements](#acknowlidgements)
+  - [Acknowledgements](#acknowledgements)
 
 # The Approach I Took
 
+<details>
 
+ <summary>Welcome</summary>
+
+![PP4 Welcome](docs/readme_images/PP4%20Intro.png)
+</details>
+
+<details>
+
+ <summary>Agenda</summary>
+
+![PP4 Agenda](docs/readme_images/PP4%20Agenda.png)
+</details>
+<details>
+
+ <summary>Introduction</summary>
+
+![PP4 Intro](docs/readme_images/PP4%20General%20Introduction.png)
+</details>
+<details>
+
+ <summary>The Problem</summary>
+
+![PP4 The Problem](docs/readme_images/PP4%20The%20Proiblem%20I%20Solve.png )
+</details>
+<details>
+
+ <summary>Target Audience</summary>
+
+![PP4 Target Audience](docs/readme_images/PP4%20The%20Proiblem%20I%20Solve.png )
+</details>
+<details>
+
+ <summary>Persona 1 - Captain</summary>
+
+![PP4 Persona 1 - Captain](docs/readme_images/PP4%20Persona%201%20-%20Captain.png )
+</details>
+<details>
+
+ <summary>Persona 2 - Crew</summary>
+
+![PP4 Persona 1 - Captain](docs/readme_images/PP4%20Persona%202%20-%20Crew.png )
+</details>
+<details>
+
+ <summary>Persona 2 - Crew</summary>
+
+![PP4 Persona 1 - Captain](docs/readme_images/PP4%20Persona%202%20-%20Crew.png )
+</details>
+<details>
+
+ <summary>Proposed Solution</summary>
+
+![PP4 Proposed Solution](docs/readme_images/PP4%20Proposed%20Sulution.png )
+</details>
+<details>
+
+ <summary>I Will Deliver</summary>
+
+![PP4 I Will Deliver](docs/readme_images/PP4%20What%20I%20Will%20Deliver.png)
+</details>
+<details>
+
+ <summary>Process Flow</summary>
+
+![PP4 Process Flow](docs/readme_images/PP4%20Process%20Flow.png)
+</details>
+<details>
+
+ <summary>README</summary>
+
+![PP4 README](docs/readme_images/PP4%20README.png)
+</details>
+<details>
+
+ <summary>Testing</summary>
+
+![PP4 TESTING](docs/readme_images/PP4%20Testing.png)
+</details>

@@ -134,3 +134,12 @@ The images selected for the site theme are used to reflect the target audience. 
 ### Fonts
 Robot has been chosed as the primary font with sans-serif as the backup should the primary not load correctly.
 
+
+### Wireframes
+
+<details>
+
+ <summary>Home Page</summary>
+
+![Home Page](docs/wireframes/Home%20Page.png)
+</details>

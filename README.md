@@ -149,3 +149,9 @@ Robot has been chosed as the primary font with sans-serif as the backup should t
 
 ![About Us](docs/wireframes/About%20Us.png)
 </details>
+<details>
+
+ <summary>Contact Us</summary>
+
+![Contact Us](docs/wireframes/Contact%20Us.png)
+</details>

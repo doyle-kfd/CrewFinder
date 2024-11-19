@@ -25,7 +25,12 @@ def contact(request):
     return render(request, 'pages/contact.html')
 
 def sailing_opportunities(request):
-    trips = Trip.objects.all()  # Fetch all trips
+    trips = Trip.objects.all().order_by('-departure_date')  # Fetch all trips and order by departure date
+
+    # Implement pagination
+    paginator = Paginator(trips, 6)  # Show 6 trips per page
+    page_number = request.GET.get('page')  # Get the page number from the URL
+    page_obj = paginator.get_page(page_number)  # Get the trips for the current page
 
     # Fetch applied trip IDs if the user is logged in
     if request.user.is_authenticated:
@@ -34,7 +39,7 @@ def sailing_opportunities(request):
         applied_trip_ids = []
 
     return render(request, 'pages/sailing_opportunities.html', {
-        'trips': trips,
+        'trips': page_obj,  # Pass the paginated trips
         'applied_trip_ids': applied_trip_ids,
     })
 

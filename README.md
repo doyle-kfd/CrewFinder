@@ -18,6 +18,7 @@ The live link can be found here - [CrewFinder](https://crew-finder-410f29f97c51.
     - [Fonts](#fonts)
     - [Wireframes](#wireframes)
   - [Agile Methodology](#agile-methodology)
+  - [User Stories](#user-stories)
   - [Data Model](#data-model)
   - [Testing](#testing)
   - [Security Features](#security-features)
@@ -117,3 +118,12 @@ The live link can be found here - [CrewFinder](https://crew-finder-410f29f97c51.
 
 ![PP4 TESTING](docs/readme_images/PP4%20Testing.png)
 </details>
+
+# Design
+The design of the site is clean and simple. It features colours and imagery supporting the marine theme.
+The imagery reflects the target audience and the experience of crew and captains on trips.
+
+### Color Scheme
+![Colour Palette](docs/readme_images/Color%20Pallet.png)
+
+The colours were picked to reflect and complement the marine nature of the site theme.

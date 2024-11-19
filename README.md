@@ -127,3 +127,10 @@ The imagery reflects the target audience and the experience of crew and captains
 ![Colour Palette](docs/readme_images/Color%20Pallet.png)
 
 The colours were picked to reflect and complement the marine nature of the site theme.
+
+### Imagery
+The images selected for the site theme are used to reflect the target audience. The are meant to create an excitement about the sailing experince.
+
+### Fonts
+Robot has been chosed as the primary font with sans-serif as the backup should the primary not load correctly.
+

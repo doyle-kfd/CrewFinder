@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}CrewFinder{% endblock %}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+    </style>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <!-- Standard Favicon -->
     <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
@@ -19,74 +22,85 @@
 
 <body>
     <!-- Fixed Navigation Bar -->
-<!-- Fixed Navigation Bar -->
-<nav class="navbar navbar-light bg-light fixed-top">
-    <div class="container">
-        <!-- Brand Logo -->
-        <a class="navbar-brand" href="{% url 'home' %}">CrewFinder</a>
+    <!-- Fixed Navigation Bar -->
+    <nav class="navbar navbar-light bg-light fixed-top">
+        <div class="container">
+            <!-- Brand Logo -->
+            <a class="navbar-brand" href="{% url 'home' %}">CrewFinder</a>
 
-        <!-- Right-Aligned Links for Larger Screens -->
-        <div class="d-none d-lg-flex ms-auto align-items-center">
-            {% if user.is_authenticated %}
-                <a class="nav-link me-2 {% if request.path == '/dashboard/' %}active{% endif %}" href="{% url 'dashboard' %}">Dashboard</a>
-                <a class="nav-link me-2" href="{% url 'account_logout' %}?next={% url 'home' %}">Logout</a>
-            {% else %}
-                <a class="nav-link me-2 {% if request.path == '/accounts/signup/' %}active{% endif %}" href="{% url 'account_signup' %}">Sign Up</a>
-                <a class="nav-link me-2 {% if request.path == '/accounts/login/' %}active{% endif %}" href="{% url 'account_login' %}">Login</a>
-            {% endif %}
-        </div>
-
-        <!-- Navigation Label and Hamburger Icon -->
-        <div class="d-flex ms-lg-3 align-items-center">
-            <span class="nav-link mb-0">Navigation</span>
-            <button class="navbar-toggler custom-toggler ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-        </div>
-
-        <!-- Collapsible Menu (Mobile Hamburger Menu) -->
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <!-- Always Visible Links -->
-                <li class="nav-item">
-                    <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url 'home' %}">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {% if request.path == '/about/' %}active{% endif %}" href="{% url 'about' %}">About Us</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {% if request.path == '/contact/' %}active{% endif %}" href="{% url 'contact' %}">Contact Us</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {% if request.path == '/sailing_opportunities/' %}active{% endif %}" href="{% url 'sailing_opportunities' %}">Sailing Opportunities</a>
-                </li>
-
+            <!-- Right-Aligned Links for Larger Screens -->
+            <div class="d-none d-lg-flex ms-auto align-items-center">
                 {% if user.is_authenticated %}
+                <a class="nav-link me-2 {% if request.path == '/dashboard/' %}active{% endif %}"
+                    href="{% url 'dashboard' %}">Dashboard</a>
+                <a class="nav-link me-2" href="{% url 'account_logout' %}?next={% url 'home' %}">Logout</a>
+                {% else %}
+                <a class="nav-link me-2 {% if request.path == '/accounts/signup/' %}active{% endif %}"
+                    href="{% url 'account_signup' %}">Sign Up</a>
+                <a class="nav-link me-2 {% if request.path == '/accounts/login/' %}active{% endif %}"
+                    href="{% url 'account_login' %}">Login</a>
+                {% endif %}
+            </div>
+
+            <!-- Navigation Label and Hamburger Icon -->
+            <div class="d-flex ms-lg-3 align-items-center">
+                <span class="nav-link mb-0">Navigation</span>
+                <button class="navbar-toggler custom-toggler ms-2" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+
+            <!-- Collapsible Menu (Mobile Hamburger Menu) -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <!-- Always Visible Links -->
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/' %}active{% endif %}"
+                            href="{% url 'home' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/about/' %}active{% endif %}"
+                            href="{% url 'about' %}">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/contact/' %}active{% endif %}"
+                            href="{% url 'contact' %}">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/sailing_opportunities/' %}active{% endif %}"
+                            href="{% url 'sailing_opportunities' %}">Sailing Opportunities</a>
+                    </li>
+
+                    {% if user.is_authenticated %}
                     <!-- Authenticated User Links -->
                     <li class="nav-item d-lg-none">
-                        <a class="nav-link {% if request.path == '/dashboard/' %}active{% endif %}" href="{% url 'dashboard' %}">Dashboard</a>
+                        <a class="nav-link {% if request.path == '/dashboard/' %}active{% endif %}"
+                            href="{% url 'dashboard' %}">Dashboard</a>
                     </li>
                     <li class="nav-item d-lg-none">
                         <a class="nav-link" href="{% url 'account_logout' %}?next={% url 'home' %}">Logout</a>
                     </li>
-                {% else %}
+                    {% else %}
                     <!-- Sign Up and Login Links for Mobile Only -->
                     <li class="nav-item d-lg-none">
-                        <a class="nav-link {% if request.path == '/accounts/signup/' %}active{% endif %}" href="{% url 'account_signup' %}">Sign Up</a>
+                        <a class="nav-link {% if request.path == '/accounts/signup/' %}active{% endif %}"
+                            href="{% url 'account_signup' %}">Sign Up</a>
                     </li>
                     <li class="nav-item d-lg-none">
-                        <a class="nav-link {% if request.path == '/accounts/login/' %}active{% endif %}" href="{% url 'account_login' %}">Login</a>
+                        <a class="nav-link {% if request.path == '/accounts/login/' %}active{% endif %}"
+                            href="{% url 'account_login' %}">Login</a>
                     </li>
-                {% endif %}
-            </ul>
+                    {% endif %}
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
-    
-    
-    
+
+
+
 
     <!-- Message Display Area -->
     <div class="container mt-3">

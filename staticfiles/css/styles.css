@@ -1,3 +1,6 @@
+/* Import Roboto Font */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900&display=swap');
+
 /* Define CSS Variables for Repeated Colors */
 :root {
     --primary-color: #102740;
@@ -8,6 +11,13 @@
 }
 
 /* Default Styling */
+body {
+    font-family: 'Roboto', sans-serif; /* Apply Roboto globally */
+    font-weight: 400; /* Regular weight for default text */
+    color: var(--dark-text-color);
+}
+
+
 .container {
     max-width: 1600px !important;
 }
@@ -22,6 +32,7 @@
 }
 
 .navbar .navbar-brand {
+    font-family: 'Roboto', sans-serif;
     color: #ffffff; /* White text for brand */
     font-weight: bold;
     font-size: 1.5rem;
@@ -34,6 +45,7 @@
 }
 
 .navbar .nav-link {
+    font-family: 'Roboto', sans-serif;
     color: var(--white-color) !important; /* Ensure links are white */
     font-weight: 500;
     text-transform: uppercase;
@@ -70,6 +82,7 @@
 }
 
 .navbar .me-2 {
+    font-family: 'Roboto', sans-serif;
     font-size: 1rem;
     color: #ffffff; /* Adjust color for "Navigation" label */
 }
@@ -85,10 +98,12 @@
 
 /* Footer Styling */
 .footer {
+    font-family: 'Roboto', sans-serif;
     background-color: var(--primary-color) !important;
 }
 
 .footer span, .footer a {
+    font-family: 'Roboto', sans-serif;
     color: var(--white-color) !important;
     text-decoration: none;
 }
@@ -103,11 +118,12 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
     color: var(--dark-text-color);
 }
 
 th {
+    font-family: 'Roboto', sans-serif;
     padding: 12px 15px;
     background-color: var(--light-color);
     text-align: left;
@@ -116,6 +132,7 @@ th {
 }
 
 td {
+    font-family: 'Roboto', sans-serif;
     padding: 10px 15px;
     border-bottom: 1px solid #ddd;
 }
@@ -135,6 +152,7 @@ td:last-child {
 
 /* Buttons */
 .custom-button {
+    font-family: 'Roboto', sans-serif;
     border-radius: 8px;
     padding: 10px 20px;
     font-weight: 600;
@@ -150,6 +168,7 @@ td:last-child {
 
 /* Dashboard Cards */
 .card {
+    font-family: 'Roboto', sans-serif;
     display: flex;
     flex-direction: column;
     justify-content: space-between; /* Ensures the footer stays at the bottom */
@@ -161,9 +180,9 @@ td:last-child {
 }
 
 .card-footer {
+    font-family: 'Roboto', sans-serif;
     margin-top: auto; /* Pushes the footer to the bottom of the card */
 }
-
 .row > .col-lg-4 {
     display: flex;
     align-items: stretch;
@@ -176,10 +195,12 @@ td:last-child {
 
 /* Applicants Section */
 .applicants-section {
+    font-family: 'Roboto', sans-serif;
     border-left: 4px solid #17a2b8;
 }
 
 .applicant-item {
+    font-family: 'Roboto', sans-serif;
     font-size: 0.9rem;
     border-bottom: 1px solid #e9ecef;
 }
@@ -189,6 +210,7 @@ td:last-child {
 }
 
 .applicant-item span {
+    font-family: 'Roboto', sans-serif;
     font-size: 0.95rem;
     color: var(--dark-text-color);
 }

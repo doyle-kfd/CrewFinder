@@ -8,7 +8,8 @@
     <h2 class="text-center mb-4">Available Sailing Trips</h2>
     <div class="row">
         {% for trip in trips %}
-        <div class="col-md-4 mb-4">
+        <!-- Use col-md-6 for tablets and smaller, col-md-4 for larger devices -->
+        <div class="col-md-6 col-lg-4 mb-4">
             <div class="card h-100 shadow-sm d-flex flex-column">
                 {% if trip.boat_image %}
                 <img src="{{ trip.boat_image.url|secure }}" alt="Boat Image" class="card-img-top">

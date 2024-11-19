@@ -86,9 +86,7 @@
                 <div class="card h-100 shadow-sm d-flex flex-column">
                     <!-- Boat Image -->
                     {% if trip.boat_image %}
-                    <img src="{{ trip.boat_image.url|default_if_none:'/media/default-boat-image.jpg' }}" 
-                    class="card-img-top" 
-                    alt="Image of {{ trip.boat_name }}">
+                    <img src="{{ trip.boat_image.url|secure }}" alt="Boat Image" class="card-img-top">
                     {% else %}
                     <img src="/static/images/default_boat.jpg" class="card-img-top" alt="Default Boat Image">
                     {% endif %}

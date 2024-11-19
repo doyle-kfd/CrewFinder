@@ -155,3 +155,24 @@ Robot has been chosed as the primary font with sans-serif as the backup should t
 
 ![Contact Us](docs/wireframes/Contact%20Us.png)
 </details>
+
+<details>
+
+ <summary>Login</summary>
+
+![Login](docs/wireframes/Login%20Page.png)
+</details>
+
+<details>
+
+ <summary>Signup</summary>
+
+![Signup](docs/wireframes/Signup%20Page.png)
+</details>
+
+<details>
+
+ <summary>Admin Dashboard</summary>
+
+![Admin Dashboard](docs/wireframes/Administrator%20Dashboard.png)
+</details>

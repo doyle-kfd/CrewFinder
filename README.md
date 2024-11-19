@@ -176,3 +176,10 @@ Robot has been chosed as the primary font with sans-serif as the backup should t
 
 ![Admin Dashboard](docs/wireframes/Administrator%20Dashboard.png)
 </details>
+
+<details>
+
+ <summary>Captains Dashboard</summary>
+
+![Captains Dashboard](docs/wireframes/Captains%20Dashboard.png)
+</details>

@@ -249,3 +249,21 @@ I used two views, Kanban and a table to view progress.
   - AC-3 A Logout link is available in the navigation bar when the user is logged in.
   - AC-4 Upon logging out, the user is redirected to the homepage.
   - AC-5 If a logged-out user tries to access a restricted page (e.g., dashboard or profile), they are redirected to the login page.
+
+
+#### EPIC | Trip Management
+
+- As a captain, I want to create a sailing trip with details like title, location, date, and the number of crew needed, so I can recruit crew members for specific journeys.
+
+  - AC-1 The trip creation form is only accessible to users with the "Captain" role.
+  - AC-2 Form includes fields for title, location, date, and crew needed.
+  - AC-3 Created trip appears on the captain’s dashboard under "My Trips."
+
+- As a captain, I want to view a list of my created trips, so I can manage my upcoming trips and review participant status.
+
+  - AC-1 Dashboard lists all trips created by the captain, sorted by date.
+
+- As a captain, I want to view detailed information about each trip I create, including a list of crew members who have joined, so I can manage and organize my crew effectively.
+
+  - AC-1 The Trip Details page displays trip information and a list of confirmed crew members.
+  - AC-2 Option to approve or reject crew requests (if applicable).

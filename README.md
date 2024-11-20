@@ -398,3 +398,7 @@ User.id to CrewBooking.user_id with a 1 to many relationship.
 #### The CrewFinder ERD Model:
 
 ![CrewFinder Database Schema](docs/readme_images/CrewFinder%20ERD.png)
+
+## Testing
+
+#### Testing And Results Can Be Found [here](/TESTING.md)

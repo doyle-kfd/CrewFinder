@@ -285,3 +285,14 @@ I used two views, Kanban and a table to view progress.
 
   - AC-1 Dashboard includes a "My Trips" section listing trips the user has joined.
   - AC-2 Trip status (e.g., Pending, Confirmed) displays for each entry.
+
+- As a user, I want my experience to be tailored based on my role (captain or crew), so I only see actions and views relevant to my role.
+
+  - AC-1 Captains have access to trip creation, management, and crew approval features.
+  - AC-2 Crew members have access to trip browsing and join request features.
+  - AC-3 Unauthorized users are redirected if attempting restricted actions.
+
+- As an admin, I want to manage user roles effectively, so I can control access to specific features.
+
+  - AC-1 The admin panel includes options to view and modify user roles.
+  - AC-2 Role changes are saved and take immediate effect on user permissions.

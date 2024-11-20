@@ -214,3 +214,38 @@ I used two views, Kanban and a table to view progress.
 
 [Table View](https://github.com/users/doyle-kfd/projects/2/views/2)
 
+### User Stories
+
+#### EPIC | User Registration, Approval And Authentication
+- As a user, I want to register for an account with the option to select my role as either a captain or a crew member so that I can specify my participation in trips.
+
+  - AC-1 The registration form includes fields for username, email, password, and role selection.
+  - AC-2 Role selection is limited to "Captain" or "Crew."
+  - AC-3 After successful registration, the user sees a message indicating that their account is pending admin approval.
+
+- As an admin, I want to review new account registrations and approve or disapprove them so that only validated users can access the platform.
+
+  - AC-1 Admin dashboard lists all pending accounts.
+  - AC-2 Admin can approve or disapprove accounts with a single click.
+  - AC-3 Approved users are notified and gain access to the platform to complete their profile; disapproved users receive a notification.
+
+- As an approved user, I want to complete my profile by adding information about my experience level and a bio, so that others can understand my skills and background.
+
+  - AC-1 After admin approval, the user gains access to the profile setup page.
+  - AC-2 The profile form includes fields for experience level and a bio.
+  - AC-3 Form is styled using Crispy Forms and Bootstrap.
+  - AC-4 Data saves successfully to the profile, and changes are visible on the dashboard.
+
+- As an approved user, I want to view my profile on my dashboard, so I can see the information I’ve shared and make updates as needed.
+
+  - AC-1 Dashboard displays user profile with fields for bio and experience level.
+  - AC-2 The Edit option is available to update profile details.
+  - AC-3 Changes save and update immediately upon submission.
+
+- As a returning user, I want to log in and log out of my account securely to access my profile and trip features.
+
+  - AC-1 The login form includes fields for email/username and password, with clear labels for each.
+  - AC-2 Upon successful login with valid credentials, the user is redirected to their dashboard.
+  - AC-3 A Logout link is available in the navigation bar when the user is logged in.
+  - AC-4 Upon logging out, the user is redirected to the homepage.
+  - AC-5 If a logged-out user tries to access a restricted page (e.g., dashboard or profile), they are redirected to the login page.

@@ -329,3 +329,43 @@ I used two views, Kanban and a table to view progress.
 
   - AC-1 Home page includes a brief description of CrewFinder, a call-to-action to join, and links to key pages (About Us, Sailing Opportunities, Contact Us).
   - AC-2 Accessible from the navigation bar and visible to all users, including non-logged-in visitors.
+
+- As a visitor, I want a "Contact Us" page where I can find information on how to reach CrewFinder’s team, so I can ask questions or get support.
+
+  - AC-1 Contact Us page includes a contact form with fields for name, email, and message, along with any relevant contact details.
+  - AC-2 Submitting the form sends a message to the CrewFinder team and displays a confirmation to the user.
+
+#### EPIC | Dynamic Pages
+
+- As a visitor, I want to see a welcoming home page that provides an overview of the CrewFinder platform and displays the three latest trips, so I can see current opportunities and understand the purpose of the app.
+
+  - AC-1 Home page includes a description of CrewFinder and links to key pages (About Us, Sailing Opportunities, Contact Us).
+  - AC-2 The three latest trips are displayed dynamically, showing title, location, date, and a link to the trip details.
+  - AC-3 Accessible from the navigation bar and visible to all users, including non-logged-in visitors.
+
+  - As a visitor, I want to view a "Sailing Opportunities" page with a list of all available trips, so I can browse sailing options before signing up.
+
+  - AC-1 Sailing Opportunities page lists all active trips, showing titles, locations, dates, and number of crew needed.
+  - AC-2 Each trip links to a detailed trip page where registered users can request to join (crew) or manage participation (captains).
+
+- As a visitor, I want a login page where I can enter my credentials to access the platform, so I can reach my account and profile.
+
+  - AC-1 Login page includes fields for email/username and password, along with a “Forgot Password?” option.
+  - AC-2 Successful login redirects to the user dashboard.
+
+#### EPIC | Deployment And Testing
+
+- As a developer, I want to deploy the app to Heroku frequently, so I can verify that each feature works as expected in a production-like environment.
+
+  - AC-1 Initial deployment to Heroku occurs on Day 1.
+  - AC-2 Subsequent features are deployed to Heroku and verified after implementation.
+
+- As a developer, I want to configure Whitenoise for static file handling, so I can manage CSS and JavaScript assets effectively in production.
+
+  - AC-1 Whitenoise is installed and configured to handle static files on Heroku.
+  - AC-2 Static assets load correctly and are accessible in the production environment.
+
+- As a developer, I want to write unit tests for critical models and views, so I can ensure the app behaves as expected.
+
+  - AC-1 Key models (e.g., Account, SailingTrip, CrewBooking) have associated unit tests.
+  - AC-2 Critical views (e.g., registration, trip creation) are tested for expected behaviour.

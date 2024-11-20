@@ -318,3 +318,14 @@ I used two views, Kanban and a table to view progress.
   - AC-2 Navigation bar with links to key sections (dashboard, profile, trips).
   - AC-3 All pages are mobile-friendly and responsive.
 
+#### EPIC | Static Pages
+
+- As a visitor, I want an "About Us" page that describes the purpose of CrewFinder and the benefits of joining, so I can learn more about the platform.
+
+  - AC-1 About Us page includes information on CrewFinder’s mission, team, and features.
+  - AC-2 Page is accessible from the navigation bar for all users.
+
+- As a visitor, I want to see a welcoming home page that provides an overview of the CrewFinder platform, so I can understand the purpose and features of the app.
+
+  - AC-1 Home page includes a brief description of CrewFinder, a call-to-action to join, and links to key pages (About Us, Sailing Opportunities, Contact Us).
+  - AC-2 Accessible from the navigation bar and visible to all users, including non-logged-in visitors.

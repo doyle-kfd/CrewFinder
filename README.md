@@ -369,3 +369,32 @@ I used two views, Kanban and a table to view progress.
 
   - AC-1 Key models (e.g., Account, SailingTrip, CrewBooking) have associated unit tests.
   - AC-2 Critical views (e.g., registration, trip creation) are tested for expected behaviour.
+
+
+## Data Model
+
+I used principles of Object-Oriented Programming throughout this project and Django’s Class-Based Generic Views.
+
+Django AllAuth was used for the user authentication system.
+
+#### Defined Relationships
+
+
+**User to Trip:**
+A User can be a Captain for multiple Trips.
+
+User.id to Trip.captain_id with a 1 to many relationship.
+
+**Trip to CrewBooking:**
+A Trip can have multiple CrewBooking records.
+
+Trip.id to CrewBooking.trip_id with a 1 to many relationship.
+
+**User to CrewBooking:**
+A User (Crew) can apply to multiple Trips via CrewBooking.
+
+User.id to CrewBooking.user_id with a 1 to many relationship.
+
+#### The CrewFinder ERD Model:
+
+![CrewFinder Database Schema](docs/readme_images/CrewFinder%20ERD.png)

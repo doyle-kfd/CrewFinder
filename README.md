@@ -204,3 +204,13 @@ Robot has been chosed as the primary font with sans-serif as the backup should t
 ![Complete Profile Form](docs/wireframes/complete%20profile%20form.png)
 </details>
 
+
+## Agile Methodology
+I used Github to manage the development process using an agile approach.
+
+I used two views, Kanban and a table to view progress.
+
+[Kanban](https://github.com/users/doyle-kfd/projects/2/views/1)
+
+[Table View](https://github.com/users/doyle-kfd/projects/2/views/2)
+

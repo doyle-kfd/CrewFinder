@@ -13,7 +13,7 @@
             {% if user_obj.photo %}
                 <img src="{{ user_obj.photo.url }}" alt="Profile Picture" class="img-thumbnail mb-3" style="max-width: 100%;">
             {% else %}
-                <img src="{% static 'path/to/default_avatar.png' %}" alt="Default Profile Picture" class="img-thumbnail mb-3" style="max-width: 100%;">
+                <img src="{% static 'images/default_avatar.png' %}" alt="Default Profile Picture" class="img-thumbnail mb-3" style="max-width: 100%;">
             {% endif %}
         </div>
 

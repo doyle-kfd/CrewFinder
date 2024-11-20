@@ -158,7 +158,6 @@ def crew_profile(request, user_id, trip_id):
 
 @login_required
 def edit_user(request, user_id):
-    # Check for administrator role instead of superuser status
     if request.user.role != 'administrator':  # Custom role check
         return redirect('dashboard')
 
@@ -167,9 +166,11 @@ def edit_user(request, user_id):
     if request.method == 'POST':
         form = EditUserForm(request.POST, instance=user)
         if form.is_valid():
-            form.save()
+            form.save()  # Save form and let the model's save() handle is_active
             return redirect('admin_dashboard')
     else:
         form = EditUserForm(instance=user)
 
     return render(request, 'accounts/edit_user.html', {'form': form, 'user_obj': user})
+
+

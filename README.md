@@ -183,3 +183,17 @@ Robot has been chosed as the primary font with sans-serif as the backup should t
 
 ![Captains Dashboard](docs/wireframes/Captains%20Dashboard.png)
 </details>
+
+<details>
+
+ <summary>Crew Dashboard</summary>
+
+![Crew Dashboard](docs/wireframes/Crew%20Dashboard.png)
+</details>
+
+<details>
+
+ <summary>Update Profile Form</summary>
+
+![Update Profile Form](docs/wireframes/Update%20Profile%20Form.png)
+</details>

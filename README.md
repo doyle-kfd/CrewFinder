@@ -267,3 +267,21 @@ I used two views, Kanban and a table to view progress.
 
   - AC-1 The Trip Details page displays trip information and a list of confirmed crew members.
   - AC-2 Option to approve or reject crew requests (if applicable).
+
+#### EPIC | Joining Trips
+
+- As a crew member, I want to view a list of available sailing trips, so I can decide which ones I’d like to join.
+
+  - AC-1 Dashboard displays a list of trips with open crew positions.
+  - AC-2 Each trip entry includes title, location, date, and an option to request to join.
+
+- As a crew member, I want to request to join a specific sailing trip, so I can participate and gain more experience.
+
+  - AC-1 The join request option is available for crew members on the trip details page.
+  - AC-2 Request updates the trip’s participant list as "Pending."
+  - AC-3 Confirmation of successful join request appears on-screen.
+
+- As a crew member, I want to view the trips I’ve joined on my dashboard, so I can keep track of my participation.
+
+  - AC-1 Dashboard includes a "My Trips" section listing trips the user has joined.
+  - AC-2 Trip status (e.g., Pending, Confirmed) displays for each entry.

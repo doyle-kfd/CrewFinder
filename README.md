@@ -197,3 +197,10 @@ Robot has been chosed as the primary font with sans-serif as the backup should t
 
 ![Update Profile Form](docs/wireframes/Update%20Profile%20Form.png)
 </details>
+<details>
+
+ <summary>Complete Profile Form</summary>
+
+![Complete Profile Form](docs/wireframes/complete%20profile%20form.png)
+</details>
+

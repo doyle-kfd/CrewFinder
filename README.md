@@ -226,8 +226,7 @@ I used two views, Kanban and a table to view progress.
 - As an admin, I want to review new account registrations and approve or disapprove them so that only validated users can access the platform.
 
   - AC-1 Admin dashboard lists all pending accounts.
-  - AC-2 Admin can approve or disapprove accounts with a single click.
-  - AC-3 Approved users are notified and gain access to the platform to complete their profile; disapproved users receive a notification.
+  - AC-2 Approved users are notified and gain access to the platform to complete their profile; disapproved users receive a notification.
 
 - As an approved user, I want to complete my profile by adding information about my experience level and a bio, so that others can understand my skills and background.
 

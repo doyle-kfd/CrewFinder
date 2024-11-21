@@ -28,11 +28,11 @@
   - [Credits](#credits)
   - [Acknowledgements](#acknowledgements)
 
-  ## User Story Testing
+## User Story Testing
 
-  #### EPIC | User Registration, Approval And Authentication
+#### EPIC | User Registration, Approval And Authentication
   - As a user, I want to register for an account with the option to select my role as either a captain or a crew member so that I can specify my participation in trips.
-  <p align="center">
+<p align="center">
   <img src="docs/testing/Signup form.png" alt="Signup Form" width="45%" style="margin-right: 10px;">
   <img src="docs/testing/registration pending.png" alt="Registration Pening Message" width="45%" style="margin-left: 10px;">
 </p>
@@ -40,6 +40,30 @@
     - AC-1 The registration form includes fields for username, email, password, and role selection.
     - AC-2 Role selection is limited to "Captain" or "Crew. With the addition of Administrator for testing"
     - AC-3 After successful registration, the user sees a message indicating that their account is pending admin approval.
+
+
+- As an admin, I want to review new account registrations and approve or disapprove them so that only validated users can access the platform.
+
+<p align="center">
+  <img src="docs/testing/admin panel.png" alt="Adminstrator Dashboard" width="45%" style="margin-right: 10px;">
+  <img src="docs/testing/admin user approval.png" alt="Admin User Approval" width="45%" style="margin-left: 10px;">
+</p>
+
+    - AC-1 Admin dashboard lists all pending accounts.
+    - AC-2 Approved users are notified and gain access to the platform to complete their profile; disapproved users receive a notification.
+      - User receives email at address provided, updating status changes
+
+- As an approved user, I want to complete my profile by adding information about my experience level and a bio, so that others can understand my skills and background.
+
+<p align="center">
+  <img src="docs/testing/complete profile.png" alt="Adminstrator Dashboard" width="50%" style="margin-right: 10px;">
+</p>
+
+    - AC-1 After admin approval, the user gains access to the profile setup page.
+    - AC-2 The profile form includes fields for experience level and a bio.
+    - AC-3 Form is styled using Crispy Forms and Bootstrap.
+    - AC-4 Data saves successfully to the profile, and changes are visible on the dashboard.
+
 
 
 

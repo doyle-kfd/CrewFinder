@@ -30,6 +30,19 @@
 
   ## User Story Testing
 
+  #### EPIC | User Registration, Approval And Authentication
+  - As a user, I want to register for an account with the option to select my role as either a captain or a crew member so that I can specify my participation in trips.
+  <p align="center">
+  <img src="docs/testing/Signup form.png" alt="Signup Form" width="45%" style="margin-right: 10px;">
+  <img src="docs/testing/registration pending.png" alt="Registration Pening Message" width="45%" style="margin-left: 10px;">
+</p>
+
+    - AC-1 The registration form includes fields for username, email, password, and role selection.
+    - AC-2 Role selection is limited to "Captain" or "Crew. With the addition of Administrator for testing"
+    - AC-3 After successful registration, the user sees a message indicating that their account is pending admin approval.
+
+
+
   ## Validator Testing
 
   ### HTML

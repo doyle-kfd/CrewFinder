@@ -726,7 +726,37 @@ hr {
     color: var(--white-color);
 }
 
+/* Registration Pending Page Styling */
+/* Main section background for the registration pending page */
+.registration-pending-hero {
+    background: url('/static/images/about_us_hero.jpg') center center/cover no-repeat;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
+/* Notification container styling */
+.registration-overlay {
+    background-color: rgba(255, 255, 255, 0.9); /* Light background with some transparency */
+    padding: 2rem; /* Padding for spacing */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Header styles */
+.registration-overlay h1 {
+    font-size: 2rem; /* Large font size for the heading */
+    font-weight: 700; /* Bold heading */
+    margin-bottom: 1rem; /* Space below the heading */
+    color: #333; /* Dark gray for better contrast */
+}
+
+registration-overlay p {
+    font-size: 1rem; /* Regular font size for description */
+    color: #555; /* Slightly lighter gray for the text */
+    margin-bottom: 0; /* Avoid unnecessary space below */
+}
 
 /* Media Queries for device responsiveness */
 

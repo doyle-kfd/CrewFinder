@@ -4,28 +4,35 @@
 {% block title %}Sign Up | CrewFinder{% endblock %}
 
 {% block content %}
-<div class="signup-hero">
+<!-- Signup page main section -->
+<section class="signup-hero">
     <div class="container">
         <div class="row justify-content-center">
+            <!-- Form container -->
             <div class="col-md-8 col-lg-6">
-                <div class="signup-overlay">
-                    <h2 class="text-center">Join CrewFinder</h2>
-                    <p class="text-center mb-4">Sign up to start your sailing adventures today!</p>
-                    
+                <article class="signup-overlay">
+                    <!-- Header for signup page -->
+                    <header>
+                        <h1 class="text-center">Join CrewFinder</h1>
+                        <p class="text-center mb-4">Sign up to start your sailing adventures today!</p>
+                    </header>
+
+                    <!-- Signup form -->
                     <form method="post" action="{% url 'account_signup' %}" class="signup-form">
                         {% csrf_token %}
                         {{ form|crispy }}
                         <button type="submit" class="btn signup-btn">Sign Up</button>
                     </form>
 
-                    <div class="text-center mt-3">
+                    <!-- Footer with login redirect link -->
+                    <footer class="text-center mt-3">
                         <p class="signup-footer-text">Already have an account? 
                             <a href="{% url 'account_login' %}">Log in here</a>
                         </p>
-                    </div>
-                </div>
+                    </footer>
+                </article>
             </div>
         </div>
     </div>
-</div>
+</section>
 {% endblock %}

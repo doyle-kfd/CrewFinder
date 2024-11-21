@@ -172,5 +172,3 @@ def edit_user(request, user_id):
         form = EditUserForm(instance=user)
 
     return render(request, 'accounts/edit_user.html', {'form': form, 'user_obj': user})
-
-

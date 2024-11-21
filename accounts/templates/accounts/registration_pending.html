@@ -1,10 +1,25 @@
 {% extends "base.html" %}
 
-{% block title %}Registration Pending{% endblock %}
+{% block title %}Registration Pending | CrewFinder{% endblock %}
 
 {% block content %}
-<div class="container mt-5 pt-4">
-    <h2 class="text-center">Thank You for Registering!</h2>
-    <p class="text-center">Your registration is pending approval. We will notify you via email once it's approved.</p>
-</div>
+<!-- Registration pending main section -->
+<section class="registration-pending-hero">
+    <div class="container">
+        <div class="row justify-content-center">
+            <!-- Notification container -->
+            <div class="col-md-8 col-lg-6">
+                <article class="registration-overlay">
+                    <!-- Header for registration pending page -->
+                    <header>
+                        <h1 class="text-center">Thank You for Registering!</h1>
+                        <p class="text-center mb-4">
+                            Your registration is pending approval. We will notify you via email once it's approved.
+                        </p>
+                    </header>
+                </article>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}

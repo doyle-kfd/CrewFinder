@@ -136,8 +136,9 @@
 - As a crew member, I want to request to join a specific sailing trip, so I can participate and gain more experience.
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
-  <img src="docs/testing/apply trip.png" alt="apply for trip" width="45%">
-  <img src="docs/testing/trip pending.png" alt="Trip Pending" width="45%">
+  <img src="docs/testing/apply trip.png" alt="apply for trip" width="30%">
+  <img src="docs/testing/trip pending.png" alt="Trip Pending" width="30%">
+  <img src="docs/testing/trip confirmed.png" alt="Trip Confirmed" width="30%">
 </div>
 
     - AC-1 The join request option is available for crew members on the trip details page.

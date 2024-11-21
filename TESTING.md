@@ -98,9 +98,9 @@
   <img src="docs/testing/create trip form.png" alt="create trip form" width="50%" style="margin-right: 10px;">
 </p>
 
-  - AC-1 The trip creation form is only accessible to users with the "Captain" role.
-  - AC-2 Form includes fields for title, location, date, and crew needed.
-  - AC-3 Created trip appears on the captain’s dashboard under "My Trips."
+    - AC-1 The trip creation form is only accessible to users with the "Captain" role.
+    - AC-2 Form includes fields for title, location, date, and crew needed.
+    - AC-3 Created trip appears on the captain’s dashboard under "My Trips."
 
   ## Validator Testing
 

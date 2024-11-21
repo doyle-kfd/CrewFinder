@@ -23,23 +23,16 @@ def create_trip(request):
     
     return render(request, 'trips/create_trip.html', {'form': form})
 
-@login_required
-def delete_trip(request, trip_id):
-    trip = get_object_or_404(Trip, id=trip_id, captain=request.user)  # Ensure only the captain can delete
 
-    if request.method == 'POST':
-        trip.delete()  # Delete the trip
-        return redirect('dashboard')  # Redirect back to the dashboard after deletion
-    
-    return render(request, 'trips/delete_trip_confirm.html', {'trip': trip})
 
 @login_required
 def captain_dashboard(request):
     if request.user.role == "captain":
-        my_trips = Trip.objects.filter(captain=request.user).order_by('date')
+        # Use departure_date instead of date
+        my_trips = Trip.objects.filter(captain=request.user).order_by('departure_date')
         
         # Fetch crew bookings related to the trips and pass them along
-        applied_crews = CrewBooking.objects.filter(trip__in=my_trips)  # Get CrewBookings for the captain's trips
+        applied_crews = CrewBooking.objects.filter(trip__in=my_trips)
 
         return render(request, 'accounts/dashboard.html', {'my_trips': my_trips, 'applied_crews': applied_crews})
     else:
@@ -51,11 +44,19 @@ def captain_dashboard(request):
 def edit_trip(request, trip_id):
     trip = get_object_or_404(Trip, id=trip_id, captain=request.user)
     if request.method == 'POST':
-        form = TripCreationForm(request.POST, request.FILES, instance=trip)  # Include request.FILES for image updates
+        form = TripCreationForm(request.POST, request.FILES, instance=trip)
         if form.is_valid():
             form.save()
-            return redirect('dashboard')
+            return redirect('accounts:dashboard')  # Explicitly point to the accounts dashboard
     else:
         form = TripCreationForm(instance=trip)
     
     return render(request, 'trips/edit_trip.html', {'form': form, 'trip': trip})
+
+@login_required
+def delete_trip(request, trip_id):
+    trip = get_object_or_404(Trip, id=trip_id, captain=request.user)
+    if request.method == 'POST':
+        trip.delete()
+        return redirect('accounts:dashboard')  # Explicitly point to the accounts dashboard
+    return render(request, 'trips/delete_trip_confirm.html', {'trip': trip})

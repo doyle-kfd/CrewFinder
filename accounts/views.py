@@ -13,6 +13,7 @@ from django import forms  # Import forms module
 from django.db.models import Count
 from .forms import EditUserForm  # Assume you have a form for editing user details
 from cloudinary.models import CloudinaryField
+from django.db.models import Prefetch, Count
 
 @login_required
 def complete_profile(request):
@@ -39,15 +40,17 @@ def dashboard(request):
 
     # For captains, fetch their trips and associated applications
     if request.user.role == 'captain':
-        # Get trips created by the captain
-        my_trips = Trip.objects.filter(captain=request.user).annotate(applicant_count=Count('crewbooking')).order_by('-departure_date')
-        
-        # Get all applications for those trips
-        applied_crews = CrewBooking.objects.filter(trip__in=my_trips).select_related('user', 'trip')
+        # Get trips created by the captain and prefetch related crew applications
+        my_trips = Trip.objects.filter(captain=request.user).prefetch_related(
+            Prefetch(
+                'crewbooking_set',
+                queryset=CrewBooking.objects.select_related('user').order_by('status'),
+                to_attr='applicants'
+            )
+        ).annotate(applicant_count=Count('crewbooking')).order_by('-departure_date')
 
         return render(request, 'accounts/dashboard.html', {
             'my_trips': my_trips,
-            'applied_crews': applied_crews,
         })
 
     # For crew members, show trips they applied for

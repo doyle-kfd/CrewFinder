@@ -111,6 +111,15 @@
 
     - AC-1 Dashboard lists all trips created by the captain, sorted by date.
 
+
+- As a captain, I want to view detailed information about each trip I create, including a list of crew members who have joined, so I can manage and organize my crew effectively.
+
+  - AC-1 The Trip Details page displays trip information and a list of confirmed crew members.
+  - AC-2 Option to approve or reject crew requests (if applicable).
+
+
+
+
   ## Validator Testing
 
   ### HTML

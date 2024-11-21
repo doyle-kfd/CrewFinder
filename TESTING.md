@@ -102,6 +102,15 @@
     - AC-2 Form includes fields for title, location, date, and crew needed.
     - AC-3 Created trip appears on the captain’s dashboard under "My Trips."
 
+
+- As a captain, I want to view a list of my created trips, so I can manage my upcoming trips and review participant status.
+
+<p align="center">
+  <img src="docs/testing/captains dashboard.png" alt="captains dashboard" width="50%" style="margin-right: 10px;">
+</p>
+
+    - AC-1 Dashboard lists all trips created by the captain, sorted by date.
+
   ## Validator Testing
 
   ### HTML

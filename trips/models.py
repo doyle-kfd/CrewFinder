@@ -22,7 +22,7 @@ class Trip(models.Model):
     def save(self, *args, **kwargs):
         # Assign default image if none is provided
         if not self.boat_image:
-            self.boat_image = 'path/to/default_boat.jpg'  # Update with Cloudinary URL or image ID
+            self.boat_image = 'default_boat_fkc4gr'  # Default Boat
         super().save(*args, **kwargs)
 
     def __str__(self):

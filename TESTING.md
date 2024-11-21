@@ -146,6 +146,15 @@
     - AC-3 Confirmation of successful join request appears on-screen.
 
 
+- As a crew member, I want to view the trips I’ve joined on my dashboard, so I can keep track of my participation.
+
+<p align="center">
+  <img src="docs/testing/crew dashboard.png" alt="crew dashboard" width="50%" style="margin-right: 10px;">
+</p>
+
+    - AC-1 Dashboard includes a "My Trips" section listing trips the user has joined.
+    - AC-2 Trip status (e.g., Pending, Confirmed) displays for each entry.
+
   ## Validator Testing
 
   ### HTML

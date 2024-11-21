@@ -231,6 +231,29 @@
 
 
 
+#### EPIC | Dynamic Pages
+
+- As a visitor, I want to see a welcoming home page that provides an overview of the CrewFinder platform and displays the three latest trips, so I can see current opportunities and understand the purpose of the app.
+
+  - AC-1 Home page includes a description of CrewFinder and links to key pages (About Us, Sailing Opportunities, Contact Us).
+    - Complete and working
+  - AC-2 The three latest trips are displayed dynamically, showing title, location, date, and a link to the trip details.
+    - Complete and working
+  - AC-3 Accessible from the navigation bar and visible to all users, including non-logged-in visitors.
+    - Complete and working
+
+- As a visitor, I want to view a "Sailing Opportunities" page with a list of all available trips, so I can browse sailing options before signing up.
+  
+  - AC-1 Sailing Opportunities page lists all active trips, showing titles, locations, dates, and number of crew needed.
+    - Complete and working
+
+- As a visitor, I want a login page where I can enter my credentials to access the platform, so I can reach my account and profile.
+
+  - AC-1 Login page includes fields for email/username and password, along with a “Forgot Password?” option.
+    - Complete and working
+  - AC-2 Successful login redirects to the user dashboard.
+    - Complete and working
+
   ## Validator Testing
 
   ### HTML

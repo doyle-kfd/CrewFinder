@@ -342,10 +342,9 @@ I used two views, Kanban and a table to view progress.
   - AC-2 The three latest trips are displayed dynamically, showing title, location, date, and a link to the trip details.
   - AC-3 Accessible from the navigation bar and visible to all users, including non-logged-in visitors.
 
-  - As a visitor, I want to view a "Sailing Opportunities" page with a list of all available trips, so I can browse sailing options before signing up.
+- As a visitor, I want to view a "Sailing Opportunities" page with a list of all available trips, so I can browse sailing options before signing up.
 
   - AC-1 Sailing Opportunities page lists all active trips, showing titles, locations, dates, and number of crew needed.
-  - AC-2 Each trip links to a detailed trip page where registered users can request to join (crew) or manage participation (captains).
 
 - As a visitor, I want a login page where I can enter my credentials to access the platform, so I can reach my account and profile.
 

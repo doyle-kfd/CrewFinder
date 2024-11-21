@@ -56,7 +56,7 @@
 - As an approved user, I want to complete my profile by adding information about my experience level and a bio, so that others can understand my skills and background.
 
 <p align="center">
-  <img src="docs/testing/complete profile.png" alt="Adminstrator Dashboard" width="50%" style="margin-right: 10px;">
+  <img src="docs/testing/complete profile.png" alt="complete profile" width="50%" style="margin-right: 10px;">
 </p>
 
     - AC-1 After admin approval, the user gains access to the profile setup page.
@@ -68,7 +68,7 @@
 - As an approved user, I want to view my profile on my dashboard, so I can see the information I’ve shared and make updates as needed.
 
 <p align="center">
-  <img src="docs/testing/updated my profile.png" alt="Adminstrator Dashboard" width="50%" style="margin-right: 10px;">
+  <img src="docs/testing/updated my profile.png" alt="update profile" width="50%" style="margin-right: 10px;">
 </p>
 
     - AC-1 Dashboard displays user profile with fields for bio and experience level.
@@ -78,8 +78,8 @@
 - As a returning user, I want to log in and log out of my account securely to access my profile and trip features.
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
-  <img src="docs/testing/login page.png" alt="Administrator Dashboard" width="45%">
-  <img src="docs/testing/user dashboard.png" alt="Admin User Approval" width="45%">
+  <img src="docs/testing/login page.png" alt="Login Page" width="45%">
+  <img src="docs/testing/user dashboard.png" alt="User Dashboard" width="45%">
 </div>
 
 
@@ -89,6 +89,18 @@
     - AC-4 Upon logging out, the user is redirected to the homepage.
     - AC-5 If a logged-out user tries to access a restricted page (e.g., dashboard or profile), they are redirected to the login page.
 
+
+#### EPIC | Trip Management
+
+- As a captain, I want to create a sailing trip with details like title, location, date, and the number of crew needed, so I can recruit crew members for specific journeys.
+
+<p align="center">
+  <img src="docs/testing/create trip form.png" alt="create trip form" width="50%" style="margin-right: 10px;">
+</p>
+
+  - AC-1 The trip creation form is only accessible to users with the "Captain" role.
+  - AC-2 Form includes fields for title, location, date, and crew needed.
+  - AC-3 Created trip appears on the captain’s dashboard under "My Trips."
 
   ## Validator Testing
 

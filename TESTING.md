@@ -65,6 +65,29 @@
     - AC-4 Data saves successfully to the profile, and changes are visible on the dashboard.
 
 
+- As an approved user, I want to view my profile on my dashboard, so I can see the information I’ve shared and make updates as needed.
+
+<p align="center">
+  <img src="docs/testing/updated my profile.png" alt="Adminstrator Dashboard" width="50%" style="margin-right: 10px;">
+</p>
+
+    - AC-1 Dashboard displays user profile with fields for bio and experience level.
+    - AC-2 The Edit option is available to update profile details.
+    - AC-3 Changes save and update immediately upon submission.
+
+- As a returning user, I want to log in and log out of my account securely to access my profile and trip features.
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
+  <img src="docs/testing/login page.png" alt="Administrator Dashboard" width="45%">
+  <img src="docs/testing/user dashboard.png" alt="Admin User Approval" width="45%">
+</div>
+
+
+    - AC-1 The login form includes fields for email/username and password, with clear labels for each.
+    - AC-2 Upon successful login with valid credentials, the user is redirected to their dashboard.
+    - AC-3 A Logout link is available in the navigation bar when the user is logged in.
+    - AC-4 Upon logging out, the user is redirected to the homepage.
+    - AC-5 If a logged-out user tries to access a restricted page (e.g., dashboard or profile), they are redirected to the login page.
 
 
   ## Validator Testing

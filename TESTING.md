@@ -225,10 +225,10 @@
   <img src="docs/testing/message from contact us page.png" alt="Email message from contact page" width="30%">
 </div>
 
-  - AC-1 Contact Us page includes a contact form with fields for name, email, and message, along with any relevant contact details.
-    - Contact form has all necessary fields for filling in. Includes contact details.
-  - AC-2 Submitting the form sends a message to the CrewFinder team and displays a confirmation to the user.
-    - 
+    - AC-1 Contact Us page includes a contact form with fields for name, email, and message, along with any relevant contact details.
+      - Contact form has all necessary fields for filling in. Includes contact details.
+    - AC-2 Submitting the form sends a message to the CrewFinder team and displays a confirmation to the user.
+
 
 
   ## Validator Testing

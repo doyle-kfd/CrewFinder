@@ -114,8 +114,12 @@
 
 - As a captain, I want to view detailed information about each trip I create, including a list of crew members who have joined, so I can manage and organize my crew effectively.
 
-  - AC-1 The Trip Details page displays trip information and a list of confirmed crew members.
-  - AC-2 Option to approve or reject crew requests (if applicable).
+<p align="center">
+  <img src="docs/testing/captains dashboard.png" alt="captains dashboard" width="50%" style="margin-right: 10px;">
+</p>
+
+    - AC-1 The Trip Details page displays trip information and a list of confirmed crew members.
+    - AC-2 Option to approve or reject crew requests (if applicable).
 
 
 

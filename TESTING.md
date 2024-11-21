@@ -122,6 +122,27 @@
     - AC-2 Option to approve or reject crew requests (if applicable).
 
 
+#### EPIC | Joining Trips
+
+- As a crew member, I want to view a list of available sailing trips, so I can decide which ones I’d like to join.
+
+<p align="center">
+  <img src="docs/testing/sailing opportunities.png" alt="sailing opportunities" width="50%" style="margin-right: 10px;">
+</p>
+
+    - AC-1 Page that  displays a list of trips with open crew positions.
+    - AC-2 Each trip entry includes title, location, date, and an option to request to join.
+
+- As a crew member, I want to request to join a specific sailing trip, so I can participate and gain more experience.
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
+  <img src="docs/testing/apply trip.png" alt="apply for trip" width="45%">
+  <img src="docs/testing/trip pending.png" alt="Trip Pending" width="45%">
+</div>
+
+    - AC-1 The join request option is available for crew members on the trip details page.
+    - AC-2 Request updates the trip’s participant list as "Pending."
+    - AC-3 Confirmation of successful join request appears on-screen.
 
 
   ## Validator Testing

@@ -271,7 +271,7 @@ I used two views, Kanban and a table to view progress.
 
 - As a crew member, I want to view a list of available sailing trips, so I can decide which ones I’d like to join.
 
-  - AC-1 Dashboard displays a list of trips with open crew positions.
+  - AC-1 Page that displays a list of trips with open crew positions.
   - AC-2 Each trip entry includes title, location, date, and an option to request to join.
 
 - As a crew member, I want to request to join a specific sailing trip, so I can participate and gain more experience.

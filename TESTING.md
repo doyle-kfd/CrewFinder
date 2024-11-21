@@ -155,6 +155,82 @@
     - AC-1 Dashboard includes a "My Trips" section listing trips the user has joined.
     - AC-2 Trip status (e.g., Pending, Confirmed) displays for each entry.
 
+- As a user, I want my experience to be tailored based on my role (captain or crew), so I only see actions and views relevant to my role.
+
+  - AC-1 Captains have access to trip creation, management, and crew approval features.
+    - Working
+  - AC-2 Crew members have access to trip browsing and join request features.
+    - Working
+  - AC-3 Unauthorized users are redirected if attempting restricted actions.
+    - Working
+
+  #### EPIC | Role Based Access Control
+
+  - As an admin, I want to manage user roles effectively, so I can control access to specific features.
+
+    - AC-1 The admin panel includes options to view and modify user roles.
+      - Working
+    - AC-2 Role changes are saved and take immediate effect on user permissions.
+      - Working
+
+  - As a user, I want my experience to be tailored based on my role (captain or crew), so I only see actions and views relevant to my role.
+
+    - AC-1 Captains have access to trip creation, management, and crew approval features.
+      - Working
+    - AC-2 Crew members have access to trip browsing and join request features.
+      - Working
+    - AC-3 Unauthorized users are redirected if attempting restricted actions.
+      - Working
+
+
+#### EPIC | Platform UI And Testing
+
+- As a user, I want rich-text capabilities in my profile bio, so I can add more detailed information about myself.
+
+  - AC-1 Bio field on the profile form supports rich-text formatting via Summernote.
+    - Working, once approved user on first login has to complete bio.
+  - AC-2 Bio content displays properly in the profile view on the dashboard.
+    - Working. Can be updated as necessary
+
+- As a user, I want the platform to have a clean and intuitive layout with easy navigation, so I can find features and complete actions quickly.
+
+  - AC-1 Consistent styling across pages using Bootstrap and Crispy Forms.
+    - Bootstrap and Cripsy formas have been implemented
+  - AC-2 Navigation bar with links to key sections (dashboard, profile, trips).
+    - Appropriate Navigation Is Available at all times
+  - AC-3 All pages are mobile-friendly and responsive.
+    - All pages tested for responsive design
+
+#### EPIC | Static Pages
+
+- As a visitor, I want an "About Us" page that describes the purpose of CrewFinder and the benefits of joining, so I can learn more about the platform.
+
+  - AC-1 About Us page includes information on CrewFinder’s mission, team, and features.
+    - All features visible
+  - AC-2 Page is accessible from the navigation bar for all users.
+    - Page Is Accessible from nav bar
+
+- As a visitor, I want to see a welcoming home page that provides an overview of the CrewFinder platform, so I can understand the purpose and features of the app.
+
+  - AC-1 Home page includes a brief description of CrewFinder, a call-to-action to join, and links to key pages (About Us, Sailing Opportunities, Contact Us).
+    - Home page has hero introduction to set the scene with cta, then sections to help user buy into the site theme.
+  - AC-2 Accessible from the navigation bar and visible to all users, including non-logged-in visitors.
+    - Navigation is available to all users. Specific nav only accessible to logged in users
+
+- As a visitor, I want a "Contact Us" page where I can find information on how to reach CrewFinder’s team, so I can ask questions or get support.
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
+  <img src="docs/testing/contact us form filled in.png" alt="contact form filled in" width="30%">
+  <img src="docs/testing/success message on sending .png" alt="success message on sending" width="30%">
+  <img src="docs/testing/message from contact us page.png" alt="Email message from contact page" width="30%">
+</div>
+
+  - AC-1 Contact Us page includes a contact form with fields for name, email, and message, along with any relevant contact details.
+    - Contact form has all necessary fields for filling in. Includes contact details.
+  - AC-2 Submitting the form sends a message to the CrewFinder team and displays a confirmation to the user.
+    - 
+
+
   ## Validator Testing
 
   ### HTML

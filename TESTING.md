@@ -278,18 +278,25 @@
 
 ## Unit Testing
 
+
+
+##### Accounts App Testing
 - Unit Testing Accounts Model Result
 <p align="center">
   <img src="docs/testing/accounts model unit test result.png" alt="accounts model unit test" width="50%" style="margin-right: 10px;">
 </p>
-
-##### Accounts App Testing
-
 
 
 
 ## Validator Testing
 
 ### HTML
+
+All HTML pages were run through the [W3C HTML Validator](https://validator.w3.org/). See results in below table.
+| Page                 | Logged Out | Logged In |
+|----------------------|------------|-----------|
+| add_recipe.html      | N/A        | Note 1    |
+| base.html            | No errors  | No errors |
+
 
 ### CSS

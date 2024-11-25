@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Bad Request{% endblock %}
+
+{% block content %}
+<div class="error-page">
+    <div class="error-content">
+        <h1 class="display-1 fw-bold text-warning">400</h1>
+        <h2 class="fw-bold">Bad Request</h2>
+        <p class="lead mt-3">
+            The server could not understand your request. Please check the URL or try again.
+        </p>
+        <a href="{% url 'home' %}" class="btn btn-primary btn-lg mt-4 px-5">Go Back to Home</a>
+    </div>
+</div>
+{% endblock %}

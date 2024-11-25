@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Server Error{% endblock %}
+
+{% block content %}
+<div class="error-page">
+    <div class="error-content">
+        <h1 class="display-1 fw-bold text-danger">500</h1>
+        <h2 class="fw-bold">Internal Server Error</h2>
+        <p class="lead mt-3">
+            Something went wrong on our end. Please try again later or contact support.
+        </p>
+        <a href="{% url 'home' %}" class="btn btn-primary btn-lg mt-4 px-5">Go Back to Home</a>
+    </div>
+</div>
+{% endblock %}

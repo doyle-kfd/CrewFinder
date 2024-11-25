@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Forbidden{% endblock %}
+
+{% block content %}
+<div class="error-page">
+    <div class="error-content">
+        <h1 class="display-1 fw-bold text-danger">403</h1>
+        <h2 class="fw-bold">Forbidden</h2>
+        <p class="lead mt-3">
+            You don't have permission to access this page. Please contact the administrator if you believe this is an error.
+        </p>
+        <a href="{% url 'home' %}" class="btn btn-primary btn-lg mt-4 px-5">Go Back to Home</a>
+    </div>
+</div>
+{% endblock %}

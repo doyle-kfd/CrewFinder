@@ -20,9 +20,15 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib.auth import views as auth_views
 from django.conf.urls import handler404
+from django.conf.urls import handler403
+from django.conf.urls import handler400
+from django.conf.urls import handler500
 from pages import views as pages_views
 
 handler404 = 'pages.views.custom_404_view'
+handler403 = 'pages.views.custom_403_view'
+handler400 = 'pages.views.custom_400_view'
+handler500 = 'pages.views.custom_500_view'
 
 urlpatterns = [
     path('admin/', admin.site.urls),

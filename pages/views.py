@@ -5,9 +5,14 @@ from crewbooking.models import CrewBooking  # Import the CrewBooking model
 from django.conf import settings
 from django.contrib import messages
 from django.core.mail import send_mail
+from django.core.exceptions import PermissionDenied  # For 403 testing
+from django.http import HttpResponseBadRequest
+from django.core.exceptions import SuspiciousOperation
+from django.core.exceptions import BadRequest
 import sys
 
-# Create your views here.
+# Existing views
+
 def home(request):
     trips = Trip.objects.order_by('-departure_date')[:3]  # Fetch the latest three trips
 
@@ -72,3 +77,25 @@ def sailing_opportunities(request):
 
 def custom_404_view(request, exception=None):
     return render(request, 'pages/404.html', status=404)
+
+def custom_403_view(request, exception=None):
+    return render(request, 'pages/403.html', status=403)
+
+def custom_400_view(request, exception=None):
+    return render(request, 'pages/400.html', status=400)
+
+def custom_500_view(request, exception=None):
+    return render(request, 'pages/500.html', status=500)
+
+# Test Views for Error Pages
+def test_400_view(request):
+    raise BadRequest("This is a test 400 error.")
+
+def test_403_view(request):
+    raise PermissionDenied("This is a test 403 error.")
+
+def test_500_view(request):
+    raise Exception("This is a test 500 error.")
+
+def manual_500_view(request):
+    return render(request, 'pages/500.html', status=500)

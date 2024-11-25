@@ -144,11 +144,11 @@ DATABASES = {
 }
 
 # Use SQLite for tests to avoid permission issues
-# if 'test' in sys.argv:
-#    DATABASES['default'] = {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': ':memory:',  # Creates a temporary in-memory database
-#    }
+if 'test' in sys.argv:
+    DATABASES['default'] = {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': ':memory:',  # Creates a temporary in-memory database
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

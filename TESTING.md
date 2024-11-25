@@ -254,8 +254,42 @@
   - AC-2 Successful login redirects to the user dashboard.
     - Complete and working
 
-  ## Validator Testing
 
-  ### HTML
+#### EPIC | Deployment And Testing
 
-  ### CSS
+- As a developer, I want to deploy the app to Heroku frequently, so I can verify that each feature works as expected in a production-like environment.
+
+  - AC-1 Initial deployment to Heroku occurs on Day 1.
+    - Deployed
+  - AC-2 Subsequent features are deployed to Heroku and verified after implementation.
+    - Repeated deployments through development cycle
+
+- As a developer, I want to configure Whitenoise for static file handling, so I can manage CSS and JavaScript assets effectively in production.
+
+  - AC-1 Whitenoise is installed and configured to handle static files on Heroku.
+    - Configured and working
+  - AC-2 Static assets load correctly and are accessible in the production environment.
+    - Static files all updated and loaded in production environment
+
+- As a developer, I want to write unit tests for critical models and views, so I can ensure the app behaves as expected.
+
+  - AC-1 Key models (e.g., Account, SailingTrip, CrewBooking) have associated unit tests.
+  - AC-2 Critical views (e.g., registration, trip creation) are tested for expected behaviour.
+
+## Unit Testing
+
+- Unit Testing Accounts Model Result
+<p align="center">
+  <img src="docs/testing/accounts model unit test result.png" alt="accounts model unit test" width="50%" style="margin-right: 10px;">
+</p>
+
+##### Accounts App Testing
+
+
+
+
+## Validator Testing
+
+### HTML
+
+### CSS

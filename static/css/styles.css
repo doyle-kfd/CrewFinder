@@ -409,13 +409,12 @@ td:last-child {
 .signup-hero {
     background: url('/static/images/signup_page_image.jpg') no-repeat center center;
     background-size: cover;
-    min-height: 100vh;
+    min-height: 100vh; /* Ensure the section spans the full viewport height */
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
-    padding: 20px;
 }
+
 
 /* Form Overlay Styling */
 .signup-overlay {

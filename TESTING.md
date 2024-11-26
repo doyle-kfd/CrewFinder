@@ -297,8 +297,14 @@ All HTML pages were run through the [W3C HTML Validator](https://validator.w3.or
 |----------------------|------------|-----------|
 | base.html            | No errors  |           |
 | home.html            | No errors  |           |
+| login.html          | No errors  |           |
 | signup.html          | No errors  |           |
 | sailing_opportunities.html          | No errors  |           |
+| contact.html         | No errors  |           |
+| about.html          | No errors  |           |
+| admin_dashboard.html          | No errors  |     No Errors      |
+| dashboard.html          | No errors  |   No Errors        |
+
 
 
 ### CSS

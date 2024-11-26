@@ -394,7 +394,7 @@ td:last-child {
 /* Signup page styling */
 /* Hero Section with Background Image */
 .signup-hero {
-    background: url('/static/images/signup_page_image.jpg') no-repeat center center;
+    background: url('/static/images/signup_page_image.webp') no-repeat center center;
     background-size: cover;
     min-height: 100vh; /* Ensure the section spans the full viewport height */
     display: flex;

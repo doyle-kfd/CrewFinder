@@ -350,3 +350,10 @@ All Python files were run through [Pep8](https://pep8ci.herokuapp.com/)  with no
 ### Lighthouse
 
 Lighthouse validation was run on all pages (both mobile and desktop) in order to check accessibility and performance.
+
+| Page           | Performance  | Accessibility | Best Practices  | SEO |
+|----------------|:------------:|:-------------:|:---------------:|:---:|
+|                |              |               |                 |     |
+| Desktop        |              |               |                 |     |
+| Home           |          94 |           93 |             100 | 91    |
+| Sign Up           |          99 |           100 |             100 | 91    |

@@ -295,8 +295,9 @@
 All HTML pages were run through the [W3C HTML Validator](https://validator.w3.org/). See results in below table.
 | Page                 | Logged Out | Logged In |
 |----------------------|------------|-----------|
-| add_recipe.html      | N/A        | Note 1    |
-| base.html            | No errors  | No errors |
+| base.html            | No errors  |           |
+| home.html            | No errors  |           |
+| signup.html          | No errors  |           |
 
 
 ### CSS

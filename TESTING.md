@@ -293,6 +293,7 @@
 ### HTML
 
 All HTML pages were run through the [W3C HTML Validator](https://validator.w3.org/). See results in below table.
+
 | Page                       | Logged Out |  Logged In  |
 |----------------------------|------------|-------------|
 | base.html                  | No errors  |   No Errors |
@@ -318,3 +319,12 @@ All HTML pages were run through the [W3C HTML Validator](https://validator.w3.or
 
 
 ### CSS
+
+No errors were found when passing my CSS file through the official [W3C CSS Validator](https://jigsaw.w3.org/css-validator/)
+
+ <details>
+
+ <summary>CSS</summary>
+
+![CSS Validation](docs/testing/css%20validation.png)
+ </details>

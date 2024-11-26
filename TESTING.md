@@ -293,20 +293,27 @@
 ### HTML
 
 All HTML pages were run through the [W3C HTML Validator](https://validator.w3.org/). See results in below table.
-| Page                 | Logged Out | Logged In |
-|----------------------|------------|-----------|
-| base.html            | No errors  |  No Errors         |
-| home.html            | No errors  |  No Errors         |
-| login.html          | No errors  |    NA       |
-| signup.html          | No errors  |   NA        |
-| password_reset.html          | No errors  |  NA          |
-| sailing_opportunities.html          | No errors  |           |
-| contact.html         | No errors  |           |
-| about.html          | No errors  |           |
-| admin_dashboard.html          | No errors  |     No Errors      |
-| dashboard.html          | No errors  |   No Errors        |
-| 400.html          | No errors  |   No Errors        |
-| 403.html          | No errors  |   No Errors        |
+| Page                       | Logged Out |  Logged In  |
+|----------------------------|------------|-------------|
+| base.html                  | No errors  |   No Errors |
+| home.html                  | No errors  |   No Errors |
+| login.html                 | No errors  |   NA        |
+| signup.html                | No errors  |   NA        |
+| password_reset.html        | No errors  |   NA        |
+| sailing_opportunities.html | No errors  |   No errors |
+| contact.html               | No errors  |   No errors |
+| about.html                 | No errors  |   No errors |
+| admin_dashboard.html       | NA         |   No errors |
+| dashboard.html             | NA         |   No errors |
+| update_profile.html        | NA         |   No Errors |
+| registration_pending.html  | No Errors  |   NA        |
+| edit_user.html             | NA         |   No Errors |
+| crew_profile.html          | NA         |   No Errors |
+| complete_profile.html      | NA         |   No Errors |
+| 400.html                   | No errors  |   NA        |
+| 403.html                   | No errors  |   NA        |
+| 404.html                   | No errors  |   NA        |
+| 500.html                   | No errors  |   NA        |
 
 
 

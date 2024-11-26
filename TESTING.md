@@ -345,3 +345,8 @@ No errors were found when passing my javascript through [Jshint](https://jshint.
 ### Python
 
 All Python files were run through [Pep8](https://pep8ci.herokuapp.com/)  with no errors found.
+
+
+### Lighthouse
+
+Lighthouse validation was run on all pages (both mobile and desktop) in order to check accessibility and performance.

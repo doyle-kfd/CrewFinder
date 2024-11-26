@@ -83,20 +83,7 @@
     margin: 0 0.5rem; /* Add spacing between nav items */
 }
 
-/* Footer Styling */
-.footer {
-    background-color: var(--primary-color) !important;
-}
 
-.footer span, .footer a {
-    color: var(--white-color) !important;
-    text-decoration: none;
-}
-
-.footer a:hover {
-    text-decoration: underline;
-    color: var(--secondary-color);
-}
 
 /* Table Styling */
 table {
@@ -213,6 +200,7 @@ td:last-child {
     margin-top: 10px;
 }
 
+/*  Home Page  */
 /* Hero Section */
 .hero-image {
     background-image: url('/static/images/crewfinder_hero.jpg');
@@ -220,12 +208,6 @@ td:last-child {
     background-position: center;
     height: 60vh;
     position: relative;
-}
-
-@media (max-width: 768px) {
-    .hero-image {
-        height: 40vh;
-    }
 }
 
 .hero-overlay {
@@ -239,98 +221,10 @@ td:last-child {
     text-align: center;
 }
 
-/* Home Page: Latest Sailing Opportunities */
+/*  Latest Sailing Opportunities */
 #trips-heading {
     background-color: var(--primary-color) !important;
 }
-
-/* About CrewFinder */
-#about-crewfinder {
-    background-color: var(--primary-color);
-    color: var(--white-color);
-    padding: 10px;
-}
-
-/* Testimonials Section */
-.testimonials {
-    background-color: var(--light-color);
-    color: var(--dark-text-color);
-}
-
-.testimonials .card {
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.testimonials img {
-    border: 3px solid var(--secondary-color);
-}
-
-/* Position carousel arrows */
-.carousel-control-prev,
-.carousel-control-next {
-    width: 5%; /* Narrow clickable area */
-    z-index: 10; /* Ensure arrows are above the text */
-    top: 50%; /* Center vertically */
-    transform: translateY(-50%);
-}
-
-
-
-/* Optional: Style arrows for better visibility */
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-    border-radius: 50%; /* Rounded icon */
-    padding: 10px;
-}
-
-
-
-
-/* About + Call-to-Action Section */
-.about-cta {
-    background-image: url('/static/images/about_crewfinder.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    position: relative;
-    color: var(--white-color);
-    padding: 80px 0;
-}
-
-.about-cta-overlay {
-    background: rgba(16, 39, 64, 0.8);
-    padding: 40px 0;
-}
-
-.about-cta .card {
-    background-color: var(--white-color);
-    color: var(--primary-color);
-    border-radius: 8px;
-}
-
-.about-cta .cta h3 {
-    font-size: 2rem;
-    font-weight: bold;
-}
-
-.about-cta .cta .btn {
-    background-color: var(--white-color);
-    color: var(--primary-color);
-    border: none;
-    font-weight: bold;
-    padding: 12px 30px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.about-cta .cta .btn:hover {
-    background-color: #f0f0f0;
-    color: var(--primary-color);
-    transform: scale(1.05);
-}
-
-
 
 /* Featured Trips Section */
 .featured-trips {
@@ -404,6 +298,90 @@ td:last-child {
     padding: 10px;
 }
 
+
+/* About CrewFinder */
+#about-crewfinder {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    padding: 10px;
+}
+
+/* Testimonials Section */
+.testimonials {
+    background-color: var(--light-color);
+    color: var(--dark-text-color);
+}
+
+.testimonials .card {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.testimonials img {
+    border: 3px solid var(--secondary-color);
+}
+
+/* Position carousel arrows */
+.carousel-control-prev,
+.carousel-control-next {
+    width: 5%; /* Narrow clickable area */
+    z-index: 10; /* Ensure arrows are above the text */
+    top: 50%; /* Center vertically */
+    transform: translateY(-50%);
+}
+
+
+/* Style arrows for better visibility */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    border-radius: 50%; /* Rounded icon */
+    padding: 10px;
+}
+
+/* About Us   Call-to-Action Section */
+.about-cta {
+    background-image: url('/static/images/about_crewfinder.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    color: var(--white-color);
+    padding: 80px 0;
+}
+
+.about-cta-overlay {
+    background: rgba(16, 39, 64, 0.8);
+    padding: 40px 0;
+}
+
+.about-cta .card {
+    background-color: var(--white-color);
+    color: var(--primary-color);
+    border-radius: 8px;
+}
+
+.about-cta .cta h3 {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.about-cta .cta .btn {
+    background-color: var(--white-color);
+    color: var(--primary-color);
+    border: none;
+    font-weight: bold;
+    padding: 12px 30px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.about-cta .cta .btn:hover {
+    background-color: #f0f0f0;
+    color: var(--primary-color);
+    transform: scale(1.05);
+}
+
+
 /* Signup page styling */
 /* Hero Section with Background Image */
 .signup-hero {
@@ -416,7 +394,7 @@ td:last-child {
 }
 
 
-/* Form Overlay Styling */
+/* Form Styling */
 .signup-overlay {
     background: rgba(255, 255, 255, 0.85); /* Opaque white background */
     padding: 40px 30px;
@@ -439,7 +417,7 @@ td:last-child {
     margin-bottom: 20px;
 }
 
-/* Form Styling */
+
 .signup-form .form-group {
     margin-bottom: 20px;
 }
@@ -607,7 +585,6 @@ td:last-child {
 
 .btn:hover {
     background-color: #0066A2;
-    border-color: #0066A2;
 }
 
 /* General Styling */
@@ -667,6 +644,20 @@ hr {
 
 /* Footer Section Styling */
 /* Footer Text Styling */
+
+.footer {
+    background-color: var(--primary-color) !important;
+}
+
+.footer span, .footer a {
+    color: var(--white-color) !important;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+    color: var(--secondary-color);
+}
 .contact-overlay .text-muted {
     font-size: 0.9rem;
     color: #666;
@@ -785,6 +776,9 @@ registration-overlay p {
 
 /* Medium Devices (Tablets, <768px) */
 @media (max-width: 767px) {
+    .hero-image {
+        height: 40vh;
+    }
     .hero-overlay {
         padding: 20px; /* Reduce padding for smaller screens */
     }
@@ -848,7 +842,7 @@ registration-overlay p {
 }
 
 /* Extra Large Devices (Larger Desktops, <1200px) */
-@media (max-width: 1199) {
+@media (max-width: 1199px) {
     .hero-image {
         height: 50vh; /* Adjust height for large desktops */
     }

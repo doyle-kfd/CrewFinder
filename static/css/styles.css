@@ -13,6 +13,15 @@
 }
 
 
+h1, h2, h3 {
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+}
+
+
 /* Navigation Styling */
 /* Navbar Background and Font */
 /* Ensure Navbar Background is Correct */
@@ -203,7 +212,7 @@ td:last-child {
 /*  Home Page  */
 /* Hero Section */
 .hero-image {
-    background-image: url('/static/images/crewfinder_hero.jpg');
+    background-image: url('/static/images/crewfinder_hero.webp');
     background-size: cover;
     background-position: center;
     height: 60vh;
@@ -341,7 +350,7 @@ td:last-child {
 
 /* About Us   Call-to-Action Section */
 .about-cta {
-    background-image: url('/static/images/about_crewfinder.jpg');
+    background-image: url('/static/images/about_crewfinder.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -587,10 +596,7 @@ td:last-child {
     background-color: #0066A2;
 }
 
-/* General Styling */
-h1, h2, h4 {
-    font-weight: bold;
-}
+
 
 hr {
     border-top: 1px solid #ddd;

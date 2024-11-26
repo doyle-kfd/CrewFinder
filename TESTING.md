@@ -295,15 +295,18 @@
 All HTML pages were run through the [W3C HTML Validator](https://validator.w3.org/). See results in below table.
 | Page                 | Logged Out | Logged In |
 |----------------------|------------|-----------|
-| base.html            | No errors  |           |
-| home.html            | No errors  |           |
-| login.html          | No errors  |           |
-| signup.html          | No errors  |           |
+| base.html            | No errors  |  No Errors         |
+| home.html            | No errors  |  No Errors         |
+| login.html          | No errors  |    NA       |
+| signup.html          | No errors  |   NA        |
+| password_reset.html          | No errors  |  NA          |
 | sailing_opportunities.html          | No errors  |           |
 | contact.html         | No errors  |           |
 | about.html          | No errors  |           |
 | admin_dashboard.html          | No errors  |     No Errors      |
 | dashboard.html          | No errors  |   No Errors        |
+| 400.html          | No errors  |   No Errors        |
+| 403.html          | No errors  |   No Errors        |
 
 
 

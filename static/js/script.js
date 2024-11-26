@@ -1,21 +1,26 @@
+/* jshint esversion: 6 */
 document.addEventListener("DOMContentLoaded", function () {
-    // Select only "Show Applicants" buttons, avoiding the navbar toggle button
     const toggleButtons = document.querySelectorAll('[data-bs-toggle="collapse"][data-bs-target^="#applicants"]');
 
-    toggleButtons.forEach(button => {
-        const targetId = button.getAttribute("data-bs-target"); // Get the target collapse ID
+    toggleButtons.forEach(function (button) {
+        const targetId = button.getAttribute("data-bs-target");
         const targetElement = document.querySelector(targetId);
 
         if (targetElement) {
-            // Listen for the collapse being shown
+            const updateButtonText = function (text) {
+                button.textContent = text;
+                button.setAttribute("aria-expanded", text === "Hide Applicants");
+            };
+
             targetElement.addEventListener("shown.bs.collapse", function () {
-                button.textContent = "Hide Applicants";
+                updateButtonText("Hide Applicants");
             });
 
-            // Listen for the collapse being hidden
             targetElement.addEventListener("hidden.bs.collapse", function () {
-                button.textContent = "Show Applicants";
+                updateButtonText("Show Applicants");
             });
+        } else {
+            console.warn("No element found for target ID:", targetId);
         }
     });
 });

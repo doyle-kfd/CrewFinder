@@ -83,20 +83,7 @@
     margin: 0 0.5rem; /* Add spacing between nav items */
 }
 
-/* Footer Styling */
-.footer {
-    background-color: var(--primary-color) !important;
-}
 
-.footer span, .footer a {
-    color: var(--white-color) !important;
-    text-decoration: none;
-}
-
-.footer a:hover {
-    text-decoration: underline;
-    color: var(--secondary-color);
-}
 
 /* Table Styling */
 table {
@@ -344,7 +331,6 @@ td:last-child {
 }
 
 
-
 /* Style arrows for better visibility */
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
@@ -353,10 +339,7 @@ td:last-child {
     padding: 10px;
 }
 
-
-
-
-/* About Us  Call-to-Action Section */
+/* About Us   Call-to-Action Section */
 .about-cta {
     background-image: url('/static/images/about_crewfinder.jpg');
     background-size: cover;
@@ -411,7 +394,7 @@ td:last-child {
 }
 
 
-/* Form Overlay Styling */
+/* Form Styling */
 .signup-overlay {
     background: rgba(255, 255, 255, 0.85); /* Opaque white background */
     padding: 40px 30px;
@@ -434,7 +417,7 @@ td:last-child {
     margin-bottom: 20px;
 }
 
-/* Form Styling */
+
 .signup-form .form-group {
     margin-bottom: 20px;
 }
@@ -661,6 +644,20 @@ hr {
 
 /* Footer Section Styling */
 /* Footer Text Styling */
+
+.footer {
+    background-color: var(--primary-color) !important;
+}
+
+.footer span, .footer a {
+    color: var(--white-color) !important;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+    color: var(--secondary-color);
+}
 .contact-overlay .text-muted {
     font-size: 0.9rem;
     color: #666;

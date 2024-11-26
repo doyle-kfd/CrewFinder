@@ -328,3 +328,16 @@ No errors were found when passing my CSS file through the official [W3C CSS Vali
 
 ![CSS Validation](docs/testing/css%20validation.png)
  </details>
+
+ ### Javascript
+
+### Javascript
+No errors were found when passing my javascript through [Jshint](https://jshint.com/) 
+
+<details>
+
+<summary>Jshint</summary>
+
+![Jshint](docs/testing/jshint.png)
+</details>
+

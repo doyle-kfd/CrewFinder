@@ -341,3 +341,7 @@ No errors were found when passing my javascript through [Jshint](https://jshint.
 ![Jshint](docs/testing/jshint.png)
 </details>
 
+
+### Python
+
+All Python files were run through [Pep8](https://pep8ci.herokuapp.com/)  with no errors found.

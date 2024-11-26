@@ -2,7 +2,32 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from cloudinary.models import CloudinaryField  # For Cloudinary integration
 
+
 class User(AbstractUser):
+    """
+    Custom user model extending AbstractUser to include additional fields and
+    functionality.
+
+    Attributes:
+        ROLE_CHOICES (list): Choices for user roles (Captain, Crew,
+            Administrator).
+        APPROVAL_STATUS_CHOICES (list): Choices for user approval statuses
+            (Pending, Approved, Disapproved).
+        EXPERIENCE_CHOICES (list): Choices for user sailing experience levels.
+        role (str): Role of the user, default is 'crew'.
+        bio (str): User's biography, optional.
+        experience_level (str): Legacy field for experience level, optional.
+        approval_status (str): Approval status of the user, default is
+            'pending'.
+        profile_completed (bool): Indicates whether the user has completed
+            their profile.
+        is_active (bool): Indicates if the user account is active, determined
+            by approval status.
+        experience (str): Sailing experience level of the user, default is
+            'None'.
+        photo (CloudinaryField): Profile photo stored in Cloudinary, optional.
+    """
+
     # Role Choices
     CAPTAIN = 'captain'
     CREW = 'crew'
@@ -36,25 +61,53 @@ class User(AbstractUser):
     ]
 
     # Custom Fields
-    role = models.CharField(max_length=15, choices=ROLE_CHOICES, default=CREW)
+    role = models.CharField(
+        max_length=15, choices=ROLE_CHOICES, default=CREW
+    )
     bio = models.TextField(blank=True, null=True)
-    experience_level = models.CharField(max_length=50, blank=True, null=True)  # Legacy field
-    approval_status = models.CharField(max_length=15, choices=APPROVAL_STATUS_CHOICES, default=PENDING)
+    experience_level = models.CharField(
+        max_length=50, blank=True, null=True
+    )  # Legacy field
+    approval_status = models.CharField(
+        max_length=15, choices=APPROVAL_STATUS_CHOICES, default=PENDING
+    )
     profile_completed = models.BooleanField(default=False)
     is_active = models.BooleanField(
         default=False,
-        help_text="Designates whether a user should be treated as active. Unselect this instead of deleting accounts."
+        help_text=(
+            "Designates whether a user should be treated as active. Unselect "
+            "this instead of deleting accounts."
+        )
     )
-    experience = models.CharField(max_length=100, choices=EXPERIENCE_CHOICES, default='None')
-    photo = CloudinaryField('photo', blank=True, null=True)  # Profile photo stored in Cloudinary
+    experience = models.CharField(
+        max_length=100, choices=EXPERIENCE_CHOICES, default='None'
+    )
+    photo = CloudinaryField('photo', blank=True, null=True)
 
-    # Override save() to automatically update is_active based on approval_status
     def save(self, *args, **kwargs):
+        """
+        Overrides the save method to automatically update the `is_active` field
+        based on the `approval_status`.
+
+        If the `approval_status` is 'approved', the `is_active` field is set to
+        True. If the `approval_status` is 'pending' or 'disapproved', the
+        `is_active` field is set to False.
+
+        Args:
+            *args: Variable length argument list.
+            **kwargs: Arbitrary keyword arguments.
+        """
         if self.approval_status == self.APPROVED:
             self.is_active = True
-        elif self.approval_status in [self.DISAPPROVED, self.PENDING]:  # Explicitly handle Pending and Disapproved
+        elif self.approval_status in [self.DISAPPROVED, self.PENDING]:
             self.is_active = False
         super().save(*args, **kwargs)
 
     def __str__(self):
+        """
+        Returns the string representation of the user, which is the username.
+
+        Returns:
+            str: The username of the user.
+        """
         return self.username

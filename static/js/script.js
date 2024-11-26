@@ -1,4 +1,5 @@
 /* jshint esversion: 6 */
+/* Javascript to provide captain function to toggle applicants for trips */
 document.addEventListener("DOMContentLoaded", function () {
     const toggleButtons = document.querySelectorAll('[data-bs-toggle="collapse"][data-bs-target^="#applicants"]');
 

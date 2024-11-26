@@ -400,3 +400,793 @@ User.id to CrewBooking.user_id with a 1 to many relationship.
 ## Testing
 
 #### Testing And Results Can Be Found [here](/TESTING.md)
+
+
+# My Apps
+
+### Accounts App Detail
+
+<details>
+
+<summary>Views File </summary>
+
+# `accounts/views.py`
+
+
+This Accounts application handles various user management operations, including profile completion, dashboards for different roles, and custom authentication workflows such as signup, login, and logout.
+
+---
+
+### Features
+
+#### 1. **User Profile Completion**
+- **Function**: `complete_profile(request)`
+  - Allows users to complete their profile if it hasn't been completed yet.
+  - Redirects users to the dashboard if their profile is already complete.
+  - Displays a form for adding additional details such as bio, experience, and profile photo.
+
+---
+
+#### 2. **User Dashboards**
+- **Function**: `dashboard(request)`
+  - Displays different dashboards based on the user's role:
+    - **Administrators**: Redirected to the `admin_dashboard`.
+    - **Captains**: Shows trips created by the captain, along with crew applications.
+    - **Crew Members**: Displays the trips they have applied for.
+
+---
+
+#### 3. **Registration Pending View**
+- **Function**: `registration_pending(request)`
+  - Displays a page for users awaiting admin approval after signup.
+
+---
+
+#### 4. **Custom Authentication Views**
+- **Custom Login**: `CustomLoginView`
+  - Redirects users to specific pages based on their role and profile status:
+    - Admins: Redirected to the admin dashboard.
+    - Users with incomplete profiles: Redirected to the profile completion page.
+  - Includes handling for the `next` parameter for redirecting users post-login.
+  
+- **Custom Signup**: `CustomSignupView`
+  - Redirects newly registered users to the `registration_pending` page.
+
+---
+
+#### 5. **Admin Dashboard**
+- **Function**: `admin_dashboard(request)`
+  - Allows administrators to view a list of captains and crew members.
+  - Excludes superusers from the list for security purposes.
+
+---
+
+#### 6. **Custom Logout**
+- **Custom Logout**: `CustomLogoutView`
+  - Displays a success message upon logout and redirects users to the home page.
+
+---
+
+#### 7. **Profile Update**
+- **Function**: `update_profile(request)`
+  - Allows users to update their profile details and upload files (e.g., profile photo).
+
+---
+
+#### 8. **Crew Member Profiles**
+- **Function**: `crew_profile(request, user_id, trip_id)`
+  - Allows captains to view and manage the profiles of crew members who applied for their trips.
+  - Captains can update the status of crew applications using the `CrewBookingStatusForm`.
+
+---
+
+#### 9. **Edit User**
+- **Function**: `edit_user(request, user_id)`
+  - Allows administrators to edit user details such as roles and approval statuses.
+  - Prevents editing of superusers and other administrator accounts.
+
+---
+
+#### 10. **Forms**
+- **`CrewBookingStatusForm`**:
+  - Form to update the status of crew applications (e.g., "confirmed," "pending").
+
+---
+
+### Workflow
+
+1. A user signs up and is redirected to the `registration_pending` page.
+2. An administrator reviews and approves the user.
+3. Once approved, the user receives a notification and can log in to complete their profile.
+4. Captains create trips and manage applications from crew members.
+5. Crew members apply for trips and track their application statuses.
+
+---
+
+### Security Measures
+
+- **Access Control**:
+  - The `login_required` decorator ensures that only authenticated users can access protected views.
+  
+- **Role-Based Permissions**:
+  - Administrators cannot edit or delete superusers.
+  - Different dashboards are displayed based on user roles (e.g., captain, crew).
+
+- **Optimized Queries**:
+  - Uses `prefetch_related` and `select_related` to minimize database queries when fetching related data.
+
+---
+
+### Key Technologies
+- **Role-Based Access**:
+  - Captains and crew members have different interfaces.
+  - Administrators have advanced controls for managing users.
+
+- **Approval Workflow**:
+  - New users must await admin approval before gaining full access to the system.
+
+- **Custom Authentication**:
+  - Overrides Django Allauth's login and signup workflows to enforce custom logic.
+
+- **Efficient Database Queries**:
+  - Optimized using Django ORM features like `prefetch_related` and `select_related`.
+
+---
+
+This system efficiently manages users, enforces role-specific functionality, and implements a robust approval-based workflow.
+
+</details>
+
+<details>
+
+<summary> URLS File </summary>
+
+# `accounts/urls.py`
+
+## URL Configuration Overview
+
+This section describes the URL routing defined in the `urls.py` file. It maps specific URL patterns to corresponding views and includes additional routes from third-party apps, such as Django Allauth.
+
+---
+
+### **Imports**
+
+- **Core Django Imports**:
+  - `path`: Used to define URL patterns.
+  - `include`: Allows inclusion of URL configurations from other apps.
+  - `static`: Enables serving of static and media files in development.
+  - `settings`: Provides access to project-level settings like `MEDIA_URL`.
+
+- **Local Imports**:
+  - `views`: Imports all views defined in the `views.py` file.
+  - Specific class-based and function-based views (e.g., `CustomSignupView`, `dashboard`) are imported for use in the `urlpatterns` list.
+
+---
+
+### **URL Patterns**
+
+The `urlpatterns` list defines the routing for various user operations, such as authentication, profile management, and admin-specific tasks. 
+
+#### **1. Authentication and Account Management**
+- **`signup/`**:
+  - View: `CustomSignupView`
+  - Name: `account_signup`
+  - Handles user signup and redirects users to the registration pending page.
+
+- **`login/`**:
+  - View: `CustomLoginView`
+  - Name: `account_login`
+  - Handles user login and redirects users based on role and profile completion.
+
+- **`logout/`**:
+  - View: `CustomLogoutView`
+  - Name: `account_logout`
+  - Logs users out and redirects them to the home page with a success message.
+
+---
+
+#### **2. Profile-Related URLs**
+- **`complete_profile/`**:
+  - View: `complete_profile`
+  - Name: `complete_profile`
+  - Allows users to complete their profile after registration approval.
+
+- **`registration_pending/`**:
+  - View: `registration_pending`
+  - Name: `registration_pending`
+  - Displays a pending approval page for newly registered users awaiting admin approval.
+
+- **`dashboard/`**:
+  - View: `dashboard`
+  - Name: `dashboard`
+  - Displays a role-specific dashboard for captains, crew, or administrators.
+
+- **`admin_dashboard/`**:
+  - View: `admin_dashboard`
+  - Name: `admin_dashboard`
+  - Displays a management dashboard for administrators to manage users.
+
+- **`update_profile/`**:
+  - View: `update_profile`
+  - Name: `update_profile`
+  - Allows users to update their profile details and upload photos.
+
+---
+
+#### **3. Crew Profile and User Management**
+- **`profile/<int:user_id>/<int:trip_id>/`**:
+  - View: `crew_profile`
+  - Name: `crew_profile`
+  - Displays and manages the profile of a crew member for a specific trip.
+
+- **`edit_user/<int:user_id>/`**:
+  - View: `edit_user`
+  - Name: `edit_user`
+  - Allows administrators to edit user details, such as roles and approval status.
+
+---
+
+#### **4. Third-Party Integration**
+- **`''`**:
+  - Includes all routes from Django Allauth for handling additional authentication features (e.g., password reset, email verification).
+
+---
+
+#### **5. Static and Media Files**
+- **Static Media Serving**:
+  - `static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)`:
+    - Ensures that media files (e.g., user-uploaded profile photos) are served correctly during development.
+
+---
+
+### **Routing Behavior**
+
+1. **Authentication and Role-Based Redirects**:
+   - Users are routed based on their role (e.g., admin, captain, crew) and approval status (e.g., pending approval, profile completion).
+
+2. **Dynamic Routing**:
+   - The `profile/<int:user_id>/<int:trip_id>/` route dynamically uses parameters to display and manage specific crew applications for trips.
+
+3. **Flexible Account Management**:
+   - Administrators have dedicated routes like `edit_user/` for managing user accounts.
+
+4. **Third-Party Integration**:
+   - The use of `include('allauth.urls')` ensures seamless integration with Django Allauth's authentication workflows.
+
+---
+
+</details>
+
+<details>
+
+<summary>Signals File</summary>
+
+# `accounts/signals.py`
+
+## Signals Overview
+
+The `signals.py` file contains logic to respond to changes in the database triggered by specific events. This ensures dynamic updates, notifications, and status management across the system without manual intervention.
+
+---
+
+### **Key Signals**
+
+#### **1. `notify_admin_of_new_user`**
+- **Trigger**: `post_save` signal on the `User` model.
+- **Purpose**: Sends an email notification to all administrators when a new user registers with a `PENDING` approval status.
+- **Logic**:
+  - Retrieves emails of users with the `ADMINISTRATOR` role.
+  - Sends an email to notify administrators that a new user is awaiting approval.
+
+---
+
+#### **2. `notify_user_of_approval`**
+- **Trigger**: `post_save` signal on the `User` model.
+- **Purpose**: Activates a user account and sends an approval email when their registration is approved.
+- **Logic**:
+  - Sets the user's `is_active` field to `True` upon approval.
+  - Sends an email with a link to complete their profile.
+
+---
+
+#### **3. `notify_user_of_disapproval`**
+- **Trigger**: `post_save` signal on the `User` model.
+- **Purpose**: Deactivates a user account and notifies the user via email if their registration is disapproved.
+- **Logic**:
+  - Sets the user's `is_active` field to `False` if disapproved.
+  - Sends an email explaining the disapproval and suggests contacting support.
+
+---
+
+#### **4. `adjust_crew_needed`**
+- **Trigger**: `post_save` signal on the `CrewBooking` model.
+- **Purpose**: Adjusts the `crew_needed` field of a trip when the status of a crew booking changes.
+- **Logic**:
+  - If a booking is confirmed, decrements the `crew_needed` count for the associated trip.
+  - If a confirmed booking status changes to another status, increments the `crew_needed` count.
+
+---
+
+#### **5. `increment_crew_needed_on_delete`**
+- **Trigger**: `post_delete` signal on the `CrewBooking` model.
+- **Purpose**: Increments the `crew_needed` field of a trip when a confirmed booking is deleted.
+- **Logic**:
+  - Ensures that the `crew_needed` count is incremented only for confirmed bookings.
+
+---
+
+### **Workflow of Signals**
+
+1. **User Registration**:
+   - When a user registers, the `notify_admin_of_new_user` signal triggers, notifying administrators of the pending approval.
+
+2. **Approval or Disapproval**:
+   - If approved, the `notify_user_of_approval` signal activates the user's account and sends an email.
+   - If disapproved, the `notify_user_of_disapproval` signal deactivates the account and sends a notification.
+
+3. **Crew Booking Status Changes**:
+   - The `adjust_crew_needed` signal dynamically updates the `crew_needed` field for trips based on booking confirmations or status changes.
+
+4. **Crew Booking Deletion**:
+   - When a confirmed booking is deleted, the `increment_crew_needed_on_delete` signal ensures that the trip's `crew_needed` count is updated.
+
+---
+
+### **Key Features**
+
+- **Dynamic Updates**:
+  - Signals automatically handle changes to related fields (e.g., `crew_needed` for trips) without requiring explicit logic in the views or models.
+
+- **Notifications**:
+  - Sends emails to administrators and users based on registration and approval workflows.
+
+- **Data Integrity**:
+  - Prevents invalid values, such as negative `crew_needed` counts, through logical constraints.
+
+- **Role-Based Behavior**:
+  - Administrators are informed of pending registrations, while users are notified of their approval or disapproval status.
+
+---
+
+</details>
+
+<details>
+<summary>Models</summary>
+
+# `accounts/models.py`
+
+## Custom User Model
+
+The `User` model extends Django's built-in `AbstractUser` to provide additional fields and functionality tailored to the application's requirements. This model supports role-based behavior, approval workflows, and sailing-related profile data.
+
+---
+# Custom User Model
+
+The `User` model extends Django's built-in `AbstractUser` to provide additional fields and functionality tailored to the application's requirements. This model supports role-based behavior, approval workflows, and sailing-related profile data.
+
+---
+
+## Model Attributes
+
+### **1. Role Choices**
+Defines the roles a user can have:
+- **`CAPTAIN`**: Represents a captain who can create trips and manage crew applications.
+- **`CREW`**: Represents a crew member who can apply for trips.
+- **`ADMINISTRATOR`**: Represents an administrator responsible for approving registrations and managing users.
+
+```python
+ROLE_CHOICES = [
+    ('captain', 'Captain'),
+    ('crew', 'Crew'),
+    ('administrator', 'Administrator'),
+]
+```
+
+### **2. Approval Status**
+
+Tracks the user's registration status, ensuring a controlled workflow for activating or rejecting user accounts:
+
+- **`PENDING`**: The default status for new registrations awaiting admin approval.
+- **`APPROVED`**: Indicates the user has been approved by an administrator and their account is active.
+- **`DISAPPROVED`**: Indicates the user's registration has been rejected, and their account is inactive.
+
+```python
+APPROVAL_STATUS_CHOICES = [
+    ('pending', 'Pending'),
+    ('approved', 'Approved'),
+    ('disapproved', 'Disapproved'),
+]
+```
+
+### **3. Sailing Experience**
+
+Defines the sailing experience levels users can select, allowing them to specify their skill level and qualifications. Examples include:
+
+- **`None`**: Default experience level.
+- **`RYA Competent Crew`**
+- **`RYA Dayskipper`**
+- **`RYA Yachtmaster Coastal`**
+- **`RYA Yachtmaster Offshore`**
+- **`RYA Yachtmaster Ocean`**
+
+```python
+EXPERIENCE_CHOICES = [
+    ('None', 'None'),
+    ('RYA Competent Crew', 'RYA Competent Crew'),
+    ('RYA Dayskipper', 'RYA Dayskipper'),
+    ('RYA Yachtmaster Coastal', 'RYA Yachtmaster Coastal'),
+    ('RYA Yachtmaster Offshore', 'RYA Yachtmaster Offshore'),
+    ('RYA Yachtmaster Ocean', 'RYA Yachtmaster Ocean'),
+]
+```
+
+### **4. Custom Fields**
+
+The `User` model includes the following additional fields:
+
+| Field Name         | Description                                                                                      | Default         |
+|--------------------|--------------------------------------------------------------------------------------------------|-----------------|
+| **`role`**         | The user's role (`Captain`, `Crew`, or `Administrator`).                                         | `crew`          |
+| **`bio`**          | An optional biography field where users can provide personal details.                           | `None`          |
+| **`experience_level`** | Legacy field for user sailing experience (optional).                                           | `None`          |
+| **`approval_status`** | Tracks the user's approval status (`Pending`, `Approved`, or `Disapproved`).                    | `pending`       |
+| **`profile_completed`** | A boolean indicating whether the user has completed their profile.                            | `False`         |
+| **`is_active`**    | Indicates if the user's account is active (automatically updated based on `approval_status`).    | `False`         |
+| **`experience`**   | Tracks the user's sailing experience level (e.g., `RYA Competent Crew`).                         | `None`          |
+| **`photo`**        | Optional field for storing the user's profile photo using Cloudinary.                           | `None`          |
+
+### **Methods**
+
+#### **1. `save` Method**
+The `save` method is overridden to automate updates to the `is_active` field based on the user's `approval_status`. 
+
+- **Behavior**:
+  - If the `approval_status` is **`APPROVED`**, the `is_active` field is set to `True`.
+  - If the `approval_status` is **`PENDING`** or **`DISAPPROVED`**, the `is_active` field is set to `False`.
+
+```python
+def save(self, *args, **kwargs):
+    if self.approval_status == self.APPROVED:
+        self.is_active = True
+    elif self.approval_status in [self.DISAPPROVED, self.PENDING]:
+        self.is_active = False
+    super().save(*args, **kwargs)
+```
+#### **2. `__str__` Method**
+The `__str__` method returns the username as the string representation of the user. 
+
+- **Purpose**:
+  - Makes it easy to reference users in admin interfaces and logs.
+  - Provides a clear and intuitive way to display user objects.
+
+```python
+def __str__(self):
+    return self.username
+```
+### **Key Features**
+
+#### **Role-Based Behavior**
+- **Captains**:
+  - Create trips and manage crew applications.
+- **Crew Members**:
+  - Apply for trips and track application status.
+- **Administrators**:
+  - Oversee user approvals and manage the system's functionality.
+
+#### **Approval Workflow**
+- Newly registered users default to **`PENDING`** status.
+- Administrators:
+  - Must approve users to activate their accounts (`is_active = True`).
+  - Can disapprove users, resulting in deactivation (`is_active = False`).
+
+#### **Sailing Profile Data**
+- Captures:
+  - Users' sailing experience levels.
+  - Biographies.
+  - Profile photos.
+
+#### **Cloudinary Integration**
+- Profile photos are uploaded and securely stored using **Cloudinary**.
+
+---
+
+### **Workflow**
+
+#### **User Registration**
+1. New users register and select a role (e.g., **Captain**, **Crew**).
+2. Default `approval_status` is set to **`PENDING`**.
+
+#### **Approval Process**
+1. Administrators review registrations.
+2. Actions:
+   - **Approve**: Users are assigned **`APPROVED`** status, making their accounts active.
+   - **Disapprove**: Users are assigned **`DISAPPROVED`** status, deactivating their accounts.
+
+#### **Profile Completion**
+1. Once approved, users are prompted to complete their profiles.
+2. Users can provide additional details, such as:
+   - Biography.
+   - Sailing experience.
+   - Profile photo.
+
+</details>
+
+<details>
+
+<summary>Forms</summary>
+
+# `accounts/forms.py`
+
+## Forms
+
+This module defines custom forms used in the application to handle user registration, profile completion, and administrative user management.
+
+---
+
+## **1. CustomSignupForm**
+
+A custom signup form that extends `SignupForm` from `django-allauth`. It allows users to select their role during registration and sets initial user status.
+
+### **Attributes**
+- **`role`**: A dropdown field for selecting the user's role. Options are defined by `User.ROLE_CHOICES`.
+
+### **Methods**
+#### **`custom_signup(request, user)`**
+Assigns the selected role to the user and sets their initial status.
+- **Args**:
+  - `request (HttpRequest)`: The HTTP request object.
+  - `user (User)`: The user instance being created.
+- **Returns**: 
+  - `User`: The updated user instance.
+
+## **2. ProfileCompletionForm**
+
+A form that allows users to complete their profiles by providing additional details such as bio, sailing experience, and profile photo.
+
+---
+
+### **Meta Attributes**
+
+- **`model`**: The `User` model associated with the form.
+- **`fields`**: Fields included in the form:
+  - `'username'`
+  - `'email'`
+  - `'bio'`
+  - `'experience'`
+  - `'photo'`
+- **`help_texts`**: Removes the default help text for the `username` field.
+
+---
+
+### **Methods**
+
+#### **`__init__(*args, **kwargs)`**
+Initializes the form and sets the `username` and `email` fields as read-only.
+
+#### **`save(commit=True)`**
+Saves the form data to the user instance without modifying the user's password.
+
+- **Args**:
+  - `commit (bool)`: Whether to save the user instance immediately.
+- **Returns**:
+  - `User`: The updated user instance.
+
+---
+
+## **3. EditUserForm**
+
+A form designed for administrators to edit user details, including their role, approval status, experience, and profile photo.
+
+---
+
+### **Meta Attributes**
+
+- **`model`**: The `User` model associated with the form.
+- **`fields`**: Fields included in the form:
+  - `'username'`
+  - `'email'`
+  - `'role'`
+  - `'approval_status'`
+  - `'experience'`
+  - `'photo'`
+
+---
+
+</details>
+
+<details>
+
+<summary>Apps</summary>
+
+# `accounts/apps.py`
+
+## `AccountsConfig`
+
+The `AccountsConfig` class is a configuration class for the `accounts` application. It extends Django's `AppConfig` and ensures proper initialization and configuration of the app's settings and signals.
+
+---
+
+### **Attributes**
+
+- **`default_auto_field`**:
+  - Specifies the type of auto-generated field for primary keys.
+  - Default: `'django.db.models.BigAutoField'`.
+
+- **`name`**:
+  - The name of the application.
+  - Default: `'accounts'`.
+
+---
+
+### **Methods**
+
+#### **`ready()`**
+The `ready` method is called when the application starts. It imports and registers signal handlers, ensuring that the application's signals are active.
+
+- **Purpose**:
+  - To load the `accounts.signals` module and initialize signal handlers.
+- **Key Behavior**:
+  - Ensures signals are properly registered for handling custom user-related events.
+
+---
+
+</details>
+
+<details>
+
+<summary>Admin</summary>
+
+# `accounts/admin.py`
+
+This module customizes the Django admin interface for the `User` model, providing enhanced control over user management. The `CustomUserAdmin` class extends `UserAdmin` to include additional functionality and permissions tailored to the application's requirements.
+
+---
+
+## **CustomUserAdmin**
+
+The `CustomUserAdmin` class customizes the admin interface for the `User` model, allowing administrators to manage users effectively with role-based restrictions and customized display fields.
+
+---
+
+### **Attributes**
+
+- **`list_display`**:
+  - Specifies the fields to display in the admin list view.
+  - Example: `'username'`, `'email'`, `'approval_status'`, `'is_active'`, `'role'`, `'is_staff'`.
+
+- **`list_filter`**:
+  - Adds filtering options to the admin interface.
+  - Example: `'approval_status'`, `'is_active'`, `'role'`.
+
+- **`search_fields`**:
+  - Enables search functionality in the admin interface.
+  - Example: `'username'`, `'email'`.
+
+- **`ordering`**:
+  - Specifies the default ordering for the list view.
+  - Example: `'date_joined'`.
+
+- **`list_editable`**:
+  - Specifies fields editable directly in the list view.
+  - Example: `'approval_status'`.
+
+- **`fieldsets`**:
+  - Groups fields displayed on the user detail page into sections.
+
+---
+
+### **Methods**
+
+#### **1. `get_fieldsets(request, obj=None)`**
+Customizes the fields displayed in the admin detail view based on the role of the logged-in user.
+- **Args**:
+  - `request (HttpRequest)`: The current request object.
+  - `obj (User)`: The user object being edited (optional).
+- **Returns**:
+  - `tuple`: The fieldsets to display in the admin interface.
+
+---
+
+#### **2. `get_queryset(request)`**
+Filters the queryset to exclude superusers and limit visibility to captains and crew for administrators.
+- **Args**:
+  - `request (HttpRequest)`: The current request object.
+- **Returns**:
+  - `QuerySet`: The filtered queryset.
+
+---
+
+#### **3. `has_add_permission(request)`**
+Restricts the ability to add new users to superusers only.
+- **Args**:
+  - `request (HttpRequest)`: The current request object.
+- **Returns**:
+  - `bool`: `True` if the user is a superuser, otherwise `False`.
+
+---
+
+#### **4. `has_change_permission(request, obj=None)`**
+Prevents administrators from editing superuser or administrator accounts.
+- **Args**:
+  - `request (HttpRequest)`: The current request object.
+  - `obj (User)`: The user object being edited (optional).
+- **Returns**:
+  - `bool`: `True` if the user has permission, otherwise `False`.
+
+---
+
+#### **5. `has_delete_permission(request, obj=None)`**
+Prevents deletion of superuser accounts.
+- **Args**:
+  - `request (HttpRequest)`: The current request object.
+  - `obj (User)`: The user object being deleted (optional).
+- **Returns**:
+  - `bool`: `True` if the user has permission, otherwise `False`.
+
+---
+
+#### **6. `save_model(request, obj, form, change)`**
+Automatically updates the `is_active` field based on the user's `approval_status`.
+- **Args**:
+  - `request (HttpRequest)`: The current request object.
+  - `obj (User)`: The user object being saved.
+  - `form (ModelForm)`: The form instance with the submitted data.
+  - `change (bool)`: `True` if the object is being updated, otherwise `False`.
+
+---
+
+
+</details>
+
+<details>
+
+<summary>Adapter</summary>
+
+# `accounts/adapter.py`
+
+## Custom Account Adapter
+
+The `CustomAccountAdapter` class customizes Django Allauth's default behavior for account management. It modifies redirection logic and login behavior to align with the application's requirements, such as preventing auto-login for inactive users and redirecting to custom pages.
+
+---
+
+## **Class: CustomAccountAdapter**
+
+This class extends `DefaultAccountAdapter` to customize Allauth behavior for account redirection and login.
+
+---
+
+### **Methods**
+
+#### **1. `get_signup_redirect_url(request)`**
+Redirects users to the **registration pending page** after successful signup.
+
+- **Args**:
+  - `request (HttpRequest)`: The HTTP request object.
+- **Returns**:
+  - `str`: The URL for the **registration pending page**.
+
+---
+
+#### **2. `get_login_redirect_url(request)`**
+Redirects inactive users to the **registration pending page** instead of the default inactive page. Active users follow the default Allauth redirection logic.
+
+- **Args**:
+  - `request (HttpRequest)`: The HTTP request object.
+- **Returns**:
+  - `str`: The URL for the appropriate login redirection.
+
+---
+
+#### **3. `login(request, user)`**
+Prevents auto-login for inactive users by checking their `is_active` status. Active users follow the default Allauth login process.
+
+- **Args**:
+  - `request (HttpRequest)`: The HTTP request object.
+  - `user (User)`: The user instance being logged in.
+- **Returns**:
+  - `None`.
+
+---
+
+</details>

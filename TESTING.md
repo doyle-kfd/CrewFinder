@@ -298,6 +298,7 @@ All HTML pages were run through the [W3C HTML Validator](https://validator.w3.or
 | base.html            | No errors  |           |
 | home.html            | No errors  |           |
 | signup.html          | No errors  |           |
+| sailing_opportunities.html          | No errors  |           |
 
 
 ### CSS

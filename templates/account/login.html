@@ -17,7 +17,7 @@
                         {{ form|crispy }}
 
                         <!-- Hidden field for handling redirects after login -->
-                        <input type="hidden" name="next" value="{{ request.GET.next }}" />
+                        <input type="hidden" name="next" value="{{ request.GET.next }}">
                         
                         <button type="submit" class="btn signup-btn">Login</button>
                     </form>

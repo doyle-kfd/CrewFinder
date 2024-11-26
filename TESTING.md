@@ -356,4 +356,7 @@ Lighthouse validation was run on all pages (both mobile and desktop) in order to
 |                |              |               |                 |     |
 | Desktop        |              |               |                 |     |
 | Home           |          94 |           93 |             100 | 91    |
-| Sign Up           |          99 |           100 |             100 | 91    |
+| Sign Up           |          100 |           100 |             100 | 90    |
+| Login           |          99 |           100 |             100 | 90    |
+| About Us          |          100 |           93 |             100 | 91    |
+| Contact Us          |          99 |          100 |             100 | 90    |

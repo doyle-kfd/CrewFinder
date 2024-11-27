@@ -366,3 +366,4 @@ Lighthouse validation was run on all pages (both mobile and desktop) in order to
 | Authorise User         |          100 |          95 |             96 | 91    |
 | Captain Dashboard         |          99 |          95 |             96 | 91    |
 | Update Profile        |          100 |          93 |             100 | 91    |
+| Create Trip       |          100 |          93 |             100 | 91    |

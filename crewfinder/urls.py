@@ -19,6 +19,7 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib.auth import views as auth_views
+from accounts.views import CustomLogoutView
 from django.conf.urls import handler404
 from django.conf.urls import handler403
 from django.conf.urls import handler400
@@ -33,7 +34,7 @@ handler500 = 'pages.views.custom_500_view'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/login/', auth_views.LoginView.as_view(template_name='account/login.html'), name='login'),  # Direct login template
-    path('accounts/logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),  # Direct logout with redirect
+    path('accounts/logout/', CustomLogoutView.as_view(), name='logout'),  # Custom logout
     path('accounts/', include('accounts.urls', namespace='accounts')),  # Include custom accounts app URLs
     path('accounts/auth/', include('allauth.urls')),  # Allauth URLs for authentication
     path('trips/', include('trips.urls', namespace='trips')),  # Trips URLs

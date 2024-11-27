@@ -14,13 +14,16 @@ from .views import (
     admin_dashboard,
 )
 
+# Import Allauth URLs but exclude the logout view
+from allauth.account import views as allauth_views
+
 app_name = 'accounts'
 
 urlpatterns = [
     # Authentication and account management URLs
     path('signup/', CustomSignupView.as_view(), name='account_signup'),
     path('login/', CustomLoginView.as_view(), name='account_login'),
-    path('logout/', CustomLogoutView.as_view(), name='account_logout'),
+    path('logout/', CustomLogoutView.as_view(), name='logout'),  # Custom LogoutView
 
     # Profile-related URLs
     path('complete_profile/', complete_profile, name='complete_profile'),
@@ -45,6 +48,7 @@ urlpatterns = [
         name='edit_user'
     ),
 
-    # Include remaining Allauth URLs
-    path('', include('allauth.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    # Include remaining Allauth URLs except logout
+    path('auth/login/', allauth_views.LoginView.as_view(), name='account_login'),
+    path('auth/signup/', allauth_views.SignupView.as_view(), name='account_signup'),
+]

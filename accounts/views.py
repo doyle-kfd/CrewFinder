@@ -222,7 +222,7 @@ def update_profile(request):
         if form.is_valid():
             form.save()
             messages.success(request, "Your profile has been updated.")
-            return redirect('dashboard')
+            return redirect('accounts:dashboard')
     else:
         form = ProfileCompletionForm(instance=request.user)
 

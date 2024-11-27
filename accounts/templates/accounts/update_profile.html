@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
-{% load static %}  <!-- Load the static files tag library -->
+{% load page_custom_filters %}
+{% load static %}  <!-- Load the static files -->
 
 {% block title %}Update Profile{% endblock %}
 
@@ -35,7 +36,7 @@
                                 <div class="col-md-4 text-center">
                                     {% if form.instance.photo and form.instance.photo.url %}
                                         <!-- Display the user-uploaded image from Cloudinary -->
-                                        <img src="{{ form.instance.photo.url }}" alt="{{ form.instance.username }}'s Profile Picture" class="rounded-circle img-fluid" style="width: 150px; height: 150px;">
+                                        <img src="{{ form.instance.photo.url|secure }}" alt="{{ form.instance.username }}'s Profile Picture" class="rounded-circle img-fluid" style="width: 150px; height: 150px;">
                                     {% else %}
                                         <!-- Fallback to the default image if no user-uploaded image is found -->
                                         <img src="{% static 'images/default_avatar.png' %}" alt="Default Profile Picture" class="rounded-circle img-fluid" style="width: 150px; height: 150px;">

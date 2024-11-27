@@ -720,6 +720,15 @@ hr {
     transform: scale(1.05);
 }
 
+button.btn.btn-primary {
+    min-width: 150px; /* Prevent width adjustments */
+    min-height: 50px; /* Consistent height */
+}
+
+.parent-container {
+    min-height: 200px; /* Prevent height adjustments due to margin shifts */
+}
+
 /* Pagination styling on Sailing Opportunities Page */
 .pagination {
     margin-top: 20px;

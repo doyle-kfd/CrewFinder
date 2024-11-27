@@ -11,7 +11,7 @@
 <section class="hero position-relative" aria-labelledby="hero-heading">
     <picture>
         <source srcset="/static/images/crewfinder_hero.webp" type="image/webp">
-        <img src="/static/images/crewfinder_hero.jpg" alt="Discover your next sailing adventure with CrewFinder"
+        <img src="/static/images/crewfinder_hero.webp" alt="Discover your next sailing adventure with CrewFinder"
              class="hero-img" width="1920" height="1080" loading="eager" fetchpriority="high">
     </picture>
     <div
@@ -93,11 +93,24 @@
                 <div class="card h-100 shadow-sm d-flex flex-column">
                     <!-- Boat Image -->
                     {% if trip.boat_image %}
-                    <img src="{{ trip.boat_image.url|secure }}" alt="Boat Image" class="card-img-top">
+                    <picture>
+                        <source srcset="{{ trip.boat_image.url|secure }} 768w, {{ trip.boat_image.url|secure }} 1280w"
+                                sizes="(max-width: 768px) 100vw, 33vw"
+                                type="image/webp">
+                        <img src="{{ trip.boat_image.url|secure }}" 
+                             alt="Image of the boat for {{ trip.title }}" 
+                             class="card-img-top" 
+                             width="1920" height="1080" 
+                             loading="lazy">
+                    </picture>
                     {% else %}
-                    <img src="/static/images/default_boat.jpg" class="card-img-top" alt="Default Boat Image">
+                    <img src="/static/images/default_boat.jpg" 
+                         alt="Default Boat Image" 
+                         class="card-img-top" 
+                         width="1920" height="1080" 
+                         loading="lazy">
                     {% endif %}
-
+            
                     <!-- Card Body -->
                     <div class="card-body flex-grow-1">
                         <h5 class="card-title text-center">{{ trip.title }}</h5>
@@ -117,32 +130,39 @@
                             <strong>Trip Description:</strong> {{ trip.trip_description|truncatewords:20 }}
                         </p>
                     </div>
-
+            
                     <!-- Card Footer -->
                     <div class="card-footer bg-white border-0 mt-auto">
                         {% if user.is_authenticated %}
-                        {% if user.role != 'captain' %}
-                        {% if trip.id not in applied_trip_ids %}
-                        <a href="{% url 'apply_for_trip' trip.id %}" class="btn btn-success w-100">Apply Now</a>
+                            {% if user.role != 'captain' %}
+                                {% if trip.id not in applied_trip_ids %}
+                                    <a href="{% url 'apply_for_trip' trip.id %}" 
+                                       class="btn btn-success w-100" 
+                                       aria-label="Apply for {{ trip.title }}">Apply Now</a>
+                                {% else %}
+                                    <div class="alert alert-info text-center mt-3" role="alert">
+                                        <i class="fas fa-info-circle"></i> You have already applied for this trip.
+                                    </div>
+                                {% endif %}
+                            {% else %}
+                                <button class="btn btn-secondary w-100" disabled 
+                                        aria-label="Captains cannot apply for trips">Captains cannot apply</button>
+                            {% endif %}
                         {% else %}
-                        <div class="alert alert-info text-center mt-3" role="alert">
-                            <i class="fas fa-info-circle"></i> You have already applied for this trip.
-                        </div>
-                        {% endif %}
-                        {% else %}
-                        <button class="btn btn-secondary w-100" disabled>Captains cannot apply</button>
-                        {% endif %}
-                        {% else %}
-                        <!-- Login and Sign Up Buttons -->
-                        <div class="d-flex flex-column">
-                            <a href="{% url 'account_login' %}" class="btn btn-primary mb-2">Login to Apply</a>
-                            <a href="{% url 'account_signup' %}" class="btn btn-outline-primary">Sign Up to Apply</a>
-                        </div>
+                            <!-- Login and Sign Up Buttons -->
+                            <div class="d-flex flex-column">
+                                <a href="{% url 'account_login' %}" 
+                                   class="btn btn-primary mb-2" 
+                                   aria-label="Login to apply for trips">Login to Apply</a>
+                                <a href="{% url 'account_signup' %}" 
+                                   class="btn btn-outline-primary" 
+                                   aria-label="Sign up to apply for trips">Sign Up to Apply</a>
+                            </div>
                         {% endif %}
                     </div>
                 </div>
             </div>
-
+            
             {% empty %}
             <p class="text-muted">No sailing opportunities available at the moment.</p>
             {% endfor %}

@@ -5,14 +5,14 @@
 
 {% block content %}
 
-<link rel="preload" fetchpriority="high" as="image" href="/static/images/crewfinder_hero.webp" type="image/webp">
+<link rel="preload" as="image" href="https://crew-finder-410f29f97c51.herokuapp.com/static/images/crewfinder_hero.jpg">
 
 <!-- Hero Section -->
 <section class="hero position-relative" aria-labelledby="hero-heading">
     <picture>
         <source srcset="/static/images/crewfinder_hero.webp" type="image/webp">
         <img src="/static/images/crewfinder_hero.jpg" alt="Discover your next sailing adventure with CrewFinder"
-            class="hero-img" width="1920" height="1080">
+             class="hero-img" width="1920" height="1080" loading="eager" fetchpriority="high">
     </picture>
     <div
         class="hero-overlay d-flex align-items-center justify-content-center text-center position-absolute top-0 start-0 w-100 h-100">

@@ -108,7 +108,7 @@
                     <!-- Image Section -->
                     <figure class="mb-3">
                         {% if booking.trip.boat_image %}
-                        <img src="{{ booking.trip.boat_image.url }}" alt="Boat Image" class="img-fluid rounded">
+                        <img src="{{ booking.trip.boat_image.url|secure }}" alt="Boat Image" class="img-fluid rounded">
                         {% else %}
                         <img src="{% static 'images/default_trip_image.jpg' %}" alt="Default Boat Image"
                             class="img-fluid rounded">

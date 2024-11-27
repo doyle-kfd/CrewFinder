@@ -351,19 +351,33 @@ All Python files were run through [Pep8](https://pep8ci.herokuapp.com/)  with no
 
 Lighthouse validation was run on all pages (both mobile and desktop) in order to check accessibility and performance.
 
-| Page           | Performance  | Accessibility | Best Practices  | SEO |
-|----------------|:------------:|:-------------:|:---------------:|:---:|
-|                |              |               |                 |     |
-| Desktop        |              |               |                 |     |
-| Home           |          94 |           93 |             100 | 91    |
-| Sign Up           |          100 |           100 |             100 | 90    |
-| Password Reset           |          99 |           100 |             100 | 90    |
-| Login           |          99 |           100 |             100 | 90    |
-| About Us          |          100 |           93 |             100 | 91    |
-| Contact Us          |          99 |          100 |             100 | 90    |
-| Sailing Opportunities         |          98 |          93 |             96 | 91    |
-| Admin Dashboard         |          100 |          100 |             100 | 90    |
-| Authorise User         |          100 |          95 |             96 | 91    |
-| Captain Dashboard         |          99 |          95 |             96 | 91    |
-| Update Profile        |          100 |          93 |             100 | 91    |
-| Create Trip       |          100 |          93 |             100 | 91    |
+| Page                    | Performance  | Accessibility | Best Practices  |  SEO  |
+|-------------------------|:------------:|:-------------:|:---------------:|:-----:|
+|                         |              |               |                 |       |
+| **Desktop**             |              |               |                 |       |
+| Home                    |          94  |            93 |             100 | 91    |
+| Sign Up                 |          100 |           100 |             100 | 90    |
+| Password Reset          |          99  |           100 |             100 | 90    |
+| Login                   |          99  |           100 |             100 | 90    |
+| About Us                |          100 |            93 |             100 | 91    |
+| Contact Us              |          99  |           100 |             100 | 90    |
+| Sailing Opportunities   |          98  |            93 |              96 | 91    |
+| Admin Dashboard         |          100 |           100 |             100 | 90    |
+| Authorise User          |          100 |            95 |              96 | 91    |
+| Captain Dashboard       |          99  |            95 |              96 | 91    |
+| Update Profile          |          100 |            93 |             100 | 91    |
+| Create Trip             |          100 |            93 |             100 | 91    |
+|                         |              |               |                 |       |
+| **Mobile**                   |              |               |                 |       |
+| Home                    |          94  |            93 |             100 | 91    |
+| Sign Up                 |          100 |           100 |             100 | 90    |
+| Password Reset          |          99  |           100 |             100 | 90    |
+| Login                   |          99  |           100 |             100 | 90    |
+| About Us                |          100 |            93 |             100 | 91    |
+| Contact Us              |          99  |           100 |             100 | 90    |
+| Sailing Opportunities   |          98  |            93 |              96 | 91    |
+| Admin Dashboard         |          100 |           100 |             100 | 90    |
+| Authorise User          |          100 |            95 |              96 | 91    |
+| Captain Dashboard       |          99  |            95 |              96 | 91    |
+| Update Profile          |          100 |            93 |             100 | 91    |
+| Create Trip             |          100 |            93 |             100 | 91    |

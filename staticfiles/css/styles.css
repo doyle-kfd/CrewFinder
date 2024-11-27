@@ -209,6 +209,12 @@ td:last-child {
     margin-top: 10px;
 }
 
+.card-img-top {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3; /* Fallback for browsers without intrinsic size support */
+}
+
 /*  Home Page  */
 /* Hero Section */
 .hero-image {

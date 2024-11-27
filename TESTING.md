@@ -357,6 +357,12 @@ Lighthouse validation was run on all pages (both mobile and desktop) in order to
 | Desktop        |              |               |                 |     |
 | Home           |          94 |           93 |             100 | 91    |
 | Sign Up           |          100 |           100 |             100 | 90    |
+| Password Reset           |          99 |           100 |             100 | 90    |
 | Login           |          99 |           100 |             100 | 90    |
 | About Us          |          100 |           93 |             100 | 91    |
 | Contact Us          |          99 |          100 |             100 | 90    |
+| Sailing Opportunities         |          98 |          93 |             96 | 91    |
+| Admin Dashboard         |          100 |          100 |             100 | 90    |
+| Authorise User         |          100 |          95 |             96 | 91    |
+| Captain Dashboard         |          99 |          95 |             96 | 91    |
+| Update Profile        |          100 |          93 |             100 | 91    |

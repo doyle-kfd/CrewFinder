@@ -19,6 +19,9 @@ h1, h2, h3 {
 
 body {
     font-family: 'Roboto', Arial, sans-serif;
+    min-height: 100vh; /* Reserve the full viewport height */
+    margin: 0;         /* Avoid unexpected margins */
+    padding: 0;
 }
 
 
@@ -561,6 +564,7 @@ td:last-child {
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
     padding: 4rem 0; /* Adjust padding for spacing */
     overflow: hidden; /* Ensures no extra content spills out */
+    min-height: 500px; /* Placeholder height */
 }
 
 .hero-section::before {

@@ -12,11 +12,11 @@
 
     <nav class="mb-4 d-flex gap-3">
         <!-- Update Profile button for all roles -->
-        <a href="{% url 'update_profile' %}" class="btn btn-secondary btn-lg px-4 custom-button">Update Profile</a>
+        <a href="{% url 'accounts:update_profile' %}" class="btn btn-secondary btn-lg px-4 custom-button">Update Profile</a>
 
         <!-- Create Trip button for captains only -->
         {% if user.role == 'captain' %}
-        <a href="{% url 'create_trip' %}" class="btn btn-primary btn-lg px-4 custom-button">Create a New Trip</a>
+        <a href="{% url 'trips:create_trip' %}" class="btn btn-primary btn-lg px-4 custom-button">Create a New Trip</a>
         {% endif %}
 
         <!-- View Sailing Opportunities button for crew only -->
@@ -62,8 +62,8 @@
 
                         <!-- Action Buttons -->
                         <div class="d-flex justify-content-end gap-2 mt-3">
-                            <a href="{% url 'edit_trip' trip.id %}" class="btn btn-sm btn-warning">Edit</a>
-                            <a href="{% url 'delete_trip' trip.id %}" class="btn btn-sm btn-danger">Delete</a>
+                            <a href="{% url 'trips:edit_trip' trip.id %}" class="btn btn-sm btn-warning">Edit</a>
+                            <a href="{% url 'trips:delete_trip' trip.id %}" class="btn btn-sm btn-danger">Delete</a>
                         </div>
                     </div>
 
@@ -78,7 +78,7 @@
                                     <strong>{{ crew.user.username }}</strong>
                                     ({{ crew.status|title }})
                                 </div>
-                                <a href="{% url 'crew_profile' crew.user.id trip.id %}"
+                                <a href="{% url 'accounts:crew_profile' crew.user.id trip.id %}"
                                     class="btn btn-sm btn-outline-info">View Profile</a>
                             </li>
                             {% endfor %}

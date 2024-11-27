@@ -14,6 +14,8 @@ from .views import (
     admin_dashboard,
 )
 
+app_name = 'accounts'
+
 urlpatterns = [
     # Authentication and account management URLs
     path('signup/', CustomSignupView.as_view(), name='account_signup'),
@@ -27,7 +29,7 @@ urlpatterns = [
         registration_pending,
         name='registration_pending'
     ),
-    path('dashboard/', dashboard, name='dashboard'),
+    path('dashboard/', views.dashboard, name='dashboard'),
     path('admin_dashboard/', admin_dashboard, name='admin_dashboard'),
     path('update_profile/', update_profile, name='update_profile'),
 

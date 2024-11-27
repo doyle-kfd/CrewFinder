@@ -34,9 +34,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/login/', auth_views.LoginView.as_view(template_name='account/login.html'), name='login'),  # Direct login template
     path('accounts/logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),  # Direct logout with redirect
-    path('accounts/', include('accounts.urls')),  # Include custom accounts app URLs
-    path('accounts/', include('allauth.urls')),  # Allauth URLs for authentication and account management
-    path('trips/', include('trips.urls')),  # Trips URLs
+    path('accounts/', include('accounts.urls', namespace='accounts')),  # Include custom accounts app URLs
+    path('accounts/auth/', include('allauth.urls')),  # Allauth URLs for authentication
+    path('trips/', include('trips.urls', namespace='trips')),  # Trips URLs
     path('', include('pages.urls')),  # Main pages (home, about, etc.)
     path('crewbooking/', include('crewbooking.urls')),  # Include crewbooking URLs
 ]

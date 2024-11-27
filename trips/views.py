@@ -17,7 +17,7 @@ def create_trip(request):
             trip = form.save(commit=False)
             trip.captain = request.user
             trip.save()
-            return redirect('dashboard')
+            return redirect('accounts:dashboard')
     else:
         form = TripCreationForm()
     

@@ -565,6 +565,7 @@ td:last-child {
     padding: 4rem 0; /* Adjust padding for spacing */
     overflow: hidden; /* Ensures no extra content spills out */
     min-height: 500px; /* Placeholder height */
+    aspect-ratio: 16 / 9; /* Reserve space based on image ratio */
 }
 
 .hero-section::before {

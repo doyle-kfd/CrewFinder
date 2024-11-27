@@ -291,7 +291,7 @@ td:last-child {
 
 /* Buttons */
 .cta-section .btn-primary {
-    background-color: #007bff;
+    background-color: #042243;
     border: none;
     color: #fff;
     padding: 10px 30px;
@@ -603,8 +603,8 @@ td:last-child {
 
 /* Buttons */
 .btn-primary {
-    background-color: #00457C;
-    border-color: #022745;
+    background-color: #042243;
+    border-color: #042243;
 }
 
 .btn-outline-primary {
@@ -711,7 +711,7 @@ hr {
 
 /* Button Styling */
 .btn-primary {
-    background-color: #007bff;
+    background-color: #042243;
     border-color: #042243;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }

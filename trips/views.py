@@ -28,10 +28,7 @@ def create_trip(request):
 @login_required
 def captain_dashboard(request):
     if request.user.role == "captain":
-        # Use departure_date instead of date
         my_trips = Trip.objects.filter(captain=request.user).order_by('departure_date')
-        
-        # Fetch crew bookings related to the trips and pass them along
         applied_crews = CrewBooking.objects.filter(trip__in=my_trips)
 
         return render(request, 'accounts/dashboard.html', {'my_trips': my_trips, 'applied_crews': applied_crews})

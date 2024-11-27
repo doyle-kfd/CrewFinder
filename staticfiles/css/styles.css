@@ -215,6 +215,15 @@ td:last-child {
     aspect-ratio: 4 / 3; /* Fallback for browsers without intrinsic size support */
 }
 
+/* Set aspect ration for card images to improve lighthouse score */
+.img-fluid.rounded {
+    aspect-ratio: 16 / 9; /* Example ratio */
+    width: 100%;
+    height: auto;
+  }
+
+
+
 /*  Home Page  */
 /* Hero Section */
 .hero-image {

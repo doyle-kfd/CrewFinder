@@ -375,7 +375,7 @@ Lighthouse validation was run on all pages (both mobile and desktop) in order to
 | Login                   |          90 |           100 |             100 | 90    |
 | About Us                |          96 |            98 |             96 | 91    |
 | Contact Us              |          95  |           100 |             100 | 90    |
-| Sailing Opportunities   |          98  |            93 |              96 | 91    |
+| Sailing Opportunities   |          95  |            98 |              96 | 91    |
 | Admin Dashboard         |          100 |           100 |             100 | 90    |
 | Authorise User          |          100 |            95 |              96 | 91    |
 | Captain Dashboard       |          99  |            95 |              96 | 91    |

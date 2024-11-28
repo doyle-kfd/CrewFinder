@@ -10,10 +10,22 @@
 <!-- Hero Section -->
 <section class="hero position-relative" aria-labelledby="hero-heading">
     <picture>
-        <source srcset="/static/images/crewfinder_hero.webp" type="image/webp">
-        <img src="/static/images/crewfinder_hero.webp" alt="Discover your next sailing adventure with CrewFinder"
-             class="hero-img" width="1280"  loading="eager" fetchpriority="high">
-    </picture>
+        <picture>
+            <source srcset="/static/images/crewfinder_hero_600.webp 600w, 
+                            /static/images/crewfinder_hero_768.webp 768w, 
+                            /static/images/crewfinder_hero.webp 1280w" 
+                    sizes="(max-width: 600px) 100vw, 
+                           (max-width: 768px) 100vw, 
+                           1280px" 
+                    type="image/webp">
+            <img src="/static/images/crewfinder_hero.webp" 
+                 alt="Discover your next sailing adventure with CrewFinder" 
+                 class="hero-img" 
+                 width="1280" 
+                 height="720" 
+                 loading="eager" 
+                 fetchpriority="high">
+        </picture>
     <div
         class="hero-overlay d-flex align-items-center justify-content-center text-center position-absolute top-0 start-0 w-100 h-100">
         <div>

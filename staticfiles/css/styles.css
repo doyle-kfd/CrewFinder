@@ -421,6 +421,9 @@ td:last-child {
     transform: scale(1.05);
 }
 
+.about {
+    padding-top:150px;
+}
 
 /* Signup page styling */
 /* Hero Section with Background Image */

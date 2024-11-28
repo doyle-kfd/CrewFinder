@@ -570,18 +570,22 @@ td:last-child {
 
 /* About Us Page Styling */
 /* Hero Section with Image Overlay */
-.hero-section {
+.about-hero-section {
     position: relative;
+    display: flex;
+    justify-content: center; /* Centers content horizontally */
+    align-items: center; /* Centers content vertically */
     background: url('/static/images/about_us_hero.jpg') center center/cover no-repeat;
     color: white;
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
-    padding: 4rem 0; /* Adjust padding for spacing */
-    overflow: hidden; /* Ensures no extra content spills out */
-    min-height: 500px; /* Placeholder height */
-    aspect-ratio: 16 / 9; /* Reserve space based on image ratio */
+    padding: 4rem 0;
+    overflow: hidden;
+    min-height: 500px; /* Minimum height to ensure visibility */
+    height: auto; /* Height adapts to content */
+    width: 100%; /* Ensure full width */
 }
 
-.hero-section::before {
+.about-hero-section::before {
     content: '';
     position: absolute;
     top: 0;
@@ -589,12 +593,13 @@ td:last-child {
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5); /* Black overlay with 50% transparency */
-    z-index: 1; /* Places overlay below the text */
+    z-index: 1;
 }
 
-.hero-section .container {
+.about-hero-section .container {
     position: relative;
-    z-index: 2; /* Ensures text and content appear above the overlay */
+    z-index: 2;
+    text-align: center; /* Centers the text horizontally */
 }
 
 .text-primary {

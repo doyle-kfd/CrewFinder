@@ -19,7 +19,6 @@ h1, h2, h3 {
 
 body {
     font-family: 'Roboto', Arial, sans-serif;
-    min-height: 100vh; /* Reserve the full viewport height */
     margin: 0;         /* Avoid unexpected margins */
     padding: 0;
 }

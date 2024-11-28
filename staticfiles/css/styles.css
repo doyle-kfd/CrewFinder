@@ -230,7 +230,7 @@ td:last-child {
 /* Hero Section */
 .hero {
     position: relative;
-    height: 60vh; /* Full viewport height */
+    height: 50vh; /* Full viewport height */
     overflow: hidden; /* Ensure the image doesn't spill out */
 }
 
@@ -895,7 +895,6 @@ registration-overlay p {
 @media (max-width: 1199px) {
     .hero-img {
         height: 50vh; /* Adjust height for large desktops */
-        max-height: 300px;
     }
 
     .about-cta {

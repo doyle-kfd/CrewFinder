@@ -569,29 +569,7 @@ td:last-child {
 
 
 /* About Us Page Styling */
-/* Hero Section with Image Overlay */
-.about-hero-section {
-    position: relative;
-    min-height: 500px;
-    width: 100%;
-    overflow: hidden;
-}
 
-.about-hero-section img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 1; /* Keep the image below text */
-}
-
-.about-hero-section .container {
-    position: relative;
-    z-index: 2; /* Ensure text is above the image */
-    text-align: center;
-}
 
 .object-fit-cover {
     object-fit: cover;

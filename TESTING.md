@@ -374,7 +374,7 @@ Lighthouse validation was run on all pages (both mobile and desktop) in order to
 | Password Reset          |          90  |           100 |             100 | 90    |
 | Login                   |          90 |           100 |             100 | 90    |
 | About Us                |          96 |            98 |             96 | 91    |
-| Contact Us              |          99  |           100 |             100 | 90    |
+| Contact Us              |          95  |           100 |             100 | 90    |
 | Sailing Opportunities   |          98  |            93 |              96 | 91    |
 | Admin Dashboard         |          100 |           100 |             100 | 90    |
 | Authorise User          |          100 |            95 |              96 | 91    |

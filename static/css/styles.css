@@ -389,18 +389,18 @@ td:last-child {
 }
 
 .cta-section .btn-outline-primary {
-    color: #007bff;
-    border-color: #007bff;
-    padding: 10px 30px;
-    font-size: 1.1rem;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
     font-weight: bold;
+    padding: 12px 30px;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .cta-section .btn-outline-primary:hover {
-    background-color: #00457C; /* Add background */
-    color: #ffffff; /* White text */
-    border-color: #00457C; /* Match the border */
+    background-color: #f0f0f0;
+    color: #007bff;
+    transform: scale(1.05);
 }
 
 /* Testimonials Heading */

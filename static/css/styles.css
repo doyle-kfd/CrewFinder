@@ -681,7 +681,7 @@ td:last-child {
 /* Buttons */
 
 
-.btn-primary {
+.featured-trips .btn-primary {
     background-color: #007bff;
     color: #ffffff;
     border: none;
@@ -690,9 +690,10 @@ td:last-child {
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.btn-primary:hover {
+.featured-trips .btn-primary:hover {
     background-color: #f0f0f0;
     color: #007bff;
+    border: 1px solid #007bff;
     transform: scale(1.05);
 }
 

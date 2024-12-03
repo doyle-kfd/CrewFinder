@@ -373,19 +373,19 @@ td:last-child {
 }
 
 /* Buttons */
-.cta-section .btn-primary {
+.cta-section .cta-btn {
     background-color: #007bff;
+    color: #ffffff;
     border: none;
-    color: #fff;
-    padding: 10px 30px;
-    font-size: 1.1rem;
     font-weight: bold;
+    padding: 12px 30px;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.cta-section .btn-primary:hover {
-    background-color: #ffffff;
-    color:#007bff;
+.cta-section .cta-btn:hover {
+    background-color: #f0f0f0;
+    color: #007bff;
+    transform: scale(1.05);
 }
 
 .cta-section .btn-outline-primary {

@@ -13,13 +13,16 @@
 }
 
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
     font-family: 'Roboto', sans-serif;
 }
 
 body {
     font-family: 'Roboto', Arial, sans-serif;
-    margin: 0;         /* Avoid unexpected margins */
+    margin: 0;
+    /* Avoid unexpected margins */
     padding: 0;
 }
 
@@ -28,12 +31,15 @@ body {
 /* Navbar Background and Font */
 /* Ensure Navbar Background is Correct */
 .navbar {
-    background-color: var(--primary-color) !important; /* Force the correct background */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    background-color: var(--primary-color) !important;
+    /* Force the correct background */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow */
 }
 
 .navbar .navbar-brand {
-    color: #ffffff; /* White text for brand */
+    color: #ffffff;
+    /* White text for brand */
     font-weight: bold;
     font-size: 1.5rem;
     text-transform: uppercase;
@@ -41,24 +47,30 @@ body {
 }
 
 .navbar .navbar-brand:hover {
-    color: #0066A2; /* Lighter blue for hover effect */
+    color: #0066A2;
+    /* Lighter blue for hover effect */
 }
 
 .navbar .nav-link {
-    color: var(--white-color) !important; /* Ensure links are white */
+    color: var(--white-color) !important;
+    /* Ensure links are white */
     font-weight: 500;
     text-transform: uppercase;
     margin: 0 0.5rem;
 }
 
 .navbar .nav-link:hover {
-    color: #00B4D8 !important; /* Bright blue hover effect */
+    color: #00B4D8 !important;
+    /* Bright blue hover effect */
     text-decoration: none;
 }
+
 .navbar .nav-link.active {
-    color: #00B4D8 !important; /* Active page link */
+    color: #00B4D8 !important;
+    /* Active page link */
     font-weight: bold !important;
-    border-bottom: 2px solid #00B4D8 !important; /* Optional underline */
+    border-bottom: 2px solid #00B4D8 !important;
+    /* Optional underline */
 }
 
 /* Navbar Toggle (Mobile View) */
@@ -80,15 +92,16 @@ body {
 }
 
 .nav-text {
-        color: var(--white-color) !important;
-        font-weight: 500;
-        text-transform: uppercase;
-        text-align: right;
-        
+    color: var(--white-color) !important;
+    font-weight: 500;
+    text-transform: uppercase;
+    text-align: right;
+
 }
 
 .navbar .nav-link.mb-0 {
-    margin-right: 0.5rem; /* Adjust this value as needed */
+    margin-right: 0.5rem;
+    /* Adjust this value as needed */
 }
 
 
@@ -99,19 +112,27 @@ body {
 
 .navbar .me-2 {
     font-size: 1rem;
-    color: #ffffff; /* Adjust color for "Navigation" label */
+    color: #ffffff;
+    /* Adjust color for "Navigation" label */
 }
 
 /* Navbar Spacing */
 .navbar-nav {
-    margin-left: auto; /* Align links to the right */
+    margin-left: auto;
+    /* Align links to the right */
 }
 
 .nav-item {
-    margin: 0 0.5rem; /* Add spacing between nav items */
+    margin: 0 0.5rem;
+    /* Add spacing between nav items */
 }
 
-
+.navbar-toggler:focus {
+    outline: none;
+    /* Removes the focus outline */
+    box-shadow: none;
+    /* Removes any shadow effect */
+}
 
 /* Table Styling */
 table {
@@ -167,19 +188,23 @@ td:last-child {
 .card {
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Ensures the footer stays at the bottom */
-    height: 100%; /* Ensures uniform height for all cards */
+    justify-content: space-between;
+    /* Ensures the footer stays at the bottom */
+    height: 100%;
+    /* Ensures uniform height for all cards */
 }
 
 .card-body {
-    flex-grow: 1; /* Allows the card body to take up available space */
+    flex-grow: 1;
+    /* Allows the card body to take up available space */
 }
 
 .card-footer {
-    margin-top: auto; /* Pushes the footer to the bottom of the card */
+    margin-top: auto;
+    /* Pushes the footer to the bottom of the card */
 }
 
-.row > .col-lg-4 {
+.row>.col-lg-4 {
     display: flex;
     align-items: stretch;
 }
@@ -231,15 +256,17 @@ td:last-child {
 .card-img-top {
     width: 100%;
     height: auto;
-    aspect-ratio: 4 / 3; /* Fallback for browsers without intrinsic size support */
+    aspect-ratio: 4 / 3;
+    /* Fallback for browsers without intrinsic size support */
 }
 
 /* Set aspect ration for card images to improve lighthouse score */
 .img-fluid.rounded {
-    aspect-ratio: 16 / 9; /* Example ratio */
+    aspect-ratio: 16 / 9;
+    /* Example ratio */
     width: 100%;
     height: auto;
-  }
+}
 
 
 
@@ -247,19 +274,26 @@ td:last-child {
 /* Hero Section */
 .hero {
     position: relative;
-    height: 50vh; /* Full viewport height */
-    overflow: hidden; /* Ensure the image doesn't spill out */
+    height: 50vh;
+    /* Full viewport height */
+    overflow: hidden;
+    /* Ensure the image doesn't spill out */
 }
 
 /* Styling the image */
 .hero-img {
-    width: 100%; /* Full width of the container */
-    height: 100%; /* Full height of the container */
-    object-fit: cover; /* Ensures the image covers the entire area without distortion */
-    position: absolute; /* Position the image behind the content */
+    width: 100%;
+    /* Full width of the container */
+    height: 100%;
+    /* Full height of the container */
+    object-fit: cover;
+    /* Ensures the image covers the entire area without distortion */
+    position: absolute;
+    /* Position the image behind the content */
     top: 0;
     left: 0;
-    z-index: -1; /* Send the image to the back */
+    z-index: -1;
+    /* Send the image to the back */
 }
 
 
@@ -270,8 +304,10 @@ td:last-child {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
-    z-index: 1; /* Ensure the overlay is above the image */
+    background: rgba(0, 0, 0, 0.5);
+    /* Semi-transparent overlay */
+    z-index: 1;
+    /* Ensure the overlay is above the image */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -287,6 +323,11 @@ td:last-child {
 .featured-trips {
     padding: 40px 0;
     background-color: #f8f9fa;
+}
+
+/* About CrewFinder - Home Page */
+.about-hp .btn {
+    color: red;
 }
 
 /* Section Heading */
@@ -321,7 +362,7 @@ td:last-child {
 
 /* Buttons */
 .cta-section .btn-primary {
-    background-color: #042243;
+    background-color: #007bff;
     border: none;
     color: #fff;
     padding: 10px 30px;
@@ -381,9 +422,12 @@ td:last-child {
 /* Position carousel arrows */
 .carousel-control-prev,
 .carousel-control-next {
-    width: 5%; /* Narrow clickable area */
-    z-index: 10; /* Ensure arrows are above the text */
-    top: 50%; /* Center vertically */
+    width: 5%;
+    /* Narrow clickable area */
+    z-index: 10;
+    /* Ensure arrows are above the text */
+    top: 50%;
+    /* Center vertically */
     transform: translateY(-50%);
 }
 
@@ -391,8 +435,10 @@ td:last-child {
 /* Style arrows for better visibility */
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-    border-radius: 50%; /* Rounded icon */
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Semi-transparent background */
+    border-radius: 50%;
+    /* Rounded icon */
     padding: 10px;
 }
 
@@ -424,8 +470,8 @@ td:last-child {
 }
 
 .about-cta .cta .btn {
-    background-color: var(--white-color);
-    color: var(--primary-color);
+    background-color: #007bff;
+    color: #ffffff;
     border: none;
     font-weight: bold;
     padding: 12px 30px;
@@ -434,7 +480,7 @@ td:last-child {
 
 .about-cta .cta .btn:hover {
     background-color: #f0f0f0;
-    color: var(--primary-color);
+    color: #007bff;
     transform: scale(1.05);
 }
 
@@ -444,7 +490,8 @@ td:last-child {
 .signup-hero {
     background: url('/static/images/signup_page_image.webp') no-repeat center center;
     background-size: cover;
-    min-height: 100vh; /* Ensure the section spans the full viewport height */
+    min-height: 100vh;
+    /* Ensure the section spans the full viewport height */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -453,7 +500,8 @@ td:last-child {
 
 /* Form Styling */
 .signup-overlay {
-    background: rgba(255, 255, 255, 0.85); /* Opaque white background */
+    background: rgba(255, 255, 255, 0.85);
+    /* Opaque white background */
     padding: 40px 30px;
     border-radius: 15px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
@@ -510,12 +558,14 @@ td:last-child {
 
 /* Contact Us Overlay Styling */
 .contact-overlay {
-    background: rgba(255, 255, 255, 0.9); /* Slightly opaque white background */
+    background: rgba(255, 255, 255, 0.9);
+    /* Slightly opaque white background */
     padding: 40px 30px;
     border-radius: 15px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
     width: 100%;
-    text-align: left; /* Align content inside the overlay */
+    text-align: left;
+    /* Align content inside the overlay */
 }
 
 /* Headings and Text Styling */
@@ -523,14 +573,16 @@ td:last-child {
     font-size: 2.5rem;
     font-weight: bold;
     color: #1e3c72;
-    text-align: center; /* Center the main heading */
+    text-align: center;
+    /* Center the main heading */
     margin-bottom: 15px;
 }
 
 .contact-overlay p {
     font-size: 1rem;
     color: #555;
-    text-align: center; /* Center the lead text */
+    text-align: center;
+    /* Center the lead text */
     margin-bottom: 20px;
 }
 
@@ -607,18 +659,17 @@ td:last-child {
 }
 
 .icon-box i {
-    color: #00457C; /* Primary brand color */
+    color: #00457C;
+    /* Primary brand color */
 }
 
 /* Buttons */
 .btn-primary {
-    background-color: #042243;
-    border-color: #042243;
+    background-color: #007bff;
 }
 
 .btn-outline-primary {
     color: #00457C;
-    border-color: #062846;
 }
 
 .btn:hover {
@@ -684,7 +735,8 @@ hr {
     background-color: var(--primary-color) !important;
 }
 
-.footer span, .footer a {
+.footer span,
+.footer a {
     color: var(--white-color) !important;
     text-decoration: none;
 }
@@ -693,6 +745,7 @@ hr {
     text-decoration: underline;
     color: var(--secondary-color);
 }
+
 .contact-overlay .text-muted {
     font-size: 0.9rem;
     color: #666;
@@ -719,9 +772,9 @@ hr {
 
 
 /* Button Styling */
-.btn-primary {
-    background-color: #042243;
-    border-color: #042243;
+.home-page-hero .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
@@ -731,12 +784,15 @@ hr {
 }
 
 button.btn.btn-primary {
-    min-width: 150px; /* Prevent width adjustments */
-    min-height: 50px; /* Consistent height */
+    min-width: 150px;
+    /* Prevent width adjustments */
+    min-height: 50px;
+    /* Consistent height */
 }
 
 .parent-container {
-    min-height: 200px; /* Prevent height adjustments due to margin shifts */
+    min-height: 200px;
+    /* Prevent height adjustments due to margin shifts */
 }
 
 /* Pagination styling on Sailing Opportunities Page */
@@ -772,24 +828,35 @@ button.btn.btn-primary {
 
 /* Notification container styling */
 .registration-overlay {
-    background-color: rgba(255, 255, 255, 0.9); /* Light background with some transparency */
-    padding: 2rem; /* Padding for spacing */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    background-color: rgba(255, 255, 255, 0.9);
+    /* Light background with some transparency */
+    padding: 2rem;
+    /* Padding for spacing */
+    border-radius: 10px;
+    /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow for depth */
 }
 
 /* Header styles */
 .registration-overlay h1 {
-    font-size: 2rem; /* Large font size for the heading */
-    font-weight: 700; /* Bold heading */
-    margin-bottom: 1rem; /* Space below the heading */
-    color: #333; /* Dark gray for better contrast */
+    font-size: 2rem;
+    /* Large font size for the heading */
+    font-weight: 700;
+    /* Bold heading */
+    margin-bottom: 1rem;
+    /* Space below the heading */
+    color: #333;
+    /* Dark gray for better contrast */
 }
 
 registration-overlay p {
-    font-size: 1rem; /* Regular font size for description */
-    color: #555; /* Slightly lighter gray for the text */
-    margin-bottom: 0; /* Avoid unnecessary space below */
+    font-size: 1rem;
+    /* Regular font size for description */
+    color: #555;
+    /* Slightly lighter gray for the text */
+    margin-bottom: 0;
+    /* Avoid unnecessary space below */
 }
 
 
@@ -800,24 +867,29 @@ registration-overlay p {
 
 /* Small Devices (Phones, <576px) */
 @media (max-width: 576px) {
-    
+
     .hero-img {
-        height: 40vh; /* Adjust height for small screens */
+        height: 40vh;
+        /* Adjust height for small screens */
     }
 
     .navbar {
-        font-size: 0.9rem; /* Reduce font size for navbar links */
+        font-size: 0.9rem;
+        /* Reduce font size for navbar links */
     }
 
     .mob-space {
         margin-bottom: 10px;
     }
+
     .carousel-control-prev {
-        left: 10px !important; /* Keep arrows inside the viewport */
+        left: 10px !important;
+        /* Keep arrows inside the viewport */
     }
 
     .carousel-control-next {
-        right: 10px; /* Keep arrows inside the viewport */
+        right: 10px;
+        /* Keep arrows inside the viewport */
     }
 }
 
@@ -828,7 +900,8 @@ registration-overlay p {
     }
 
     .hero-overlay {
-        padding: 20px; /* Reduce padding for smaller screens */
+        padding: 20px;
+        /* Reduce padding for smaller screens */
     }
 
     .mob-space {
@@ -836,15 +909,18 @@ registration-overlay p {
     }
 
     .custom-button {
-        padding: 8px 16px; /* Adjust button padding */
+        padding: 8px 16px;
+        /* Adjust button padding */
     }
 
     .about-cta .cta h3 {
-        font-size: 1.5rem; /* Adjust CTA headline size */
+        font-size: 1.5rem;
+        /* Adjust CTA headline size */
     }
 
     .cta-section .btn {
-        width: 100%; /* Full width on small screens */
+        width: 100%;
+        /* Full width on small screens */
         margin-bottom: 10px;
     }
 
@@ -859,12 +935,15 @@ registration-overlay p {
     .signup-overlay p {
         font-size: 0.9rem;
     }
+
     .carousel-control-prev {
-        left: 10px !important; /* Keep arrows inside the viewport */
+        left: 10px !important;
+        /* Keep arrows inside the viewport */
     }
 
     .carousel-control-next {
-        right: 10px; /* Keep arrows inside the viewport */
+        right: 10px;
+        /* Keep arrows inside the viewport */
     }
 }
 
@@ -873,30 +952,38 @@ registration-overlay p {
 /* Large Devices (Desktops, <992px) */
 @media (max-width: 992px) {
     .navbar {
-        padding: 10px 15px; /* Adjust navbar padding for smaller desktops */
+        padding: 10px 15px;
+        /* Adjust navbar padding for smaller desktops */
     }
+
     .navbar-nav {
-        flex-direction: column; /* Stack items vertically */
-        align-items: center; /* Center items */
+        flex-direction: column;
+        /* Stack items vertically */
+        align-items: center;
+        /* Center items */
     }
 
     .navbar-nav .nav-item {
-        margin-bottom: 0.5rem; /* Add spacing between items */
+        margin-bottom: 0.5rem;
+        /* Add spacing between items */
     }
 
     .navbar-nav .nav-link {
-        font-size: 1rem; /* Adjust font size for better readability */
+        font-size: 1rem;
+        /* Adjust font size for better readability */
     }
 }
 
 /* Extra Large Devices (Larger Desktops, <1200px) */
 @media (max-width: 1199px) {
     .hero-img {
-        height: 50vh; /* Adjust height for large desktops */
+        height: 50vh;
+        /* Adjust height for large desktops */
     }
 
     .about-cta {
-        padding: 60px 20px; /* Reduce padding for larger screens */
+        padding: 60px 20px;
+        /* Reduce padding for larger screens */
     }
 
 }

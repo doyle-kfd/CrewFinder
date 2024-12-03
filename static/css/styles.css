@@ -314,9 +314,6 @@ td:last-child {
     text-align: center;
 }
 
-.hero-overlay .btn {
-    color: red;
-}
 
 .hero-overlay .btn {
     background-color: #007bff;
@@ -681,20 +678,18 @@ td:last-child {
 }
 
 /* Buttons */
+
+
 .btn-primary {
     background-color: #007bff;
-}
-
-
-
-.btn-outline-primary {
-    color: #00457C;
     border-color: #00457C;
+    color: #ffffff;
+    border: none;
+    font-weight: bold;
+    padding: 12px 30px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.btn:hover {
-    background-color: #0066A2;
-}
 
 
 

@@ -381,3 +381,11 @@ Lighthouse validation was run on all pages (both mobile and desktop) in order to
 | Captain Dashboard       |          99  |            95 |              96 | 91    |
 | Update Profile          |          100 |            93 |             100 | 91    |
 | Create Trip             |          100 |            93 |             100 | 91    |
+
+
+## Browser Testing
+- The Website was tested on Google Chrome, Firefox, Edge browsers with no issues noted.
+
+## Device Testing
+- The website was viewed on a variety of devices such as Desktop, Laptop, Tablet and Mobile Phones to ensure responsiveness on various screen sizes in both portrait and landscape mode. The website performed as intended. The responsive design was also checked using Chrome developer tools across multiple devices with structural integrity holding for the various sizes.
+

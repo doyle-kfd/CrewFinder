@@ -314,6 +314,25 @@ td:last-child {
     text-align: center;
 }
 
+.hero-overlay .btn {
+    color: red;
+}
+
+.hero-overlay .btn {
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    font-weight: bold;
+    padding: 12px 30px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.hero-overlay .btn:hover {
+    background-color: #f0f0f0;
+    color: #007bff;
+    transform: scale(1.05);
+}
+
 /*  Latest Sailing Opportunities */
 #trips-heading {
     background-color: var(--primary-color) !important;

@@ -75,6 +75,23 @@ body {
     background-image: url("data:image/svg+xml;charset=UTF8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 0.7)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
 
+.navbar .custom-toggler {
+    margin-left: 0px;
+}
+
+.nav-text {
+        color: var(--white-color) !important;
+        font-weight: 500;
+        text-transform: uppercase;
+        text-align: right;
+        
+}
+
+.navbar .nav-link.mb-0 {
+    margin-right: 0.5rem; /* Adjust this value as needed */
+}
+
+
 /* Change hamburger icon color to white */
 .custom-toggler .navbar-toggler-icon {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='white' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
@@ -774,6 +791,8 @@ registration-overlay p {
     color: #555; /* Slightly lighter gray for the text */
     margin-bottom: 0; /* Avoid unnecessary space below */
 }
+
+
 
 
 

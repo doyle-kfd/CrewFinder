@@ -325,10 +325,6 @@ td:last-child {
     background-color: #f8f9fa;
 }
 
-/* About CrewFinder - Home Page */
-.about-hp .btn {
-    color: red;
-}
 
 /* Section Heading */
 #trips-heading {
@@ -372,7 +368,8 @@ td:last-child {
 }
 
 .cta-section .btn-primary:hover {
-    background-color: #024389;
+    background-color: #ffffff;
+    color:#007bff;
 }
 
 .cta-section .btn-outline-primary {
@@ -668,6 +665,8 @@ td:last-child {
     background-color: #007bff;
 }
 
+
+
 .btn-outline-primary {
     color: #00457C;
 }
@@ -779,7 +778,8 @@ hr {
 }
 
 .btn-primary:hover {
-    background-color: #0056b3;
+    background-color: #ffffff;
+    color:#007bff;
     transform: scale(1.05);
 }
 

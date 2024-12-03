@@ -382,8 +382,9 @@ td:last-child {
 }
 
 .cta-section .btn-outline-primary:hover {
-    background-color: #007bff;
-    color: #fff;
+    background-color: #00457C; /* Add background */
+    color: #ffffff; /* White text */
+    border-color: #00457C; /* Match the border */
 }
 
 /* Testimonials Heading */
@@ -669,6 +670,7 @@ td:last-child {
 
 .btn-outline-primary {
     color: #00457C;
+    border-color: #00457C;
 }
 
 .btn:hover {
@@ -778,8 +780,8 @@ hr {
 }
 
 .btn-primary:hover {
-    background-color: #ffffff;
-    color:#007bff;
+    background-color: #0056b3;
+    color:#ffffff;
     transform: scale(1.05);
 }
 

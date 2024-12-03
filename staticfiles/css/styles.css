@@ -684,7 +684,7 @@ td:last-child {
 .featured-trips .btn-primary {
     background-color: #267d18;
     color: #ffffff;
-    border: 1px solid #007bff;
+    border: 1px solid #267d18;
     font-weight: bold;
     padding: 12px 30px;
     transition: background-color 0.3s ease, transform 0.2s ease;

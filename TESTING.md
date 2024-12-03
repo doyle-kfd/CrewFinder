@@ -389,3 +389,5 @@ Lighthouse validation was run on all pages (both mobile and desktop) in order to
 ## Device Testing
 - The website was viewed on a variety of devices such as Desktop, Laptop, Tablet and Mobile Phones to ensure responsiveness on various screen sizes in both portrait and landscape mode. The website performed as intended. The responsive design was also checked using Chrome developer tools across multiple devices with structural integrity holding for the various sizes.
 
+## Wave, Accessibility Testing
+- The Website was tested using Wave. No Errors were found.

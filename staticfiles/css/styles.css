@@ -682,18 +682,17 @@ td:last-child {
 
 
 .featured-trips .btn-primary {
-    background-color: #007bff;
-    color: #ffffff;
-    border: none;
+    background-color: #ffffff;
+    color: #007bff;
+    border: 1px solid #007bff;
     font-weight: bold;
     padding: 12px 30px;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .featured-trips .btn-primary:hover {
-    background-color: #f0f0f0;
-    color: #007bff;
-    border: 1px solid #007bff;
+    background-color: #007bff;
+    color: #ffffff;
     transform: scale(1.05);
 }
 

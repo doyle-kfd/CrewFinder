@@ -9,12 +9,11 @@ class CustomSignupForm(SignupForm):
 
     Attributes:
         role (ChoiceField): A dropdown field for selecting the user's role.
-
-    Methods:
-        custom_signup(request, user): Assigns the selected role to the user,
-        sets the user as inactive, and marks their profile as incomplete.
+        email (EmailField): Email field marked as required.
     """
+
     role = forms.ChoiceField(choices=User.ROLE_CHOICES, required=True)
+    email = forms.EmailField(required=True, label="Email Address")
 
     def custom_signup(self, request, user):
         """
@@ -28,10 +27,19 @@ class CustomSignupForm(SignupForm):
             User: The updated user instance.
         """
         user.role = self.cleaned_data['role']
-        user.is_active = False
-        user.profile_completed = False
+        user.email = self.cleaned_data['email']  # Ensure the email is saved
+        user.is_active = False  # User needs admin approval to be activated
+        user.profile_completed = False  # Marks the profile as incomplete
         user.save()
         return user
+
+    def __init__(self, *args, **kwargs):
+        """
+        Initializes the form and sets custom labels or other attributes.
+        """
+        super().__init__(*args, **kwargs)
+        self.fields['email'].label = "Email Address*"  # Force label
+
 
 
 class ProfileCompletionForm(forms.ModelForm):

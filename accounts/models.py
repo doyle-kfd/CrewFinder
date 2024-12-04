@@ -61,6 +61,14 @@ class User(AbstractUser):
     ]
 
     # Custom Fields
+    email = models.EmailField(
+        unique=True,
+        blank=False,
+        null=False,
+        help_text="Email address is required and must be unique.",
+    )
+
+
     role = models.CharField(
         max_length=15, choices=ROLE_CHOICES, default=CREW
     )

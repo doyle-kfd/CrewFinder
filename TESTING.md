@@ -533,10 +533,30 @@ This setup ensures consistent and reusable test data across test cases.
 | View Sailing Opportunities CTA    |   Click    |        Redirect to Sailing Opportunities Page        | Pass      |
 | View Sailing Opportunities CTA    |   Hover    |        Button Hover Effect, bg color change          | Pass      |
 
+
+## Sailing Opportunities Page
+
+| Element                           | Action     | Expected Result                                      | Pass/Fail |
+|-----------------------------------|------------|------------------------------------------------------|-----------|
+| Sailing Opportunities  Page       |            |                                                      |           |
+| Trip Card                         |   Hover    |        Hover effect, card rises                      | Pass      |
+| Trip Card - Login Button          |   Display  |        Login To Apply Button Visible                 | Pass      |
+| Trip Card - Signup Button         |   Display  |        Signup To Apply Button Visible                | Pass      |
+| Trip Card - Already Applied       |   Display  |        Logged In: Already Applied If Appropriate     | Pass      |
+| Trip Card - Apply                 |   Display  |        Logged In: Apply           If Appropriate     | Pass      |
+| Join Crewfinder Signup CTA        |   Hover    |        Button Hover Effect, grow, bg color change    | Pass      |
+| View Sailing Opportunities CTA    |   Click    |        Redirect to Sailing Opportunities Page        | Pass      |
+| View Sailing Opportunities CTA    |   Hover    |        Button Hover Effect, bg color change          | Pass      |
+
 ## Contact Page
 
-| Element                      | Action     | Expected Result                                                    | Pass/Fail |
-|------------------------------|------------|--------------------------------------------------------------------|-----------|
+| Element                         | Action     | Expected Result                                                    | Pass/Fail |
+|---------------------------------|------------|--------------------------------------------------------------------|-----------|
 | Contact Page                    |            |                                                                    |           |
-| Hero Section CTA                             |   Click         |        Redirect to signup page                | Pass          |
+| Name Label  - Field             |   Display  |        Form Name Label And Field Visible                           | Pass      |
+| Email Label  - Field            |   Display  |        Email Label And Field Visible                               | Pass      |
+| Message Label  - Field          |   Display  |        Message Label And Field Visible                             | Pass      |
+| Submit Button                   |   Hover    |        Hover effect, grow                                          | Pass      |
+| Submit Button                   |   Click    |        If Empty, warning field needs to be filled                  | Pass      |
+
 

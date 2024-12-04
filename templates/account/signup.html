@@ -20,6 +20,9 @@
                     <!-- Signup form -->
                     <form method="post" action="{% url 'account_signup' %}" class="signup-form">
                         {% csrf_token %}
+                        <div>
+                            {{ form.email.label }}
+                        </div>
                         {{ form|crispy }}
                         <button type="submit" class="btn signup-btn" aria-label="Sign up for an account">Sign Up</button>
                     </form>

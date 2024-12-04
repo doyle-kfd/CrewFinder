@@ -480,14 +480,54 @@ This setup ensures consistent and reusable test data across test cases.
 ### Site Navigation
 | Element                      | Action     | Expected Result                                                    | Pass/Fail |
 |------------------------------|------------|--------------------------------------------------------------------|-----------|
-| ** NavBar                    |            |                                                                    |           |
+| NavBar                       |            |                                                                    |           |
 | Site Name (logo area)        | Click      | Redirect to home                                                   | Pass      |
+| Site Name (logo area)        | Hover      | Color Change                                                       | Pass      |
+| Signup Link                  | Click      | Open Signup Page                                                   | Pass      |
+| Signup Link                  | Hover      | Color Change                                                       | Pass      |
+| Login Link                   | Click      | Open Login Page                                                    | Pass      |
+| Login Link                   | Hover      | Color Change                                                       | Pass      |
+| Hamburger Menu Link          | Click      | Menu Dropdown                                                      | Pass      |
+| Home Link                    | Click      | Opens Home Page                                                    | Pass      |
+| Home Link                    | Hover      | Color Change                                                       | Pass      |
+| About Us Link                | Click      | Opens About Us Page                                                | Pass      |
+| About Us Link                | Hover      | Color Change                                                       | Pass      |
+| Contact Us Link              | Click      | Opens Contact Us Page                                              | Pass      |
+| Contact Us Link              | Hover      | Color Change                                                       | Pass      |
+| Sailing Opportunities Link   | Click      | Opens Sailing Opportunities Page                                   | Pass      |
+| Sailing Opportunities Link   | Hover      | Color Change                                                       | Pass      |
+| Mobile View                  |            |                                                                    |           |
+| Site Name (logo area)        | Click      | Redirect to home                                                   | Pass      |
+| Hamburger Menu Link          | Click      | Menu Dropdown                                                      | Pass      |
 | Signup Link                  | Click      | Open Signup Page                                                   | Pass      |
 | Login Link                   | Click      | Open Login Page                                                    | Pass      |
-| Forgot Password Link         | Click      | Open Reset Your Password Page                                      | Pass      |
-| Hamburger Menu Link          | Click      | Menu Dropdown                                                      | Pass      |
 | Home Link                    | Click      | Opens Home Page                                                    | Pass      |
 | About Us Link                | Click      | Opens About Us Page                                                | Pass      |
 | Contact Us Link              | Click      | Opens Contact Us Page                                              | Pass      |
 | Sailing Opportunities Link   | Click      | Opens Sailing Opportunities Page                                   | Pass      |
+
+
+
+| Element                      | Action     | Expected Result                                                    | Pass/Fail |
+|------------------------------|------------|--------------------------------------------------------------------|-----------|
 | Home Page                    |            |                                                                    |           |
+| Hero Section CTA                             |   Click         |        Redirect to signup page                | Pass          |
+| About Crewfinder CTA                             |   Click         |        Redirect to signup page                | Pass          |
+| Latest Sailing Opportunities Login CTA                             |   Click         |        Redirect to login page                | Pass          |
+| Latest Sailing Opportunities Signup CTA                             |   Click         |        Redirect to signup page                | Pass          |
+| Ready To Sail Footer Section View All Sailing Opportunities CTA                             |   Click         |        Redirect to Sailing Opportunities Page                 | Pass          |
+| Ready To Sail Footer Section Signup CTA                            |   Click         |        Redirect to signup page                | Pass          |
+|                              |            |                                                                    |           |
+
+| Element                      | Action     | Expected Result                                                    | Pass/Fail |
+|------------------------------|------------|--------------------------------------------------------------------|-----------|
+| About  Page                    |            |                                                                    |           |
+| Join Crewfinder Signup CTA                             |   Click         |        Redirect to signup page                | Pass          |
+| View Sailing Opportunities CTA                             |   Click         |        Redirect to Sailing Opportunities Page                 | Pass          |
+|                              |            |                                                                    |           |
+
+| Element                      | Action     | Expected Result                                                    | Pass/Fail |
+|------------------------------|------------|--------------------------------------------------------------------|-----------|
+| Contact Page                    |            |                                                                    |           |
+| Hero Section CTA                             |   Click         |        Redirect to signup page                | Pass          |
+

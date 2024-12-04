@@ -389,5 +389,105 @@ Lighthouse validation was run on all pages (both mobile and desktop) in order to
 ## Device Testing
 - The website was viewed on a variety of devices such as Desktop, Laptop, Tablet and Mobile Phones to ensure responsiveness on various screen sizes in both portrait and landscape mode. The website performed as intended. The responsive design was also checked using Chrome developer tools across multiple devices with structural integrity holding for the various sizes.
 
+## Unit Testing - Accounts Model
+
+<details>
+
+<summary>Test Explained</summary>
+
+The `UserModelTest` is a comprehensive test suite for the custom `User` model in the `accounts` app. It ensures that the model's functionality aligns with the application's requirements, covering default values, role behavior, approval status logic, and custom fields.
+
+### Purpose of the Test Suite
+
+The `UserModelTest` validates the following:
+- Default field values are correctly set.
+- Role and approval status behave as expected.
+- The `is_active` field updates dynamically based on `approval_status`.
+- Custom fields like `experience` and `photo` work as intended.
+- The model's string representation is appropriate.
+
+---
+
+### Test Cases
+
+#### 1. **`test_default_values`**
+- **Purpose:** Ensures default values for fields are correctly set.
+- **Assertions:**
+  - `role` defaults to `'crew'`.
+  - `approval_status` defaults to `'pending'`.
+  - `is_active` defaults to `False`.
+  - `experience` defaults to `'None'`.
+
+#### 2. **`test_role_choices`**
+- **Purpose:** Verifies the `role` field accepts valid role choices.
+- **Assertions:**
+  - Valid roles: `'captain'`, `'crew'`, and `'administrator'`.
+
+#### 3. **`test_approval_status_behavior`**
+- **Purpose:** Ensures the `is_active` field reflects the `approval_status` field.
+- **Assertions:**
+  - `is_active` is `True` for `approved` users.
+  - `is_active` is `False` for `pending` and `disapproved` users.
+  - Changes to `approval_status` dynamically update `is_active`.
+
+#### 4. **`test_experience_choices`**
+- **Purpose:** Verifies the `experience` field handles valid choices.
+- **Assertions:**
+  - Accepts values like `'RYA Dayskipper'`.
+
+#### 5. **`test_string_representation`**
+- **Purpose:** Tests the `__str__` method of the `User` model.
+- **Assertions:**
+  - Returns the `username` as the string representation.
+
+#### 6. **`test_profile_photo_field`**
+- **Purpose:** Ensures the `photo` field can handle optional and updated values.
+- **Assertions:**
+  - Defaults to `None`.
+  - Can be updated with a valid file path.
+
+---
+
+### Test Data Setup
+
+The `setUp` method initializes three sample users for testing:
+- **Captain User:** Role set to `captain` with `approved` status.
+- **Crew User:** Role set to `crew` with `pending` status.
+- **Admin User:** Role set to `administrator` with `disapproved` status.
+
+This setup ensures consistent and reusable test data across test cases.
+
+---
+</details>
+
+<details>
+
+<summary>Test Restuls</summary>
+
+![Unit Test Results](docs/testing/django%20unit%20test.png)
+
+</details>
+
+
+
+
 ## Wave, Accessibility Testing
 - The Website was tested using Wave. No Errors were found.
+
+
+## Manual Testing
+
+### Site Navigation
+| Element                      | Action     | Expected Result                                                    | Pass/Fail |
+|------------------------------|------------|--------------------------------------------------------------------|-----------|
+| ** NavBar                    |            |                                                                    |           |
+| Site Name (logo area)        | Click      | Redirect to home                                                   | Pass      |
+| Signup Link                  | Click      | Open Signup Page                                                   | Pass      |
+| Login Link                   | Click      | Open Login Page                                                    | Pass      |
+| Forgot Password Link         | Click      | Open Reset Your Password Page                                      | Pass      |
+| Hamburger Menu Link          | Click      | Menu Dropdown                                                      | Pass      |
+| Home Link                    | Click      | Opens Home Page                                                    | Pass      |
+| About Us Link                | Click      | Opens About Us Page                                                | Pass      |
+| Contact Us Link              | Click      | Opens Contact Us Page                                              | Pass      |
+| Sailing Opportunities Link   | Click      | Opens Sailing Opportunities Page                                   | Pass      |
+| Home Page                    |            |                                                                    |           |

@@ -648,6 +648,7 @@ td:last-child {
 
 .contact-btn:hover {
     background: #16355b;
+    color: #ffffff !important;
     transform: scale(1.05);
 }
 

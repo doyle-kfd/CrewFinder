@@ -507,7 +507,7 @@ This setup ensures consistent and reusable test data across test cases.
 | Sailing Opportunities Link   | Click      | Opens Sailing Opportunities Page                                   | Pass      |
 
 
-
+## Home Page
 | Element                      | Action     | Expected Result                                                    | Pass/Fail |
 |------------------------------|------------|--------------------------------------------------------------------|-----------|
 | Home Page                    |            |                                                                    |           |

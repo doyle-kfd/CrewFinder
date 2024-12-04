@@ -13,7 +13,14 @@ class CustomSignupForm(SignupForm):
     """
 
     role = forms.ChoiceField(choices=User.ROLE_CHOICES, required=True)
-    email = forms.EmailField(required=True, label="Email Address")
+    email = forms.EmailField(
+        required=True,
+        label="",  # Hide the label
+        widget=forms.TextInput(attrs={
+            'placeholder': 'Email',  # Add placeholder text
+            'class': 'form-control',  # Bootstrap class (optional)
+        })
+    )
 
     def custom_signup(self, request, user):
         """

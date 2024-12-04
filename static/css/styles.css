@@ -555,6 +555,7 @@ td:last-child {
 
 .signup-btn:hover {
     background: #16355b;
+    color: #ffffff;
     transform: scale(1.05);
 }
 

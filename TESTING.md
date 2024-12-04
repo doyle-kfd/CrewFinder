@@ -560,3 +560,32 @@ This setup ensures consistent and reusable test data across test cases.
 | Submit Button                   |   Click    |        If Empty, warning field needs to be filled                  | Pass      |
 
 
+## Form Testing
+
+### Signup Form
+| Element                         | Action     | Expected Result                                                    | Pass/Fail |
+|---------------------------------|------------|--------------------------------------------------------------------|-----------|
+| Signup Form                     |            |                                                                    |           |
+| Username Label  - Field         |   Display  |        Username Label And Field Visible                            | Pass      |
+| Email Label  - Field            |   Display  |        Email Label And Field Visible    Required                   | Pass      |
+| Role    Label  - Field          |   Click    |        Options, Captain, Crew, Administrator                       | Pass      |
+| Password Label - Field          |   Display  |        Must Comply with auth requirements                          | Pass      |
+| Password Label - Field - Repeat |   Display  |        Must Comply with auth requirements                          | Pass      |
+
+## Login Form
+| Element                         | Action     | Expected Result                                                    | Pass/Fail |
+|---------------------------------|------------|--------------------------------------------------------------------|-----------|
+| Login  Form                     |            |                                                                    |           |
+| Username Label  - Field         |   Display  |        Username Label And Field Visible                            | Pass      |
+| Password Label - Field          |   Display  |        Password Label and Field Visible                            | Pass      |
+| Signup Option - Link            |   Display  |        Option To Signup Visible                                    | Pass      |
+| Signup Option - Link            |   Click    |        Redirect To Signup Form                                     | Pass      |
+| Forgot Password - Link          |   Display  |        Redirect Link To Password Reset Visible                     | Pass      |
+| Forgot Password - Link          |   Click    |        Redirect To Password Reset Visible                          | Pass      |
+
+## Password Reset Form
+| Element                         | Action     | Expected Result                                                    | Pass/Fail |
+|---------------------------------|------------|--------------------------------------------------------------------|-----------|
+| Password Reset Form             |            |                                                                    |           |
+| Email Address Label  - Field    |   Display  |       Email Address Label And Field Visible                        | Pass      |
+| Send Reset Link Button          |   Hover    |       Button Action, enlarge                                       | Pass      |

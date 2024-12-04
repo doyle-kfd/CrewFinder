@@ -508,23 +508,32 @@ This setup ensures consistent and reusable test data across test cases.
 
 
 ## Home Page
-| Element                      | Action     | Expected Result                                                    | Pass/Fail |
-|------------------------------|------------|--------------------------------------------------------------------|-----------|
-| Home Page                    |            |                                                                    |           |
-| Hero Section CTA                             |   Click         |        Redirect to signup page                | Pass          |
-| About Crewfinder CTA                             |   Click         |        Redirect to signup page                | Pass          |
-| Latest Sailing Opportunities Login CTA                             |   Click         |        Redirect to login page                | Pass          |
-| Latest Sailing Opportunities Signup CTA                             |   Click         |        Redirect to signup page                | Pass          |
-| Ready To Sail Footer Section View All Sailing Opportunities CTA                             |   Click         |        Redirect to Sailing Opportunities Page                 | Pass          |
-| Ready To Sail Footer Section Signup CTA                            |   Click         |        Redirect to signup page                | Pass          |
-|                              |            |                                                                    |           |
+| Element                                                          | Action     | Expected Result                               | Pass/Fail |
+|------------------------------------------------------------------|------------|-----------------------------------------------|-----------|
+| Home Page                                                        |            |                                               |           |
+| Hero Section CTA                                                 |   Click    |        Redirect to signup page                | Pass      |
+| About Crewfinder CTA                                             |   Click    |        Redirect to signup page                | Pass      |
+| Latest Sailing Opportunities Login CTA                           |   Click    |        Redirect to login page                 | Pass      |
+| Latest Sailing Opportunities Signup CTA                          |   Click    |        Redirect to signup page                | Pass      |
+| Ready To Sail Footer Section View All Sailing Opportunities CTA  |   Click    |        Redirect to Sailing Opportunities Page | Pass      |
+| Ready To Sail Footer Section Signup CTA                          |   Click    |        Redirect to signup page                | Pass      |
+| Latest Sailing Opportunities                                     |   Hover    |        Card Rises Up On Hover                 | Pass      |
+| Latest Sailing Opportunities                                     |   Order    |        Last 3 Trips Sorted By Time            | Pass      |
+| Latest Sailing Opportunities                                     |   View     |        Only 3 Trips Shown                     | Pass      |
+| Testimonials                                                     |   View     |        Only 2 Trips Shown                     | Pass      |
+| Testimonials                                                     |   Rotation |        Testimonials Rotate                    | Pass      |
 
-| Element                      | Action     | Expected Result                                                    | Pass/Fail |
-|------------------------------|------------|--------------------------------------------------------------------|-----------|
-| About  Page                    |            |                                                                    |           |
-| Join Crewfinder Signup CTA                             |   Click         |        Redirect to signup page                | Pass          |
-| View Sailing Opportunities CTA                             |   Click         |        Redirect to Sailing Opportunities Page                 | Pass          |
-|                              |            |                                                                    |           |
+## About Page
+
+| Element                           | Action     | Expected Result                                      | Pass/Fail |
+|-----------------------------------|------------|------------------------------------------------------|-----------|
+| About  Page                       |            |                                                      |           |
+| Join Crewfinder Signup CTA        |   Click    |        Redirect to signup page                       | Pass      |
+| Join Crewfinder Signup CTA        |   Hover    |        Button Hover Effect, grow, bg color change    | Pass      |
+| View Sailing Opportunities CTA    |   Click    |        Redirect to Sailing Opportunities Page        | Pass      |
+| View Sailing Opportunities CTA    |   Hover    |        Button Hover Effect, bg color change          | Pass      |
+
+## Contact Page
 
 | Element                      | Action     | Expected Result                                                    | Pass/Fail |
 |------------------------------|------------|--------------------------------------------------------------------|-----------|

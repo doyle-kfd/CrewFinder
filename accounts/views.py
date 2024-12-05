@@ -35,7 +35,9 @@ class CustomLogoutView(LogoutView):
 
 class CustomPasswordResetView(PasswordResetView):
     template_name = "account/password_reset.html"  # The form for entering an email address
+    email_template_name = 'account/password_reset_email.html'
     success_url = reverse_lazy('accounts:password_reset_sent')  # Redirect after submitting the email
+
 
 
 # Custom Password Reset Views

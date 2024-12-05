@@ -56,8 +56,8 @@
                 <a class="nav-link me-2 {% if request.path == '/dashboard/' %}active{% endif %}" href="{% url 'accounts:dashboard' %}">Dashboard</a>
                 <a class="nav-link me-2" href="{% url 'accounts:logout' %}">Logout</a>
                 {% else %}
-                <a class="nav-link me-2 {% if request.path == '/accounts/signup/' %}active{% endif %}" href="{% url 'account_signup' %}">Sign Up</a>
-                <a class="nav-link me-2 {% if request.path == '/accounts/login/' %}active{% endif %}" href="{% url 'account_login' %}">Login</a>
+                <a class="nav-link {% if request.path == '/accounts/signup/' %}active{% endif %}" href="{% url 'accounts:account_signup' %}">Sign Up</a>
+                <a class="nav-link me-2 {% if request.path == '/accounts/login/' %}active{% endif %}" href="{% url 'accounts:account_login' %}">Login</a>
                 {% endif %}
             </div>
 
@@ -87,14 +87,14 @@
                         <a class="nav-link {% if request.path == '/dashboard/' %}active{% endif %}" href="{% url 'accounts:dashboard' %}">Dashboard</a>
                     </li>
                     <li class="nav-item d-lg-none">
-                        <a class="nav-link" href="{% url 'account_logout' %}?next={% url 'home' %}">Logout</a>
+                        <a class="nav-link" href="{% url 'accounts:account_logout' %}?next={% url 'home' %}">Logout</a>
                     </li>
                     {% else %}
                     <li class="nav-item d-lg-none">
-                        <a class="nav-link {% if request.path == '/accounts/signup/' %}active{% endif %}" href="{% url 'account_signup' %}">Sign Up</a>
+                        <a class="nav-link {% if request.path == '/accounts/signup/' %}active{% endif %}" href="{% url 'accounts:account_signup' %}">Sign Up</a>
                     </li>
                     <li class="nav-item d-lg-none">
-                        <a class="nav-link {% if request.path == '/accounts/login/' %}active{% endif %}" href="{% url 'account_login' %}">Login</a>
+                        <a class="nav-link {% if request.path == '/accounts/login/' %}active{% endif %}" href="{% url 'accounts:account_login' %}">Login</a>
                     </li>
                     {% endif %}
                 </ul>

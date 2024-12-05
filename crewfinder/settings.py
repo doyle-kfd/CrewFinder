@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'crispy_forms',          # Required for Crispy Forms
     'crispy_bootstrap5',     # Required for Crispy Forms
     'django.contrib.auth',
+    'django_extensions',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -86,11 +87,15 @@ LOGIN_REDIRECT_URL = '/accounts/dashboard/'  # Where to go after login
 LOGOUT_REDIRECT_URL = '/'  # Where to go after logout
 ACCOUNT_ADAPTER = 'accounts.adapter.CustomAccountAdapter'
 ACCOUNT_LOGIN_ON_SIGNUP = False  # Ensure that users are not logged in automatically after signup
+ACCOUNT_LOGIN_ON_PASSWORD_RESET = False
 ACCOUNT_SIGNUP_REDIRECT_URL = '/accounts/registration_pending/'
 ACCOUNT_INACTIVE_REDIRECT_URL = '/accounts/registration-pending/'
 ACCOUNT_LOGOUT_REDIRECT_URL = '/'
 AUTH_USER_MODEL = 'accounts.User'
 LOGIN_URL = '/accounts/login/'
+ACCOUNT_PASSWORD_RESET_REDIRECT_URL = '/accounts/password_reset_done/'  # Redirect after form submission
+ACCOUNT_PASSWORD_RESET_DONE_REDIRECT_URL = '/accounts/password/reset/key/done/'  # Redirect after successful reset
+
 
 
 CRISPY_TEMPLATE_PACK = 'bootstrap5'

@@ -18,7 +18,7 @@
                 <article class="signup-overlay">
                     <h3 class="visually-hidden">Signup Form</h3>
                     <!-- Signup form -->
-                    <form method="post" action="{% url 'account_signup' %}" class="signup-form">
+                    <form method="post" action="{% url 'accounts:account_signup' %}" class="signup-form">
                         {% csrf_token %}
                         <div>
                             {{ form.email.label }}
@@ -30,7 +30,7 @@
                     <!-- Footer with login redirect link -->
                     <footer class="text-center mt-3">
                         <p class="signup-footer-text">Already have an account?
-                            <a href="{% url 'account_login' %}">Log in here</a>
+                            <a href="{% url 'accounts:account_login' %}">Log in here</a>
                         </p>
                     </footer>
                 </article>

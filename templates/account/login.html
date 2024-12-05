@@ -12,7 +12,7 @@
                     <h2 class="text-center">Login to CrewFinder</h2>
                     <p class="text-center mb-4">Access your account and explore sailing opportunities!</p>
                     
-                    <form method="post" action="{% url 'account_login' %}" class="signup-form">
+                    <form method="post" action="{% url 'accounts:account_login' %}" class="signup-form">
                         {% csrf_token %}
                         {{ form|crispy }}
 
@@ -24,10 +24,10 @@
 
                     <div class="text-center mt-3">
                         <p class="signup-footer-text">Don't have an account? 
-                            <a href="{% url 'account_signup' %}">Sign up here</a>
+                            <a href="{% url 'accounts:account_signup' %}">Sign up here</a>
                         </p>
                         <p class="signup-footer-text">
-                            <a href="{% url 'account_reset_password' %}">Forgot your password?</a>
+                            <a href="{% url 'accounts:account_reset_password' %}">Forgot your password?</a>
                         </p>
                     </div>
                 </div>

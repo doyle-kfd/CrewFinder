@@ -51,8 +51,6 @@ urlpatterns = [
     path('accounts/logout/', CustomLogoutView.as_view(), name='logout'),
     # Custom logout view to override default behavior
     path('accounts/', include('accounts.urls', namespace='accounts')),
-    # Include URLs from the accounts app for user management
-    path('accounts/auth/', include('allauth.urls')),
     # Third-party authentication via Django Allauth
     path('trips/', include('trips.urls', namespace='trips')),
     # Include URLs from the trips app for managing sailing trips
@@ -60,6 +58,7 @@ urlpatterns = [
     # Main static pages like home, about, and contact
     path('crewbooking/', include('crewbooking.urls')),
     # Include URLs for crew booking functionality
+    path('accounts/', include('allauth.urls')),
 ]
 
 # Serve media files in development mode

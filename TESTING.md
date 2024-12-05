@@ -614,3 +614,20 @@ This setup ensures consistent and reusable test data across test cases.
 | X         | X             | Administrator | X        | -              | Please Fill Out This Field  | Pass      |
 | X         | X             | Administrator | X        | X              | Redirect to thank you page  | Pass      |
 
+
+| Link                                 | Action | Expected Output        | Pass/Fail |
+|--------------------------------------|--------|------------------------|-----------|
+| Already Have An Account, Login Here  | Click  | Redirect To Login Page | Pass      |
+
+
+### Login Form
+
+| User Name | Password | Expected Output            | Pass/Fail |
+|-----------|----------|----------------------------|-----------|
+| X         | -        | Please Fill Out This Field | Pass      |
+| -         | X        | Please Fill Out This Field | Pass      |
+
+| Link                               | Action | Expected Output                 | Pass/Fail |
+|------------------------------------|--------|---------------------------------|-----------|
+| Dont Have An Account, Signup Here  | Click  | Redirect To Signup Page         | Pass      |
+| Forgot Your Password               | Click  | Redirect To Password Reset Page | Pass      |

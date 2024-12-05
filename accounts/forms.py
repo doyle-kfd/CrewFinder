@@ -3,13 +3,19 @@ from django import forms
 from .models import User
 
 
+from django import forms
+from django.core.exceptions import ValidationError
+from allauth.account.forms import SignupForm
+from .models import User  # Adjust the import path as per your project structure
+
+from django import forms
+from django.core.exceptions import ValidationError
+from allauth.account.forms import SignupForm
+from .models import User  # Adjust the import path as per your project structure
+
 class CustomSignupForm(SignupForm):
     """
     Custom signup form to allow users to select their role during registration.
-
-    Attributes:
-        role (ChoiceField): A dropdown field for selecting the user's role.
-        email (EmailField): Email field marked as required.
     """
 
     role = forms.ChoiceField(choices=User.ROLE_CHOICES, required=True)
@@ -19,8 +25,31 @@ class CustomSignupForm(SignupForm):
         widget=forms.TextInput(attrs={
             'placeholder': 'Email',  # Add placeholder text
             'class': 'form-control',  # Bootstrap class (optional)
-        })
+        }),
     )
+
+    def __init__(self, *args, **kwargs):
+        """
+        Initializes the form and sets custom labels or other attributes.
+        """
+        super().__init__(*args, **kwargs)
+        self.fields['email'].label = "Email Address*"  # Force label
+
+    def clean_email(self):
+        """
+        Validates that the email field is not blank and not already in use.
+        """
+        email = self.cleaned_data.get('email')
+        
+        # Check for blank email
+        if not email:
+            raise ValidationError("Email address cannot be blank.")
+        
+        # Check for duplicate email
+        if User.objects.filter(email=email).exists():
+            raise ValidationError("This email address is already registered.")
+        
+        return email
 
     def custom_signup(self, request, user):
         """
@@ -34,19 +63,11 @@ class CustomSignupForm(SignupForm):
             User: The updated user instance.
         """
         user.role = self.cleaned_data['role']
-        user.email = self.cleaned_data['email']  # Ensure the email is saved
+        user.email = self.cleaned_data['email']
         user.is_active = False  # User needs admin approval to be activated
         user.profile_completed = False  # Marks the profile as incomplete
         user.save()
         return user
-
-    def __init__(self, *args, **kwargs):
-        """
-        Initializes the form and sets custom labels or other attributes.
-        """
-        super().__init__(*args, **kwargs)
-        self.fields['email'].label = "Email Address*"  # Force label
-
 
 
 class ProfileCompletionForm(forms.ModelForm):

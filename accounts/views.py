@@ -152,7 +152,7 @@ class CustomSignupView(SignupView):
             HttpResponse: The redirection to the registration pending page.
         """
         user = form.save(self.request)
-        return redirect(reverse('registration_pending'))
+        return redirect(reverse('accounts:registration_pending'))
 
 
 @login_required
@@ -302,3 +302,9 @@ def edit_user(request, user_id):
         'form': form,
         'user_obj': user
     })
+
+def inactive_account_redirect(request):
+    """
+    Redirects inactive accounts to the registration pending page.
+    """
+    return redirect('accounts:registration_pending')

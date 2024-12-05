@@ -1,6 +1,7 @@
-from django.urls import path, include
-from django.conf.urls.static import static
+from django.urls import path
 from django.conf import settings
+from django.conf.urls.static import static
+from .views import inactive_account_redirect
 from . import views
 
 from .views import (
@@ -14,7 +15,7 @@ from .views import (
     admin_dashboard,
 )
 
-# Import Allauth URLs but exclude the logout view
+# Import Allauth URLs but exclude the signup view
 from allauth.account import views as allauth_views
 
 app_name = 'accounts'
@@ -48,7 +49,15 @@ urlpatterns = [
         name='edit_user'
     ),
 
-    # Include remaining Allauth URLs except logout
+    path('auth/inactive/', inactive_account_redirect, name='account_inactive'),
+
+
+
+    # Include remaining Allauth URLs except signup and logout
     path('auth/login/', allauth_views.LoginView.as_view(), name='account_login'),
-    path('auth/signup/', allauth_views.SignupView.as_view(), name='account_signup'),
+    # Exclude allauth's signup and logout views
 ]
+
+# Serve static and media files in development
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

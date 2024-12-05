@@ -572,7 +572,7 @@ This setup ensures consistent and reusable test data across test cases.
 | Password Label - Field          |   Display  |        Must Comply with auth requirements                          | Pass      |
 | Password Label - Field - Repeat |   Display  |        Must Comply with auth requirements                          | Pass      |
 
-## Login Form
+### Login Form
 | Element                         | Action     | Expected Result                                                    | Pass/Fail |
 |---------------------------------|------------|--------------------------------------------------------------------|-----------|
 | Login  Form                     |            |                                                                    |           |
@@ -583,9 +583,34 @@ This setup ensures consistent and reusable test data across test cases.
 | Forgot Password - Link          |   Display  |        Redirect Link To Password Reset Visible                     | Pass      |
 | Forgot Password - Link          |   Click    |        Redirect To Password Reset Visible                          | Pass      |
 
-## Password Reset Form
+### Password Reset Form
 | Element                         | Action     | Expected Result                                                    | Pass/Fail |
 |---------------------------------|------------|--------------------------------------------------------------------|-----------|
 | Password Reset Form             |            |                                                                    |           |
 | Email Address Label  - Field    |   Display  |       Email Address Label And Field Visible                        | Pass      |
 | Send Reset Link Button          |   Hover    |       Button Action, enlarge                                       | Pass      |
+
+
+## Form Function Testing
+
+### Signup Form
+
+
+| User Name | Email Address | Role          | Password | Password Again | Expected Output             | Pass/Fail |
+|-----------|---------------|---------------|----------|----------------|-----------------------------|-----------|
+| -         | X             | Captain       | X        | X              | Please Fill Out This Field  | Pass      |
+| X         | -             | Captain       | X        | X              | Email Cannot Be Blank       | Pass      |
+| X         | X             | Captain       | -        | X              | Please Fill Out This Field  | Pass      |
+| X         | X             | Captain       | X        | -              | Please Fill Out This Field  | Pass      |
+| X         | X             | Captain       | X        | X              | Redirect to thank you page  | Pass      |
+| -         | X             | Crew          | X        | X              | Please Fill Out This  Field | Pass      |
+| X         | -             | Crew          | X        | X              | Email Cannot Be Blank       | Pass      |
+| X         | X             | Crew          | -        | X              | Please Fill Out This Field  | Pass      |
+| X         | X             | Crew          | X        | -              | Please Fill Out This Field  | Pass      |
+| X         | X             | Crew          | X        | X              | Redirect to thank you page  | Pass      |
+| -         | X             | Administrator | X        | X              | Please Fill Out This  Field | Pass      |
+| X         | -             | Administrator | X        | X              | Email Cannot Be Blank       | Pass      |
+| X         | X             | Administrator | -        | X              | Please Fill Out This Field  | Pass      |
+| X         | X             | Administrator | X        | -              | Please Fill Out This Field  | Pass      |
+| X         | X             | Administrator | X        | X              | Redirect to thank you page  | Pass      |
+

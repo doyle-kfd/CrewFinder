@@ -620,6 +620,8 @@ This setup ensures consistent and reusable test data across test cases.
 | Already Have An Account, Login Here  | Click  | Redirect To Login Page | Pass      |
 
 
+------ 
+
 ### Login Form
 
 | User Name | Password | Expected Output            | Pass/Fail |
@@ -631,3 +633,17 @@ This setup ensures consistent and reusable test data across test cases.
 |------------------------------------|--------|---------------------------------|-----------|
 | Dont Have An Account, Signup Here  | Click  | Redirect To Signup Page         | Pass      |
 | Forgot Your Password               | Click  | Redirect To Password Reset Page | Pass      |
+
+-------
+
+### Password Reset Page
+
+
+| Link                                | Action | Expected Output        | Pass/Fail |
+|-------------------------------------|--------|------------------------|-----------|
+| Already Have An Account, Login Here | Click  | Redirect To Login Page | Pass      |
+
+
+
+------
+

@@ -4,22 +4,53 @@
 
 {% block content %}
 <div class="container mt-5">
-    <h2>Are you sure you want to delete the trip "{{ trip.title }}"?</h2>
-    <p>This action cannot be undone.</p>
-    
-    <h4>Trip Details:</h4>
-    <ul>
-        <li><strong>Title:</strong> {{ trip.title }}</li>
-        <li><strong>Location:</strong> {{ trip.location }}</li>
-        <li><strong>Date:</strong> {{ trip.date }}</li>
-        <li><strong>Duration:</strong> {{ trip.formatted_duration }}</li>  <!-- Assuming you have the formatted_duration method -->
-        <li><strong>Crew Needed:</strong> {{ trip.crew_needed }}</li>
-    </ul>
-    
-    <form method="post">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-danger">Delete Trip</button>
-        <a href="{% url 'captain_dashboard' %}" class="btn btn-secondary">Cancel</a>
-    </form>
+    <div class="shadow-sm border-0 mx-auto" style="max-width: 800px;">
+        <div class="card-header bg-danger text-white text-center">
+            <h2 class="delete-trip-title">Delete Trip Confirmation</h2>
+        </div>
+        <div class="card-body">
+            <h4 class="delete-trip-warning">Are you sure you want to delete the trip "{{ trip.title }}"?</h4>
+            <p class="delete-trip-subtext">This action cannot be undone.</p>
+
+            <!-- Trip Details Section -->
+            <h5 class="trip-details-title text-center mt-4">Trip Details</h5>
+            <hr>
+            <div class="row justify-content-center trip-details-container">
+                <!-- Left Column -->
+                <div class="col-lg-5 trip-details-column">
+                    <p><strong>Title:</strong> {{ trip.title }}</p>
+                    <p><strong>Departing From:</strong> {{ trip.departing_from }}</p>
+                    <p><strong>Arriving At:</strong> {{ trip.arriving_at }}</p>
+                    <p><strong>Departure Date:</strong> {{ trip.departure_date }}</p>
+                </div>
+                <!-- Right Column -->
+                <div class="col-lg-5 trip-details-column">
+                    <p><strong>Duration:</strong> {{ trip.duration }}</p>
+                    <p><strong>Crew Needed:</strong> {{ trip.crew_needed }}</p>
+                    <p><strong>Boat Name:</strong> {{ trip.boat_name }}</p>
+                    <p><strong>Boat Description:</strong> {{ trip.boat_description }}</p>
+                </div>
+            </div>
+
+            <!-- Trip Description Section -->
+            <div class="mt-4 shadow-sm">
+                <div class="card-body trip-description">
+                    <h5 class="text-primary">Trip Description</h5>
+                    <p>{{ trip.trip_description }}</p>
+                </div>
+            </div>
+
+            <!-- Form Section -->
+            <form method="post" class="text-center mt-5">
+                {% csrf_token %}
+                <div class="d-flex justify-content-center gap-3">
+                    <!-- Delete Button -->
+                    <button type="submit" class="btn btn-danger btn-lg px-5">Delete Trip</button>
+                    <!-- Cancel Button -->
+                    <a href="{% url 'trips:captain_dashboard' %}" class="btn btn-secondary btn-lg px-5">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 {% endblock %}

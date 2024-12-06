@@ -897,6 +897,48 @@ registration-overlay p {
 }
 
 
+/* Delete Trip Confirmation Page Styles */
+
+.delete-trip-title {
+    font-size: 2rem;
+}
+
+.delete-trip-warning {
+    font-size: 1.5rem;
+    color: #dc3545; /* Bootstrap danger red */
+    text-align: center;
+}
+
+.delete-trip-subtext {
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.trip-details-title {
+    font-size: 1.3rem;
+}
+
+.trip-details-container {
+    font-size: 1.1rem;
+    display: flex;
+    gap: 2rem; /* Spacing between columns */
+    justify-content: center; /* Center align the columns */
+}
+
+.trip-details-column {
+    max-width: 350px; /* Restrict column width */
+}
+
+.trip-description {
+    font-size: 1.1rem;
+    background-color: #f8f9fa; /* Light background for distinction */
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 20px;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+
 
 
 

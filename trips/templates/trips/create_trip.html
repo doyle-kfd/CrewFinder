@@ -5,61 +5,72 @@
 
 {% block content %}
 <div class="container mt-5">
-    <h2 class="text-center mb-4">Create a New Trip</h2>
-    <form method="post" enctype="multipart/form-data" class=" p-4 shadow-sm">
-        {% csrf_token %}
-        
-        <div class="row">
-            <!-- Left Column: Basic Trip Details -->
-            <div class="col-md-6">
-                <div class="form-group">
-                    {{ form.title|as_crispy_field }}
-                </div>
-                <div class="form-group">
-                    {{ form.departing_from|as_crispy_field }}
-                </div>
-                <div class="form-group">
-                    {{ form.arriving_at|as_crispy_field }}
-                </div>
-                <div class="form-group">
-                    {{ form.departure_date|as_crispy_field }}
-                </div>
-                <div class="form-group">
-                    {{ form.duration|as_crispy_field }}
-                </div>
-                <div class="form-group">
-                    {{ form.crew_needed|as_crispy_field }}
-                </div>
-            </div>
-
-            <!-- Right Column: Boat Details -->
-            <div class="col-md-6">
-                <div class="form-group">
-                    {{ form.boat_name|as_crispy_field }}
-                </div>
-                <div class="form-group">
-                    {{ form.boat_description|as_crispy_field }}
-                </div>
-                <div class="form-group">
-                    {{ form.trip_description|as_crispy_field }}
-                </div>
-                <div class="form-group">
-                    <label for="id_boat_image">Boat Image</label>
-                    {% if form.boat_image.value %}
-                        <img src="{{ form.boat_image.value.url }}" alt="Boat Image" style="width: 300px; height: 200px; object-fit: cover;">
-                    {% else %}
-                        <div style="width: 300px; height: 200px; background-color: #f0f0f0;"></div>
-                    {% endif %}
-                    {{ form.boat_image|as_crispy_field }}
-                </div>
-            </div>
+    <div class=" shadow-sm border-0">
+        <div class="card-header bg-primary text-white text-center">
+            <h2 class="mb-0">Create a New Trip</h2>
         </div>
+        <div class="card-body">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row">
+                    <!-- Left Column: Basic Trip Details -->
+                    <div class="col-md-6">
+                        <h5>Basic Trip Details</h5>
+                        <hr>
+                        <div class="form-group mb-3">
+                            {{ form.title|as_crispy_field }}
+                        </div>
+                        <div class="form-group mb-3">
+                            {{ form.departing_from|as_crispy_field }}
+                        </div>
+                        <div class="form-group mb-3">
+                            {{ form.arriving_at|as_crispy_field }}
+                        </div>
+                        <div class="form-group mb-3">
+                            {{ form.departure_date|as_crispy_field }}
+                        </div>
+                        <div class="form-group mb-3">
+                            {{ form.duration|as_crispy_field }}
+                        </div>
+                        <div class="form-group mb-3">
+                            {{ form.crew_needed|as_crispy_field }}
+                        </div>
+                    </div>
 
-        <!-- Buttons Section -->
-        <div class="d-flex flex-column gap-2 mt-4">
-            <button type="submit" class="btn btn-primary w-100">Save Trip</button>
-            <a href="{% url 'trips:captain_dashboard' %}" class="btn btn-secondary w-100">Cancel</a>
+                    <!-- Right Column: Boat Details -->
+                    <div class="col-md-6">
+                        <h5>Boat Details</h5>
+                        <hr>
+                        <div class="form-group mb-3">
+                            {{ form.boat_name|as_crispy_field }}
+                        </div>
+                        <div class="form-group mb-3">
+                            {{ form.boat_description|as_crispy_field }}
+                        </div>
+                        <div class="form-group mb-3">
+                            {{ form.trip_description|as_crispy_field }}
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="id_boat_image">Boat Image</label>
+                            {% if form.boat_image.value %}
+                                <img src="{{ form.boat_image.value.url }}" alt="Boat Image" class="img-preview">
+                            {% else %}
+                                <div class="placeholder">
+                                    <span class="text-muted">No Image Uploaded</span>
+                                </div>
+                            {% endif %}
+                            {{ form.boat_image|as_crispy_field }}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Buttons Section -->
+                <div class="d-flex gap-3 mt-4">
+                    <button type="submit" class="btn btn-primary w-50">Save Trip</button>
+                    <a href="{% url 'trips:captain_dashboard' %}" class="btn btn-secondary w-50">Cancel</a>
+                </div>
+            </form>
         </div>
-    </form>
+    </div>
 </div>
 {% endblock %}

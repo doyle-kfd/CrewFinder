@@ -83,13 +83,8 @@ class ProfileCompletionForm(forms.ModelForm):
 
 class EditUserForm(forms.ModelForm):
     """
-    Form for administrators to edit user details, including role, approval
-    status, experience, and profile photo.
-
-    Meta:
-        model (User): The User model associated with the form.
-        fields (list): Fields included in the form ('username', 'email',
-        'role', 'approval_status', 'experience', 'photo').
+    Form for administrators to edit user details, excluding username and email 
+    from being editable.
     """
     class Meta:
         model = User
@@ -97,3 +92,13 @@ class EditUserForm(forms.ModelForm):
             'username', 'email', 'role', 'approval_status', 'experience',
             'photo'
         ]
+
+    def __init__(self, *args, **kwargs):
+        """
+        Overrides the initialization method to make username and email
+        fields read-only (disabled).
+        """
+        super().__init__(*args, **kwargs)
+        self.fields['username'].disabled = True  # Makes username read-only
+        self.fields['email'].disabled = True    # Makes email read-only
+        self.fields['role'].disabled = True    # Makes email read-only

@@ -647,3 +647,38 @@ This setup ensures consistent and reusable test data across test cases.
 
 ------
 
+
+
+### Functional Administrator Login Test
+
+| Link                                | Action | Expected Output        | Pass/Fail |
+|-------------------------------------|--------|------------------------|-----------|
+| From Home Page Click Login In Menu | Click  | Redirect To Login Page | Pass      |
+
+
+- User Name: kevin
+- Password: Drumph34!
+
+| Element                  | Action          | Expected Result                                                                                                            | Pass/Fail |
+|--------------------------|-----------------|----------------------------------------------------------------------------------------------------------------------------|-----------|
+| Admin Dashboard          | Display         | Table With All Captain/Crew Users                                                                                          | Pass      |
+| Username                 | Display         | Display Username of user                                                                                                   | Pass      |
+| Email                    | Display         | Email user by user signed up                                                                                               | Pass      |
+| Role                     | Display         | Role Defined by user at signup                                                                                             | Pass      |
+| Status                   | Display         | Active / Inactive / Pending                                                                                                | Pass      |
+| Action                   | Display         | Edit Link                                                                                                                  | Pass      |
+| Edit Link                | Click           | Open User Edit Form                                                                                                        | Pass      |
+| Edit User Form           | Display         | All Details Of User Visible                                                                                                | Pass      |
+| Username                 | Display         | Cannot Edit                                                                                                                | Pass      |
+| Email                    | Display         | Cannot Edit                                                                                                                | Pass      |
+| Role                     | Click           | Dropdown With Options, Captain, Crew, Administrator                                                                        | Pass      |
+| Approval Status          | Click           | Dropdown With Options, Pending, Approved, Declined                                                                         | Pass      |
+| Approval Status Approved | Select And Save | User Gets Updated Email From Signup Address Advising Of Status Change                                                      | Pass      |
+| Approval Status Pending  | Select And Save | User Gets Updated Email From Signup Address Advising Of Status Change                                                      | Pass      |
+| Approval Status Declined | Select And Save | User Gets Updated Email From Signup Address Advising Of Status Change                                                      | Pass      |
+| Experience               | Display         | Dropdown With Options, None, RYA: Competent Crew, Dayskipper, Yachtmaster Coastal, Yachtmaster Offshore, Yachtmaster Ocean | Pass      |
+| Photo                    | Display         | On First Visit A Default Photo Is Provided, The User Will Not Have Uploaded Their Own Awaiting Apprval                     | Pass      |
+| Save Button              | Click           | Returns To Administrator Dashboard With Updated Changes Saved                                                              | Pass      |
+| Cancel Button            | Click           | Return To Administrator Dashboard With No Updated Changes Saved                                                            | Pass      |
+| Logout Button            | Click           | Logout User And Return To Home Page                                                                                        | Pass      |
+

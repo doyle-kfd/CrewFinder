@@ -55,7 +55,7 @@
                     {% if user.is_authenticated %}
                         {% if user.role != 'captain' %}
                             {% if trip.id not in applied_trip_ids %}
-                                <a href="{% url 'apply_for_trip' trip.id %}" class="btn btn-success w-100">Apply for This Trip</a>
+                            <a href="{% url 'crewbooking:apply_for_trip' trip.id %}" class="btn btn-success w-100">Apply for This Trip</a>
                             {% else %}
                                 <div class="alert alert-info text-center mt-3" role="alert">
                                     <i class="fas fa-info-circle"></i> You have already applied for this trip.

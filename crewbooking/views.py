@@ -11,55 +11,31 @@ from crewbooking.models import CrewBooking
 def apply_for_trip(request, trip_id):
     """
     Allows an authenticated user to apply for a specific trip.
-
-    Parameters:
-    - request: The HTTP request object.
-    - trip_id: The ID of the trip the user wants to apply for.
-
-    Process:
-    1. Retrieves the trip object based on `trip_id`.
-    2. Checks if the user has already applied for the trip.
-    3. If not, creates a new `CrewBooking` instance with status 'pending'.
-    4. Redirects the user to their dashboard.
-
-    Returns:
-    - HTTP response redirecting to the dashboard.
     """
     trip = get_object_or_404(Trip, id=trip_id)
 
-    # Check if the user is already a crew member and has applied
+    # Check if the user has already applied for the trip
     if CrewBooking.objects.filter(user=request.user, trip=trip).exists():
-        # If the user already applied, just return a message or redirect
-        # Redirect to the dashboard or show a message
-        return redirect('dashboard')
+        # Redirect to the dashboard with a message if already applied
+        return redirect('accounts:dashboard')  # Use the correct namespace for the dashboard
 
     # Create a new CrewBooking instance with status 'pending'
     CrewBooking.objects.create(user=request.user, trip=trip, status='pending')
 
-    # Redirect back to the dashboard or the trip's page
-    return redirect('dashboard')  # Or to the trip's detail page
+    # Redirect back to the user's dashboard
+    return redirect('accounts:dashboard')  # Corrected namespace
 
 
 @login_required
 def delete_application(request, booking_id):
     """
     Allows an authenticated user to delete their application for a trip.
-
-    Parameters:
-    - request: The HTTP request object.
-    - booking_id: The ID of the booking to delete.
-
-    Process:
-    1. Retrieves the booking object based on `booking_id` and user.
-    2. Deletes the booking if it exists.
-    3. Redirects the user to their dashboard.
-
-    Returns:
-    - HTTP response redirecting to the dashboard.
     """
     booking = get_object_or_404(CrewBooking, id=booking_id, user=request.user)
     booking.delete()
-    return redirect('dashboard')  # Redirect to dashboard after deleting
+
+    # Redirect to the user's dashboard after deleting the application
+    return redirect('accounts:dashboard')  # Corrected namespace
 
 
 def home(request):

@@ -682,3 +682,45 @@ This setup ensures consistent and reusable test data across test cases.
 | Cancel Button            | Click           | Return To Administrator Dashboard With No Updated Changes Saved                                                            | Pass      |
 | Logout Button            | Click           | Logout User And Return To Home Page                                                                                        | Pass      |
 
+### Functional Captain Login Test
+
+| Link                                | Action | Expected Output        | Pass/Fail |
+|-------------------------------------|--------|------------------------|-----------|
+| From Home Page Click Login In Menu | Click  | Redirect To Login Page | Pass      |
+
+
+- User Name: ken
+- Password: Drumph34!
+
+| Element                             | Action                                | Expected Result                                                                                                     | Pass/Fail |
+|-------------------------------------|---------------------------------------|---------------------------------------------------------------------------------------------------------------------|-----------|
+| Captain Dashboard                   | Display                               | Dashboard With Buttons For Update Profile & Create Trip With Cards Showing Trips Created Or Message Saying No Trips | Pass      |
+| Update Profile                      | Click                                 | Redirected To Profile Page For Updating                                                                             | Pass      |
+| Bio                                 | Update & Save                         | Saves Changes Made In Bio Field And Redirects To Captain Dashboard                                                  | Pass      |
+| Experience                          | Change Expierience & Save             | Saves Experience And Redirects To Captains Dashboard                                                                | Pass      |
+| Save Changes Button                 | Click                                 | Saves Changes And Redirects To Captains Dashboard With Any Changes Saved                                            | Pass      |
+| Cancel Button                       | Click                                 | Redirects To Captains Dashboard Without Any Changes Saved                                                           | Pass      |
+| Create New Trip Button              | Click                                 | Opens A Trip Creation Form                                                                                          | Pass      |
+| Trip Creation Form Trip Title       | Display                               | Trip Title Field Visible Required                                                                                   | Pass      |
+| Trip Creation Form Trip Title       | Enter Title Only And Save             | Please Fill Out This Field Warning                                                                                  | Pass      |
+| Trip Creation Form Departing From   | Display                               | Departing From Field Visible                                                                                        | Pass      |
+| Trip Creation Form Departing From   | Enter Departing Only And Save         | Please Fill Out This Field Warning                                                                                  | Pass      |
+| Trip Creation Form Arriving At      | Display                               | Arriving At Field Visible                                                                                           | Pass      |
+| Trip Creation Form Arriving At      | Enter Arriving At Only                | Please Fill Out This Field Warning                                                                                  | Pass      |
+| Trip Creation Form Departure Date   | Display                               | Departure Date - Date Selector Select Date                                                                          | Pass      |
+| Trip Creation Form Departure Date   | Leave Empty And Save                  | Please Fil Out This Field Warning                                                                                   | Pass      |
+| Trip Creation Form Duration         | Display                               | Duration Field Visible                                                                                              | Pass      |
+| Trip Creation Form Duration         | Enter Duration Only                   | Please Fill Out This Field Warning                                                                                  | Pass      |
+| Trip Creation Form Crew Needed      | Display                               | Crew Needed Field Visible                                                                                           | Pass      |
+| Trip Creation Form Crew Needed      | Enter Crew Needed Only                | Please Fill Out This Field Warning                                                                                  | Pass      |
+| Trip Creation Form Boat Name        | Display                               | Boat Name Field Visible                                                                                             | Pass      |
+| Trip Creation Form Boat Name        | Enter Boat Name Only                  | Please Fill Out This Field Warning                                                                                  | Pass      |
+| Trip Creation Form Boat Description | Display                               | Boat Description Field Visible                                                                                      | Pass      |
+| Trip Creation Form Boat Description | Enter Boat Name Or Leave Empty        | No Error - Not Required                                                                                             | Pass      |
+| Trip Creation Form Trip Description | Display                               | Trip Desciriptio Field Visible                                                                                      | Pass      |
+| Trip Creation Form Trip Description | Enter Trip Description Or Leave Empty | No Error - Not Required                                                                                             | Pass      |
+| Trip Creation Form Boat Image       | Display                               | Blank Place Holder Visible                                                                                          | Pass      |
+| Trip Creation Form Boat Image       | Leave Empty                           | No Error, Fallback Image Saved                                                                                      | Pass      |
+| Required Fields with *              | Leave Empty                           | Warning on first field message. All required fields must be filled in                                               | Pass      |
+| Save Button                         | Click                                 | Saves Trip And Returns To Captains Dashboard                                                                        | Pass      |
+| Cancel Button                       | Click                                 | Returns To Captains Dashboard                                                                                       | Pass      |

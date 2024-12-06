@@ -94,11 +94,16 @@ def dashboard(request):
         return redirect('accounts:admin_dashboard')
 
     if request.user.role == User.CAPTAIN:
-        my_trips = Trip.objects.filter(captain=request.user).select_related('crewbooking_set').order_by('-departure_date')
+        # Prefetch crewbooking_set to access applicants for trips
+        my_trips = Trip.objects.filter(captain=request.user)\
+            .prefetch_related('crewbooking_set__user')\
+            .order_by('-departure_date')
         return render(request, 'accounts/dashboard.html', {'my_trips': my_trips})
 
     elif request.user.role == User.CREW:
-        applied_trips = CrewBooking.objects.filter(user=request.user).select_related('trip')
+        applied_trips = CrewBooking.objects.filter(user=request.user)\
+            .select_related('trip')\
+            .order_by('-trip__departure_date')
         return render(request, 'accounts/dashboard.html', {'applied_trips': applied_trips})
 
     raise PermissionDenied
@@ -133,6 +138,8 @@ def edit_user(request, user_id):
 
 @login_required
 def crew_profile(request, user_id, trip_id):
+    from .forms import CrewBookingStatusForm  # Import inside the function to avoid circular imports
+
     crew_member = get_object_or_404(User, id=user_id)
     crew_booking = get_object_or_404(CrewBooking, user=crew_member, trip_id=trip_id)
 
@@ -140,11 +147,12 @@ def crew_profile(request, user_id, trip_id):
         form = CrewBookingStatusForm(request.POST, instance=crew_booking)
         if form.is_valid():
             form.save()
-            return redirect('accounts:dashboard')
+            return redirect('accounts:dashboard')  # Redirect to the dashboard after updating status
     else:
         form = CrewBookingStatusForm(instance=crew_booking)
 
     return render(request, 'accounts/crew_profile.html', {'crew_member': crew_member, 'form': form})
+
 
 
 @login_required

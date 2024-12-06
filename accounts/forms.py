@@ -1,23 +1,13 @@
 from allauth.account.forms import SignupForm
 from django import forms
 from .models import User
+from crewbooking.models import CrewBooking  # Import CrewBooking model
 
-
-from django import forms
-from django.core.exceptions import ValidationError
-from allauth.account.forms import SignupForm
-from .models import User  # Adjust the import path as per your project structure
-
-from django import forms
-from django.core.exceptions import ValidationError
-from allauth.account.forms import SignupForm
-from .models import User  # Adjust the import path as per your project structure
 
 class CustomSignupForm(SignupForm):
     """
     Custom signup form to allow users to select their role during registration.
     """
-
     role = forms.ChoiceField(choices=User.ROLE_CHOICES, required=True)
 
     def custom_signup(self, request, user):
@@ -34,47 +24,20 @@ class ProfileCompletionForm(forms.ModelForm):
     """
     Form for users to complete their profile, including fields for bio,
     experience, and profile photo.
-
-    Meta:
-        model (User): The User model associated with the form.
-        fields (list): Fields included in the form ('username', 'email',
-        'bio', 'experience', 'photo').
-        help_texts (dict): Removes default help text for the username field.
-
-    Methods:
-        __init__(*args, **kwargs): Initializes the form and makes the
-        username and email fields read-only.
-        save(commit=True): Saves the form without modifying the user's
-        password.
     """
     class Meta:
         model = User
         fields = ['username', 'email', 'bio', 'experience', 'photo']
         help_texts = {
-            # Remove default help text for the username field
-            'username': None,
-                    }
+            'username': None,  # Remove default help text for the username field
+        }
 
     def __init__(self, *args, **kwargs):
-        """
-        Initializes the form and sets the username and email fields
-        to read-only.
-        """
         super().__init__(*args, **kwargs)
         self.fields['username'].widget.attrs['readonly'] = True
         self.fields['email'].widget.attrs['readonly'] = True
 
     def save(self, commit=True):
-        """
-        Saves the form data to the user instance without modifying the
-        password.
-
-        Args:
-            commit (bool): Whether to save the user instance immediately.
-
-        Returns:
-            User: The updated user instance.
-        """
         user = super().save(commit=False)
         if commit:
             user.save()
@@ -83,7 +46,7 @@ class ProfileCompletionForm(forms.ModelForm):
 
 class EditUserForm(forms.ModelForm):
     """
-    Form for administrators to edit user details, excluding username and email 
+    Form for administrators to edit user details, excluding username and email
     from being editable.
     """
     class Meta:
@@ -94,11 +57,16 @@ class EditUserForm(forms.ModelForm):
         ]
 
     def __init__(self, *args, **kwargs):
-        """
-        Overrides the initialization method to make username and email
-        fields read-only (disabled).
-        """
         super().__init__(*args, **kwargs)
-        self.fields['username'].disabled = True  # Makes username read-only
-        self.fields['email'].disabled = True    # Makes email read-only
-        self.fields['role'].disabled = True    # Makes email read-only
+        self.fields['username'].disabled = True
+        self.fields['email'].disabled = True
+        self.fields['role'].disabled = True
+
+
+class CrewBookingStatusForm(forms.ModelForm):
+    """
+    Form for captains to update the status of a crew booking.
+    """
+    class Meta:
+        model = CrewBooking
+        fields = ['status']

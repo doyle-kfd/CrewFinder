@@ -70,16 +70,15 @@
                     <!-- Crew Applications Section -->
                     <div class="applicants-section mt-4 p-3 bg-light rounded">
                         <h4>Applicants:</h4>
-                        {% if trip.applicants %}
+                        {% if trip.crewbooking_set.all %}
                         <ul class="list-unstyled">
-                            {% for crew in trip.applicants %}
+                            {% for booking in trip.crewbooking_set.all %}
                             <li class="d-flex justify-content-between">
                                 <div>
-                                    <strong>{{ crew.user.username }}</strong>
-                                    ({{ crew.status|title }})
+                                    <strong>{{ booking.user.username }}</strong>
+                                    ({{ booking.status|title }})
                                 </div>
-                                <a href="{% url 'accounts:crew_profile' crew.user.id trip.id %}"
-                                    class="btn btn-sm btn-outline-info">View Profile</a>
+                                <a href="{% url 'accounts:crew_profile' booking.user.id trip.id %}" class="btn btn-sm btn-outline-info">View Profile</a>
                             </li>
                             {% endfor %}
                         </ul>

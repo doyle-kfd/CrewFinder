@@ -157,23 +157,12 @@
 
 - As a user, I want my experience to be tailored based on my role (captain or crew), so I only see actions and views relevant to my role.
 
-  - AC-1 Captains have access to trip creation, management, and crew approval features.
-    - Working
-  - AC-2 Crew members have access to trip browsing and join request features.
-    - Working
-  - AC-3 Unauthorized users are redirected if attempting restricted actions.
-    - Working
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
+  <img src="docs/testing/captain trip creation form.png" alt="captain trip creation" width="30%">
+  <img src="docs/testing/captain crew approval.png" alt="captain crew approval" width="30%">
+  <img src="docs/testing/crew joining Features.png" alt="crew joining features" width="30%">
+</div>
 
-  #### EPIC | Role Based Access Control
-
-  - As an admin, I want to manage user roles effectively, so I can control access to specific features.
-
-    - AC-1 The admin panel includes options to view and modify user roles.
-      - Working
-    - AC-2 Role changes are saved and take immediate effect on user permissions.
-      - Working
-
-  - As a user, I want my experience to be tailored based on my role (captain or crew), so I only see actions and views relevant to my role.
 
     - AC-1 Captains have access to trip creation, management, and crew approval features.
       - Working
@@ -182,20 +171,37 @@
     - AC-3 Unauthorized users are redirected if attempting restricted actions.
       - Working
 
+  #### EPIC | Role Based Access Control
+
+  - As an admin, I want to manage user roles effectively, so I can control access to specific features.
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
+  <img src="docs/testing/Admin  user dashboard.png" alt="admin user dashboard" width="45%">
+  <img src="docs/testing/Adming user edit form.png" alt="admin user edit form" width="45%">
+</div>
+
+    - AC-1 The admin panel includes options to view and modify user roles.
+      - Working
+    - AC-2 Role changes are saved and take immediate effect on user permissions.
+      - Working
 
 #### EPIC | Platform UI And Testing
 
 - As a user, I want rich-text capabilities in my profile bio, so I can add more detailed information about myself.
 
-  - AC-1 Bio field on the profile form supports rich-text formatting via Summernote.
-    - Working, once approved user on first login has to complete bio.
-  - AC-2 Bio content displays properly in the profile view on the dashboard.
-    - Working. Can be updated as necessary
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
+  <img src="docs/testing/admin profile and bio admin.png" alt="profile update and bio admin" width="50%">
+</div>
+
+    - AC-1 Bio field on the profile form supports rich-text formatting via Summernote.
+      - Working, once approved user on first login has to complete bio.
+    - AC-2 Bio content displays properly in the profile view on the dashboard.
+      - Working. Can be updated as necessary
 
 - As a user, I want the platform to have a clean and intuitive layout with easy navigation, so I can find features and complete actions quickly.
 
   - AC-1 Consistent styling across pages using Bootstrap and Crispy Forms.
-    - Bootstrap and Cripsy formas have been implemented
+    - Bootstrap and Cripsy forms have been implemented
   - AC-2 Navigation bar with links to key sections (dashboard, profile, trips).
     - Appropriate Navigation Is Available at all times
   - AC-3 All pages are mobile-friendly and responsive.

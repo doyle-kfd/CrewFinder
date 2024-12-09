@@ -3430,3 +3430,131 @@ The `trips` app is a vital component of the CrewFinder project, enabling captain
 
 
 </details>
+
+
+<br>
+<br>
+
+# Security Features and Defensive Design in CrewFinder
+
+In the CrewFinder app, several measures have been implemented to ensure both security and defensive design. These strategies protect user data, enforce role-based permissions, and guard against invalid or malicious actions.
+
+---
+
+### **Authentication and Authorization**
+
+1. **Role-Based Access Control**:
+   - Specific features are restricted to users with the appropriate role:
+     - Only captains can create, edit, and delete trips.
+     - Only crew members can apply for trips.
+     - Admin users have additional permissions to manage user accounts.
+   - Role-based checks are implemented in views, using the user’s `role` field.
+
+2. **Login Requirement**:
+   - The `@login_required` decorator is used to restrict access to key views like trip creation, editing, and the captain dashboard.
+   - Unauthorized users are redirected to the login page.
+
+3. **Account Activation**:
+   - New user accounts are set to `is_active=False` by default until approved by an admin, preventing unauthorized access before vetting.
+
+4. **Admin Approval Workflow**:
+   - Admins must explicitly approve user accounts and can update the approval status of users before they are fully activated.
+   - Only approved users can access key application features.
+
+---
+
+### **Input Validation and Defensive Design**
+
+1. **Form Validation**:
+   - Forms, such as `TripCreationForm`, validate user inputs:
+     - The `duration` field ensures natural language inputs like "5 hours" or "2 days" are converted into a valid `timedelta` object.
+     - Numeric fields like `crew_needed` are restricted to positive integers.
+   - Custom widgets and placeholders provide clear guidance to users for proper input.
+
+2. **Backend Validation**:
+   - Input validation is performed server-side to ensure data integrity, even if frontend validation is bypassed.
+   - Invalid or incomplete submissions raise appropriate errors and prevent database corruption.
+
+3. **Confirmation Steps**:
+   - Deletion actions, like trip removal, require a confirmation step to avoid accidental data loss.
+
+4. **Error Handling**:
+   - Unauthorized access attempts are met with appropriate error responses, such as `PermissionDenied` or 404 errors, without exposing sensitive details.
+   - Graceful failure messages inform users when they attempt invalid actions (e.g., accessing a trip they don’t own).
+
+---
+
+### **Sensitive Data Management**
+
+1. **Environment Variables**:
+   - Sensitive credentials (e.g., database credentials, email configuration) are stored in `env.py` and excluded from version control using `.gitignore`.
+   - This ensures these details are not accidentally exposed in the public repository.
+
+2. **Media Security**:
+   - Profile and trip images are securely stored using Cloudinary, ensuring proper access control and efficient management.
+
+---
+
+### **UI and Defensive Design**
+
+1. **Role-Specific Dashboards**:
+   - The captain dashboard only displays trips created by the logged-in captain and crew applications for those trips.
+   - Crew members see a personalized dashboard with their applied trips and application statuses.
+
+2. **Fallbacks for Missing Data**:
+   - Default images are displayed for trips and profiles when no custom image is uploaded, ensuring a polished UI.
+   - Forms provide placeholders and help text to guide users in entering valid information.
+
+3. **Feedback Mechanisms**:
+   - Clear success and error messages are displayed to inform users of the result of their actions (e.g., “Trip created successfully”).
+
+---
+
+### **Security Best Practices**
+
+1. **Restricting Permissions**:
+   - The `Trip` model ensures only captains can create and manage trips.
+   - Signals update the `crew_needed` count dynamically, avoiding unauthorized data manipulation.
+
+2. **Preventing Unauthorized Actions**:
+   - Views check ownership before allowing updates or deletions of trips.
+   - The `get_object_or_404` method prevents direct URL manipulation to access unauthorized resources.
+
+3. **Session Security**:
+   - Django’s session framework protects against session hijacking and CSRF attacks.
+   - CSRF tokens are included in all forms.
+
+---
+
+### **Summary**
+
+By combining authentication, role-based access control, form validation, error handling, and secure data management, the CrewFinder app effectively implements security features and defensive design principles. These measures ensure a reliable and user-friendly experience while safeguarding user data and application integrity.
+
+
+## Features
+
+### Navigation Bar
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
+  <img src="docs/readme_images/menubar desktop.png" alt="nav desktop" width="45%">
+  <img src="docs/readme_images/menubar mobile.png" alt="nav mobile" width="45%">
+</div>
+
+- Navigation bar is present at the top of each page on both desktop and mobile devices
+- The navigation items visible when logged out on desktop are:
+  - Signup
+  - Login
+  - Mobile hamburger meny with
+    - About Us
+    - Contact Us
+    - Sailing Opportunities
+
+- The navigation items visible when logged out on mobile devices are:
+  - Signup
+  - Login
+  - Home
+  - About Us
+  - Contact Us
+  - Sailing Opportunities
+
+- When the user is logged in, dashboard is visible on the menu bar

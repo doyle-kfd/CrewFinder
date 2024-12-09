@@ -70,18 +70,6 @@
 
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url 'home' %}">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.path == '/about/' %}active{% endif %}" href="{% url 'about' %}">About Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.path == '/contact/' %}active{% endif %}" href="{% url 'contact' %}">Contact Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.path == '/sailing_opportunities/' %}active{% endif %}" href="{% url 'sailing_opportunities' %}">Sailing Opportunities</a>
-                    </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item d-lg-none">
                         <a class="nav-link {% if request.path == '/dashboard/' %}active{% endif %}" href="{% url 'accounts:dashboard' %}">Dashboard</a>
@@ -97,6 +85,19 @@
                         <a class="nav-link {% if request.path == '/accounts/login/' %}active{% endif %}" href="{% url 'accounts:account_login' %}">Login</a>
                     </li>
                     {% endif %}
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url 'home' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/about/' %}active{% endif %}" href="{% url 'about' %}">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/contact/' %}active{% endif %}" href="{% url 'contact' %}">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/sailing_opportunities/' %}active{% endif %}" href="{% url 'sailing_opportunities' %}">Sailing Opportunities</a>
+                    </li>
+
                 </ul>
             </div>
         </div>

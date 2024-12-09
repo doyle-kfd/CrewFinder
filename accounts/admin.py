@@ -1,21 +1,14 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
+from django.contrib.auth.forms import AdminPasswordChangeForm
+from django.urls import reverse
+from django.utils.html import format_html
 from .models import User
 
 
 class CustomUserAdmin(UserAdmin):
     """
-    Custom admin configuration for the User model. Allows for customized
-    display, filtering, permissions, and saving logic specific to the
-    accounts application.
-
-    Attributes:
-        list_display (tuple): Fields displayed in the admin list view.
-        list_filter (tuple): Fields used for filtering in the admin interface.
-        search_fields (tuple): Fields available for searching.
-        ordering (tuple): Default ordering for the list view.
-        list_editable (tuple): Fields editable directly in the list view.
-        fieldsets (tuple): Groups of fields displayed on the detail page.
+    Custom admin configuration for the User model.
     """
 
     list_display = (
@@ -52,8 +45,7 @@ class CustomUserAdmin(UserAdmin):
             tuple: Fieldsets to display in the admin interface.
         """
         fieldsets = super().get_fieldsets(request, obj)
-        if (not request.user.is_superuser and request.user.role ==
-                User.ADMINISTRATOR):
+        if not request.user.is_superuser and request.user.role == User.ADMINISTRATOR:
             fieldsets = (
                 (None, {
                     'fields': (
@@ -77,8 +69,7 @@ class CustomUserAdmin(UserAdmin):
             QuerySet: The filtered queryset.
         """
         qs = super().get_queryset(request)
-        if (not request.user.is_superuser and request.user.role ==
-                User.ADMINISTRATOR):
+        if not request.user.is_superuser and request.user.role == User.ADMINISTRATOR:
             return qs.filter(
                 is_superuser=False, role__in=[User.CAPTAIN, User.CREW]
             )
@@ -144,6 +135,21 @@ class CustomUserAdmin(UserAdmin):
         elif obj.approval_status == User.DISAPPROVED:
             obj.is_active = False
         super().save_model(request, obj, form, change)
+
+    # Add "Change Password" link in the user list
+    def password_change_link(self, obj):
+        """
+        Add a link to change a user's password.
+        """
+        if obj.pk:
+            url = reverse('admin:auth_user_password_change', args=[obj.pk])
+            return format_html('<a href="{}">Change Password</a>', url)
+        return '-'
+
+    password_change_link.short_description = 'Change Password'
+
+    # Include the password change link in the list_display
+    list_display += ('password_change_link',)
 
 
 # Register the User model with the custom admin configuration

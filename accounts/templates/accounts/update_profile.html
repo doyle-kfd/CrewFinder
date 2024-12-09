@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
 {% load page_custom_filters %}
-{% load static %}  <!-- Load the static files -->
+{% load static %} <!-- Load the static files -->
 
 {% block title %}Update Profile{% endblock %}
 
@@ -70,9 +70,16 @@
                         <div class="d-flex gap-2 mt-4">
                             <!-- Save Changes Button -->
                             <button type="submit" class="btn btn-primary flex-fill text-center py-2">Save Changes</button>
-                            
+
                             <!-- Cancel Button -->
                             <a href="{% url 'accounts:dashboard' %}" class="btn btn-secondary flex-fill text-center py-2">Cancel</a>
+                        </div>
+
+                        <!-- Change Password Button -->
+                        <div class="mt-4">
+                            <a href="{% url 'accounts:password_change' %}" class="btn btn-warning w-100 py-2 text-center">
+                                Change Password
+                            </a>
                         </div>
                     </form>
                 </div>

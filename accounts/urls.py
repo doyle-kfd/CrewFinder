@@ -1,7 +1,8 @@
-from django.urls import path
+from django.urls import path, reverse_lazy
 from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic import TemplateView
+from django.contrib.auth.views import PasswordChangeView, PasswordChangeDoneView
 from allauth.account import views as allauth_views
 from .views import (
     CustomSignupView,
@@ -44,6 +45,23 @@ urlpatterns = [
     path('password/reset/sent/', TemplateView.as_view(template_name="account/password_reset_sent.html"), name='password_reset_sent'),
     path('password/reset/key/<uidb64>/<token>/', allauth_views.PasswordResetFromKeyView.as_view(), name='account_reset_password_from_key'),
     path('password/reset/key/done/', allauth_views.PasswordResetFromKeyDoneView.as_view(), name='account_reset_password_from_key_done'),
+
+    # Password change
+    path(
+        'password/change/',
+        PasswordChangeView.as_view(
+            template_name='account/password_change_form.html',
+            success_url=reverse_lazy('accounts:password_change_done')  # Explicit success URL
+        ),
+        name='password_change',
+    ),
+    path(
+        'password/change/done/',
+        PasswordChangeDoneView.as_view(
+            template_name='account/password_change_done.html'
+        ),
+        name='password_change_done',
+    ),
 
     # Error handling
     path('auth/inactive/', inactive_account_redirect, name='account_inactive'),

@@ -6,6 +6,9 @@ from django.contrib.auth.views import (
     PasswordResetCompleteView
 )
 
+from django.contrib.auth.views import PasswordChangeView
+from django.urls import reverse_lazy
+
 from allauth.account.views import PasswordResetView
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -38,7 +41,13 @@ class CustomPasswordResetView(PasswordResetView):
     email_template_name = 'account/password_reset_email.html'
     success_url = reverse_lazy('accounts:password_reset_sent')  # Redirect after submitting the email
 
+class CustomPasswordChangeView(PasswordChangeView):
+    success_url = reverse_lazy('accounts:password_change_done')  # Redirect to success page
 
+    def form_valid(self, form):
+        # Update the password but retain the user session
+        form.save()
+        return super().form_valid(form)
 
 # Custom Password Reset Views
 class CustomPasswordResetView(PasswordResetView):

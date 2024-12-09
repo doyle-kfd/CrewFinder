@@ -776,3 +776,50 @@ This setup ensures consistent and reusable test data across test cases.
 | Trip Card Details - Crew Needed                                     | View                      | Increments And Decrements As Captain Approves Or Declines Crew Applications                               | Pass      |
 | Trip Card Details - Delete Button                                   | Click                     | Deletes Application, Removes Trip From Dashboard, Increments Crew Needed, Adds Back To Opportunities Page | Pass      |
 | Logout Button                                                       | Click                     | Returns To Home Page                                                                                      | Pass      |
+
+
+-----
+
+## Bugs
+
+### Fixed Bugs
+
+After adding  trips, when running in browser:
+
+- Error: AttributeError: module 'trips.views' has no attribute 'create_trip'
+- Solution: Add placeholder view for trips
+
+After adding  acounts, when running in browser:
+
+- Error: AttributeError: module 'accounts.views' has no attribute 'signup'
+- Solution: Add placeholder view for accounts
+
+Styling ok in gitpod but missing on Heroku
+
+- Error: admin page styling ok in Gitpod but not on Heroku
+- Solution: Added whitenoise to serve static files
+
+Captain Logged In Cant View Created Trips
+
+- Problem:     Captain logged in cant view trips they created.
+- Solution:    Dashboard view created in wrong app. Was in trips, moved to acctouns.
+
+Default profile pic not loading.. missing image and just alt text
+
+- Problem: incorrect path to static image in template
+- Solution: corrected the image path.
+
+When creating a trip and clicking on cancel, i get a 500 error.
+
+- Problem: Captains dashboard view for trips is looking for field called date
+- Solution: change field being called from date to departure_date
+
+When crew apply, their application doesnt show in captain dashboard.
+
+- Problem: Captains dashboard should update with crew applications
+- Solution: update signals file and changed crewbooking model to set default status
+
+Captains dashboard creates console error mixed content. https served as http from cloudinary
+- On the captains dashboard, cloudniary images are being served with http instead of https
+- Solution: create filter and convert http to https forcing serving of https images
+

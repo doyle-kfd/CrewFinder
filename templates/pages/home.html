@@ -147,7 +147,7 @@
                         {% if user.is_authenticated %}
                             {% if user.role != 'captain' %}
                                 {% if trip.id not in applied_trip_ids %}
-                                    <a href="{% url 'apply_for_trip' trip.id %}" 
+                                    <a href="{% url 'crewbooking:apply_for_trip' trip.id %}" 
                                        class="btn btn-success w-100" 
                                        aria-label="Apply for {{ trip.title }}">Apply Now</a>
                                 {% else %}

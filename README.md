@@ -3541,6 +3541,7 @@ By combining authentication, role-based access control, form validation, error h
 </div>
 
 - Navigation bar is present at the top of each page on both desktop and mobile devices
+- The nav bar is sticky
 - The navigation items visible when logged out on desktop are:
   - Signup
   - Login
@@ -3558,3 +3559,85 @@ By combining authentication, role-based access control, form validation, error h
   - Sailing Opportunities
 
 - When the user is logged in, dashboard is visible on the menu bar
+- Clicking on the logo will return the user to the home page
+
+----
+
+
+### Footer
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
+  <img src="docs/readme_images/footer.png" alt="footer image" width="80%">
+</div>
+
+- The Footer is visible on all pages
+- The Footer is stuck to the bottom of the screen
+
+### Home page hero section
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
+  <img src="docs/readme_images/home page hero section.png" alt="home page hero section" width="80%">
+</div>
+
+- The home page hero section contains an image and a call to action
+- The hero image is picked to support the personas of age and gender
+- The hero image is picked to create a sense of excitement which these trips will entail
+- The CTA is used to encourage the user to sign up for either captain or crew
+
+### Home page about crewfinder
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
+  <img src="docs/readme_images/about crewfinder home page.png" alt="home page about crewfinder" width="80%">
+</div>
+
+- The about crewfinder section of the home page positions the website by role
+- Its for captains
+- Its for crew
+- Its safe
+- Its got a call to action, to entice a user to sign up
+
+### Home page about sailing opportunities
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
+  <img src="docs/readme_images/home page sailing opportunities.png" alt="home page sailing opportunities" width="30%">
+  <img src="docs/readme_images/crew apply.png" alt="home page sailing opportunities crew can apply" width="30%">
+  <img src="docs/readme_images/captains cannot apply.png" alt="home page sailing opportunities captains cannot apply" width="30%">
+</div>
+
+- The sailing opportunities section of the home page lists the last 3 trips created, sorted by date
+- If logged out, two options are available
+  - Login To Apply
+  - Signup To Apply
+- If Logged in as crew, you will either be presented with
+  - Apply Now
+  - Or "Already applied for this trip", if the crew member has
+- If logged in as captain, you will be presented with
+  - Captains Cannot Apply
+-----------
+
+<br>
+
+### Home page call to action
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
+  <img src="docs/readme_images/home page cta.png" alt="home page call to action" width="50%">
+</div>
+
+- Home page cta has two options
+  - Signup
+    - redirects to home page
+  - view all sailing opportunites
+    - redirects to sailing opportunites page with more cta's
+
+---------
+
+<br>
+
+### Home page testimonials
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
+  <img src="docs/readme_images/testimonials.png" alt="testimonials" width="50%">
+</div>
+
+- There are two testimonails
+- Testimonail images are based on personas

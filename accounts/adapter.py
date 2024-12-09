@@ -1,3 +1,25 @@
+"""
+Account Adapter
+This module defines a custom adapter that customizes Django Allauth's default
+behavior for account-related logic, including signup redirection,
+login redirection,
+and user auto-login handling.
+
+Adapter:
+1. CustomAccountAdapter: Extends Allauth's DefaultAccountAdapter to modify
+   account redirection and login logic.
+
+Key Features:
+- Redirects users to a registration pending page after successful signup.
+- Handles login redirection for inactive users, directing them to the
+  registration pending page.
+- Prevents auto-login for users whose accounts are inactive.
+
+Dependencies:
+- Django Allauth for account management and authentication.
+- Django's URL reversing for dynamic URL generation.
+"""
+
 from allauth.account.adapter import DefaultAccountAdapter
 from django.urls import reverse
 

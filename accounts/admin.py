@@ -1,3 +1,27 @@
+"""
+Admin Configuration
+This module defines custom admin configurations for the User model. It extends
+Django's built-in UserAdmin to include additional functionality for managing
+user accounts, roles, and approval workflows.
+
+Admin Features:
+1. CustomUserAdmin: Provides a tailored admin interface for the User model,
+   including:
+   - Role and approval status management.
+   - Restricted permissions for non-superuser administrators.
+   - Field-level and queryset-level customizations.
+   - Inline "Change Password" link for users.
+
+Key Features:
+- Enhanced user management tailored to application requirements.
+- Role-based access control for the admin interface.
+- Automated updates to user `is_active` status based on approval workflows.
+
+Dependencies:
+- Django's admin framework.
+- Models from the accounts app for user management.
+"""
+
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.forms import AdminPasswordChangeForm
@@ -45,7 +69,8 @@ class CustomUserAdmin(UserAdmin):
             tuple: Fieldsets to display in the admin interface.
         """
         fieldsets = super().get_fieldsets(request, obj)
-        if not request.user.is_superuser and request.user.role == User.ADMINISTRATOR:
+        if (not request.user.is_superuser and request.user.role ==
+                User.ADMINISTRATOR):
             fieldsets = (
                 (None, {
                     'fields': (
@@ -69,7 +94,8 @@ class CustomUserAdmin(UserAdmin):
             QuerySet: The filtered queryset.
         """
         qs = super().get_queryset(request)
-        if not request.user.is_superuser and request.user.role == User.ADMINISTRATOR:
+        if (not request.user.is_superuser and request.user.role ==
+                User.ADMINISTRATOR):
             return qs.filter(
                 is_superuser=False, role__in=[User.CAPTAIN, User.CREW]
             )
@@ -142,8 +168,10 @@ class CustomUserAdmin(UserAdmin):
         Add a link to change a user's password.
         """
         if obj.pk:
-            url = reverse('admin:auth_user_password_change', args=[obj.pk])
-            return format_html('<a href="{}">Change Password</a>', url)
+            url = reverse('admin:auth_user_password_change',
+                          args=[obj.pk])
+            return format_html('<a href="{}">Change Password</a>',
+                               url)
         return '-'
 
     password_change_link.short_description = 'Change Password'

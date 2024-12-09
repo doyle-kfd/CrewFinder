@@ -1,3 +1,26 @@
+"""
+Signal Handlers
+This module defines Django signal handlers to manage automated
+actions related to
+user registrations, approvals, disapprovals, and crew bookings.
+
+Signal Functions:
+1. notify_admin_of_new_user: Notifies admins of a new user registration.
+2. notify_user_of_approval: Activates a user's account and sends an
+   approval email.
+3. notify_user_of_disapproval: Deactivates a user's account and sends
+   a disapproval email.
+4. adjust_crew_needed: Updates the `crew_needed` count when crew booking
+   status changes.
+5. increment_crew_needed_on_delete: Adjusts `crew_needed` count when a
+   booking is deleted.
+
+Dependencies:
+- Django's signals and model event hooks
+- Email functionality for notifications
+- Models for users, crew bookings, and trips
+"""
+
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from django.core.mail import send_mail
@@ -133,11 +156,13 @@ def adjust_crew_needed(sender, instance, **kwargs):
     """
     trip = instance.trip
 
-    if instance.status == 'confirmed' and instance._original_status != 'confirmed':
+    if (instance.status ==
+            'confirmed' and instance._original_status != 'confirmed'):
         trip.crew_needed = max(0, trip.crew_needed - 1)  # Prevent negative
         trip.save()
 
-    elif instance._original_status == 'confirmed' and instance.status != 'confirmed':
+    elif (instance._original_status ==
+          'confirmed' and instance.status != 'confirmed'):
         trip.crew_needed += 1
         trip.save()
 

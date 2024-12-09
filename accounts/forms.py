@@ -1,3 +1,32 @@
+"""
+Forms
+This module defines custom forms for user registration, profile management,
+and administrative tasks. These forms extend or customize Django's built-in
+form functionality to meet the specific needs of the application.
+
+Forms:
+1. CustomSignupForm: Extends the Allauth signup form to include
+   role selection.
+2. ProfileCompletionForm: Allows users to complete their profile with
+   fields for
+   bio, experience, and profile photo.
+3. EditUserForm: Provides administrators with the ability to edit user
+   details,
+   excluding certain fields from being editable.
+4. CrewBookingStatusForm: Enables captains to update the status of a crew
+   booking.
+
+Key Features:
+- Role-based user registration via the signup form.
+- Profile completion with restricted field editing for existing data.
+- Administrative editing of user details and role-based status updates.
+
+Dependencies:
+- Django forms framework.
+- Django Allauth for custom signup functionality.
+- Models for User and CrewBooking.
+"""
+
 from allauth.account.forms import SignupForm
 from django import forms
 from .models import User
@@ -6,7 +35,8 @@ from crewbooking.models import CrewBooking  # Import CrewBooking model
 
 class CustomSignupForm(SignupForm):
     """
-    Custom signup form to allow users to select their role during registration.
+    Custom signup form to allow users to select their role during
+    registration.
     """
     role = forms.ChoiceField(choices=User.ROLE_CHOICES, required=True)
 
@@ -29,7 +59,7 @@ class ProfileCompletionForm(forms.ModelForm):
         model = User
         fields = ['username', 'email', 'bio', 'experience', 'photo']
         help_texts = {
-            'username': None,  # Remove default help text for the username field
+            'username': None,
         }
 
     def __init__(self, *args, **kwargs):

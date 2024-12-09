@@ -1,3 +1,28 @@
+"""
+Models
+This module defines the models for the application, including
+a custom user model
+that extends Django's `AbstractUser` to add additional fields and
+functionality
+required for user roles, profile management, and approval workflows.
+
+Models:
+1. User: Extends the `AbstractUser` model to include roles
+         (Captain, Crew, Administrator),
+         approval statuses, sailing experience, profile completion,
+         and profile photos.
+
+Key Features:
+- Role-based user management (Captain, Crew, Administrator).
+- Profile completion and approval workflows.
+- Sailing experience levels and custom attributes.
+- Integration with Cloudinary for profile photos.
+
+Dependencies:
+- Django's built-in `AbstractUser` for user management.
+- Cloudinary for storing profile photos.
+"""
+
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from cloudinary.models import CloudinaryField  # For Cloudinary integration
@@ -14,8 +39,9 @@ class User(AbstractUser):
         APPROVAL_STATUS_CHOICES (list): Choices for user approval statuses
             (Pending, Approved, Disapproved).
         EXPERIENCE_CHOICES (list): Choices for user sailing experience levels.
+        email (EmailField): Email address of the user, must be unique.
         role (str): Role of the user, default is 'crew'.
-        bio (str): User's biography, optional.
+        bio (TextField): User's biography, optional.
         experience_level (str): Legacy field for experience level, optional.
         approval_status (str): Approval status of the user, default is
             'pending'.
@@ -68,7 +94,6 @@ class User(AbstractUser):
         help_text="Email address is required and must be unique.",
     )
 
-
     role = models.CharField(
         max_length=15, choices=ROLE_CHOICES, default=CREW
     )
@@ -94,10 +119,12 @@ class User(AbstractUser):
 
     def save(self, *args, **kwargs):
         """
-        Overrides the save method to automatically update the `is_active` field
+        Overrides the save method to automatically
+        update the `is_active` field
         based on the `approval_status`.
 
-        If the `approval_status` is 'approved', the `is_active` field is set to
+        If the `approval_status` is 'approved', the
+        `is_active` field is set to
         True. If the `approval_status` is 'pending' or 'disapproved', the
         `is_active` field is set to False.
 

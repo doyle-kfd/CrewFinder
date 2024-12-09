@@ -1,3 +1,26 @@
+"""
+Middleware
+This module defines a custom middleware class that enforces profile
+completion
+and handles user redirection based on their approval status.
+
+Middleware:
+1. ProfileCompletionMiddleware: Ensures that users are redirected to
+   appropriate
+   pages depending on their account's approval status and profile completion.
+
+Key Features:
+- Unrestricted access for staff and superuser accounts.
+- Redirects 'pending' users to a registration pending page.
+- Redirects 'disapproved' users to a disapproval message page.
+- Redirects 'approved' users with incomplete profiles to the profile
+  completion page.
+
+Dependencies:
+- Django's `HttpRequest` and `HttpResponse` for request handling.
+- Django's URL reversing for redirection logic.
+"""
+
 from django.shortcuts import redirect
 from django.urls import reverse
 from .models import User
@@ -10,8 +33,10 @@ class ProfileCompletionMiddleware:
 
     This middleware checks the following conditions for authenticated users:
     1. Staff and superuser accounts are allowed unrestricted access.
-    2. Redirects users with 'pending' status to the registration pending page.
-    3. Redirects users with 'disapproved' status to a disapproval message page.
+    2. Redirects users with 'pending' status to the registration
+       pending page.
+    3. Redirects users with 'disapproved' status to a disapproval
+       message page.
     4. Redirects users with 'approved' status and incomplete profiles to
        the profile completion page.
 

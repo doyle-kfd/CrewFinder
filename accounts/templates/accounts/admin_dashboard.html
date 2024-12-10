@@ -4,6 +4,11 @@
 
 {% block content %}
 <h2>Administrator Dashboard</h2>
+
+<div class="mb-3">
+    <a href="{% url 'accounts:update_profile' %}" class="btn btn-secondary">Edit My Profile</a>
+</div>
+
 <div class="table-responsive">
     <table class="table table-bordered">
         <thead>
@@ -21,7 +26,7 @@
                 <td>{{ user.username }}</td>
                 <td>{{ user.email }}</td>
                 <td>{{ user.get_role_display }}</td>
-                <td>{{ user.is_active|yesno:"Active,Inactive" }}</td>
+                <td>{{ user.approval_status|title }}</td>
                 <td class="text-center">
                     <a href="{% url 'accounts:edit_user' user.id %}" class="btn btn-sm btn-primary">Edit</a>
                 </td>

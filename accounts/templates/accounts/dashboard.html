@@ -51,11 +51,12 @@
                         <h3 class="card-title text-primary fs-5">{{ trip.title }}</h3>
                         <div class="row mt-3">
                             <div class="col-6 mb-2">
-                                <p><strong>Departing:</strong> {{ trip.departing_from }}</p>
+                                <p><strong>Departing From:</strong> {{ trip.departing_from }}</p>
                                 <p><strong>Departure Date:</strong> {{ trip.departure_date }}</p>
+                                <p><strong>Duration:</strong> {{ trip.duration}}</p>
                             </div>
                             <div class="col-6 mb-2">
-                                <p><strong>Arriving:</strong> {{ trip.arriving_at }}</p>
+                                <p><strong>Arriving At:</strong> {{ trip.arriving_at }}</p>
                                 <p><strong>Crew Needed:</strong> {{ trip.crew_needed }}</p>
                             </div>
                         </div>
@@ -122,12 +123,12 @@
                         <div class="row">
                             <div class="row">
                                 <div class="col-6 mb-2">
-                                    <p class="trip-detail"><strong>Departing:</strong> <span class="ms-2">{{ booking.trip.departing_from }}</span></p>
+                                    <p class="trip-detail"><strong>Departing From:</strong> <span class="ms-2">{{ booking.trip.departing_from }}</span></p>
                                     <p class="trip-detail"><strong>Departure Date:</strong> <span class="ms-2">{{ booking.trip.departure_date }}</span></p>
                                     <p class="trip-detail"><strong>Boat Name:</strong> <span class="ms-2">{{ booking.trip.boat_name }}</span></p>
                                 </div>
                                 <div class="col-6 mb-2">
-                                    <p class="trip-detail"><strong>Arriving:</strong> <span class="ms-2">{{ booking.trip.arriving_at }}</span></p>
+                                    <p class="trip-detail"><strong>Arriving At:</strong> <span class="ms-2">{{ booking.trip.arriving_at }}</span></p>
                                     <p class="trip-detail"><strong>Duration:</strong> <span class="ms-2">{{ booking.trip.formatted_duration }}</span></p>
                                     <p class="trip-detail"><strong>Crew Needed:</strong> <span class="ms-2">{{ booking.trip.crew_needed }}</span></p>
                                 </div>

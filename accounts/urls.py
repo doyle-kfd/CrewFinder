@@ -7,6 +7,8 @@ and password management. These URLs route requests to corresponding views.
 """
 
 from django.urls import path, reverse_lazy
+from django.urls import path
+from . import views
 from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic import TemplateView
@@ -44,7 +46,7 @@ urlpatterns = [
     path('logout/', CustomLogoutView.as_view(), name='account_logout'),
 
     # Allows users to complete their profile after registration.
-    path('complete_profile/', complete_profile, name='complete_profile'),
+    path('complete-profile/', views.complete_profile, name='complete_profile'),
 
     # Displays a page for users awaiting admin approval.
     path('registration_pending/', registration_pending,

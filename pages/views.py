@@ -33,6 +33,7 @@ from django.core.exceptions import (PermissionDenied, BadRequest,
                                     SuspiciousOperation)
 from django.http import HttpResponseBadRequest
 import sys
+from django.urls import reverse, NoReverseMatch
 
 
 def home(request):
@@ -40,26 +41,25 @@ def home(request):
     Displays the home page with the latest trips.
 
     Fetches the latest three trips and, if the user is authenticated,
-    retrieves
-    the IDs of trips they have applied for.
-
-    Parameters:
-    - request: The HTTP request object.
-
-    Returns:
-    - Rendered home page with:
-      - `trips`: The latest three trips.
-      - `applied_trip_ids`: List of trip IDs the user has applied for.
+    retrieves the IDs of trips they have applied for.
     """
     trips = Trip.objects.order_by('-departure_date')[:3]
     applied_trip_ids = (
-        CrewBooking.objects.filter(user=request.user). values_list(
-            'trip_id', flat=True)
+        CrewBooking.objects.filter(user=request.user).values_list('trip_id', flat=True)
         if request.user.is_authenticated else []
     )
+
+    # Attempt to resolve the complete_profile URL
+    try:
+        complete_profile_url = reverse('accounts:complete_profile')
+    except NoReverseMatch as e:
+        complete_profile_url = None
+        print(f"Error resolving 'complete_profile': {e}")
+
     return render(request, 'pages/home.html', {
         'trips': trips,
         'applied_trip_ids': applied_trip_ids,
+        'complete_profile_url': complete_profile_url,  # Pass the URL to the template
     })
 
 

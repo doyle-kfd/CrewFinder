@@ -89,11 +89,11 @@ class ProfileCompletionMiddleware:
                 not request.user.profile_completed
             ):
                 allowed_paths = [
-                    reverse('complete_profile'),
+                    reverse('accounts:complete_profile'),
                     reverse('account_logout'),
                 ]
                 if request.path not in allowed_paths:
-                    return redirect('complete_profile')
+                    return redirect('accounts:complete_profile')
 
         # Continue to the requested view if no redirect condition is met
         response = self.get_response(request)

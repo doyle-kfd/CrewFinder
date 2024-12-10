@@ -660,6 +660,9 @@ td:last-child {
 
 /* About Us Page Styling */
 
+.lead {
+    font-size: 1.5rem !important;
+}
 
 .object-fit-cover {
     object-fit: cover;

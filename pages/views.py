@@ -45,7 +45,8 @@ def home(request):
     """
     trips = Trip.objects.order_by('-departure_date')[:3]
     applied_trip_ids = (
-        CrewBooking.objects.filter(user=request.user).values_list('trip_id', flat=True)
+        CrewBooking.objects.filter(user=request.user).values_list(
+            'trip_id', flat=True)
         if request.user.is_authenticated else []
     )
 
@@ -59,7 +60,8 @@ def home(request):
     return render(request, 'pages/home.html', {
         'trips': trips,
         'applied_trip_ids': applied_trip_ids,
-        'complete_profile_url': complete_profile_url,  # Pass the URL to the template
+        # Pass the URL to the template
+        'complete_profile_url': complete_profile_url,
     })
 
 
@@ -78,38 +80,102 @@ def about(request):
 
 def contact(request):
     """
-    Handles contact form submissions and sends an email.
+    Handles the contact form submissions and sends tailored emails
+    to both the admin and the user.
 
-    If the request method is POST, retrieves form data (name, email, message),
-    logs it to the console, and sends an email to the specified recipient.
+    This view processes POST requests containing the contact form data
+    (name, email, and message).
+
+    It performs the following actions:
+
+    1. Logs the submitted form data to the console for debugging purposes.
+    2. Sends a detailed email to the site admin, notifying them of
+       the submission,
+       including the user's name, email, and message content.
+    3. Sends a confirmation email to the user, acknowledging receipt
+       of their message
+       and including a copy of the submitted message.
+    4. Displays success or error messages on the contact page,
+       depending on the outcome
+       of the email-sending process.
 
     Parameters:
-    - request: The HTTP request object.
+    - request (HttpRequest): The HTTP request object containing form data.
 
     Returns:
-    - Rendered contact page with success or error messages.
+    - HttpResponse: Renders the 'contact.html' template with success or
+      error messages.
+
+    Notes:
+    - Admin email address is dynamically retrieved from the `EMAIL_HOST_USER`
+      setting.
+    - User's email address is taken from the form data (`email` field).
+    - Uses Django's messages framework to communicate success or failure
+      to the user.
+    - Sends emails using the configured email backend (defined in
+      `settings.py`).
     """
     if request.method == "POST":
         name = request.POST.get('name')
         email = request.POST.get('email')
         message = request.POST.get('message')
-        print(f"Name: {name}, Email: {email},  Message: {message}",
-              file=sys.stdout)
 
-        subject = f"Message from {name} via CrewFinder Contact Form"
-        email_message = f"Name: {name}\nEmail:  {email}\n\nMessage:\
-        n{message}\n"
+        # Log form data to the console
+        print(f"Name: {name}, Email: {email}, Message: {message}")
+
+        # Email details for the admin
+        subject_to_admin = "New Contact Form Submission via CrewFinder"
+        message_to_admin = (
+            f"Hello Admin,\n\n"
+            "You have received a new message via the CrewFinder"
+            " contact form. Below are the details:\n\n"
+            f"Name: {name}\n"
+            f"Email: {email}\n"
+            "Message:\n"
+            f"{message}\n\n"
+            "Please follow up with the user as needed.\n\n"
+            "Best regards,\n"
+            "The CrewFinder System"
+        )
+
+        # Email details for the user
+        subject_to_user = "Thank you for contacting CrewFinder"
+        message_to_user = (
+            f"Hi {name},\n\n"
+            "Thank you for reaching out to CrewFinder! Your"
+            " message has been received, and our team will get back"
+            " to you shortly.\n\n"
+            f"Here’s a copy of your message:\n\n{message}\n\n"
+            "Best regards,\n"
+            "The CrewFinder Team"
+        )
+
         from_email = settings.EMAIL_HOST_USER
-        recipient_list = [email]
 
         try:
-            send_mail(subject, email_message, from_email,  recipient_list,
-                      fail_silently=False)
-            messages.success(request,  "Your message has been sent "
-                                       "successfully!")
+            # Send email to the admin
+            send_mail(
+                subject_to_admin,
+                message_to_admin,
+                from_email,
+                [from_email],  # Admin email
+                fail_silently=False,
+            )
+            # Send email to the user
+            send_mail(
+                subject_to_user,
+                message_to_user,
+                from_email,
+                [email],  # User email
+                fail_silently=False,
+            )
+            messages.success(request, "Your message"
+                                      " has been sent successfully!")
         except Exception as e:
-            messages.error(request,  f"An error occurred while sending the "
-                                     f"email: {e}")
+            print(f"Error while sending email: {e}")
+            messages.error(request, "An error occurred"
+                                    " while sending your message."
+                                    " Please try again later.")
 
     return render(request, "pages/contact.html")
 

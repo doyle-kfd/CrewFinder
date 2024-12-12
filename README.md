@@ -4085,6 +4085,188 @@ The `trips` app is a vital component of the CrewFinder project, enabling captain
 - User has option to return to dashboard or navigate to other pages from menu
 
 
+## Processes
+<details>
+
+<summary>Create A New User</summary>
+
+### To Create A New User
+
+##### **User Registration Process**
+
+This section describes the steps involved in creating a new user in the system, including the workflows for admin approval, user notification, and profile completion.
+
+---
+
+###### **Steps to Create a New User**
+
+1. **User Registration**
+   - A user registers through a registration form available on a public-facing page.
+   - The registration form collects details such as:
+     - Username
+     - Email
+     - Password
+     - Role (e.g., Captain, Crew)
+   - Upon submission:
+     - The user's `approval_status` is set to `PENDING`.
+     - The `is_active` status is set to `False`.
+
+2. **Admin Notification**
+   - A Django signal (`notify_admin_of_new_user`) is triggered when a new user is created.
+   - This signal sends an email notification to administrators to inform them of a new registration requiring approval.
+
+3. **Admin Review and Approval**
+   - Administrators log in to their dashboard to view a list of users with their current statuses.
+   - Admins can click the "Edit" button for a user to update their `approval_status`:
+     - **APPROVED**: User is accepted and activated.
+     - **DISAPPROVED**: User is rejected.
+     - **PENDING**: Status remains unchanged.
+
+4. **User Status Update**
+   - A Django signal (`handle_user_status_change`) is triggered when the `approval_status` is updated.
+   - Based on the new status:
+     - **Approved:**
+       - `is_active` is set to `True`.
+       - The user receives an email with:
+         - A login link.
+         - Instructions to complete their profile.
+     - **Disapproved:**
+       - `is_active` remains or is set to `False`.
+       - The user receives an email notification explaining the disapproval.
+     - **Pending:**
+       - No further actions are taken.
+
+5. **Profile Completion**
+   - Approved users log in using the link provided in the approval email.
+   - Users are redirected to the "Complete Profile" page, where they can add:
+     - Bio
+     - Experience
+     - Any other required fields.
+
+6. **Role-Based Access**
+   - After completing their profile, users gain access to features and pages based on their role:
+     - **Captain**: Can create trips, view applicants, and manage trips.
+     - **Crew**: Can apply for trips and manage their applications.
+     - **Administrator**: Can manage user registrations, review, and update user statuses.
+
+7. **Dashboard Updates**
+   - The user's role and status determine the content displayed on their dashboard:
+     - Captains and Crew see role-specific data (e.g., trips, applications).
+     - Administrators see a list of users with options to manage their profiles and statuses.
+
+---
+
+##### **Summary of User Creation Workflow**
+
+1. **Registration** → User registers and is assigned a `PENDING` status.
+2. **Notification** → Admin receives an email about the new registration.
+3. **Admin Action** → Admin approves or disapproves the registration.
+4. **Status Change** → Signals handle emails and update `is_active` accordingly.
+5. **User Action** → Approved users log in and complete their profiles.
+6. **Access** → Users access role-specific features and dashboards.
+
+---
+
+This process ensures that user registrations are managed securely, notifications are handled efficiently, and users are guided to complete their profiles for full functionality.
+
+</details>
+
+
+<details>
+
+<summary>Captain Creating A Trip</summary>
+
+#### 1. **Login**
+- Captains log in using their credentials via the **Login Page**.
+- Upon successful login, captains are redirected to their role-specific **Dashboard**.
+
+#### 2. **Accessing the Trip Creation Form**
+- The **Dashboard** includes a button labeled **Create a New Trip**.
+- Clicking this button navigates the captain to the **Trip Creation Form**.
+
+#### 3. **Filling Out the Trip Details**
+- The **Trip Creation Form** requires the following details:
+  - **Trip Title**: A brief, descriptive title for the trip.
+  - **Departing From**: The location where the trip begins.
+  - **Arriving At**: The destination of the trip.
+  - **Departure Date**: The date the trip is scheduled to start.
+  - **Duration**: The expected length of the trip.
+  - **Crew Needed**: The number of crew members required.
+  - **Boat Name**: The name of the boat for the trip.
+  - **Boat Description**: Additional information about the boat.
+  - **Trip Description**: An overview or specific details about the trip.
+  - **Boat Image**: An optional image of the boat (if available).
+
+#### 4. **Submitting the Trip**
+- Once the form is completed, the captain clicks the **Submit** button.
+- The trip is saved to the database and displayed in the **Captain’s Dashboard** under the **My Trips** section.
+
+#### 5. **Viewing the Dashboard**
+- Captains are redirected back to their **Dashboard** upon successfully creating a trip.
+- The **Dashboard** displays all trips created by the captain, with relevant details such as:
+  - Trip Title
+  - Departure Date
+  - Crew Needed
+  - Current Applicants
+
+</details>
+
+<details>
+
+<summary>Crewmembers Applying For A Trip</summary>
+
+## Process: Crew Member Applying for a Trip
+
+### Steps
+
+1. **Access the Platform**:
+   - The crew member logs into the CrewFinder platform using their credentials.
+
+2. **Browse Available Trips**:
+   - The crew member navigates to the "Sailing Opportunities" page.
+   - All available trips are displayed in a card format.
+
+3. **View Trip Information**:
+   - Each trip card displays essential details, such as:
+     - **Title**
+     - **Departure Date**
+     - **Duration**
+     - **Departing From**
+     - **Arriving At**
+     - **Boat Name**
+     - **Crew Needed**
+   - All necessary information is visible directly on the card. 
+   - **Note**: There is no option to click on a trip for more details.
+
+4. **Apply for a Trip**:
+   - The crew member clicks the "Apply" button on the trip card for the trip they wish to join.
+
+5. **Confirmation**:
+   - Upon clicking "Apply," the system:
+     - Saves the application to the database.
+     - Updates the trip's applicant list.
+
+6. **Dashboard Update**:
+   - The crew member can view the trips they have applied for on their personal dashboard.
+   - The dashboard displays:
+     - The trips they have applied for.
+     - The application status (e.g., "Pending," "Confirmed," "Cancelled").
+
+This streamlined process simplifies the application experience by providing all necessary information directly on the trip cards and eliminating the need to navigate to a separate trip details page.
+
+
+
+</details>
+
+## Creating A New User
+
+###
+
+
+
+
+
+
 ## Deployment - Heroku
 
 To deploy this page to Heroku from its GitHub repository, the following steps were taken:

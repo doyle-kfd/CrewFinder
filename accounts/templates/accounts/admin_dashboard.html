@@ -4,7 +4,10 @@
 
 {% block content %}
 <h2>Administrator Dashboard</h2>
-
+<header>
+    <h1 class="mb-3">Welcome to your dashboard, {{ user.username }}!</h1>
+    <p class="fs-5">Your role: <strong>{{ user.role|title }}</strong></p>
+</header>
 <div class="mb-3">
     <a href="{% url 'accounts:update_profile' %}" class="btn btn-secondary">Edit My Profile</a>
 </div>

@@ -53,16 +53,10 @@ def handle_user_status_change(sender, instance, **kwargs):
     if getattr(instance, "_skip_signal", False):
         return
 
-    print("Signal received for handle_user_status_change.")
-
     old_status = original_status.pop(instance.pk, None)
     new_status = instance.approval_status
 
-    print(f"Old status: {old_status}, New status: {new_status}")
-
     if old_status != new_status:
-        print(f"Approval status changed from {old_status} to {new_status}.")
-
         subject = "Your Account Status Has Changed"
         message = (
             f"Hi {instance.username},\n\n"
@@ -72,7 +66,6 @@ def handle_user_status_change(sender, instance, **kwargs):
         )
 
         if new_status == User.APPROVED:
-            print("Preparing approval email.")
             instance.is_active = True
             instance._skip_signal = True
             instance.save(update_fields=["is_active"])
@@ -80,16 +73,16 @@ def handle_user_status_change(sender, instance, **kwargs):
             subject = "Your Account Has Been Approved"
             try:
                 login_url = f"{settings.SITE_URL}{reverse('login')}"
+                complete_profile_url = f"{settings.SITE_URL}{reverse('complete_profile')}"
                 message = (
                     f"Hi {instance.username},\n\n"
                     "Congratulations! Your account has been approved.\n\n"
                     f"You can log in here: {login_url}\n"
-                    f"Once logged in, please complete your profile here: "
+                    f"Once logged in, please complete your profile here: {complete_profile_url}\n\n"
                     "Best regards,\n"
                     "The CrewFinder Team"
                 )
-            except Exception as e:
-                print(f"Error resolving URLs: {e}")
+            except Exception:
                 message = (
                     f"Hi {instance.username},\n\n"
                     "Congratulations! Your account has been approved.\n\n"
@@ -99,7 +92,6 @@ def handle_user_status_change(sender, instance, **kwargs):
                 )
 
         elif new_status == User.DISAPPROVED:
-            print("Preparing disapproval email.")
             instance.is_active = False
             instance._skip_signal = True
             instance.save(update_fields=["is_active"])
@@ -115,7 +107,6 @@ def handle_user_status_change(sender, instance, **kwargs):
             )
 
         elif new_status == User.PENDING:
-            print("Preparing pending status email.")
             subject = "Your Account Registration is Under Review"
             message = (
                 f"Hi {instance.username},\n\n"
@@ -126,17 +117,13 @@ def handle_user_status_change(sender, instance, **kwargs):
             )
 
         from_email = f"CrewFinder Admin <{settings.EMAIL_HOST_USER}>"
-        try:
-            send_mail(
-                subject,
-                message,
-                from_email,
-                [instance.email],
-                fail_silently=False,
-            )
-            print(f"Email sent to {instance.email} about status change to {new_status}.")
-        except Exception as e:
-            print(f"Error sending email: {e}")
+        send_mail(
+            subject,
+            message,
+            from_email,
+            [instance.email],
+            fail_silently=False,
+        )
 
 @receiver(post_save, sender=User, dispatch_uid="notify_admin_signal")
 def notify_admin_of_new_user(sender, instance, created, **kwargs):
@@ -145,8 +132,6 @@ def notify_admin_of_new_user(sender, instance, created, **kwargs):
     a pending approval status.
     """
     if created and instance.approval_status == User.PENDING:
-        print("Signal triggered for notify_admin_of_new_user.")
-
         admin_email = settings.EMAIL_HOST_USER
         subject = "New User Registration Pending Approval"
         message = (
@@ -162,17 +147,13 @@ def notify_admin_of_new_user(sender, instance, created, **kwargs):
         )
         from_email = f"CrewFinder Admin <{admin_email}>"
 
-        try:
-            send_mail(
-                subject,
-                message,
-                from_email,
-                [admin_email],
-                fail_silently=False,
-            )
-            print("Admin notification email sent successfully.")
-        except Exception as e:
-            print(f"Error while sending email: {e}")
+        send_mail(
+            subject,
+            message,
+            from_email,
+            [admin_email],
+            fail_silently=False,
+        )
 
 @receiver(post_save, sender=CrewBooking)
 def adjust_crew_needed(sender, instance, **kwargs):

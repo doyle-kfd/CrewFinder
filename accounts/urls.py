@@ -7,7 +7,6 @@ and password management. These URLs route requests to corresponding views.
 """
 
 from django.urls import path, reverse_lazy
-from django.urls import path
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
@@ -49,8 +48,7 @@ urlpatterns = [
     path('complete-profile/', views.complete_profile, name='complete_profile'),
 
     # Displays a page for users awaiting admin approval.
-    path('registration_pending/', registration_pending,
-         name='registration_pending'),
+    path('registration_pending/', registration_pending, name='registration_pending'),
 
     # Renders the user dashboard based on the user's role.
     path('dashboard/', dashboard, name='dashboard'),
@@ -62,35 +60,25 @@ urlpatterns = [
     path('update_profile/', update_profile, name='update_profile'),
 
     # Allows captains to view and manage crew applications for trips.
-    path('profile/<int:user_id>/<int:trip_id>/', crew_profile,
-         name='crew_profile'),
+    path('profile/<int:user_id>/<int:trip_id>/', crew_profile, name='crew_profile'),
 
     # Allows administrators to edit user details such as roles.
     path('edit_user/<int:user_id>/', edit_user, name='edit_user'),
 
     # Handles user password reset requests using a custom view.
-    path('password/reset/', CustomPasswordResetView.as_view(),
-         name='account_reset_password'),
+    path('password/reset/', CustomPasswordResetView.as_view(), name='account_reset_password'),
 
     # Displays a confirmation page after requesting a password reset.
-    path('password/reset/done/', CustomPasswordResetDoneView.as_view(),
-         name='account_reset_password_done'),
+    path('password/reset/done/', CustomPasswordResetDoneView.as_view(), name='account_reset_password_done'),
 
     # Displays a confirmation message after sending a password reset email.
-    path('password/reset/sent/',
-         TemplateView.
-         as_view(template_name="account/password_reset_sent.html"),
-         name='password_reset_sent'),
+    path('password/reset/sent/', TemplateView.as_view(template_name="account/password_reset_sent.html"), name='password_reset_sent'),
 
     # Handles password reset using a token sent via email.
-    path('password/reset/key/<uidb64>/<token>/',
-         allauth_views.PasswordResetFromKeyView.as_view(),
-         name='account_reset_password_from_key'),
+    path('password/reset/key/<uidb64>/<token>/', allauth_views.PasswordResetFromKeyView.as_view(), name='account_reset_password_from_key'),
 
     # Displays a confirmation page after completing a password reset.
-    path('password/reset/key/done/',
-         allauth_views.PasswordResetFromKeyDoneView.as_view(),
-         name='account_reset_password_from_key_done'),
+    path('password/reset/key/done/', allauth_views.PasswordResetFromKeyDoneView.as_view(), name='account_reset_password_from_key_done'),
 
     # Allows authenticated users to change their password.
     path(
@@ -112,11 +100,9 @@ urlpatterns = [
     ),
 
     # Redirects inactive users to the registration pending page.
-    path('auth/inactive/', inactive_account_redirect,
-         name='account_inactive'),
+    path('auth/inactive/', inactive_account_redirect, name='account_inactive'),
 ]
 
 # Serves media files in development when DEBUG is enabled.
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL,
-                          document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

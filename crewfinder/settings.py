@@ -36,7 +36,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-j7o9m0=b+=n@u^rv&kldm56ry0%@1da1afjcy^m(02jq=qe0i-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['8000-doylekfd-crewfinder-18t8urmmyig.ws.codeinstitute-ide.net',
                  '.herokuapp.com']
@@ -73,7 +73,7 @@ INSTALLED_APPS = [
     'pages',
 ]
 
-SITE_ID = 1
+SITE_ID = 2
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',            # Django default backend
@@ -95,6 +95,8 @@ AUTH_USER_MODEL = 'accounts.User'
 LOGIN_URL = '/accounts/login/'
 ACCOUNT_PASSWORD_RESET_REDIRECT_URL = '/accounts/password_reset_done/'  # Redirect after form submission
 ACCOUNT_PASSWORD_RESET_DONE_REDIRECT_URL = '/accounts/password/reset/key/done/'  # Redirect after successful reset
+ACCOUNT_LOGOUT_ON_PASSWORD_CHANGE = False
+PASSWORD_RESET_TIMEOUT = 259200  # 3 days in seconds
 
 
 
@@ -222,6 +224,9 @@ EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_EMAIL')
 ACCOUNT_EMAIL_REQUIRED = True  # Makes email mandatory
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_USERNAME_REQUIRED = True
 
 
 SITE_URL = os.environ.get('SITE_URL', 'https://8000-doylekfd-crewfinder-18t8urmmyig.ws.codeinstitute-ide.net/')

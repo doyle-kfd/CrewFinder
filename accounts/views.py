@@ -26,6 +26,8 @@ from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.exceptions import PermissionDenied
 from allauth.account.views import SignupView
+from django.contrib.sites.models import Site
+from django.conf import settings
 
 from .forms import CustomSignupForm, ProfileCompletionForm, EditUserForm
 from .models import User
@@ -49,13 +51,21 @@ class CustomLogoutView(LogoutView):
 
 
 class CustomPasswordResetView(PasswordResetView):
-    """
-    Custom password reset view with customized email template and
-    success redirect.
-    """
     template_name = "account/password_reset.html"
-    email_template_name = 'account/password_reset_email.html'
+    email_template_name = "account/password_reset_email.html"
     success_url = reverse_lazy('accounts:password_reset_sent')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        try:
+            # Use the domain from the django_site table
+            current_site = Site.objects.get(id=settings.SITE_ID)
+            context['domain'] = current_site.domain
+        except Site.DoesNotExist:
+            # Fallback to the Heroku domain if not found
+            context['domain'] = 'https://crew-finder-410f29f97c51.herokuapp.com/'  # Replace with your Heroku domain
+        context['protocol'] = 'https'  # Use HTTPS for Heroku
+        return context
 
 
 class CustomPasswordChangeView(PasswordChangeView):

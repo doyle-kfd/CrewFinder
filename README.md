@@ -4215,7 +4215,6 @@ This process ensures that user registrations are managed securely, notifications
 
 <summary>Crewmembers Applying For A Trip</summary>
 
-## Process: Crew Member Applying for a Trip
 
 ### Steps
 
@@ -4257,14 +4256,6 @@ This streamlined process simplifies the application experience by providing all 
 
 
 </details>
-
-## Creating A New User
-
-###
-
-
-
-
 
 
 ## Deployment - Heroku

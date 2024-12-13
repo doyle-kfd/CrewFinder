@@ -75,6 +75,7 @@ INSTALLED_APPS = [
 
 SITE_ID = 2
 
+
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',            # Django default backend
     'allauth.account.auth_backends.AuthenticationBackend',  # Allauth backend
@@ -85,7 +86,7 @@ AUTHENTICATION_BACKENDS = (
 
 LOGIN_REDIRECT_URL = '/accounts/dashboard/'  # Where to go after login
 LOGOUT_REDIRECT_URL = '/'  # Where to go after logout
-ACCOUNT_ADAPTER = 'accounts.adapter.CustomAccountAdapter'
+ACCOUNT_ADAPTER = 'allauth.account.adapter.DefaultAccountAdapter'
 ACCOUNT_LOGIN_ON_SIGNUP = False  # Ensure that users are not logged in automatically after signup
 ACCOUNT_LOGIN_ON_PASSWORD_RESET = False
 ACCOUNT_SIGNUP_REDIRECT_URL = '/accounts/registration_pending/'
@@ -97,7 +98,8 @@ ACCOUNT_PASSWORD_RESET_REDIRECT_URL = '/accounts/password_reset_done/'  # Redire
 ACCOUNT_PASSWORD_RESET_DONE_REDIRECT_URL = '/accounts/password/reset/key/done/'  # Redirect after successful reset
 ACCOUNT_LOGOUT_ON_PASSWORD_CHANGE = False
 PASSWORD_RESET_TIMEOUT = 259200  # 3 days in seconds
-
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT = True
 
 
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
@@ -239,3 +241,33 @@ CLOUDINARY_STORAGE = {
 }
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'INFO',  # Change to WARNING or ERROR to reduce verbosity
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'DEBUG',  # Change to WARNING or ERROR to reduce verbosity
+            'propagate': True,
+        },
+        'accounts': {  # Replace 'myapp' with your app's name
+            'handlers': ['console'],
+            'level': 'DEBUG',  # Set to DEBUG only for your app
+            'propagate': False,
+        },
+    },
+}

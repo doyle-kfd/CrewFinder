@@ -28,11 +28,143 @@ from django.core.exceptions import PermissionDenied
 from allauth.account.views import SignupView
 from django.contrib.sites.models import Site
 from django.conf import settings
+from django.urls import reverse
 
 from .forms import CustomSignupForm, ProfileCompletionForm, EditUserForm
 from .models import User
 from trips.models import Trip
 from crewbooking.models import CrewBooking
+from django.contrib.auth.forms import PasswordResetForm
+
+from django.contrib.auth.forms import PasswordResetForm
+from django.contrib.auth.tokens import default_token_generator
+from django.template.loader import render_to_string
+from django.utils.http import urlsafe_base64_encode
+from django.utils.encoding import force_bytes
+from django.core.mail import send_mail
+from django.conf import settings
+from django.shortcuts import render, redirect
+
+def custom_password_reset_request(request):
+    if request.method == "POST":
+        form = PasswordResetForm(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data["email"]
+            users = User.objects.filter(email=email)
+            for user in users:
+                context = {
+                    "email": email,
+                    "domain": request.get_host(),
+                    "site_name": "CrewFinder",
+                    "uid": urlsafe_base64_encode(force_bytes(user.pk)),
+                    "token": default_token_generator.make_token(user),
+                    "protocol": "https" if request.is_secure() else "http",
+                }
+                subject = "Reset Your Password"
+                email_template_name = "account/password_reset_email.html"
+                email_content = render_to_string(email_template_name, context)
+                send_mail(subject, email_content, settings.DEFAULT_FROM_EMAIL, [email])
+            return redirect("accounts:password_reset_done")
+    else:
+        form = PasswordResetForm()
+
+    return render(request, "account/password_reset_form.html", {"form": form})
+
+
+from django.contrib.auth.tokens import default_token_generator
+from django.utils.http import urlsafe_base64_decode
+from django.contrib.auth.forms import SetPasswordForm
+from django.shortcuts import render, redirect
+
+from django.contrib.auth.tokens import default_token_generator
+import logging
+
+
+logger = logging.getLogger(__name__)
+
+class CustomPasswordResetView(PasswordResetView):
+    def form_valid(self, form):
+        logger.info("Password reset form submitted successfully.")
+        for user in form.get_users():
+            token = default_token_generator.make_token(user)
+            if token:
+                logger.debug(f"Generated token for user {user.id}: {token}")
+            else:
+                logger.error(f"Failed to generate token for user {user.id}")
+        return super().form_valid(form)
+
+from allauth.account.views import PasswordResetFromKeyView
+
+class CustomPasswordResetFromKeyView(PasswordResetFromKeyView):
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        logger.debug(f"Reset URL context: uidb36={context.get('uidb36')}, key={context.get('key')}")
+        return context
+
+def custom_password_reset_confirm(request, uidb64, token):
+    try:
+        uid = urlsafe_base64_decode(uidb64).decode()
+        user = User.objects.get(pk=uid)
+    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+
+    if user is not None and default_token_generator.check_token(user, token):
+        if request.method == "POST":
+            form = SetPasswordForm(user, request.POST)
+            if form.is_valid():
+                form.save()
+                return redirect("accounts:password_reset_complete")
+        else:
+            form = SetPasswordForm(user)
+        return render(request, "account/password_reset_confirm.html", {"form": form})
+    else:
+        return render(request, "account/password_reset_invalid.html")
+
+def custom_password_reset_done(request):
+    return render(request, "account/password_reset_done.html")
+
+
+def custom_password_reset_complete(request):
+    return render(request, "account/password_reset_complete.html")
+
+
+from django.http import HttpResponse
+
+def debug_view(request, uidb36, key):
+    return HttpResponse(f"UID: {uidb36}, Key: {key}")
+
+class DebugPasswordResetForm(PasswordResetForm):
+    def save(self, domain_override=None,
+             subject_template_name=None,
+             email_template_name=None,
+             use_https=False,
+             token_generator=None,
+             from_email=None,
+             request=None,
+             html_email_template_name=None,
+             extra_email_context=None):
+        print("DebugPasswordResetForm save called")
+        print("Domain Override:", domain_override)
+        print("Subject Template Name:", subject_template_name)
+        print("Email Template Name:", email_template_name)
+        print("Request:", request)
+        print("Extra Email Context:", extra_email_context)
+        return super().save(
+            domain_override=domain_override,
+            subject_template_name=subject_template_name,
+            email_template_name=email_template_name,
+            use_https=use_https,
+            token_generator=token_generator,
+            from_email=from_email,
+            request=request,
+            html_email_template_name=html_email_template_name,
+            extra_email_context=extra_email_context,
+        )
+
+    def send_mail(self, subject_template_name, email_template_name, context, from_email, to_email, html_email_template_name=None):
+        print("DebugPasswordResetForm send_mail called. UID:", context.get("uid"), "Token:", context.get("token"))
+        print("Full Context:", context)
+        super().send_mail(subject_template_name, email_template_name, context, from_email, to_email, html_email_template_name)
 
 
 # Custom Authentication and Password Views
@@ -49,22 +181,45 @@ class CustomLogoutView(LogoutView):
     """
     next_page = '/'
 
+"""
+class CustomPasswordResetView(PasswordResetView):
+    template_name = "account/password_reset.html"
+    email_template_name = "account/password_reset_email.html"
+    success_url = reverse_lazy('accounts:password_reset_sent')
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        print("CustomPasswordResetView initialized")
+
+    def get_email_context(self, *args, **kwargs):
+        context = super().get_email_context(*args, **kwargs)
+        # Debugging: Print UID and Token
+        print("UID (Base36):", context.get("uid"))  # Should print the base36-encoded user ID
+        print("Token:", context.get("token"))  # Should print the password reset token
+        try:
+            current_site = Site.objects.get(id=settings.SITE_ID)
+            context['domain'] = current_site.domain
+        except Site.DoesNotExist:
+            context['domain'] = 'crew-finder-410f29f97c51.herokuapp.com'
+        context['protocol'] = 'https'
+        return context
+
+    def form_valid(self, form):
+        # Debugging: Confirm form submission
+        print("Password reset form is valid. Sending email...")
+        response = super().form_valid(form)
+        return response
+"""
 
 class CustomPasswordResetView(PasswordResetView):
+    form_class = DebugPasswordResetForm
     template_name = "account/password_reset.html"
     email_template_name = "account/password_reset_email.html"
     success_url = reverse_lazy('accounts:password_reset_sent')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        try:
-            # Use the domain from the django_site table
-            current_site = Site.objects.get(id=settings.SITE_ID)
-            context['domain'] = current_site.domain
-        except Site.DoesNotExist:
-            # Fallback to the Heroku domain if not found
-            context['domain'] = 'https://crew-finder-410f29f97c51.herokuapp.com/'  # Replace with your Heroku domain
-        context['protocol'] = 'https'  # Use HTTPS for Heroku
+        context['domain'] = self.request.get_host()  # Set the domain dynamically
         return context
 
 

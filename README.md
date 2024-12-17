@@ -18,71 +18,30 @@ The live link can be found here - [CrewFinder](https://crew-finder-410f29f97c51.
 - [Table of contents](#table-of-contents)
   - [The Approach I Took](#the-approach-i-took)
   - [Design](#design)
-    - [Color Scheme](#color-scheme)
-    - [Imagery](#imagery)
-    - [Fonts](#fonts)
-    - [Wireframes](#wireframes)
   - [Agile Methodology](#agile-methodology)
-    - [User Stories](#user-stories)
   - [Data Model](#data-model)
-    - [Defined Relationships](#defined-relationships)
   - [Testing](#testing)
   - [Security Features and Defensive Design in CrewFinder](#security-features-and-defensive-design-in-crewfinder)
-    - [**Authentication and Authorization**](#authentication-and-authorization)
-    - [**Input Validation and Defensive Design**](#input-validation-and-defensive-design)
-    - [**Sensitive Data Management**](#sensitive-data-management)
-    - [**UI and Defensive Design**](#ui-and-defensive-design)
-    - [**Security Best Practices**](#security-best-practices)
   - [Project - CrewFinder](#project---crewfinder)
   - [My Apps](#my-apps)
-    - [Accounts App](#accounts-app)
-    - [Crewbooking App](#crewbooking-app)
-    - [Pages App](#pages-app)
-    - [Trips App](#trips-app)
   - [Features](#features)
-    - [Navigation Bar](#navigation-bar)
-    - [Footer](#footer)
   - [Home Page](#home-page)
-    - [Home page hero section](#home-page-hero-section)
-    - [Home page about crewfinder](#home-page-about-crewfinder)
-    - [Home page about sailing opportunities](#home-page-about-sailing-opportunities)
-    - [Home page call to action](#home-page-call-to-action)
-    - [Home page testimonials](#home-page-testimonials)
   - [Signup Page](#signup-page)
   - [Thank you for registering page](#thank-you-for-registering-page)
   - [Bio Completion Page](#bio-completion-page)
   - [Login Page](#login-page)
   - [Reset Password Page](#reset-password-page)
   - [About Us Page](#about-us-page)
-    - [About Us Hero Image](#about-us-hero-image)
-    - [About Us Our Mission](#about-us-our-mission)
-    - [About Us Reasons](#about-us-reasons)
-    - [About Us Pitch](#about-us-pitch)
   - [Contact Us Page](#contact-us-page)
-    - [Contact Us Form](#contact-us-form)
   - [Sailing Opportunities Page](#sailing-opportunities-page)
   - [Dashboards](#dashboards)
-    - [Admin Dashboard](#admin-dashboard)
-    - [Captains Dashboard](#captains-dashboard)
-    - [Crew Dashboard](#crew-dashboard)
-    - [User Profile Form](#user-profile-form)
-    - [Change Password Form](#change-password-form)
+  - [Processes](#processes)
   - [Deployment - Heroku](#deployment---heroku)
-    - [Create the Heroku App:](#create-the-heroku-app)
-    - [Attach the Postgres database:](#attach-the-postgres-database)
-    - [Prepare the environment and settings.py file:](#prepare-the-environment-and-settingspy-file)
-    - [Create files / directories](#create-files--directories)
-    - [Update Heroku Config Vars](#update-heroku-config-vars)
-    - [Deploy](#deploy)
   - [Forking this repository](#forking-this-repository)
   - [Cloning this repository](#cloning-this-repository)
   - [Languages](#languages)
   - [Frameworks - Libraries - Programs Used](#frameworks---libraries---programs-used)
   - [Credits](#credits)
-- [Documentation of Resources Used for the CrewFinder App](#documentation-of-resources-used-for-the-crewfinder-app)
-  - [Resources and References](#resources-and-references)
-
-
 
 ## The Approach I Took
 <details>
@@ -4381,13 +4340,13 @@ To clone this repository follow the below steps:
 
 ## Credits
 
-# Documentation of Resources Used for the CrewFinder App
+### Documentation of Resources Used for the CrewFinder App
 
 This document outlines key resources and references used during the development of the **CrewFinder** app.
 
 ---
 
-## Resources and References
+### Resources and References
 
 1. [Django Docs](https://docs.djangoproject.com/en/4.2/)  
    - Used as the primary reference for Django features, including models, views, templates, and authentication.

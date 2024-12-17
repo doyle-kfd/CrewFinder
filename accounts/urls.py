@@ -28,7 +28,7 @@ from .views import (
     edit_user,
 )
 
-from allauth.account.views import PasswordResetFromKeyView
+#from allauth.account.views import PasswordResetFromKeyView
 
 app_name = 'accounts'
 
@@ -51,9 +51,12 @@ urlpatterns = [
         name='account_reset_password_done',
     ),
     path(
-        'password/reset/key/<uidb64>/<token>/',
-        CustomPasswordResetConfirmView.as_view(),  # Use your custom view
-        name='account_reset_password_from_key',
+        'password/reset/confirm/<uidb64>/<token>/',
+        CustomPasswordResetConfirmView.as_view(
+            template_name='account/password_reset_confirm.html',
+            success_url=reverse_lazy('accounts:account_reset_password_complete')
+        ),
+        name='password_reset_confirm',
     ),
 
     path(

@@ -67,6 +67,14 @@ urlpatterns = [
         name='account_reset_password_complete',
     ),
 
+    path(
+    'password/reset/complete/',
+    CustomPasswordResetCompleteView.as_view(
+        template_name='account/password_reset_complete.html'
+    ),
+    name='password_reset_complete',  # Default name
+),
+
     # Authentication URLs
     path('signup/', CustomSignupView.as_view(), name='account_signup'),
     path('login/', CustomLoginView.as_view(), name='account_login'),

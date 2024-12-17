@@ -26,6 +26,7 @@ from .forms import CustomSignupForm, ProfileCompletionForm, EditUserForm
 from .models import User
 from trips.models import Trip
 from crewbooking.models import CrewBooking
+from allauth.account.views import SignupView
 
 
 # Password Reset Views
@@ -83,19 +84,18 @@ class CustomLogoutView(LogoutView):
     next_page = "/"
 
 
-class CustomSignupView(LoginView):
+class CustomSignupView(SignupView):
     """
-    Handles user registration using a custom signup form.
-    Redirects users to the registration pending page after successful signup.
+    Custom Signup View to handle user registration logic.
     """
     form_class = CustomSignupForm
     template_name = "account/signup.html"
 
     def form_valid(self, form):
         """
-        Saves the new user and redirects them to the pending page.
+        Overridden form_valid method to ensure `request` is passed to save().
         """
-        form.save()
+        user = form.save(self.request)  # Pass the request to save method
         return redirect(reverse_lazy("accounts:registration_pending"))
 
 
@@ -193,7 +193,7 @@ def admin_dashboard(request):
 @login_required
 def edit_user(request, user_id):
     """
-    Allows administrators to edit the details of a specific user.
+    Allows administrators to edit user details.
     """
     if request.user.role != User.ADMINISTRATOR:
         raise PermissionDenied
@@ -208,6 +208,7 @@ def edit_user(request, user_id):
         form = EditUserForm(instance=user)
 
     return render(request, "accounts/edit_user.html", {"form": form})
+
 
 
 @login_required

@@ -42,15 +42,15 @@ class CustomSignupForm(SignupForm):
         """
         Accept the 'request' keyword argument as required by Allauth views.
         """
-        self.request = kwargs.pop('request', None)  # Extract 'request'
-        super().__init__(*args, **kwargs)  # Call parent class __init__
+        self.request = kwargs.pop('request', None)
+        super().__init__(*args, **kwargs)
 
     def save(self, request):
         """
         Save method to handle additional logic after user creation.
         """
-        user = super().save(request)  # Call parent save method
-        # Add any custom logic here if needed
+        user = super().save(request)  # Pass the request to Allauth's save
+        # Add any custom logic after saving the user
         return user
 
 

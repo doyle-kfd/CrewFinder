@@ -78,7 +78,7 @@ def handle_user_status_change(sender, instance, **kwargs):
         del instance._skip_signal
 
         subject = "Your Account Has Been Approved"
-        complete_url = f"{settings.SITE_URL}{reverse('complete_profile')}"
+        complete_url = f"{settings.SITE_URL}{reverse('accounts:complete_profile')}"
         message = (
             f"Hi {instance.username},\n\n"
             "Your account has been approved.\n\n"

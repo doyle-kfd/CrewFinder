@@ -43,6 +43,10 @@ The live link can be found here - [CrewFinder](https://crew-finder-410f29f97c51.
   - [Frameworks - Libraries - Programs Used](#frameworks---libraries---programs-used)
   - [Credits](#credits)
 
+
+[TOC Generator Credit Luciopaiva](https://luciopaiva.com/markdown-toc/)
+
+
 ## The Approach I Took
 <details>
 

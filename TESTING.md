@@ -3,44 +3,26 @@
 # Table of contents
 
 - [TESTING](#testing)
+- [Table of contents](#table-of-contents)
   - [User Story Testing](#user-story-testing)
   - [Unit Testing](#unit-testing)
   - [Validator Testing](#validator-testing)
-    - [HTML](#html)
-    - [CSS](#css)
-    - [Javascript](#javascript)
-    - [Javascript](#javascript)
-    - [Python](#python)
-    - [Lighthouse](#lighthouse)
   - [Browser Testing](#browser-testing)
   - [Device Testing](#device-testing)
   - [Unit Testing - Accounts Model](#unit-testing---accounts-model)
-    - [Purpose of the Test Suite](#purpose-of-the-test-suite)
-    - [Test Cases](#test-cases)
-    - [Test Data Setup](#test-data-setup)
   - [Wave, Accessibility Testing](#wave-accessibility-testing)
   - [Manual Testing](#manual-testing)
-    - [Site Navigation](#site-navigation)
   - [Home Page](#home-page)
   - [About Page](#about-page)
   - [Sailing Opportunities Page](#sailing-opportunities-page)
   - [Contact Page](#contact-page)
   - [Form Testing](#form-testing)
-    - [Signup Form](#signup-form)
-    - [Login Form](#login-form)
-    - [Password Reset Form](#password-reset-form)
   - [Form Function Testing](#form-function-testing)
-    - [Signup Form](#signup-form)
-    - [Login Form](#login-form)
-    - [Password Reset Page](#password-reset-page)
-    - [Functional Administrator Login Test](#functional-administrator-login-test)
-    - [Functional Captain Login Test](#functional-captain-login-test)
-    - [Functional Crew Login Test](#functional-crew-login-test)
   - [Bugs](#bugs)
-    - [Fixed Bugs](#fixed-bugs)
 
 
 [TOC Generator Credit Luciopaiva](https://luciopaiva.com/markdown-toc/)
+
 
 ## User Story Testing
 

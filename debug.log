@@ -1,0 +1,101 @@
+(0.051) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."role", "accounts_user"."bio", "accounts_user"."experience_level", "accounts_user"."approval_status", "accounts_user"."profile_completed", "accounts_user"."is_active", "accounts_user"."experience", "accounts_user"."photo" FROM "accounts_user" WHERE (UPPER("accounts_user"."email"::text) = UPPER('kevin.cicourse@gmail.com') AND "accounts_user"."is_active"); args=('kevin.cicourse@gmail.com',); alias=default
+Exception while resolving variable 'uidb64' in template 'account/password_reset_email.html'.
+Traceback (most recent call last):
+  File "/workspace/.pip-modules/lib/python3.12/site-packages/django/template/base.py", line 880, in _resolve_lookup
+    current = current[bit]
+              ~~~~~~~^^^^^
+  File "/workspace/.pip-modules/lib/python3.12/site-packages/django/template/context.py", line 83, in __getitem__
+    raise KeyError(key)
+KeyError: 'uidb64'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/workspace/.pip-modules/lib/python3.12/site-packages/django/template/base.py", line 886, in _resolve_lookup
+    if isinstance(current, BaseContext) and getattr(
+                                            ^^^^^^^^
+AttributeError: type object 'Context' has no attribute 'uidb64'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/workspace/.pip-modules/lib/python3.12/site-packages/django/template/base.py", line 896, in _resolve_lookup
+    current = current[int(bit)]
+                      ^^^^^^^^
+ValueError: invalid literal for int() with base 10: 'uidb64'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/workspace/.pip-modules/lib/python3.12/site-packages/django/template/base.py", line 903, in _resolve_lookup
+    raise VariableDoesNotExist(
+django.template.base.VariableDoesNotExist: Failed lookup for key [uidb64] in [{'True': True, 'False': False, 'None': None}, {'uid': 'MTE3', 'token': 'ci68xu-44c51930e40bdf98e5d9ecf78f80d67f', 'protocol': 'https', 'domain': 'crew-finder-410f29f97c51.herokuapp.com'}]
+File /workspace/.pip-modules/lib/python3.12/site-packages/django/core/mail/backends/__init__.py first seen with mtime 1730360153.4072113
+File /workspace/.pip-modules/lib/python3.12/site-packages/django/core/mail/backends/base.py first seen with mtime 1730360153.4072113
+File /workspace/.pip-modules/lib/python3.12/site-packages/django/core/mail/backends/smtp.py first seen with mtime 1730360153.4072113
+File /home/gitpod/.pyenv/versions/3.12.2/lib/python3.12/smtplib.py first seen with mtime 1730359539.0
+(0.027) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."is_staff", "accounts_user"."date_joined", "accounts_user"."email", "accounts_user"."role", "accounts_user"."bio", "accounts_user"."experience_level", "accounts_user"."approval_status", "accounts_user"."profile_completed", "accounts_user"."is_active", "accounts_user"."experience", "accounts_user"."photo" FROM "accounts_user" WHERE (UPPER("accounts_user"."email"::text) = UPPER('kevin.cicourse@gmail.com') AND "accounts_user"."is_active"); args=('kevin.cicourse@gmail.com',); alias=default
+Exception while resolving variable 'uidb64' in template 'account/password_reset_email.html'.
+Traceback (most recent call last):
+  File "/workspace/.pip-modules/lib/python3.12/site-packages/django/template/base.py", line 880, in _resolve_lookup
+    current = current[bit]
+              ~~~~~~~^^^^^
+  File "/workspace/.pip-modules/lib/python3.12/site-packages/django/template/context.py", line 83, in __getitem__
+    raise KeyError(key)
+KeyError: 'uidb64'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/workspace/.pip-modules/lib/python3.12/site-packages/django/template/base.py", line 886, in _resolve_lookup
+    if isinstance(current, BaseContext) and getattr(
+                                            ^^^^^^^^
+AttributeError: type object 'Context' has no attribute 'uidb64'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/workspace/.pip-modules/lib/python3.12/site-packages/django/template/base.py", line 896, in _resolve_lookup
+    current = current[int(bit)]
+                      ^^^^^^^^
+ValueError: invalid literal for int() with base 10: 'uidb64'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/workspace/.pip-modules/lib/python3.12/site-packages/django/template/base.py", line 903, in _resolve_lookup
+    raise VariableDoesNotExist(
+django.template.base.VariableDoesNotExist: Failed lookup for key [uidb64] in [{'True': True, 'False': False, 'None': None}, {'email': 'kevin.cicourse@gmail.com', 'domain': 'crew-finder-410f29f97c51.herokuapp.com', 'site_name': 'CrewFinder', 'uid': 'MTE3', 'user': <User: kfd>, 'token': 'ci68xv-589004e37a249252d5bf831bafac081a', 'protocol': 'https'}]
+"POST /accounts/password/reset/ HTTP/1.1" 302 0
+Exception while resolving variable 'current_year' in template 'account/password_reset_done.html'.
+Traceback (most recent call last):
+  File "/workspace/.pip-modules/lib/python3.12/site-packages/django/template/base.py", line 880, in _resolve_lookup
+    current = current[bit]
+              ~~~~~~~^^^^^
+  File "/workspace/.pip-modules/lib/python3.12/site-packages/django/template/context.py", line 83, in __getitem__
+    raise KeyError(key)
+KeyError: 'current_year'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/workspace/.pip-modules/lib/python3.12/site-packages/django/template/base.py", line 886, in _resolve_lookup
+    if isinstance(current, BaseContext) and getattr(
+                                            ^^^^^^^^
+AttributeError: type object 'RequestContext' has no attribute 'current_year'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/workspace/.pip-modules/lib/python3.12/site-packages/django/template/base.py", line 896, in _resolve_lookup
+    current = current[int(bit)]
+                      ^^^^^^^^
+ValueError: invalid literal for int() with base 10: 'current_year'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/workspace/.pip-modules/lib/python3.12/site-packages/django/template/base.py", line 903, in _resolve_lookup
+    raise VariableDoesNotExist(
+django.template.base.VariableDoesNotExist: Failed lookup for key [current_year] in [{'True': True, 'False': False, 'None': None}, {'csrf_token': <SimpleLazyObject: <function csrf.<locals>._get_val at 0x7f3aa6f028e0>>, 'request': <WSGIRequest: GET '/accounts/password/reset/done/'>, 'user': <SimpleLazyObject: <django.contrib.auth.models.AnonymousUser object at 0x7f3aa6f5fbc0>>, 'perms': PermWrapper(<SimpleLazyObject: <django.contrib.auth.models.AnonymousUser object at 0x7f3aa6f5fbc0>>), 'messages': <FallbackStorage: request=<WSGIRequest: GET '/accounts/password/reset/done/'>>, 'DEFAULT_MESSAGE_LEVELS': {'DEBUG': 10, 'INFO': 20, 'SUCCESS': 25, 'WARNING': 30, 'ERROR': 40}}, {}, {'view': <accounts.views.CustomPasswordResetDoneView object at 0x7f3aa674b860>, 'title': 'Password reset sent', 'subtitle': None}]
+"GET /accounts/password/reset/done/ HTTP/1.1" 200 4524

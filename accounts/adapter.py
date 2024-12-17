@@ -49,7 +49,7 @@ class CustomAccountAdapter(DefaultAccountAdapter):
         Returns:
             str: The URL for the registration pending page.
         """
-        return reverse('registration_pending')
+        return reverse('accounts:registration_pending')
 
     def get_login_redirect_url(self, request):
         """
@@ -64,7 +64,7 @@ class CustomAccountAdapter(DefaultAccountAdapter):
         """
         user = request.user
         if not user.is_active:
-            return reverse('registration_pending')
+            return reverse('accounts:registration_pending')
         return super().get_login_redirect_url(request)
 
     def login(self, request, user):

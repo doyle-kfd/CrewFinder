@@ -74,7 +74,7 @@ class ProfileCompletionMiddleware:
                 return self.get_response(request)
 
             # Allow access to the logout view
-            if request.path == reverse('account_logout'):
+            if request.path == reverse('accounts:account_logout'):
                 return self.get_response(request)
 
             # Redirect based on user's approval status
@@ -90,7 +90,7 @@ class ProfileCompletionMiddleware:
             ):
                 allowed_paths = [
                     reverse('accounts:complete_profile'),
-                    reverse('account_logout'),
+                    reverse('accounts:account_logout'),
                 ]
                 if request.path not in allowed_paths:
                     return redirect('accounts:complete_profile')

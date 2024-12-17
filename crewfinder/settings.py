@@ -39,7 +39,7 @@ SECRET_KEY = 'django-insecure-j7o9m0=b+=n@u^rv&kldm56ry0%@1da1afjcy^m(02jq=qe0i-
 DEBUG = True
 
 ALLOWED_HOSTS = ['8000-doylekfd-crewfinder-18t8urmmyig.ws.codeinstitute-ide.net',
-                 '.herokuapp.com']
+                 'crew-finder-410f29f97c51.herokuapp.com']
 
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
@@ -91,6 +91,7 @@ ACCOUNT_LOGIN_ON_SIGNUP = False  # Ensure that users are not logged in automatic
 ACCOUNT_LOGIN_ON_PASSWORD_RESET = False
 ACCOUNT_SIGNUP_REDIRECT_URL = '/accounts/registration_pending/'
 ACCOUNT_INACTIVE_REDIRECT_URL = '/accounts/registration-pending/'
+ACCOUNT_LOGIN_REDIRECT_URL = '/accounts/dashboard/'
 ACCOUNT_LOGOUT_REDIRECT_URL = '/'
 AUTH_USER_MODEL = 'accounts.User'
 LOGIN_URL = '/accounts/login/'
@@ -219,6 +220,7 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 # Email Configuration
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
@@ -245,29 +247,19 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
-    'formatters': {
-        'simple': {
-            'format': '{levelname} {message}',
-            'style': '{',
-        },
-    },
     'handlers': {
         'console': {
-            'level': 'INFO',  # Change to WARNING or ERROR to reduce verbosity
             'class': 'logging.StreamHandler',
-            'formatter': 'simple',
+        },
+        'file': {
+            'class': 'logging.FileHandler',
+            'filename': 'debug.log',  # Log file location
         },
     },
     'loggers': {
         'django': {
-            'handlers': ['console'],
-            'level': 'DEBUG',  # Change to WARNING or ERROR to reduce verbosity
-            'propagate': True,
-        },
-        'accounts': {  # Replace 'myapp' with your app's name
-            'handlers': ['console'],
-            'level': 'DEBUG',  # Set to DEBUG only for your app
-            'propagate': False,
+            'handlers': ['console', 'file'],
+            'level': 'DEBUG',  # Set to DEBUG to capture everything
         },
     },
 }

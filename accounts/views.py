@@ -106,7 +106,7 @@ class CustomPasswordResetView(PasswordResetView):
             logger.debug(f"Rendered Email Content: {email_message}")
 
             # Send the email
-            send_mail(subject, email_message, None, [user_email])
+            # send_mail(subject, email_message, None, [user_email])
 
         return super().form_valid(form)
 

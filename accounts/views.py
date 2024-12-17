@@ -46,7 +46,7 @@ logger = logging.getLogger('accounts')
 
 class CustomPasswordResetConfirmView(PasswordResetConfirmView):
     template_name = "account/password_reset_confirm.html"
-    success_url = reverse_lazy("accounts:password_reset_complete")
+    success_url = reverse_lazy("accounts:account_reset_password_complete")
     print("IM USING THE CUSTOM VIEW")
 
     def dispatch(self, request, *args, **kwargs):

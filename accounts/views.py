@@ -27,6 +27,7 @@ from .models import User
 from trips.models import Trip
 from crewbooking.models import CrewBooking
 from allauth.account.views import SignupView
+from .forms import CrewBookingStatusForm
 
 
 # Password Reset Views
@@ -222,7 +223,7 @@ def crew_profile(request, user_id, trip_id):
                                      trip_id=trip_id)
 
     if request.method == "POST":
-        from .forms import CrewBookingStatusForm
+
         form = CrewBookingStatusForm(request.POST, instance=crew_booking)
         if form.is_valid():
             form.save()

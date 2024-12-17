@@ -244,6 +244,8 @@ CLOUDINARY_STORAGE = {
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
+TEMPLATES[0]['OPTIONS']['debug'] = True
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,

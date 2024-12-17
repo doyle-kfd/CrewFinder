@@ -12,7 +12,7 @@ handler500 = 'pages.views.custom_500_view'
 
 urlpatterns = [
     path('admin/', admin.site.urls),  # Admin panel for site administration
-    # path('accounts/', include('allauth.urls')),  # Allauth default routes
+    path('accounts/', include('allauth.urls')),  # Allauth default routes
     path('accounts/', include('accounts.urls', namespace='accounts')),  # Custom account management
     path('trips/', include('trips.urls', namespace='trips')),  # Trips management
     path('', include('pages.urls')),  # Static pages

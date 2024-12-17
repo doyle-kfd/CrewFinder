@@ -4257,6 +4257,33 @@ This streamlined process simplifies the application experience by providing all 
 
 </details>
 
+<details>
+<summary>Resetting a Password</summary>
+
+#### 1. **Click on "Forgot Your Password?"**
+- On the **Login Page**, click the **"Forgot Your Password?"** link.
+
+#### 2. **Enter Your Email Address**
+- You will be taken to the **Password Reset Page**.
+- Enter your registered email address in the provided field.
+- Click on the **"Send Reset Link"** button.
+
+#### 3. **Check Your Email**
+- Open your email inbox and find the password reset email.
+- Click on the **password reset link** provided in the email.
+
+#### 4. **Set a New Password**
+- The reset link will take you to the **Set New Password Page**.
+- Enter your new password and confirm it.
+- Click on the **"Reset Password"** button.
+
+#### 5. **Password Reset Confirmation**
+- You will see a message confirming that your password has been successfully reset.
+- You can now log in with your new password.
+
+</details>
+
+
 
 ## Deployment - Heroku
 

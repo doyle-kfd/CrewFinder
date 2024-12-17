@@ -1,17 +1,16 @@
 """
 Middleware
 This module defines a custom middleware class that enforces profile
-completion
-and handles user redirection based on their approval status.
+completion and handles user redirection based on their approval status.
 
 Middleware:
-1. ProfileCompletionMiddleware: Ensures that users are redirected to
-   appropriate
-   pages depending on their account's approval status and profile completion.
+1. ProfileCompletionMiddleware: Ensures that users are redirected to the
+   appropriate pages based on their account's approval status and profile
+   completion.
 
 Key Features:
 - Unrestricted access for staff and superuser accounts.
-- Redirects 'pending' users to a registration pending page.
+- Redirects 'pending' users to the registration pending page.
 - Redirects 'disapproved' users to a disapproval message page.
 - Redirects 'approved' users with incomplete profiles to the profile
   completion page.
@@ -31,14 +30,14 @@ class ProfileCompletionMiddleware:
     Middleware to enforce profile completion and handle user redirection
     based on their approval status.
 
-    This middleware checks the following conditions for authenticated users:
+    The middleware evaluates the following conditions for authenticated users:
     1. Staff and superuser accounts are allowed unrestricted access.
-    2. Redirects users with 'pending' status to the registration
-       pending page.
-    3. Redirects users with 'disapproved' status to a disapproval
+    2. Users with 'pending' approval status are redirected to the
+       registration pending page.
+    3. Users with 'disapproved' status are redirected to the disapproval
        message page.
-    4. Redirects users with 'approved' status and incomplete profiles to
-       the profile completion page.
+    4. Users with 'approved' status but incomplete profiles are redirected
+       to the profile completion page.
 
     Args:
         get_response (callable): The next middleware or view in the chain.
@@ -49,7 +48,7 @@ class ProfileCompletionMiddleware:
 
     def __init__(self, get_response):
         """
-        Initializes the middleware.
+        Initialize the middleware.
 
         Args:
             get_response (callable): The next middleware or view in the chain.
@@ -58,17 +57,19 @@ class ProfileCompletionMiddleware:
 
     def __call__(self, request):
         """
-        Processes each request and applies redirection logic based on user
-        approval status and profile completion.
+        Process each request and apply redirection logic based on the user's
+        approval status and profile completion status.
 
         Args:
             request (HttpRequest): The current HTTP request object.
 
         Returns:
-            HttpResponse: The HTTP response to the request, with potential
-            redirection applied.
+            HttpResponse: The HTTP response to the request, with redirection
+            applied if necessary.
         """
+        # Check if the user is authenticated
         if request.user.is_authenticated:
+
             # Allow unrestricted access for staff and superuser accounts
             if request.user.is_staff or request.user.is_superuser:
                 return self.get_response(request)
@@ -77,13 +78,15 @@ class ProfileCompletionMiddleware:
             if request.path == reverse('accounts:account_logout'):
                 return self.get_response(request)
 
-            # Redirect based on user's approval status
+            # Redirect users based on their approval status
             if request.user.approval_status == User.PENDING:
                 if request.path != reverse('registration_pending'):
                     return redirect('registration_pending')
+
             elif request.user.approval_status == User.DISAPPROVED:
                 if request.path != reverse('disapproval_message'):
                     return redirect('disapproval_message')
+
             elif (
                 request.user.approval_status == User.APPROVED and
                 not request.user.profile_completed
@@ -95,6 +98,6 @@ class ProfileCompletionMiddleware:
                 if request.path not in allowed_paths:
                     return redirect('accounts:complete_profile')
 
-        # Continue to the requested view if no redirect condition is met
+        # Continue to the requested view if no redirect conditions are met
         response = self.get_response(request)
         return response

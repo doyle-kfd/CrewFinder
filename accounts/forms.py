@@ -35,18 +35,22 @@ from crewbooking.models import CrewBooking  # Import CrewBooking model
 
 class CustomSignupForm(SignupForm):
     """
-    Custom signup form to allow users to select their role during
-    registration.
+    Custom signup form to include additional fields or logic during signup.
     """
-    role = forms.ChoiceField(choices=User.ROLE_CHOICES, required=True)
 
-    def custom_signup(self, request, user):
+    def __init__(self, *args, **kwargs):
         """
-        Assigns the selected role to the user and saves the user.
+        Accept the 'request' keyword argument as required by Allauth views.
         """
-        user.role = self.cleaned_data['role']
-        user.email = self.cleaned_data['email']
-        user.save()
+        self.request = kwargs.pop('request', None)  # Extract 'request'
+        super().__init__(*args, **kwargs)  # Call parent class __init__
+
+    def save(self, request):
+        """
+        Save method to handle additional logic after user creation.
+        """
+        user = super().save(request)  # Call parent save method
+        # Add any custom logic here if needed
         return user
 
 
